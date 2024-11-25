@@ -13,6 +13,7 @@
           <% let i = 1%>
           <% for(let item of overviewItems){ %>
             <li><%- item[i]%></li>
+            <br/>
           <% i++ } %>
         </ul>
   <% } %>
@@ -29,6 +30,7 @@
         <% let j = 1%>
         <% for(let item of courseHighlight){ %>
           <li><%- item[j]%></li>
+          <br/>
         <% j++ } %>
       </ul>
     </p>
@@ -46,6 +48,7 @@
           <% let topics = item.content %>
           <% for(let topic of topics) { %>
             <li><%= topic.topic %> (<span class="course-points"><%= topic.points %></span>)</li>
+            <br/>
           <% } %>
         </ol>
       <% k++ } %>
@@ -62,6 +65,7 @@
       <% let l = 1%>
       <% for(let item of projectTopics){ %>
         <li><%- item[l]%></li>
+        <br/>
       <% l++ } %>
   </ol>
   <br>
@@ -81,6 +85,7 @@
         <% let m = 1%>
         <% for(let item of outcome){ %>
           <li><%- item[m]%></li>
+          <br/>
         <% m++ } %>
     <% } %>
       
