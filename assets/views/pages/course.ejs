@@ -46,14 +46,24 @@
         <b><%- item.year%></b>
         <ol class="course-semister-topics">
           <% let topics = item.content %>
+          <% let seminar = item.seminar %>
+          <% let workshop = item.workshop %>
           <% for(let topic of topics) { %>
             <li><%= topic.topic %> (<span class="course-points"><%= topic.points %></span>)</li>
             <br/>
           <% } %>
+          <% if(seminar){ %>
+          <b>Seminar: </b> <%- item.seminar.topic %> (<span class="course-points"><%= item.seminar.points %></span>)
+          <% }  %>
+          <br>
+          <% if(workshop){ %>
+          <b>Workshop: </b> <%- item.workshop.topic %> (<span class="course-points"><%= item.workshop.points %></span>)
+          <% }  %>
         </ol>
       <% k++ } %>
-      <br/>
     </p>
+      <br/>
+      <br/>
   <% } %>
 
   <% const projectTopics = findCourse.projectTopics.topics %>
