@@ -1,0 +1,64 @@
+<nav>
+  <a href="/" class="logo">
+  </a>
+  <div class="right-nav-controls">
+    <% if(page != "login" && page != "join"){ %>
+      <label class="cart-button">
+        <%- (new icons('cart-button-icon', 'Menu')).cartLine() %>
+        <input type="checkbox" id="cart-button-checkbox">
+      </label>
+      <% } %>
+      <% if(page != "login" && page != "join"){ %>
+    <% if(isLoggedIn){ %>
+      <a href="/users/logout" class="auth-out">logout</a>
+    <%} else { %>
+    <div class="auth-button">
+<a href="/users/login" class="auth-in">login</a>
+<a href="/users/join" class="auth-join">join</a>
+      <% } %>
+    </div>
+    <% } %>
+  </div>
+  <form action="/cart/checkout" class="cart-form">
+    <div class="cart-list"></div>
+    <div class="cart-controls">
+      <button class="cart-close">close</button>
+      <button class="cart-checkout">checkout</button>
+    </div>
+  </form>
+</nav>
+<% if(page != "login" && page != "join"){ %>
+<header>
+  <div class="main-menu">
+    <span class="menu-button">
+      <%- (new icons('menu-button-icon', 'Menu')).menu() %>
+      Menu
+    </span>
+  <ul class="menu">
+    <li class="menu-item"><a href="/">Home</a></li>
+    <li class="menu-item">
+      <span class="button" title="Show courses">Courses</span>
+      <ul class="courses-categories">
+      <li class="course-option"><a href="/course/Doctor of Business Administration">Doctor of Business Administration</a></li>
+      <li class="course-option"><a href="/course/Advance Diploma in Nursing Assistant Studies">Advance Diploma in Nursing Assistant Studies</a></li>
+      <li class="course-option"><a href="/course/Doctor of Health and Safety Sciences">Doctor of Health and Safety Sciences</a></li>
+    </ul>
+    </li>
+    <li class="menu-item"><a href="/verify">Verify Certificate</a></li>
+    <li class="menu-item"><a href="/contact">Contact us</a></li>
+    <li class="menu-item"><a href="/about">About us</a></li>
+  </ul>
+  </div>
+  <% if(page == 'home'){ %>
+  <form action="/search/course" class="search-course-form">
+    <input type="search" name="course" class="search-course-box">
+    <button>
+      <span class="ch1">
+        <span class="ch2"></span>
+      </span>
+    </button>
+  </form>
+  <% } %>
+
+</header>
+<% } %>

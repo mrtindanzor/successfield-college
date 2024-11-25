@@ -1,0 +1,21 @@
+<div class="container-wrapper">
+  <form action="/contact" method="post" class="contact-form">
+    <span class="form-title">Contact us</span>
+    <label for="name-field">
+      <span>My name is</span>
+      <input type="text" name="name-field" id="name-field" placeholder="Name" minlength="3" required>
+    </label>
+    <label for="phone-field">
+      <span>You can contact me at</span>
+      <input type="tel" name="phone-field" id="phone-field" placeholder="Telephone" minlength="9" required>
+    </label>
+    <label for="email-field">
+      <span>or at </span>
+      <input type="email" name="email-field" id="email-field" placeholder="Email" minlength="5" required>
+    </label>
+    <label for="message-field">
+      <input type="text" name="message-field" id="message-field" placeholder="Message" minlength="20" required>
+    </label>
+    <input type="submit" value="Send message" class="send-message">
+  </form>
+</div>
