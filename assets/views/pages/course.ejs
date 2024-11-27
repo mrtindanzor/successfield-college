@@ -49,15 +49,15 @@
           <% let seminar = item.seminar %>
           <% let workshop = item.workshop %>
           <% for(let topic of topics) { %>
-            <li><%= topic.topic %> (<span class="course-points"><%= topic.points %></span>)</li>
+            <li><%= topic.topic %> </li>
             <br/>
           <% } %>
           <% if(seminar){ %>
-          <b>Seminar: </b> <%- item.seminar.topic %> (<span class="course-points"><%= item.seminar.points %></span>)
+          <b>Seminar: </b> <%- item.seminar.topic %>
           <% }  %>
           <br>
           <% if(workshop){ %>
-          <b>Workshop: </b> <%- item.workshop.topic %> (<span class="course-points"><%= item.workshop.points %></span>)
+          <b>Workshop: </b> <%- item.workshop.topic %> 
           <% }  %>
         </ol>
       <% k++ } %>
