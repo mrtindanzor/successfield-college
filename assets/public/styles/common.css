@@ -308,6 +308,9 @@ footer{
   padding: 10px;
   right: 0;
   bottom: calc(50dvh + 70px);
+  box-shadow: -2px 0 3px var(--darker);
+  color: var(--darker);
+  opacity: 0.8;
   background-color: white;
 
 }
@@ -325,12 +328,15 @@ align-items: baseline;
   color: green;
 }
 .mail-link{
-  background-color: var(--first);
   position: fixed;
   right: 0;
   bottom: calc(50dvh - 70px);
   padding: 10px;
+  box-shadow: -2px 0 3px var(--darker);
+  color: var(--darker);
   display: flex;
+  opacity: 0.8;
+  background-color: white;
 }
 .mail-link .mail-icon{
   transform: scale(1.5);
