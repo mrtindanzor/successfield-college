@@ -1,18 +1,25 @@
 import { Router } from "express"
+import Loki from "lokijs"
 
-
-const verifyroute = Router(),
-      certDb = [{"name":"Thomas Sichone","studentNumber":"608457/10/1","certificateCode":"gism-24-049","studentProgramme":"Doctor of Business Administration","dateCompleted":"4th July, 2024","_id":"1"},
-        {"name":"Jacob Sichone","studentNumber":"608456/10/1","certificateCode":"gism-24-085","studentProgramme":"Doctor of Business Administration","dateCompleted":"4th July, 2024","_id":"2"}
-        ]
-
+let certificateCollection = []
+const loadHandler = () => { 
+      certificateCollection = database.getCollection('certificates') || database.addCollection('certificates')
+      database.saveDatabase()
+    },
+    database = new Loki('config/certificates.json', {autoload: true, autoloadCallback: loadHandler , persistenceMethod: "fs"}),
+    verifyroute = Router()
 
 verifyroute.get('/verify', (req, res) => res.render('index', {page: 'verify'}))
 verifyroute.get('/verify/:certNumber', async (req, res) => {
   const certificateCode = req.params.certNumber.toLowerCase()
-  const user = certDb.find(user => user.certificateCode === certificateCode)
-    if(!user) return res.status(404).json({status: 404, msg: 'Invalid certificate code'})
-    return res.status(200).json({status: 200, user})
+
+  const user = certificateCollection.findOne({certificateCode}, async (err, user) => {
+    if(err) return res.status(500).json({status: 500, msg: 'An error occured'})
+    return user
+  })
+
+  if(!user) return res.status(404).json({status: 404, msg: 'Invalid certificate code'})
+  return res.status(200).json({status: 200, user})
 })
 
 export default verifyroute

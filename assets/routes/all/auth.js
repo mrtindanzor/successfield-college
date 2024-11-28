@@ -4,10 +4,16 @@ import passport from 'passport'
 import bcrypt from 'bcrypt'
 import { config } from 'dotenv'
 import { Strategy as localStrategy } from 'passport-local'
+import Loki from 'lokijs'
 
 config()// dot env vairable function
+let usersDb = []
 const authroute = Router(),
-usersDb = [],
+loadHandler = () => {
+  usersDb = database.getCollection('users') || database.addCollection('users')
+  database.saveDatabase()
+},
+database = new Loki('./config/users.json', {autoload: true, autoloadCallback: loadHandler, persistenceMethod: 'fs'}),
 alpahanumericPattern = /^[A-Za-z0-9 .]+$/,
 emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -22,7 +28,10 @@ let error = 0,
 authroute.use(express.urlencoded({extended: false}))
 
 passport.use(new localStrategy({usernameField: "email"}, async (email, password, done) => {
-  const findUser = usersDb.find(user => user.email === email)
+  const findUser = usersDb.findOne({email}, (err, user) => {
+    if(err) return done(err)
+    return user
+  })
     if(!findUser) return done(null, false, {message: "Invalid credentials"})
     
     try{
@@ -40,7 +49,10 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser(async (id, done) => {
-  const findUser = usersDb.find( user => user._id === id)
+  const findUser = usersDb.findOne({_id: id}, (err, user) => {
+    if(err) return done(err)
+    return user
+  })
   if(!findUser) return done(null, false, {message: 'Invalid credentials'})
   return done(null, findUser)
 })
@@ -59,7 +71,6 @@ authroute.post('/join', async (req, res) => {
         date = Date.now(),
         _id = date
 
-        console.log(usersDb)
   if(!email || !email.match(emailPattern)){
     error = 1
     emailerr = 'Invalid email format!'
@@ -80,7 +91,10 @@ authroute.post('/join', async (req, res) => {
     snerr = 'Surname must only contain alphanumeric characters!'
   }
   
-  const emailExists = usersDb.find(user => user.email === email)
+  const emailExists = usersDb.findOne({email}, (err, email) => {
+    if(err) return
+    return email
+  })
   if(emailExists){
     error = 1
     emailExistsErr = 'User with this email already exists!'
@@ -91,7 +105,8 @@ authroute.post('/join', async (req, res) => {
   } 
   
   const  hashedPassword = await bcrypt.hash(password, 10)
-    usersDb.push({email,password: hashedPassword,firstname,surname,date,_id})
+    usersDb.insert({email,password: hashedPassword,firstname,surname,date,_id})
+    database.saveDatabase()
     req.body = ''
     res.render('index', {page: 'login', successReg: 'Registered successfully login'})
 })

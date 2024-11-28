@@ -7,9 +7,12 @@ import passport from "passport";
 import path from "path"
 import { fileURLToPath } from "url"
 import dotenv from "dotenv";
+import Loki from "lokijs"
 
 dotenv.config()//dot env function
 const app = express(),
+      database = new Loki('./config/db.json', {autoload: true}),
+      usersCollection = database.getCollection('users') || database.addCollection('users'),
       filename = fileURLToPath(import.meta.url),
       dirname = path.dirname(filename),
       time = 60 * 14 * 1000,

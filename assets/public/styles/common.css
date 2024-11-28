@@ -277,7 +277,7 @@ footer{
   color: var(--third);
   font-size: var(--second-s);
 }
-.footer-container .twitter-icon{
+.footer-container .twitter-icon, .whatsapp-icon{
   width: calc(var(--second-m) + var(--first-m));
 }
 .footer-container .twitter-link{
@@ -298,11 +298,55 @@ footer{
 .footer-container .twitter-link1{
   display: flex;
   align-items: center;
-
 }
-.twitter-link1 .twitter-icon{
+.twitter-link1 .twitter-icon, .mail-icon{
   width: var(--second-m);
   margin-right: 10px;
+}
+.whatsapp-link{
+  position: fixed;
+  padding: 10px;
+  right: 0;
+  bottom: calc(50dvh + 70px);
+  background-color: white;
+
+}
+.whatsapp-link1{
+display: flex;
+align-items: baseline;
+}
+.whatsapp-link1 .whatsapp-icon{
+  color: rgb(2, 199, 2);
+  position: relative;
+  top: 8px;
+  left: -5px;
+}
+.whatsapp-icon{
+  color: green;
+}
+.mail-link{
+  background-color: var(--first);
+  position: fixed;
+  right: 0;
+  bottom: calc(50dvh - 70px);
+  padding: 10px;
+  display: flex;
+}
+.mail-link .mail-icon{
+  transform: scale(1.5);
+  position: relative;
+  color: red;
+  top: 5px;
+  left: 5px;
+}
+.mail-link1 {
+  margin-top: 10px;
+}
+.mail-link1 .mail-icon{
+  transform: scale(1.5);
+  position: relative;
+  top: 3px;
+  color: red;
 }
 @media (max-width: 767px) {
   ul.courses-categories{
