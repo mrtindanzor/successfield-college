@@ -2,12 +2,12 @@
   <a href="/" class="logo">
   </a>
   <div class="right-nav-controls">
-    <% if(page != "login" && page != "join"){ %>
+    <!-- <% if(page != "login" && page != "join"){ %>
       <label class="cart-button">
-        <%- (new icons('cart-button-icon', 'Menu')).cartLine() %>
+        <% (new icons('cart-button-icon', 'Menu')).cartLine() %>
         <input type="checkbox" id="cart-button-checkbox">
       </label>
-      <% } %>
+      <% } %> -->
       <% if(page != "login" && page != "join"){ %>
     <% if(isLoggedIn){ %>
       <a href="/users/logout" class="auth-out">logout</a>
