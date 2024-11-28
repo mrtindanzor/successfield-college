@@ -336,7 +336,7 @@ align-items: baseline;
   color: var(--darker);
   display: flex;
   opacity: 0.8;
-  background-color: white;
+  background-color: white; 
 }
 .mail-link .mail-icon{
   transform: scale(1.5);
