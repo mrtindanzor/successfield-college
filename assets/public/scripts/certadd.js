@@ -4,6 +4,8 @@ resultDiv = document.querySelector('.result')
 formEl.addEventListener('submit', async (e) => {
   e.preventDefault()
 
+  const newCertCode = document.getElementById('certificateCode').value.toLowerCase()
+  document.getElementById('certificateCode').value = newCertCode
   const formData = new FormData(formEl),
   jsonObject = Object.fromEntries(formData),
   jsonString = JSON.stringify(jsonObject)
