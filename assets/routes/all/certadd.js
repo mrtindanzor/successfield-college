@@ -7,8 +7,7 @@ loadHandler = () => {
   certificateCollection = database.getCollection('certificates') || database.addCollection('certificates')
   database.saveDatabase()
 },
-  database = new Loki('./config/certificates.json', {autoload: true, autoloadCallback: loadHandler , persistenceMethod: "fs"})
-
+database = new Loki('config/certificates.json', {autoload: true, autoloadCallback: loadHandler , persistenceMethod: "fs"})
 
 certaddRoute.post('/certadd', async (req, res) => {
   const certificate = req.body
