@@ -6,7 +6,7 @@ const loadHandler = () => {
       certificateCollection = database.getCollection('certificates') || database.addCollection('certificates')
       database.saveDatabase()
     },
-    database = new Loki('config/certificates.json', {autoload: true, autoloadCallback: loadHandler , persistenceMethod: "fs"}),
+    database = new Loki('./config/certificates.json', {autoload: true, autoloadCallback: loadHandler , persistenceMethod: "fs"}),
     verifyroute = Router()
 
 verifyroute.get('/verify', (req, res) => res.render('index', {page: 'verify'}))

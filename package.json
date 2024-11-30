@@ -5,7 +5,7 @@
   "main": "./api/index.js",
   "scripts": {
     "start": "node ./api/index.js",
-    "app": "nodemon ./api/index.js"
+    "app": "nodemon app.js"
   },
   "author": "Mr. Tindanzor Simon",
   "license": "ISC",
@@ -19,11 +19,9 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.18.1",
     "lokijs": "^1.5.12",
+    "nodemon": "^3.1.7",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.7"
   },
   "type": "module"
 }
