@@ -22,4 +22,4 @@ certaddRoute.get('/certadd', (req, res) => {
   res.status(200).render('index', {page: 'certadd', title: 'Add certificate'})
 })
 
-export default certaddRoute
+export { certaddRoute, certificateCollection }

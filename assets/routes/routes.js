@@ -4,7 +4,7 @@ import contactroute from "./all/contact.js";
 import verifyroute from "./all/verify.js";
 import testroute from "./all/test.js";
 import courseRoute from "./all/course.js";
-import certaddRoute from "./all/certadd.js";
+import { certaddRoute } from "./all/certadd.js";
 
 const router = Router()
 
