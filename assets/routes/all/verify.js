@@ -11,8 +11,7 @@ const loadHandler = () => {
 
 verifyroute.get('/verify', (req, res) => res.render('index', {page: 'verify'}))
 verifyroute.get('/verify/:certNumber', async (req, res) => {
-  const certificateCode = req.params.certNumber.toLowerCase()
-
+  const certificateCode = req.params.certNumber.toLowerCase();
   const user = certificateCollection.findOne({certificateCode}, async (err, user) => {
     if(err) return res.status(500).json({status: 500, msg: 'An error occured'})
     return user
