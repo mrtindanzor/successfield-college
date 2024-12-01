@@ -4,7 +4,7 @@ import { certificateModel } from "../../../app.js"
 const certaddRoute = Router()
 
 certaddRoute.post('/certadd', async (req, res) => {
-  const certificate = req.body
+  const certificate = req.body.toLowerCase().trim()
   
   const certificateCode = certificate.certificateCode,
   user = await certificateModel.findOne({certificateCode})
