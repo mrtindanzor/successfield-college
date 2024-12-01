@@ -4,16 +4,10 @@ import passport from 'passport'
 import bcrypt from 'bcrypt'
 import { config } from 'dotenv'
 import { Strategy as localStrategy } from 'passport-local'
-import Loki from 'lokijs'
+import { userModel } from '../../../app.js'
 
 config()// dot env vairable function
-let usersDb = []
 const authroute = Router(),
-loadHandler = () => {
-  usersDb = database.getCollection('users') || database.addCollection('users')
-  database.saveDatabase()
-},
-database = new Loki('./config/users.json', {autoload: true, autoloadCallback: loadHandler, persistenceMethod: 'fs'}),
 alpahanumericPattern = /^[A-Za-z0-9 .]+$/,
 emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -28,20 +22,17 @@ let error = 0,
 authroute.use(express.urlencoded({extended: false}))
 
 passport.use(new localStrategy({usernameField: "email"}, async (email, password, done) => {
-  const findUser = usersDb.findOne({email}, (err, user) => {
-    if(err) return done(err)
-    return user
-  })
-    if(!findUser) return done(null, false, {message: "Invalid credentials"})
-    
-    try{
-      const isPasswordMatch = await bcrypt.compare(password, findUser.password)
-    if(!isPasswordMatch) return done(null, false, {message: "Incorrect password"})
-    
-    return done(null, findUser)
-    } catch(passwordCompareError){
-      return done(null, false, {message: 'An error occured while comparing passwords'})
-    }
+try{
+
+  const user = await userModel.findOne({email})
+  if(!user) return done(null, false, {msg: "Invalid credentials"})
+  
+  const isPasswordMatch = await bcrypt.compare(password, user.password)
+  if(!isPasswordMatch) return done(null, false, {msg: 'Incorrect password'})
+  return done(null, user)
+} catch(err){
+  return done(err)
+}
 }))
 
 passport.serializeUser((user, done) => {
@@ -49,12 +40,9 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser(async (id, done) => {
-  const findUser = usersDb.findOne({_id: id}, (err, user) => {
-    if(err) return done(err)
-    return user
-  })
-  if(!findUser) return done(null, false, {message: 'Invalid credentials'})
-  return done(null, findUser)
+  const user = await userModel.findOne({_id: id})
+  if(!user) return done(null, false)
+  return done(null, user)
 })
 
 authroute.get('/',(req, res) => {
@@ -68,8 +56,7 @@ authroute.get('/login',(req, res) => {
 })
 authroute.post('/join', async (req, res) => {
   let { body: {email, password, cpassword, firstname, surname} } = req,
-        date = Date.now(),
-        _id = date
+        date = Date.now()
 
   if(!email || !email.match(emailPattern)){
     error = 1
@@ -91,7 +78,7 @@ authroute.post('/join', async (req, res) => {
     snerr = 'Surname must only contain alphanumeric characters!'
   }
   
-  const emailExists = usersDb.findOne({email}, (err, email) => {
+  const emailExists = userModel.findOne({email}, (err, email) => {
     if(err) return
     return email
   })
@@ -104,11 +91,17 @@ authroute.post('/join', async (req, res) => {
     return res.render('index', {page: 'join', fnerr, snerr, emailerr, passerr, cpasserr, emailExistsErr})
   } 
   
-  const  hashedPassword = await bcrypt.hash(password, 10)
-    usersDb.insert({email,password: hashedPassword,firstname,surname,date,_id})
-    database.saveDatabase()
-    req.body = ''
-    res.render('index', {page: 'login', successReg: 'Registered successfully login'})
+  const  hashedPassword = await bcrypt.hash(password, 10),
+  details = {email,password: hashedPassword,firstname,surname,date},
+  newUser = new userModel(details)
+  newUser.save()
+    .then(() => {
+      if(!newUser.isNew) {
+        req.body = ''
+        res.render('index', {page: 'login', successReg: 'Registered successfully login'})
+      }
+    })
+    
 })
 authroute.post('/login', (req, res, next) => {
   passport.authenticate('local', async (err, user, info) => {

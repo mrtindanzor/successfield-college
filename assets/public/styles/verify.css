@@ -70,3 +70,9 @@ main-section{
         align-items: center;
     }
 }
+.verification-status{
+    color: green;
+}
+.invalid-code{
+    color: red;
+}

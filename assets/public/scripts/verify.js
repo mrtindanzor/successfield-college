@@ -14,12 +14,12 @@ verifyForm.addEventListener('submit', (e) => {
             showFoundStudent.innerHTML =  `<b>${data.msg}</b>`
         }
           if(data.status === 404) {
-            showFoundStudent.innerHTML =  `<b>${data.msg}</b>`
+            showFoundStudent.innerHTML =  `<b class="invalid-code">${data.msg}</b>`
         }
           if(data.status === 200) {
             let name = data.user.name
                   name = name.toUpperCase()
-            let programme = data.user.studentProgramme
+            let programme = data.user.programme
                 programme = programme.toUpperCase()
             showFoundStudent.innerHTML =  `
         <div class="student-details">
@@ -28,7 +28,7 @@ verifyForm.addEventListener('submit', (e) => {
             <div><b for="student-certificate-num">Certificate code: </b><span class="student-certificate-num">${data.user.certificateCode.toUpperCase()}</span></div>
             <div><b for="verification-status">Status: </b><span class="verification-status">VALID</span></div>
             <div><b for="student-course">Programme: </b><span class="student-course">${programme}</span></div>
-            <div><b for="date-completed">Date completed: </b><span class="date-completed">${data.user.dateCompleted}</span></div>
+            <div><b for="date-completed">Date completed: </b><span class="date-completed">${data.user.dateCompleted.toUpperCase()}</span></div>
         </div>
           `
         }

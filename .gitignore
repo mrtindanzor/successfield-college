@@ -3,3 +3,6 @@ config/
 /config
 config/users.json
 config/users.json
+.env
+.env
+.env

@@ -6,21 +6,50 @@ import session from "express-session";
 import passport from "passport";
 import path from "path"
 import { fileURLToPath } from "url"
-import dotenv from "dotenv";
-import Loki from "lokijs"
+import dotenv from "dotenv"
+import mongoose from "mongoose";
 
 dotenv.config()//dot env function
-const app = express(),
-      database = new Loki('./config/db.json', {autoload: true}),
-      usersCollection = database.getCollection('users') || database.addCollection('users'),
-      filename = fileURLToPath(import.meta.url),
-      dirname = path.dirname(filename),
-      time = 60 * 14 * 1000,
-      PORT = process.env.PORT || 8000,
-      isAuthenticated = (req, res, next) => {
-        if(req.isAuthenticated()) req.isLoggedIn = true
-        next()
-      }
+
+
+const uri = process.env.DATABASE,
+  schema = mongoose.Schema,
+  certificateSchema = new schema({
+    name: String,
+    studentNumber: Number,
+    certificateCode: String,
+    programme: String,
+    dateCompleted: String
+  }),
+  userSchema = new schema({
+    firstname: String,
+    surname: String,
+    password: String,
+    email: String,
+    date: String
+  }),
+  certificateModel = mongoose.model('certificate', certificateSchema),
+  userModel = mongoose.model('user', userSchema),
+  app = express(),
+  filename = fileURLToPath(import.meta.url),
+  dirname = path.dirname(filename),
+  PORT = process.env.PORT || 8000,
+  time = 600000,
+  isAuthenticated = (req, res, next) => {
+    if(req.isAuthenticated()) req.isLoggedIn = true
+    next()
+  },
+  pingService = () => {
+    fetch('https://www.gism.online')
+  }
+
+  setInterval(pingService, time);
+
+  mongoose.Promise = global.Promise
+  mongoose.connect(uri)
+
+
+mongoose.connection.once('open', () => console.log('connected to database successfully')).on('error', (error) => console.log('An error occured while connecting to database', error))
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -55,4 +84,4 @@ app.use(page404)
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`))
 
-export default app
+export { app, certificateModel, userModel }

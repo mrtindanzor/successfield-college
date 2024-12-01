@@ -1,25 +1,27 @@
 import { Router } from "express"
-import Loki from "lokijs"
+import { certificateModel } from "../../../app.js"
 
-let certificateCollection
-const certaddRoute = Router(), 
-loadHandler = () => { 
-  certificateCollection = database.getCollection('certificates') || database.addCollection('certificates')
-  database.saveDatabase()
-},
-database = new Loki('config/certificates.json', {autoload: true, autoloadCallback: loadHandler , persistenceMethod: "fs"})
+const certaddRoute = Router()
 
 certaddRoute.post('/certadd', async (req, res) => {
   const certificate = req.body
-  console.log(certificate)
-  certificateCollection.insert(certificate)
-  database.saveDatabase()
-  return res.status(201).json({msg: 'added successfully'})
+  
+  const certificateCode = certificate.certificateCode,
+  user = await certificateModel.findOne({certificateCode})
 
+  if(user) return res.status(301).json({msg: "Already added in database, input another"})
+
+  const newCertificate = new certificateModel(certificate)
+
+  newCertificate.save()
+    .then(() => {
+      if(newCertificate.isNew) return res.status(400).json({msg: 'could not add file'})
+      return res.status(201).json({msg: 'added successfully'})
+    })
 })
 
 certaddRoute.get('/certadd', (req, res) => {
   res.status(200).render('index', {page: 'certadd', title: 'Add certificate'})
 })
 
-export { certaddRoute, certificateCollection }
+export { certaddRoute }
