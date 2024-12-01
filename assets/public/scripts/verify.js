@@ -18,7 +18,6 @@ verifyForm.addEventListener('submit', (e) => {
         }
           if(data.status === 200) {
             let name = data.user.name
-            // let programme = data.user.programme
             showFoundStudent.innerHTML =  `
         <div class="student-details">
              <div><b for="student-name">Name: </b><span class="student-name">${name.toUpperCase()}</span></div>
