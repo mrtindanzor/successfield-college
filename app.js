@@ -16,7 +16,7 @@ const uri = process.env.DATABASE,
   schema = mongoose.Schema,
   certificateSchema = new schema({
     name: String,
-    studentNumber: Number,
+    studentNumber: String,
     certificateCode: String,
     programme: String,
     dateCompleted: String
