@@ -4,9 +4,9 @@ import { certificateModel } from "../../../app.js"
 const certaddRoute = Router()
 
 certaddRoute.post('/certadd', async (req, res) => {
-  const certificate = req.body.toLowerCase().trim()
+  const certificate = req.body
   
-  const certificateCode = certificate.certificateCode,
+  const certificateCode = certificate.certificateCode.toLowerCase().trim(),
   user = await certificateModel.findOne({certificateCode})
 
   if(user) return res.status(304).json({msg: "Already added in database, input another"})
