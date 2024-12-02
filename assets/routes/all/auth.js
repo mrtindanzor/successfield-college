@@ -22,17 +22,12 @@ let error = 0,
 authroute.use(express.urlencoded({extended: false}))
 
 passport.use(new localStrategy({usernameField: "email"}, async (email, password, done) => {
-try{
-
   const user = await userModel.findOne({email})
   if(!user) return done(null, false, {msg: "Invalid credentials"})
   
   const isPasswordMatch = await bcrypt.compare(password, user.password)
   if(!isPasswordMatch) return done(null, false, {msg: 'Incorrect password'})
   return done(null, user)
-} catch(err){
-  return done(err)
-}
 }))
 
 passport.serializeUser((user, done) => {
@@ -78,10 +73,7 @@ authroute.post('/join', async (req, res) => {
     snerr = 'Surname must only contain alphanumeric characters!'
   }
   
-  const emailExists = userModel.findOne({email}, (err, email) => {
-    if(err) return
-    return email
-  })
+  const emailExists = await userModel.findOne({email})
   if(emailExists){
     error = 1
     emailExistsErr = 'User with this email already exists!'
