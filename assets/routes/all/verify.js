@@ -5,10 +5,10 @@ const verifyroute = Router()
 
 verifyroute.get('/verify', (req, res) => res.render('index', {page: 'verify'}))
 verifyroute.get('/verify/:certNumber', async (req, res) => {
-  const certificateCode = req.params.certNumber.trim(),
-    user = await certificateModel.findOne({certificateCode})
-  if(!user) return res.status(404).json({status: 404, msg: 'Invalid certificate code'})
-  return res.status(200).json({status: 200, user})
+  const certificateCode = req.params.certNumber.trim().toLowerCase(),
+   user = await certificateModel.findOne({certificateCode})
+  if(user) return res.status(200).json({status: 200, user}) 
+  return res.status(404).json({status: 404, msg: 'Invalid certificate code'})
 })
 
 export default verifyroute

@@ -10,12 +10,12 @@ verifyForm.addEventListener('submit', (e) => {
   fetch(`/verify/${certificateNum}`)
   .then((res) => res.json())
   .then(data => {
-  // if(data.status === 500) {
-  //   return showFoundStudent.innerHTML =  `<b>${data.msg}</b>`
-  // }
-  // if(data.status === 404) {
-  //   return showFoundStudent.innerHTML =  `<b class="invalid-code">${data.msg}</b>`
-  // }
+  if(data.status === 500) {
+    return showFoundStudent.innerHTML =  `<b>${data.msg}</b>`
+  }
+  if(data.status === 404) {
+    return showFoundStudent.innerHTML =  `<b class="invalid-code">${data.msg}</b>`
+  }
   let name = data.user.name
   let programme = data.user.programme
   showFoundStudent.innerHTML =  `
