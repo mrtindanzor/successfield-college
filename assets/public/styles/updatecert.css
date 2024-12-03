@@ -1,0 +1,41 @@
+main-section{
+  margin: 40px;
+}
+.find-user-form{
+  margin-bottom: 40px;
+}
+.find-user-form{
+  display: flex;
+}
+.find-user-form input{
+  border: 1px solid var(--black);
+  padding: 5px 20px;
+  font-size: var(--second-s);
+  text-transform: uppercase;
+}
+.find-user-form button{
+  border: 1px solid var(--third);
+  background-color: var(--third);
+  color: var(--white);
+  margin-left: 5px;
+  padding: 5px 20px;
+  font-size: var(--second-s);
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: alice;
+  transition: 0.2s ease;
+}
+.find-user-form button:hover{
+  border-radius: 0 10px 10px 0;
+  opacity: 0.8;
+}
+.result form input{
+  display: block;
+  border: none;
+  border-bottom: 2px solid var(--second);
+  width: 100%;
+  padding: 5px 20px;
+  font-size: var(--third-s);
+  margin-bottom: 5px;
+  font-family: 'alice';
+}

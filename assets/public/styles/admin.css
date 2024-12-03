@@ -1,0 +1,22 @@
+.main-wrapper{
+  border: 1px solid;
+}
+.side-wrapper{
+  display: block;
+  width: fit-content;
+  padding: 10px;
+  background-color: var(--third);
+  height: calc(100dvh - 100px);
+}
+.side-wrapper ul{
+  list-style-type: none;
+}
+.side-wrapper a{
+  color: var(--second);
+  font-family: acolonica;
+  display: block;
+  padding: 5px 10px;
+  background-color: var(--first);
+  margin-bottom: 5px;
+  text-decoration: none;
+}

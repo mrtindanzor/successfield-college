@@ -5,6 +5,8 @@ import verifyroute from "./all/verify.js";
 import testroute from "./all/test.js";
 import courseRoute from "./all/course.js";
 import { certaddRoute } from "./all/certadd.js";
+import adminRoute from "./all/admin.js";
+import updatecertRoute from "./all/updatecert.js";
 
 const router = Router()
 
@@ -14,5 +16,7 @@ router.use(verifyroute)
 router.use(testroute)
 router.use(courseRoute)
 router.use(certaddRoute)
+router.use(adminRoute)
+router.use(updatecertRoute)
 
 export default router

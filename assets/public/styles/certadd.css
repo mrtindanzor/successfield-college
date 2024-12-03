@@ -1,0 +1,24 @@
+form label input{
+  border: none;
+  border-bottom: 2px solid var(--second);
+  width: 100%;
+  padding: 5px 20px;
+  font-size: var(--third-s);
+  margin-bottom: 5px;
+  font-family: 'alice';
+}
+form label input:focus{
+  outline: none;
+  border-bottom: 2px dotted var(--fourth);
+}
+form input.submit{
+  width: fit-content;
+  height: fit-content;
+  font-size: var(--third-s);
+  color: var(--white);
+  padding: 5px 20px;
+  background-color: var(--third);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: alice;
+}
