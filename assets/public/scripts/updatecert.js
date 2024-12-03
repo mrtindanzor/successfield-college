@@ -19,7 +19,8 @@ findFormEl.addEventListener('submit', (e) => {
       certificateCode = data.user.certificateCode,
       programme = data.user.programme,
       studentNumber = data.user.studentNumber,
-      dateCompleted = data.user.dateCompleted
+      dateCompleted = data.user.dateCompleted,
+      id = data.user._id
 
       const updateForm =  `
 
@@ -42,6 +43,7 @@ findFormEl.addEventListener('submit', (e) => {
         <input type="text" name="certificateCode" id="certificateCode" value="${certificateCode}" placeholder="Update certificate number" title="Update certificate number">
       </label>
         <input type="hidden" name="oldCertificateCode" id="oldCertificateCode" value="${certificateCode}">
+        <input type="hidden" name="id" id="oldCertificateCode" value="${id}">
       <label for="programme">
         <b>Programme</b>
         <input type="text" name="programme" id="programme" value="${programme}" placeholder="Update programme" title="Update programme">
