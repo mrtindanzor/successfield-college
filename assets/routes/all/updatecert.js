@@ -8,12 +8,12 @@ updatecertRoute.get('/updatecert', (req, res) => {
 })
 updatecertRoute.post('/updatecert', (req, res) => {
   const certificate = req.body,
-    name = certificate.name,
-    certificateCode = certificate.certificateCode,
+    name = certificate.name.toLowerCase(),
+    certificateCode = certificate.certificateCode.toLowerCase(),
     oldCertificateCode = certificate.oldCertificateCode,
-    programme = certificate.programme,
-    studentNumber = certificate.studentNumber,
-    dateCompleted = certificate.dateCompleted,
+    programme = certificate.programme.toLowerCase(),
+    studentNumber = certificate.studentNumber.toLowerCase(),
+    dateCompleted = certificate.dateCompleted.toLowerCase(),
     newCertificate = {name, certificateCode, programme, studentNumber, dateCompleted}
   certificateModel.findOneAndUpdate({certificateCode: oldCertificateCode}, newCertificate)
     .then( async () => {
