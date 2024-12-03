@@ -21,8 +21,8 @@ updatecertRoute.post('/updatecert', checkAdmin, async (req, res) => {
     newCertificate = {name, certificateCode, programme, studentNumber, dateCompleted}
 
   const findUser = await certificateModel.findOne({certificateCode})
-  if(findUser) return res.status(403).json({status: 403, msg: 'A user with this certificate code already exist'})
-    
+  if(findUser && findUser.certificateCode !== certificateCode) return res.status(403).json({status: 403, msg: 'A user with this certificate code already exist'})
+
   certificateModel.findOneAndUpdate({certificateCode: oldCertificateCode}, newCertificate)
     .then( async () => {
       const user = await certificateModel.findOne({certificateCode})
