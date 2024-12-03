@@ -44,7 +44,7 @@ checkAdmin = (req, res, next) => {
     next()
   },
   isAuthenticatedAsAdmin = (req, res, next) => {
-    if(req.isAuthenticated() && (req.user.firstname.trim().toLowerCase() === process.env.ADMIN_SECRET.toLowerCase() || req.user.firstname.trim().toLowerCase() === process.env.DEVELOPER_SECRET.toLowerCase())) req.isAdmin = true
+    if(req.isAuthenticated() && ((req.user.firstname.trim().toLowerCase() === process.env.ADMIN_SECRET.toLowerCase()) || (req.user.firstname.trim().toLowerCase() === process.env.DEVELOPER_SECRET.toLowerCase()))) req.isAdmin = true
     next()
   },
   pingService = () => {
