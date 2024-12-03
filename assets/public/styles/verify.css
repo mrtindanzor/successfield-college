@@ -76,3 +76,12 @@ main-section{
 .invalid-code{
     color: red;
 }
+@media (min-width: 551px) {
+  form{
+    display: flex;
+    align-items: center;
+  }
+  form i{
+    margin-right: 10px;
+  }
+}
