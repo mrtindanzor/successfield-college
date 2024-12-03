@@ -1,12 +1,16 @@
 import { Router } from "express";
 import { certificateModel } from "../../../app.js";
 
-const updatecertRoute = Router()
+const updatecertRoute = Router(),
+checkAdmin = (req, res, next) => {
+  if(!req.isAdmin) return res.status(403).redirect('/unknown')
+  next()
+}
 
-updatecertRoute.get('/updatecert', (req, res) => {
+updatecertRoute.get('/updatecert', checkAdmin, (req, res) => {
   res.status(200).render('index', {page: 'updatecert', title: 'Update Certificate'})
 })
-updatecertRoute.post('/updatecert', (req, res) => {
+updatecertRoute.post('/updatecert', checkAdmin, async (req, res) => {
   const certificate = req.body,
     name = certificate.name.toLowerCase(),
     certificateCode = certificate.certificateCode.toLowerCase(),
@@ -15,6 +19,10 @@ updatecertRoute.post('/updatecert', (req, res) => {
     studentNumber = certificate.studentNumber.toLowerCase(),
     dateCompleted = certificate.dateCompleted.toLowerCase(),
     newCertificate = {name, certificateCode, programme, studentNumber, dateCompleted}
+
+  const findUser = await certificateModel.findOne({certificateCode})
+  if(findUser) return res.status(403).json({status: 403, msg: 'A user with this certificate code already exist'})
+    
   certificateModel.findOneAndUpdate({certificateCode: oldCertificateCode}, newCertificate)
     .then( async () => {
       const user = await certificateModel.findOne({certificateCode})

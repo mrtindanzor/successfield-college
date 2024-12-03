@@ -1,4 +1,4 @@
-const findFormEl = document.querySelector('.find-user-form'),
+const findFormEl = document.querySelector('.find-certificate'),
   result = document.querySelector('.result')
 
 findFormEl.addEventListener('submit', (e) => {
@@ -22,19 +22,39 @@ findFormEl.addEventListener('submit', (e) => {
       dateCompleted = data.user.dateCompleted
 
       const updateForm =  `
-      <form class="update-form">
-        <input type="text" name="name" value="${name}" placeholder="Update name" title="Update name">
-        <input type="text" name="studentNumber" value="${studentNumber}" placeholder="Update student number" title="Update student number">
-        <input type="hidden" name="oldCertificateCode" value="${certificateCode}">
-        <input type="text" name="certificateCode" value="${certificateCode}" placeholder="Update certificate number" title="Update certificate number">
-        <input type="text" name="programme" value="${programme}" placeholder="Update programme" title="Update programme">
-        <input type="text" name="dateCompleted" value="${dateCompleted}" placeholder="Update date completed" title="Update date completed">
-        <button>Update</button>
+      <form class="cert-update-form">
+      <span>
+        Update Certificate
+      </span>
+      <label for="name">
+        <b>Name</b>
+        <input type="text" name="name" id="name" value="${name}" placeholder="Update name" title="Update name">
+      </label>
+      <label for="studentNumber">
+        <b>Student number</b>
+        <input type="text" name="studentNumber" id="studentNumber" value="${studentNumber}" placeholder="Update student number" title="Update student number">
+      </label>
+      <label for="certificateCode">
+        <b>Certificate ID</b>
+        <input type="text" name="certificateCode" id="certificateCode" value="${certificateCode}" placeholder="Update certificate number" title="Update certificate number">
+      </label>
+        <input type="hidden" name="oldCertificateCode" id="oldCertificateCode" value="${certificateCode}">
+      <label for="programme">
+        <b>Programme</b>
+        <input type="text" name="programme" id="programme" value="${programme}" placeholder="Update programme" title="Update programme">
+      </label>
+      <label for="dateCompleted">
+        <b>Date of Completion</b>
+        <input type="text" name="dateCompleted" id="dateCompleted" value="${dateCompleted}" placeholder="Update date completed" title="Update date completed">
+      </label>
+      <input type="submit" value="update">
     </form>
-    <div class="update-result" > </div>
+
+    <div class="update-result" >
+     </div>
       `
     result.innerHTML = updateForm
-    const updateFormEl = document.querySelector('.update-form')
+    const updateFormEl = document.querySelector('.cert-update-form')
     
     updateFormEl.addEventListener('submit', (e) => {
       e.preventDefault()
@@ -54,8 +74,19 @@ findFormEl.addEventListener('submit', (e) => {
         .then(res => res.json())
         .then(data => {
           const updateResultContainer = document.querySelector('.update-result')
-          updateResultContainer.innerHTML =  `
-            <b> ${data.msg} </b>
+
+          if(data.status === 403)
+            updateResultContainer.innerHTML = `
+          <i class="update-fail">${data.msg}</i>
+          `
+
+          if(data.status === 204)
+            updateResultContainer.innerHTML = `
+          <i class="update-success">${data.msg}</i>
+          `
+            if(data.status === 400)
+            updateResultContainer.innerHTML = `
+          <i class="update-fail">${data.msg}</i>
           `
         })
     })

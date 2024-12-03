@@ -1,41 +1,105 @@
-main-section{
-  margin: 40px;
-}
-.find-user-form{
-  margin-bottom: 40px;
-}
-.find-user-form{
-  display: flex;
-}
-.find-user-form input{
-  border: 1px solid var(--black);
-  padding: 5px 20px;
-  font-size: var(--second-s);
-  text-transform: uppercase;
-}
-.find-user-form button{
-  border: 1px solid var(--third);
-  background-color: var(--third);
-  color: var(--white);
-  margin-left: 5px;
-  padding: 5px 20px;
-  font-size: var(--second-s);
-  text-transform: uppercase;
-  cursor: pointer;
-  font-family: alice;
-  transition: 0.2s ease;
-}
-.find-user-form button:hover{
-  border-radius: 0 10px 10px 0;
-  opacity: 0.8;
-}
-.result form input{
-  display: block;
-  border: none;
-  border-bottom: 2px solid var(--second);
+.main-wrapper .find-certificate{
   width: 100%;
-  padding: 5px 20px;
-  font-size: var(--third-s);
-  margin-bottom: 5px;
-  font-family: 'alice';
+  display: flex;
+  column-gap: 5px;
+  margin-bottom: 50px;
+  align-items: end;
+  background: green;
+  padding: 20px;
 }
+.find-certificate label{
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+}
+.find-certificate label span{
+  color: white;
+  font-size: 19px;
+}
+.find-certificate label input{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+.find-certificate label input:focus{
+  outline: none;
+}
+.find-certificate > input{
+  width: fit-content;
+  height: fit-content;
+  background: white;
+  color: green;
+  font-weight: 800;
+  padding: 10px ;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+  .main-wrapper .cert-update-form{
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 50px 20px;
+  }
+  .cert-update-form > span:first-child{
+    display: block;
+    padding: 10px 20px;
+    background: white;
+    color: green;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 18px;
+  }
+  .cert-update-form label{
+    display: flex;
+    column-gap: 10px;
+    width: 100%;
+    color: white;
+  }
+  .cert-update-form label input{
+    flex: 1;
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 3px dotted;
+    font-size: 18px;
+  }
+  .cert-update-form label input:focus{
+    outline: none;
+    color: yellow;
+  }
+  .cert-update-form > input{
+    background: white;
+    display: block;
+    padding: 5px 10px;
+    color: green;
+    border-radius: 10px;
+    font-size: 17px;
+    border: 1px white;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .update-success, .update-fail{
+    display: block;
+    margin: 20px auto;
+    background: green;
+    text-align: center;
+    padding: 10px;
+    color: white;
+  }
+  .update-fail {
+    background: red;
+  }
+  .old-certificate-code{
+    display: none;
+  }
+  @media (max-width:550px){
+    .cert-update-form{
+      width: calc(100% -20px);
+      margin: 0 auto;
+    }
+  }

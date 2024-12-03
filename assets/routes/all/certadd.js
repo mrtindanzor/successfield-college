@@ -1,9 +1,13 @@
 import { Router } from "express"
 import { certificateModel } from "../../../app.js"
 
-const certaddRoute = Router()
+const certaddRoute = Router(),
+checkAdmin = (req, res, next) => {
+  if(!req.isAdmin) return res.status(403).redirect('/unknown')
+  next()
+}
 
-certaddRoute.post('/certadd', async (req, res) => {
+certaddRoute.post('/certadd', checkAdmin, async (req, res) => {
   const certificate = req.body
   
   const certificateCode = certificate.certificateCode.toLowerCase().trim(),
@@ -15,12 +19,12 @@ certaddRoute.post('/certadd', async (req, res) => {
 
   newCertificate.save()
     .then(() => {
-      if(newCertificate.isNew) return res.status(400).json({msg: 'could not add file'})
-      return res.status(201).json({msg: 'added successfully'})
+      if(newCertificate.isNew) return res.status(400).json({status: 304, msg: 'could not add file'})
+      return res.status(201).json({status: 201, msg: 'added successfully'})
     })
 })
 
-certaddRoute.get('/certadd', (req, res) => {
+certaddRoute.get('/certadd', checkAdmin, (req, res) => {
   res.status(200).render('index', {page: 'certadd', title: 'Add certificate'})
 })
 

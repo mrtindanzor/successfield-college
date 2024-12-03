@@ -13,6 +13,10 @@ dotenv.config()//dot env function
 
 
 const uri = process.env.DATABASE,
+checkAdmin = (req, res, next) => {
+  if(!isAdmin) return res.status(403).redirect('/')
+  next()
+},
   schema = mongoose.Schema,
   certificateSchema = new schema({
     name: String,
@@ -39,8 +43,12 @@ const uri = process.env.DATABASE,
     if(req.isAuthenticated()) req.isLoggedIn = true
     next()
   },
+  isAuthenticatedAsAdmin = (req, res, next) => {
+    if(req.isAuthenticated() && (req.user.firstname.trim().toLowerCase() === process.env.ADMIN_SECRET.toLowerCase() || req.user.firstname.trim().toLowerCase() === process.env.DEVELOPER_SECRET.toLowerCase())) req.isAdmin = true
+    next()
+  },
   pingService = () => {
-    fetch('https://www.gism.online')
+    fetch('https://www.gism.online').then(() => console.log('pinging site'))
   }
 
   setInterval(pingService, time);
@@ -50,11 +58,9 @@ try{
   mongoose.connect(uri)
   mongoose.connection.once('open', () => console.log('connected to database successfully')).on('error', (error) => {
     console.log('An error occured while connecting to database', error)
-    res.redirect('./')
   })
 } catch(err) {
   console.log('a new error', err)
-
 }
 
 app.use(session({
@@ -65,10 +71,13 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(isAuthenticated)
+app.use(isAuthenticatedAsAdmin)
 app.use((req, res, next) => {
 
-  const isLoggedIn = req.isLoggedIn || false
+  const isLoggedIn = req.isLoggedIn || false,
+   isAdmin = req.isAdmin
   res.locals.isLoggedIn = isLoggedIn
+  res.locals.isAdmin = isAdmin
   res.locals.icons = icons
   next()
 })
@@ -90,4 +99,4 @@ app.use(page404)
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`))
 
-export { app, certificateModel, userModel }
+export { app, certificateModel, userModel, checkAdmin }

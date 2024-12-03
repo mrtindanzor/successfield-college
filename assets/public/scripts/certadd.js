@@ -1,4 +1,4 @@
-const formEl = document.querySelector('.add-certificate'),
+const formEl = document.querySelector('.cert-add-form'),
 resultDiv = document.querySelector('.result')
 
 formEl.addEventListener('submit', async (e) => {
@@ -19,6 +19,13 @@ formEl.addEventListener('submit', async (e) => {
   })
   .then(res => res.json())
   .then(data => {
-    resultDiv.innerHTML = data.msg
+    if(data.status === 201)
+    resultDiv.innerHTML = `
+  <i class="add-success">${data.msg}</i>
+  `
+    if(data.status === 304)
+    resultDiv.innerHTML = `
+  <i class="add-fail">${data.msg}</i>
+  `
   })
 })
