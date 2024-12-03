@@ -22,6 +22,9 @@ findFormEl.addEventListener('submit', (e) => {
       dateCompleted = data.user.dateCompleted
 
       const updateForm =  `
+
+    <div class="update-result" >
+     </div>
       <form class="cert-update-form">
       <span>
         Update Certificate
@@ -49,9 +52,6 @@ findFormEl.addEventListener('submit', (e) => {
       </label>
       <input type="submit" value="update">
     </form>
-
-    <div class="update-result" >
-     </div>
       `
     result.innerHTML = updateForm
     const updateFormEl = document.querySelector('.cert-update-form')
