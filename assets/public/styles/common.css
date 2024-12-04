@@ -110,6 +110,7 @@ nav .auth-contrs a.auth-logout{
   color: var(--first);
   background: var(--sixth);
   border-radius: 5px;
+  margin-left: 10px;
 }
 nav .auth-contrs a.auth-logout:hover{
   background: lightgreen;
