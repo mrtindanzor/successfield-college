@@ -7,7 +7,8 @@ import passport from "passport";
 import path from "path"
 import { fileURLToPath } from "url"
 import dotenv from "dotenv"
-import mongoose from "mongoose";
+import mongoose from "mongoose"
+import MongoStore from "connect-mongo"
 
 dotenv.config()//dot env function
 
@@ -47,6 +48,13 @@ checkAdmin = (req, res, next) => {
     if(req.isAuthenticated() && ((req.user.firstname.trim().toLowerCase() === process.env.ADMIN_SECRET.toLowerCase()) || (req.user.firstname.trim().toLowerCase() === process.env.DEVELOPER_SECRET.toLowerCase()))) req.isAdmin = true
     next()
   },
+  isSession = (req, res, next) => {
+    if(req.session) {
+      req.session._garbage = Date.now()
+      req.session.touch()
+    }
+    next()
+  },
   pingService = () => {
     fetch('https://www.gism.online').then(() => console.log('pinging site'))
   }
@@ -64,9 +72,16 @@ try{
 }
 
 app.use(session({
+  store: MongoStore.create({
+    mongoUrl: uri,
+    collectionName: 'users'
+  }),
   secret: process.env.SESSION_SECRET,
   saveUninitialized: false,
-  resave: false
+  resave: false,
+  cookie: {
+    maxAge:  60 * 60 * 1000
+  }
 }))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -81,6 +96,7 @@ app.use((req, res, next) => {
   res.locals.icons = icons
   next()
 })
+app.use(isSession)
 const page404 = (req, res) => res.status(404).render('index', {page: 404, title: 'Page not found'})
 app.use(express.json())
 app.set('views', path.join(dirname, './assets/views'))
