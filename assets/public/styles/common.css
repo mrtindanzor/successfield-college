@@ -41,27 +41,6 @@
 svg{
   opacity: 0;
 }
-.logo{
-  display: flex;
-  align-items: end;
-  width: 50px;
-  height: 50px;
-  background-image: url('../images/logo.jpg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: relative;
-  left: 81px;
-  text-decoration: none;
-
-}
-.logo::after{
-  content: "GIsm";
-  position: relative;
-  right: 85px;
-  font-family: 'acolonica';
-  color: var(--third);
-  font-size: var(--fifth-s);
-}
 h3{
   font-family: acolonica;
 }
@@ -75,178 +54,153 @@ body{
   user-select: none;
   overflow-x: hidden;
 }
-.translatex{
-  transform: translateX(0);
-}
 nav{
-  width: 100%;
-  height: fit-content;
-  padding: 5px 10px;
-  position: fixed;
-  top: 0;
-  background-color: var(--white);
-  color: var(--black);
-  font-size: var(--second-s);
   display: flex;
+  margin: 10px 3%;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 1px 2px var(--black);
-  z-index: 999;
-  
 }
-nav .right-nav-controls{
+nav .logo-container{
   display: flex;
   align-items: center;
-  column-gap: 20px;
-  margin-right: 20px;
 }
-nav .right-nav-controls label{
+nav .logo-container .logo-text{
+  font-size: 0.8rem;
+}
+nav .logo-container .logo{
+  width: 50px;
+}
+nav .auth-contrs{
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+nav .auth-contrs a{
+  display: block;
+  text-decoration: none;
+  color: var(--second);
+  padding: 10px;
+  font-size: 0.9rem;
+}
+nav .auth-contrs a.auth-login{
+  font-size: 1rem;
+}
+nav .auth-contrs a.auth-login:hover{
+  color: var(--first);
+  background: var(--third);
+}
+nav .auth-contrs a.auth-signup{
+  color: var(--first);
+  background: var(--third);
+  border-radius: 5px;
+}
+nav .auth-contrs a.auth-signup:hover{
+  background: lightvar(--third);
+}
+nav .auth-contrs a.auth-logout{
+  color: var(--first);
+  background: var(--sixth);
+  border-radius: 5px;
+}
+nav .auth-contrs a.auth-logout:hover{
+  background: lightvar(--third);
+}
+header{
+  margin: 5px;
+}
+header .main-menu{
+  position: relative;
+}
+@media (min-width: 551px){
+  header{
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--third);
+    width: 100dvw;
+  }
+  .menu-button{
+    display: none;
+  }
+header .main-menu ul.menu-list{
+  display: flex!important;
+  row-gap: 10px;
+  list-style-type: none;
+  padding: 0;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+header .main-menu ul li.menu-item > a, .course-list-button{
+  display: block;
+  padding: 0 10px;
+  text-decoration: none;
+  color: var(--second);
   cursor: pointer;
 }
-nav .right-nav-controls label #cart-button-checkbox{
+header .main-menu ul li ul{
+  padding: 0;
+  list-style-type: none;
+  position: absolute;
+  top: calc(100% + 30px);
+  border: 1px solid;
   display: none;
 }
-nav .right-nav-controls .auth-button{
-  padding: 3px;
-  height: fit-content;
-  max-height: fit-content;
-  max-width: fit-content;
-  border-radius: 2px;
-  border: 1px solid var(--black);
-  display: flex;
-  column-gap: 3px;
-}
-.right-nav-controls .auth-button a, a.auth-out{
-  padding: 5px 8px;
-  border: 1px solid none;
-  text-decoration: none;
-  font-family: alice;
-}
-.auth-button a.auth-in{
-  background-color: var(--third);
-  color: var(--white);
-}
-.auth-button a.auth-join{
-  color: var(--black);
-}
-.auth-button a.auth-join:hover{
-  color: var(--white);
-  background-color: var(--black);
-}
-a.auth-out{
-  background-color: var(--sixth);
-  color: var(--white);
-}
-.cart-button-icon{
-  width: 30px;
-  height: 30px;
-  color: var(--third);
-}
-nav .cart-form{
-  position: fixed;
-  z-index: 999;
-  width: 90dvw;
-  right: 0;
-  top: 50px;
-  bottom: 2px;
-  max-width: 500px;
-  background-color: var(--first);
-  box-shadow: -1px 0 2px var(--fourth);
-  transform: translateX(calc(100% + var(--fourth-s)));
-  transition: 0.2s;
-  display: flex;
-  flex-direction: column;
-}
-.cart-form.active{
-  transform: translateX(0);
-}
-nav .cart-list{
-  flex: 1;
-  padding: 20px;
-}
-nav .cart-controls{
-width: 100%;
-padding: 1px;
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-}
-nav .cart-controls button{
-  padding: 10px;
-  border-radius: 4px;
-  color: var(--white);
-  font-size: var(--second-s);
-  border: 1px solid currentColor;
-  cursor: pointer;
-}
-nav .cart-close{
-  background-color: var(--sixth);
-}
-nav .cart-checkout{
-  background-color: var(--fourth);
-}
-header{
-  display: flex;
-  align-items: flex-end;
-  padding: 10px 20px;
-  margin-top: var(--first-m);
-  column-gap: 15px;
-  z-index: 1;
-}
-header{
-  width: 100%;
-  max-width: 100%;
-}
-header form{
-  display: flex;
-  align-items: flex-end;
-  width: 60%;
-  max-width: 350px;
-  margin-right: 25px;
-  flex: 1;
-}
-header .search-course-box{
-width: 100%;
-  border: none;
-  border-bottom: 2px solid var(--third);
-  font-size: var(--second-s);
-  text-transform: capitalize;
-  padding-bottom: 10px;
-  flex: 1;
-}
-header .search-course-box:focus{
-  outline: none;
-  border-bottom: 2px dotted var(--third);
-}
-header .search-course-box:focus +*{
-  border-bottom: 2px dotted var(--third);
-  margin-left: 1px;
-}
-header form button{
-  border: none; 
-  outline: none;
-  background: none;
-  border-bottom: 2px solid var(--third);
-  padding: 0 10px 10px 5px;
-  cursor: pointer;
-}
-header form button *{
+header .main-menu ul li ul li.course-item > a{
   display: block;
+  border-top: 1px solid;
+  padding: 10px 120px 10px 20px;
+  text-decoration: none;
+  color: var(--second);
 }
-header form button .ch1{
-  width: var(--second-m);
-  height: var(--second-m);
-  border: 2px solid var(--third);
-  position: relative;
-  border-radius: 100%;
 }
-header form button .ch2{
-  height: var(--first-m);
-  width: 2px;
-  background-color: var(--third);
+@media (max-width: 550px){
+  header{
+    border: 1px solid var(--third);
+     padding: 10px 20px;
+  }
+header .main-menu span.menu-button{
+    display: block;
+    width: fit-content;
+    padding: 5px 10px;
+    border: 1px solid var(--third);
+    cursor: pointer;
+  }
+header .main-menu ul.menu-list{
+  border: 1px solid;
   position: absolute;
-  bottom: -8px;
-  right: -5px;
-  transform: rotate(-50deg);
+  top: 100%;
+  list-style-type: none;
+  padding: 0;
+  text-transform: uppercase;
+  display: none;
+}
+header .main-menu ul li.menu-item > a, .course-list-button{
+  border-top: 1px solid;
+  display: block;
+  padding: 10px 80px 10px 20px;
+  text-decoration: none;
+  color: var(--second);
+  cursor: pointer;
+}
+header .main-menu ul li:first-child > a{
+  border-top: none;
+}
+header .main-menu ul li ul{
+  padding: 0;
+  list-style-type: none;
+  display: none;
+}
+header .main-menu ul li ul li.course-item > a{
+  display: block;
+  border-top: 1px solid;
+  padding: 10px 80px 10px 60px;
+  text-decoration: none;
+  color: var(--second);
+}
+header .main-menu ul li ul li.course-item:first-child > a{
+  border-top: 2px solid;
+}
+header .main-menu ul li ul li.course-item:last-child > a{
+  border-bottom: 1px solid;
+}
 }
 main-section{
   flex: 1;
