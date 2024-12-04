@@ -1,9 +1,9 @@
 <nav>
   <div class="logo-container">
+    <img src="/images/logo.png" class="logo">
     <span class="logo-text">
       SUCCESSFIELD COLLEGE
     </span>
-    <img src="/images/logo.png" class="logo">
   </div>
   <% if(page != "login" && page != "join"){ %>
   <div class="auth-contrs">
@@ -23,7 +23,6 @@
   <div class="main-menu">
   <span class="menu-button">
     <%- (new icons('menu-button-icon', 'Menu')).menu() %>
-    Menu
   </span>
   <ul class="menu-list">
     <li class="menu-item"><a href="/">Home</a></li>
