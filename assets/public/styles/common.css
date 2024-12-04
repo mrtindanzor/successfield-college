@@ -121,6 +121,13 @@ header{
 header .main-menu{
   position: relative;
 }
+header .main-menu ul li.menu-item > a:hover, .main-menu ul li ul li a:hover, .course-list-button:hover{
+  color: var(--first)!important;
+  background-color: var(--third);
+}
+header .main-menu .course-list-menu{
+  background-color: var(--first);
+}
 @media (max-width: 550px){
   header{
     border: 2px solid var(--third);
@@ -181,16 +188,17 @@ header .main-menu ul li ul li.course-item:last-child > a{
 }
 @media (min-width: 551px){
   header{
-    padding-bottom: 5px;
     border-bottom: 1px solid var(--third);
     width: 100dvw;
+    margin-top: 35px;
   }
   .menu-button{
     display: none;
   }
 header .main-menu ul.menu-list{
   display: flex!important;
-  row-gap: 10px;
+  position: relative;
+  bottom: -15px;
   list-style-type: none;
   padding: 0;
   text-transform: uppercase;
@@ -198,7 +206,7 @@ header .main-menu ul.menu-list{
 }
 header .main-menu ul li.menu-item > a, .course-list-button{
   display: block;
-  padding: 0 10px;
+  padding: 10px;
   text-decoration: none;
   color: var(--second);
   cursor: pointer;
@@ -207,7 +215,7 @@ header .main-menu ul li ul{
   padding: 0;
   list-style-type: none;
   position: absolute;
-  top: calc(100% + 30px);
+  top: 100%;
   border: 1px solid;
   display: none;
 }
