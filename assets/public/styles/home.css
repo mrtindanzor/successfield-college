@@ -6,7 +6,7 @@
     font-family: alice;
   }
   .container-wrapper{
-    display: flex;
+    display: none;
     align-items: center;
     column-gap: 20px;
     padding: 20px;
@@ -55,6 +55,7 @@
   .container-wrapper .image-container{
     width: 50%;
     height: 400px;
+    display: none;
   }
   .container-wrapper .image-container img{
     width: 100%;

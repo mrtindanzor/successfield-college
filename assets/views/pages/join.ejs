@@ -1,47 +1,62 @@
 <% const errorIcon = (new icons('form-error-icon', 'Error')).alert() %>
 <% const eyeCloseIcon = (new icons('form-eye-close', 'Hide password')).eyeClose() %>
 <% const eyeOpenIcon = (new icons('form-eye-open state-active', 'Show password')).eyeOpen() %>
-<form action="/users/join" method="post" class="form-container-wrapper">
-  <span>Create an account</span>
-  <% if(locals.emailExistsErr){ %>
-    <i><%= emailExistsErr %></i>
-  <% } %>
-  <label for="form-email">
-    <input type="email" name="email" id="form-email" class="form-email" placeholder="Email" minlength="5" title="Input your email" required>
-    <%  if(!locals.emailExistsErr){ if(locals.emailerr){ %>
-      <i><%- errorIcon %><%= emailerr %></i>
-    <% }  } %>
-  </label>
-  <label for="form-password">
-    <input type="password" name="password" id="form-password" class="form-password" placeholder="Password" minlength="8" title="Choose a password" required>
-    <%- eyeOpenIcon %>
-    <%- eyeCloseIcon %>
-    <%  if(!locals.emailExistsErr){ if(locals.passerr){ %>
-      <i><%- errorIcon %><%= passerr %></i>
-    <% } }  %>
-  </label>
-  <label for="form-confirm-password">
-    <input type="password" name="cpassword" id="form-confirm-password" class="form-confirm-password" placeholder="Confirm password" minlength="8" title="Confirm your password" required>
-    <%- eyeOpenIcon %>
-    <%- eyeCloseIcon %>
-    <% if(!locals.emailExistsErr){ if(locals.cpasserr){ %>
-      <i><%- errorIcon %><%= cpasserr %></i>
-    <% } }  %>
-  </label>
-  <label for="form-firstname">
-    <input type="text" name="firstname" id="form-firstname" class="form-firstname" placeholder="firstname" minlength="3" title="Enter your firstname " required>
-    <%  if(!locals.emailExistsErr){ if(locals.fnerr){ %>
-      <i><%- errorIcon %><%= fnerr %></i>
-    <% } }  %>
-  </label>
-  <label for="form-surname">
-    <input type="text" name="surname" id="form-surname" class="form-surname" placeholder="surname" minlength="3" title="Enter your surname" required>
-    <%  if(!locals.emailExistsErr){ if(locals.snerr){ %>
-      <i><%- errorIcon %><%= snerr %></i>
-    <% } }  %>
-  </label>
-  <div>
-    <p>Already have an account <a href="/users/login">login</a></p>
-    <input type="submit" value="join" id="form-submit" class="form-submit">
-  </div>
-</form>
+  <form action="/users/join" method="post" class="signup" autocomplete="off">
+    <span class="form-title">
+      Sign up
+    </span>
+    <% if(locals.emailExistsErr){ %>
+      <i><%= emailExistsErr %></i>
+    <% } %>
+    <label>
+      <input type="text" class="firstname" name="firstname" minlength="3" required>
+      <span class="text-overlay">
+        Firstname
+      </span>
+      <%  if(!locals.emailExistsErr){ if(locals.fnerr){ %>
+        <i><%- errorIcon %><%= fnerr %></i>
+      <% } }  %>
+      </label>
+      <label>
+        <input type="text" class="surname" name="surname" minlength="3" required>
+        <span class="text-overlay">
+        Surname
+      </span>
+      <%  if(!locals.emailExistsErr){ if(locals.snerr){ %>
+        <i><%- errorIcon %><%= snerr %></i>
+      <% } }  %>
+        </label>
+        <label>
+          <input type="email" class="email" name="email" required>
+          
+          <span class="text-overlay">
+        Email
+      </span>
+      <%  if(!locals.emailExistsErr){ if(locals.emailerr){ %>
+        <i><%- errorIcon %><%= emailerr %></i>
+        <% }  } %>
+      </label>
+          <label>
+            <input type="password" class="password" name="password" minlength="8" required>
+            <span class="text-overlay">
+        Password
+      </span>
+      <%- eyeOpenIcon %>
+      <%- eyeCloseIcon %>
+      <%  if(!locals.emailExistsErr){ if(locals.passerr){ %>
+        <i><%- errorIcon %><%= passerr %></i>
+      <% } }  %>
+            </label>
+            <label>
+              <input type="password" class="confirm-password" name="cpassword" minlength="8" required>
+              <span class="text-overlay">
+        confirm password
+      </span>
+      <%- eyeOpenIcon %>
+      <%- eyeCloseIcon %>
+      <%  if(!locals.emailExistsErr){ if(locals.passerr){ %>
+        <i><%- errorIcon %><%= passerr %></i>
+      <% } }  %>
+              </label>
+              <input type="submit" value="Sign up" class="submit">
+  </form>

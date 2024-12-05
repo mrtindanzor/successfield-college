@@ -1,0 +1,84 @@
+.forms-wrapper{
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 50px auto;
+}
+form.form{
+  display: none;
+}
+  form.form.active{
+    background: var(--third);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  form span.form-title{
+    display: block;
+    padding: 10px 20px;
+    background: var(--first);
+    color: var(--third);
+    font-weight: 800;
+  }
+  form input, .back-button{
+    padding: 10px 20px;
+  }
+  .back-button{
+    display: block;
+    background: var(--sixth);
+    color: var(--first);
+    text-align: center;
+    font-weight: 300;
+  }
+  .form span.add-more{
+    display: block;
+    width: fit-content;
+    align-self: end;
+    border: 1px solid var(--third);
+    background: var(--second);
+    padding: 5px 10px;
+    color: var(--first);
+    border-radius: 5px;
+    font-size: 13px;
+  }
+.prompt-dialog.remove{
+  transform: scale(0);
+}
+.prompt-dialog{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background: var(--first);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+.prompt-dialog .confirmation-dialog{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+.confirmation-dialog span.confirm-text{
+  font-weight: 600;
+}
+.prompt-contrs > *{
+  font-size: 1.3rem;
+  padding: 8px 20px;
+  margin: 20px 10px;
+  color: var(--first);
+  border: none;
+}
+.prompt-contrs .accept-prompt{
+  background: var(--third);
+}
+.prompt-contrs .deny-prompt{
+  background: var(--sixth);
+}

@@ -33,8 +33,18 @@ checkAdmin = (req, res, next) => {
     email: String,
     date: String
   }),
+  courseSchema = new schema({
+    course: String,
+    overview: String,
+    outline: { type: [String], required: false},
+    objectives: { type: [String], required: false},
+    benefits: { type: [String], required: false},
+    certificate: String,
+    fees: String
+  }),
   certificateModel = mongoose.model('certificate', certificateSchema),
   userModel = mongoose.model('user', userSchema),
+  courseModel = mongoose.model('course', courseSchema),
   app = express(),
   filename = fileURLToPath(import.meta.url),
   dirname = path.dirname(filename),
@@ -115,4 +125,4 @@ app.use(page404)
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`))
 
-export { app, certificateModel, userModel, checkAdmin }
+export { app, certificateModel, userModel, courseModel, checkAdmin }

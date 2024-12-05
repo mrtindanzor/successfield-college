@@ -1,30 +1,35 @@
 <% const errorIcon = (new icons('form-error-icon', 'Error')).alert() %>
 <% const eyeCloseIcon = (new icons('form-eye-close', 'Hide password')).eyeClose() %>
 <% const eyeOpenIcon = (new icons('form-eye-open state-active', 'Show password')).eyeOpen() %>
-<form action="/users/login" method="post" autocomplete="off" class="form-container-wrapper">
-  <span>Sign in</span>
+<form action="/users/login" method="post" class="signin">
+  <span class="form-title">
+    Sign in
+  </span>
   <% if(locals.successReg){ %>
     <i class="success"><%= successReg %></i>
   <% } %>
   <% if(locals.failure){ %>
     <i ><%= failure %></i>
   <% } %>
-  <label for="form-email">
-    <input type="email" name="email" id="form-email" class="form-email" placeholder="Email" minlength="5" title="Input your email" required>
+      <label>
+        <input type="email" class="email" name="email" required>
+        <span class="text-overlay">
+      Email
+    </span>
     <% if(locals.emailerr){ %>
       <i><%- errorIcon %><%= emailerr %></i>
     <% } %>
-  </label>
-  <label for="form-password">
-    <input type="password" name="password" id="form-password" class="form-password" placeholder="Password" minlength="8" title="Input your password" required>
-  <%- eyeOpenIcon %>
-  <%- eyeCloseIcon %>
-    <% if(locals.passerr){ %>
-      <i><%- errorIcon %><%= passerr %></i>
-    <% } %>
-  </label>
-  <div>
-    <p>Don't have an account <a href="/users/join">Sign up</a></p>
-    <input type="submit" value="login" id="form-submit" class="form-submit">
-  </div>
+    </label>
+        <label>
+          <input type="password" class="password" name="password" minlength="8" required>
+          <span class="text-overlay">
+      Password
+    </span>
+    <%- eyeOpenIcon %>
+    <%- eyeCloseIcon %>
+      <% if(locals.passerr){ %>
+        <i><%- errorIcon %><%= passerr %></i>
+      <% } %>
+    </label>
+            <input type="submit" value="Sign in" class="submit">
 </form>
