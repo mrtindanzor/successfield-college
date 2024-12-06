@@ -14,14 +14,14 @@ addcourseRoute.get('/addcourse', checkAdmin, (req, res) => {
 addcourseRoute.post('/addcourse', checkAdmin, async (req, res) => {
   const newCourse = req.body
   if(!newCourse) return res.status(400).json({status: 400, msg: 'No course was sent'})
-  const course = new courseModel(newCourse)
+  const isCourse = await courseModel.findOne({course: newCourse.course})
+  if(isCourse) return res.status(400).json({status: 400, msg: 'Course already in database'})
 
-  console.log(course)
-  
-  // course.save().then(() => {
-  //   if(course.isNew) return res.status(400).json({status: 400, msg: 'An error occured while trying to save course'})
-  //   return res.status(201).json({status: 201, msg: 'Course created successfully'})
-  // })
+  const course = new courseModel(newCourse)
+  course.save().then(() => {
+    if(course.isNew) return res.status(400).json({status: 400, msg: 'An error occured while trying to save course'})
+    return res.status(201).json({status: 201, msg: 'Course created successfully'})
+  })
 })
 
 export default addcourseRoute

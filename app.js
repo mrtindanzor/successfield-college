@@ -36,11 +36,11 @@ checkAdmin = (req, res, next) => {
   courseSchema = new schema({
     course: String,
     overview: String,
-    outline: { type: [String], required: false},
-    objectives: { type: [String], required: false},
-    benefits: { type: [String], required: false},
+    outlines: [{ outline: String}],
+    objectives: [{ objective: String }],
+    benefits: [{ benefit: String }],
     certificate: String,
-    fees: String
+    fee: String
   }),
   certificateModel = mongoose.model('certificate', certificateSchema),
   userModel = mongoose.model('user', userSchema),
