@@ -12,9 +12,9 @@ editcourseRoute.get('/editcourse', checkAdmin, (req, res) => {
 } )
 
 editcourseRoute.post('/findcourse', checkAdmin, async (req, res) => {
-  const course = req.body
+  const course = req.body.course.toLowerCase()
   if(!course) return res.status(400).json({status: 400, msg: 'No course was sent'})
-  const isCourse = await courseModel.findOne(course)
+  const isCourse = await courseModel.findOne({course})
   if(!isCourse) return res.status(404).json({status: 404, msg: 'No course found'})
   return res.status(200).json({status: 200, isCourse})
 })
@@ -28,7 +28,7 @@ editcourseRoute.post('/editcourse', checkAdmin, async (req, res) => {
   if(!isCourse) return res.status(404).json({status: 404, msg: 'No course found'})
   if(isCourse._id.toString() !== newCourse.id) return res.status(404).json({status: 404, msg: 'Course id not matching'})
 
-  courseModel.findOneAndUpdate({course: courseName}, newCourse, { new: true })
+  courseModel.findOneAndUpdate({_id: id}, newCourse, { new: true })
     .then((result) => {
       if(!result) return res.status(400).json({status: 400, msg: 'An error occured while trying to edit course'})
         return res.status(201).json({status: 201, msg: 'Course edited successfully'})
