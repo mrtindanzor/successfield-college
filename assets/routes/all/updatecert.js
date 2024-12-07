@@ -20,10 +20,9 @@ updatecertRoute.post('/updatecert', async (req, res) => {
   const findUser = await certificateModel.findOne({certificateCode})
   if(findUser && findUser.id !== id) return res.status(403).json({status: 403, msg: 'A user with this certificate code already exist'})
 
-  certificateModel.findOneAndUpdate({certificateCode: oldCertificateCode}, newCertificate)
-    .then( async () => {
-      const user = await certificateModel.findOne({certificateCode})
-      if(user) return res.json({status: 204, msg: 'Edited certificate successfully'})
+  certificateModel.findOneAndUpdate({certificateCode: oldCertificateCode}, newCertificate, {new: true})
+    .then( async (result) => {
+      if(result) return res.json({status: 204, msg: 'Edited certificate successfully'})
       return res.status(400).json({status: 400, msg: 'Could not edit certificate'})
     })
 })

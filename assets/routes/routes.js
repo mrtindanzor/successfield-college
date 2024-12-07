@@ -4,8 +4,7 @@ import contactroute from "./all/contact.js";
 import verifyroute from "./all/verify.js";
 import testroute from "./all/test.js";
 import courseRoute from "./all/course.js";
-import { certaddRoute } from "./all/certadd.js";
-import adminRoute from "./all/admin.js";
+import { adminRoute } from "./all/admin.js";
 
 const router = Router()
 router.use(homeroute)

@@ -5,17 +5,26 @@ const verifyForm = document.querySelector('.find-student-form form'),
 verifyForm.addEventListener('submit', (e) => {
   e.preventDefault()
 
-  let certificateNum = certificateNumber.value
-  if(certificateNum.length < 1) return
-  fetch(`/verify/${certificateNum}`)
+  let certificateCode = certificateNumber.value.toLowerCase()
+  if(certificateCode.length < 1) return
+  const uri = '/verify',
+    options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({certificateCode})
+    }
+  fetch(uri, options)
   .then((res) => res.json())
   .then(data => {
   if(data.status === 500) {
     return showFoundStudent.innerHTML =  `<b>${data.msg}</b>`
   }
-  if(data.status === 404) {
+  if(data.status === 404 || data.status === 400) {
     return showFoundStudent.innerHTML =  `<b class="invalid-code">${data.msg}</b>`
   }
+
   let name = data.user.name
   let programme = data.user.programme
   showFoundStudent.innerHTML =  `

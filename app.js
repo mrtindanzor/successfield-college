@@ -9,15 +9,12 @@ import { fileURLToPath } from "url"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import MongoStore from "connect-mongo"
+import { isAdmin } from './assets/routes/all/admin.js'
 
 dotenv.config()//dot env function
 
 
 const uri = process.env.DATABASE,
-checkAdmin = (req, res, next) => {
-  if(!isAdmin) return res.status(403).redirect('/')
-  next()
-},
   schema = mongoose.Schema,
   certificateSchema = new schema({
     name: String,
@@ -54,10 +51,6 @@ checkAdmin = (req, res, next) => {
     if(req.isAuthenticated()) req.isLoggedIn = true
     next()
   },
-  isAuthenticatedAsAdmin = (req, res, next) => {
-    if(req.isAuthenticated() && ((req.user.firstname.trim().toLowerCase() === process.env.ADMIN_SECRET.toLowerCase()) || (req.user.firstname.trim().toLowerCase() === process.env.DEVELOPER_SECRET.toLowerCase()))) req.isAdmin = true
-    next()
-  },
   isSession = (req, res, next) => {
     if(req.session) {
       req.session._garbage = Date.now()
@@ -80,7 +73,6 @@ try{
 } catch(err) {
   console.log('a new error', err)
 }
-
 app.use(session({
   store: MongoStore.create({
     mongoUrl: uri,
@@ -96,16 +88,16 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(isAuthenticated)
-app.use(isAuthenticatedAsAdmin)
 app.use(async (req, res, next) => {
-
+  if(req.isAuthenticated() && ((req.user.firstname.trim().toLowerCase() === process.env.ADMIN_SECRET.toLowerCase()) || (req.user.firstname.trim().toLowerCase() === process.env.DEVELOPER_SECRET.toLowerCase()))) {
+    req.isAdmin = true
+  }
   const courses = await courseModel.find({}),
-  isLoggedIn = req.isLoggedIn || false,
-   isAdmin = req.isAdmin
-  res.locals.courses = courses
-  res.locals.isLoggedIn = isLoggedIn
-  res.locals.isAdmin = isAdmin
-  res.locals.icons = icons
+    isLoggedIn = req.isLoggedIn
+    res.locals.isAdmin = req.isAdmin
+    res.locals.courses = courses
+    res.locals.isLoggedIn = isLoggedIn
+    res.locals.icons = icons
   next()
 })
 app.use(isSession)
@@ -125,4 +117,4 @@ app.use(page404)
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`))
 
-export { app, certificateModel, userModel, courseModel, checkAdmin }
+export { app, certificateModel, userModel, courseModel }
