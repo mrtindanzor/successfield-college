@@ -38,6 +38,9 @@ let course = '',
         .then(data => {
           if(data.status !== 200) return result.innerHTML = `<span class='fail'> ${data.msg} </span> `
           formEl.forEach(el => {
+            const inputEl = el.querySelectorAll('input:not([type="submit"])')
+            if(inputEl) inputEl.forEach(el => el.remove())
+
             const dataId = el.dataset.id,
             elTitle = el.querySelector('.form-title'),
             newInput = document.createElement('input')
