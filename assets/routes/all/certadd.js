@@ -21,7 +21,7 @@ certaddRoute.post('/certadd', async (req, res) => {
 })
 
 certaddRoute.get('/certadd', (req, res) => {
-  res.status(200).render('index', {page: 'certadd', title: 'Add certificate'})
+  res.status(200).render('index', {page: 'certadd', title: 'Add a certificate'})
 })
 
 export { certaddRoute }

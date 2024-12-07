@@ -119,9 +119,7 @@ app.use(router)
 
 app.get('/contact', (req, res) => res.render('index', {page: 'contact'}))
 app.get('/about', (req, res) => res.render('index', {page: 'about'}))
-app.get('/test', (req, res) => {
-  
-})
+app.get('/test', (req, res) => {})
 
 app.use(page404)
 
