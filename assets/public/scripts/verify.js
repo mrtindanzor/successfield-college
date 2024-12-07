@@ -5,7 +5,7 @@ const verifyForm = document.querySelector('.find-student-form form'),
 verifyForm.addEventListener('submit', (e) => {
   e.preventDefault()
 
-  let certificateCode = certificateNumber.value.toLowerCase()
+  let certificateCode = certificateNumber.value.toLowerCase().trim()
   if(certificateCode.length < 1) return
   const uri = '/verify',
     options = {
