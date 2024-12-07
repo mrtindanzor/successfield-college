@@ -8,6 +8,7 @@ import { certaddRoute } from "./all/certadd.js";
 import adminRoute from "./all/admin.js";
 import updatecertRoute from "./all/updatecert.js";
 import addcourseRoute from "./all/addcourse.js";
+import editcourseRoute from "./all/editcourse.js";
 
 const router = Router()
 
@@ -20,5 +21,6 @@ router.use(certaddRoute)
 router.use(adminRoute)
 router.use(updatecertRoute)
 router.use(addcourseRoute)
+router.use(editcourseRoute)
 
 export default router

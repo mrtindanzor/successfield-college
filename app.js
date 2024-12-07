@@ -97,10 +97,12 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(isAuthenticated)
 app.use(isAuthenticatedAsAdmin)
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
 
-  const isLoggedIn = req.isLoggedIn || false,
+  const courses = await courseModel.find({}),
+  isLoggedIn = req.isLoggedIn || false,
    isAdmin = req.isAdmin
+  res.locals.courses = courses
   res.locals.isLoggedIn = isLoggedIn
   res.locals.isAdmin = isAdmin
   res.locals.icons = icons

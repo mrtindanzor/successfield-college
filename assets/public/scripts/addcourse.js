@@ -1,20 +1,20 @@
 const formEl = document.querySelectorAll('.form'),
   result = document.querySelector('#result'),
   btn = document.querySelector('button'),
-    objectives = [],
-    outlines = [],
-    benefits = [],
-    addMore = document.querySelectorAll('.add-more'),
+  objectives = [],
+  outlines = [],
+  benefits = [],
+  addMore = document.querySelectorAll('.add-more'),
   addCourseBtn = document.querySelector('.add-course'),
   promptDialog = document.querySelector('.prompt-dialog'),
   acceptBtn = document.querySelector('.accept-prompt'),
   denyBtn = document.querySelector('.deny-prompt')
     
 let course = '',
-    overview = '',
-    certificate = '',
-    fee = '',
-    newCourse = {}
+  overview = '',
+  certificate = '',
+  fee = '',
+  newCourse = {}
   
   addMore.forEach(add => {
     let inputCount = 0
@@ -37,7 +37,8 @@ let course = '',
       
       inputEl.forEach(input => {
         inputValue  = input.value
-        if(dataId === 'course') course = inputValue
+        if(inputValue == '') return
+        if(dataId === 'course') course = inputValue.toLowerCase()
         if(dataId === 'overview') overview = inputValue
         if(dataId === 'certificate') certificate = inputValue
         if(dataId === 'fee') fee = inputValue
@@ -83,17 +84,24 @@ let course = '',
         body: JSON.stringify(newCourse)
       }
 
-    fetch(uri, options).then(res => res.json()).then(data => {
-      if(data.status === 201) result.innerHTML = `<span class='success'> ${data.msg}</span>`
-      if(data.status !== 201) result.innerHTML = `<span class='fail'> ${data.msg}</span>`
+    fetch(uri, options)
+      .then(res => res.json())
+      .then(data => {
+        if(data.status === 201) result.innerHTML = `<span class='success'> ${data.msg}</span>`
+        if(data.status !== 201) result.innerHTML = `<span class='fail'> ${data.msg}</span>`
+        formEl.forEach(el => {
+          el.reset()
+          let i = formEl.length,
+            firstEl = formEl[0],
+            lastEl = formEl[i - 1]
+          lastEl.classList.remove('active')
+          firstEl.classList.add('active')
 
-    promptDialog.classList.add('remove')
-    formEl.forEach(el => {
-      el.reset()
-      el.parentElement.lastElementChild.classList.remove('active')
-      el.parentElement.firstElementChild.classList.add('active')
-    })
-    })
+          const inputEl = el.querySelectorAll('input[type="text"]:not(:first-child)')
+          inputEl.forEach(el => el.remove())
+        })
+        promptDialog.classList.add('remove')
+      })
   })
   
   denyBtn.addEventListener('click', () => {
@@ -102,4 +110,4 @@ let course = '',
   
   addCourseBtn.addEventListener('click', () => {
     promptDialog.classList.remove('remove')
-      })
+  })

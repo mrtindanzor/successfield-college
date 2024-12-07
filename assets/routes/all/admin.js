@@ -2,7 +2,7 @@ import { Router } from "express";
 
 const adminRoute = Router(),
 checkAdmin = (req, res, next) => {
-  if(!req.isAdmin) return res.status(403).redirect('/unknown')
+  if(!req.isAdmin) return res.status(403).redirect('/')
   next()
 }
 

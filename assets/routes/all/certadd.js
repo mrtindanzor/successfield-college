@@ -3,7 +3,7 @@ import { certificateModel } from "../../../app.js"
 
 const certaddRoute = Router(),
 checkAdmin = (req, res, next) => {
-  if(!req.isAdmin) return res.status(403).redirect('/unknown')
+  if(!req.isAdmin) return res.status(403).redirect('/')
   next()
 }
 
