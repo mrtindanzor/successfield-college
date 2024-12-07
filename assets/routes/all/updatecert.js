@@ -1,16 +1,12 @@
 import { Router } from "express";
 import { certificateModel } from "../../../app.js";
 
-const updatecertRoute = Router(),
-checkAdmin = (req, res, next) => {
-  if(!req.isAdmin) return res.status(403).redirect('/')
-  next()
-}
+const updatecertRoute = Router()
 
-updatecertRoute.get('/updatecert', checkAdmin, (req, res) => {
-  res.status(200).render('index', {page: 'updatecert', title: 'Update Certificate'})
+updatecertRoute.get('/updatecert', (req, res) => {
+  res.status(200).render('index', {page: 'updatecert', title: 'Edit a Certificate'})
 })
-updatecertRoute.post('/updatecert', checkAdmin, async (req, res) => {
+updatecertRoute.post('/updatecert', async (req, res) => {
   const certificate = req.body,
     name = certificate.name.toLowerCase(),
     certificateCode = certificate.certificateCode.toLowerCase(),
@@ -27,8 +23,8 @@ updatecertRoute.post('/updatecert', checkAdmin, async (req, res) => {
   certificateModel.findOneAndUpdate({certificateCode: oldCertificateCode}, newCertificate)
     .then( async () => {
       const user = await certificateModel.findOne({certificateCode})
-      if(user) return res.json({status: 204, msg: 'Updated certificate successfully'})
-      return res.status(400).json({status: 400, msg: 'Could not update certificate'})
+      if(user) return res.json({status: 204, msg: 'Edited certificate successfully'})
+      return res.status(400).json({status: 400, msg: 'Could not edit certificate'})
     })
 })
 

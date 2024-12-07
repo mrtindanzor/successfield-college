@@ -10,8 +10,16 @@ import updatecertRoute from "./all/updatecert.js";
 import addcourseRoute from "./all/addcourse.js";
 import editcourseRoute from "./all/editcourse.js";
 
-const router = Router()
-
+const router = Router(),
+checkAdmin = (req, res, next) => {
+  if(!req.isAdmin) return res.status(403).redirect('/unknown')
+  res.locals.isAdmin = true
+  next()
+}
+addcourseRoute.use(checkAdmin)
+updatecertRoute.use(checkAdmin)
+addcourseRoute.use(checkAdmin)
+editcourseRoute.use(checkAdmin)
 router.use(homeroute)
 router.use(contactroute)
 router.use(verifyroute)

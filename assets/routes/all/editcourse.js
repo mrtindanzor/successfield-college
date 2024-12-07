@@ -1,17 +1,13 @@
 import { Router } from "express"
 import { courseModel } from "../../../app.js"
 
-const editcourseRoute = Router(),
-checkAdmin = (req, res, next) => {
-  if(!req.isAdmin) return res.status(403).redirect('/')
-  next()
-}
+const editcourseRoute = Router()
 
-editcourseRoute.get('/editcourse', checkAdmin, (req, res) => {
-  res.status(200).render('index', {page: 'editcourse', title: 'edit new course'})
+editcourseRoute.get('/editcourse', (req, res) => {
+  res.status(200).render('index', {page: 'editcourse', title: 'Edit a course'})
 } )
 
-editcourseRoute.post('/findcourse', checkAdmin, async (req, res) => {
+editcourseRoute.post('/findcourse', async (req, res) => {
   const course = req.body.course.toLowerCase()
   if(!course) return res.status(400).json({status: 400, msg: 'No course was sent'})
   const isCourse = await courseModel.findOne({course})
@@ -19,7 +15,7 @@ editcourseRoute.post('/findcourse', checkAdmin, async (req, res) => {
   return res.status(200).json({status: 200, isCourse})
 })
 
-editcourseRoute.post('/editcourse', checkAdmin, async (req, res) => {
+editcourseRoute.post('/editcourse', async (req, res) => {
   const newCourse = req.body,
     courseName = newCourse.course,
     id = newCourse.id

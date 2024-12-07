@@ -14,7 +14,6 @@
   --first: white;
   --second: black;
   --third: green;
-  --fourth: purple;
   --fifth: blue;
   --sixth: tomato;
   --white: white;
@@ -192,7 +191,7 @@ header .main-menu ul li ul li.course-item:last-child > a{
   header{
     border-bottom: 1px solid var(--third);
     width: 100dvw;
-    margin-top: 35px;
+    margin-top: 10px;
   }
   .menu-button{
     display: none;
