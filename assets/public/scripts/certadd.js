@@ -10,7 +10,7 @@ formEl.addEventListener('submit', async (e) => {
   jsonObject = Object.fromEntries(formData),
   jsonString = JSON.stringify(jsonObject)
 
-  fetch('/certadd', {
+  fetch('/admin/certadd', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

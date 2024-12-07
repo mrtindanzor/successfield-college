@@ -75,7 +75,7 @@ let course = '',
   acceptBtn.addEventListener('click', () => {
     newCourse = {course, overview, objectives, outlines, benefits, certificate, fee}
     
-    const uri = '/addcourse',
+    const uri = '/admin/addcourse',
       options = {
         method: 'POST',
         headers: {

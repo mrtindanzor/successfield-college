@@ -72,7 +72,7 @@ findFormEl.addEventListener('submit', (e) => {
         body: jsonString
       }
 
-      fetch('/updatecert', options)
+      fetch('/admin/updatecert', options)
         .then(res => res.json())
         .then(data => {
           const updateResultContainer = document.querySelector('.update-result')

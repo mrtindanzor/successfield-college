@@ -24,7 +24,7 @@ let course = '',
     const formData = new FormData(findCourseForm),
       jsonObject = Object.fromEntries(formData),
       jsonString = JSON.stringify(jsonObject),
-      uri = '/findcourse',
+      uri = '/admin/findcourse',
       options = {
         method: 'POST',
         headers: {
@@ -32,7 +32,7 @@ let course = '',
         },
         body: jsonString
       }
-
+console.log(jsonString)
       fetch(uri, options)
         .then(res => res.json())
         .then(data => {
@@ -172,7 +172,7 @@ let course = '',
   acceptBtn.addEventListener('click', () => {
     newCourse = {id, course, overview, objectives, outlines, benefits, certificate, fee}
     
-    const uri = '/editcourse',
+    const uri = '/admin/editcourse',
       options = {
         method: 'POST',
         headers: {
