@@ -40,7 +40,23 @@ let course = '',
           formEl.forEach(el => {
             const inputEl = el.querySelectorAll('input:not([type="submit"])')
             if(inputEl) inputEl.forEach(el => el.remove())
-
+            if(objectives){
+              let i = objectives.length
+              objectives.splice(0, i)
+            }
+            if(outlines){
+              let i = outlines.length
+              outlines.splice(0, i)
+            }
+            if(benefits){
+              let i = benefits.length
+              benefits.splice(0, i)
+            }
+            course = ''
+            overview = ''
+            certificate = ''
+            fee = ''
+            if(el.classList.contains('active')) el.classList.remove('active')
             const dataId = el.dataset.id,
             elTitle = el.querySelector('.form-title'),
             newInput = document.createElement('input')
