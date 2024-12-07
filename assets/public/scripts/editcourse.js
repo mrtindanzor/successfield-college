@@ -56,6 +56,7 @@ let course = '',
             overview = ''
             certificate = ''
             fee = ''
+            result.innerHTML = ''
             if(el.classList.contains('active')) el.classList.remove('active')
             const dataId = el.dataset.id,
             elTitle = el.querySelector('.form-title'),

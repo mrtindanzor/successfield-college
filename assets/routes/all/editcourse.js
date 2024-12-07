@@ -24,7 +24,6 @@ editcourseRoute.post('/editcourse', checkAdmin, async (req, res) => {
     courseName = newCourse.course
   if(!newCourse) return res.status(400).json({status: 400, msg: 'No course was sent'})
   const isCourse = await courseModel.findOne({course: courseName})
-console.log(isCourse._id)
   if(!isCourse) return res.status(404).json({status: 404, msg: 'No course found'})
   if(isCourse._id.toString() !== newCourse.id) return res.status(404).json({status: 404, msg: 'Course id not matching'})
 
