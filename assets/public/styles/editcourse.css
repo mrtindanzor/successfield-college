@@ -26,7 +26,8 @@
   font-size: 19px;
 }
 .find-course label input{
-  padding: 10px 20px;
+  width: 100%;
+  padding: 10px;
   border: none;
   border-radius: 5px 0 0 5px;
 }
@@ -34,7 +35,7 @@
   outline: none;
 }
 .find-course > input{
-  width: fit-content;
+  width:fit-content;
   height: fit-content;
   background: white;
   color: green;
