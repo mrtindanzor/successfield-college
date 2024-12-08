@@ -21,18 +21,15 @@ let course = '',
   findCourseForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    const formData = new FormData(findCourseForm),
-      jsonObject = Object.fromEntries(formData),
-      jsonString = JSON.stringify(jsonObject),
+    const courseName = findCourseForm.querySelector('#find-course').value.toLowerCase().trim()
       uri = '/admin/findcourse',
       options = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: jsonString
+        body: JSON.stringify({course: courseName})
       }
-console.log(jsonString)
       fetch(uri, options)
         .then(res => res.json())
         .then(data => {

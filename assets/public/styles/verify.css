@@ -77,8 +77,13 @@ main-section {
 .verification-status {
   color: green;
 }
-.invalid-code {
-  color: red;
+.invalid-code{
+  display: block;
+  margin: 20px auto;
+  background: red;
+  text-align: center;
+  padding: 10px;
+  color: white;
 }
 @media (min-width: 551px) {
   form {
@@ -87,5 +92,11 @@ main-section {
   }
   form i {
     margin-right: 10px;
+  }
+  .invalid-code{
+    margin: 0 50px;
+    padding: 10px 50px;
+    position: relative;
+    left: 110px;
   }
 }

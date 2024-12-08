@@ -92,7 +92,7 @@
     text-transform: uppercase;
     font-weight: 500;
   }
-  .update-success, .update-fail{
+  .update-success, .update-fail, .invalid-code{
     display: block;
     margin: 20px auto;
     background: green;
@@ -100,7 +100,7 @@
     padding: 10px;
     color: white;
   }
-  .update-fail {
+  .update-fail, .invalid-code{
     background: red;
   }
   .old-certificate-code{

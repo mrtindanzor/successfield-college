@@ -8,7 +8,7 @@ editcourseRoute.get('/editcourse', (req, res) => {
 } )
 
 editcourseRoute.post('/findcourse', async (req, res) => {
-  const course = req.body.course
+  const course = req.body.course.toLowerCase().trim()
   if(!course) return res.status(400).json({status: 400, msg: 'No course was sent'})
   const isCourse = await courseModel.findOne({course})
   if(!isCourse) return res.status(404).json({status: 404, msg: 'No course found'})

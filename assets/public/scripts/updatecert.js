@@ -4,8 +4,17 @@ const findFormEl = document.querySelector('.find-certificate'),
 findFormEl.addEventListener('submit', (e) => {
   e.preventDefault()
 
-  const certificateCode = findFormEl.querySelector('input').value
-  fetch(`/verify/${certificateCode}`)
+  const certificateCode = findFormEl.querySelector('input').value.toLowerCase().trim()
+  if(certificateCode.length < 1) return
+  const uri = '/verify',
+    options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({certificateCode})
+    }
+  fetch(uri, options)
   .then(res => res.json())
   .then(data => {
     if(data.status === 500) {
@@ -64,6 +73,7 @@ findFormEl.addEventListener('submit', (e) => {
       const formData = new FormData(updateFormEl),
       jsonData = Object.fromEntries(formData.entries()),
       jsonString = JSON.stringify(jsonData),
+      uri = '/admin/updatecert',
       options = {
         method: 'POST',
         headers: {
@@ -72,7 +82,7 @@ findFormEl.addEventListener('submit', (e) => {
         body: jsonString
       }
 
-      fetch('/admin/updatecert', options)
+      fetch(uri, options)
         .then(res => res.json())
         .then(data => {
           const updateResultContainer = document.querySelector('.update-result')
@@ -86,7 +96,7 @@ findFormEl.addEventListener('submit', (e) => {
             updateResultContainer.innerHTML = `
           <i class="update-success">${data.msg}</i>
           `
-            if(data.status === 400)
+            if(data.status === 404)
             updateResultContainer.innerHTML = `
           <i class="update-fail">${data.msg}</i>
           `
