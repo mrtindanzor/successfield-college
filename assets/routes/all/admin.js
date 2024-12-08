@@ -3,6 +3,8 @@ import { certaddRoute } from "./certadd.js";
 import updatecertRoute from "./updatecert.js";
 import addcourseRoute from "./addcourse.js";
 import editcourseRoute from "./editcourse.js";
+import deletecertRoute from "./deletecert.js"
+import deletecourseRoute from "./deletecourse.js"
 
 const adminRoute = Router(),
 isAdmin = (req, res, next) => {
@@ -19,5 +21,7 @@ adminRoute.use('/admin', certaddRoute)
 adminRoute.use('/admin', updatecertRoute)
 adminRoute.use('/admin', addcourseRoute)
 adminRoute.use('/admin', editcourseRoute)
+adminRoute.use('/admin', deletecertRoute)
+adminRoute.use('/admin', deletecourseRoute)
 
 export { adminRoute, isAdmin}

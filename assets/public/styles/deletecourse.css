@@ -1,0 +1,135 @@
+.delete-course-wrapper{
+  width: 100dvw;
+}
+.find-course-form{
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid green;
+  display: flex;
+  padding: 20px 30px;
+  background-color: green;
+  border-radius: 4px;
+  gap: 5px;
+  margin: 30px auto;
+}
+.delete-course-wrapper .find-course-form .course{
+  width: 100%;
+  padding: 5px ;
+}
+.delete-course-wrapper .find-course-form .course:focus{
+  outline: none;
+}
+.delete-course-wrapper .find-course-form button{
+  color: green;
+}
+button{
+  background-color: white;
+  border: 1px solid currentColor;
+  cursor: pointer;
+  padding: 7px 10px;
+}
+.delete-course-wrapper .result{
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+}
+.delete-course-wrapper .result .invalid-code{
+  padding: 10px;
+}
+.delete-course-wrapper .result .show-found-course{
+  width: 100%;
+  border: 1px solid green;
+  background-color: green;
+  padding: 20px 10px;
+}
+.delete-course-wrapper .result .show-found-course .course-name, .delete-course-wrapper .result .show-found-course .course-overview{
+  color: white;
+  display: block;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  margin: 0 20px 10px 20px;
+}
+.delete-course-wrapper .result .show-found-course .course-name::before, .delete-course-wrapper .result .show-found-course .course-overview::before{
+  content: 'Overview:';
+  padding: 2px 10px;
+  margin-right: 4px;
+  font-weight: 800;
+  display: block;
+  background-color: white;
+  color: red;
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+}
+.delete-course-wrapper .result .show-found-course .course-name::before{
+  content: 'Course: ';
+}
+.delete-course-wrapper .result .show-found-course > button, .result .is-not-deleted, .result .is-deleted, .delete-course-wrapper .result .invalid-code, .deny-delete{
+  display: block;
+  width: calc(100% - 40px);
+  margin: 20px 0 30px 20px;
+  color: white;
+  background-color: red;
+  border-color: red;
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+.result .is-not-deleted{
+  padding: 5px 10px;
+}
+.result .is-deleted{
+  background-color: green;
+  border: 1px solid currentColor;
+  padding: 5px 10px;
+}
+.result .prompt-dialog{
+  background-color: white;
+  display: none;
+}
+.result .prompt-dialog.active{
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.prompt-box{
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: green;
+  border: 1px solid green;
+  padding: 10px;
+}
+.prompt-box span.confirm-text{
+  margin: 4px auto;
+  font-size: 1.2rem;
+  color: white;
+}
+.prompt-box span.confirm-text .confirm-course{
+  display: inline-block;
+  padding: 0 4px;
+  margin: 0 4px;
+  background-color: white;
+  color: red;
+}
+.prompt-box .contrs{
+  margin: 4px auto;
+  display: flex;
+  gap: 5px;
+}
+.prompt-box .contrs input{
+  padding: 6px 10px;
+  width: 100%;
+}
+.prompt-box .contrs button{
+  color: white;
+  border-color: transparent;
+  background-color: red;
+}

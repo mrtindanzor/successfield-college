@@ -91,6 +91,7 @@ form.form{
   margin: 20px 10px;
   color: var(--first);
   border: none;
+  cursor: pointer;
 }
 .prompt-contrs .accept-prompt{
   background: var(--third);
