@@ -64,15 +64,15 @@ const uri = process.env.DATABASE,
 
   setInterval(pingService, time);
 
-// try{
-//   mongoose.Promise = global.Promise
-//   mongoose.connect(uri)
-//   mongoose.connection.once('open', () => console.log('connected to database successfully')).on('error', (error) => {
-//     console.log('An error occured while connecting to database', error)
-//   })
-// } catch(err) {
-//   console.log('a new error', err)
-// }
+try{
+  mongoose.Promise = global.Promise
+  mongoose.connect(uri)
+  mongoose.connection.once('open', () => console.log('connected to database successfully')).on('error', (error) => {
+    console.log('An error occured while connecting to database', error)
+  })
+} catch(err) {
+  console.log('a new error', err)
+}
 app.use(session({
   store: MongoStore.create({
     mongoUrl: uri,
