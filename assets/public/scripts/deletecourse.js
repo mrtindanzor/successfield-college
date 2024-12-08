@@ -1,8 +1,9 @@
 const findEl = document.querySelector('.find-course-form input'),
+    findForm = document.querySelector('.find-course-form'),
     findBtn = document.querySelector('.find-course-form button'),
     result = document.querySelector('.delete-course-wrapper .result')
 
-
+  findForm.addEventListener('submit', e => e.preventDefault())
   findBtn.addEventListener('click', async () => {
     const course = findEl.value.trim().toLowerCase(),
       uri = '/admin/findcourse',
@@ -38,7 +39,7 @@ const findEl = document.querySelector('.find-course-form input'),
                     </span>
                     <div class="contrs">
                       <input type="text">
-                      <button>delete</button>
+                      <button class="confirm-delete">delete</button>
                     </div>
                   <button class="deny-delete">close</button>
                   </div>
@@ -69,14 +70,14 @@ const findEl = document.querySelector('.find-course-form input'),
                       .then(res => res.json())
                       .then(data => {
                         if(data.status !== 200){
-                          return result.innerHTML =  `
+                          result.innerHTML =  `
                           <span class="is-not-deleted">
                             ${data.msg}
                           </span>
                           `
                         }
                         if(data.status === 200){
-                          return result.innerHTML =  `
+                          result.innerHTML =  `
                           <span class="is-deleted">
                             ${data.msg}
                           </span>

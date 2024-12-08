@@ -49,7 +49,7 @@ button{
   text-transform: capitalize;
   margin: 0 20px 10px 20px;
 }
-.delete-cert-wrapper .result .show-found-cert .cert-name::before, .delete-cert-wrapper .result .show-found-cert .cert-overview::before{
+.delete-cert-wrapper .result .show-found-cert .cert-name::before, .delete-cert-wrapper .result .show-found-cert .certificate-code::before{
   content: 'Certificate ID:';
   padding: 2px 10px;
   margin-right: 4px;
