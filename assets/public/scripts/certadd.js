@@ -23,7 +23,7 @@ formEl.addEventListener('submit', async (e) => {
     resultDiv.innerHTML = `
   <i class="add-success">${data.msg}</i>
   `
-    if(data.status === 304)
+    if(data.status !== 201)
     resultDiv.innerHTML = `
   <i class="add-fail">${data.msg}</i>
   `

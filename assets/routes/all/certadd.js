@@ -9,7 +9,7 @@ certaddRoute.post('/certadd', async (req, res) => {
   const certificateCode = certificate.certificateCode.toLowerCase().trim(),
   user = await certificateModel.findOne({certificateCode})
 
-  if(user) return res.status(304).json({status: 304, msg: "Already added in database, input another"})
+  if(user) return res.status(400).json({status: 400, msg: "Already added in database"})
 
   const newCertificate = new certificateModel(certificate)
 
