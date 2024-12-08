@@ -1,8 +1,6 @@
 const findEl = document.querySelector('.find-course-form input'),
     findBtn = document.querySelector('.find-course-form button'),
-    result = document.querySelector('.delete-course-wrapper .result'),
-    prompt = document.querySelector('.prompt-dialog'),
-    confirmEl = document.querySelector('.prompt-box')
+    result = document.querySelector('.delete-course-wrapper .result')
 
 
   findBtn.addEventListener('click', async () => {
@@ -42,11 +40,14 @@ const findEl = document.querySelector('.find-course-form input'),
                       <input type="text">
                       <button>delete</button>
                     </div>
+                  <button class="deny-delete">close</button>
                   </div>
                 </div>
               </div>
             `
-            const deleteBtn = document.querySelector('.show-found-course > button')
+            const deleteBtn = document.querySelector('.show-found-course > button'),
+              prompt = document.querySelector('.prompt-dialog'),
+              confirmEl = document.querySelector('.prompt-box')
 
             deleteBtn.addEventListener('click', () =>prompt.classList.add('active'))
 

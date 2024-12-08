@@ -40,6 +40,7 @@ const findEl = document.querySelector('.find-cert-form input'),
                       <input type="text">
                       <button>delete</button>
                     </div>
+                  <button class="deny-delete">close</button>
                   </div>
                 </div>
               </div>
