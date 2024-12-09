@@ -187,7 +187,7 @@ header .main-menu ul li ul li.course-item:last-child > a{
   border-bottom: 1px solid;
 }
 }
-@media (min-width: 551px){
+@media (min-width: 768px){
   header{
     border-bottom: 1px solid var(--third);
     width: 100dvw;
