@@ -4,10 +4,10 @@
 .find-course-form{
   width: 100%;
   max-width: 400px;
-  border: 1px solid green;
+  border: 1px solid var(--third);
   display: flex;
   padding: 20px 30px;
-  background-color: green;
+  background-color: var(--third);
   border-radius: 4px;
   gap: 5px;
   margin: 30px auto;
@@ -20,10 +20,10 @@
   outline: none;
 }
 .delete-course-wrapper .find-course-form button{
-  color: green;
+  color: var(--third);
 }
 button{
-  background-color: white;
+  background-color: var(--first);
   border: 1px solid currentColor;
   cursor: pointer;
   padding: 7px 10px;
@@ -38,12 +38,12 @@ button{
 }
 .delete-course-wrapper .result .show-found-course{
   width: 100%;
-  border: 1px solid green;
-  background-color: green;
+  border: 1px solid var(--third);
+  background-color: var(--third);
   padding: 20px 10px;
 }
 .delete-course-wrapper .result .show-found-course .course-name, .delete-course-wrapper .result .show-found-course .course-overview{
-  color: white;
+  color: var(--first);
   display: block;
   font-size: 1.2rem;
   text-transform: capitalize;
@@ -55,8 +55,8 @@ button{
   margin-right: 4px;
   font-weight: 800;
   display: block;
-  background-color: white;
-  color: red;
+  background-color: var(--first);
+  color: var(--sixth);
   font-size: 1.7rem;
   margin-bottom: 10px;
 }
@@ -67,9 +67,9 @@ button{
   display: block;
   width: calc(100% - 40px);
   margin: 20px 0 30px 20px;
-  color: white;
-  background-color: red;
-  border-color: red;
+  color: var(--first);
+  background-color: var(--sixth);
+  border-color: var(--sixth);
   font-weight: 900;
   font-size: 1.2rem;
   text-align: center;
@@ -79,12 +79,12 @@ button{
   padding: 5px 10px;
 }
 .result .is-deleted{
-  background-color: green;
+  background-color: var(--third);
   border: 1px solid currentColor;
   padding: 5px 10px;
 }
 .result .prompt-dialog{
-  background-color: white;
+  background-color: var(--first);
   display: none;
 }
 .result .prompt-dialog.active{
@@ -103,21 +103,21 @@ button{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: green;
-  border: 1px solid green;
+  background-color: var(--third);
+  border: 1px solid var(--third);
   padding: 10px;
 }
 .prompt-box span.confirm-text{
   margin: 4px auto;
   font-size: 1.2rem;
-  color: white;
+  color: var(--first);
 }
 .prompt-box span.confirm-text .confirm-course{
   display: inline-block;
   padding: 0 4px;
   margin: 0 4px;
-  background-color: white;
-  color: red;
+  background-color: var(--first);
+  color: var(--sixth);
 }
 .prompt-box .contrs{
   margin: 4px auto;
@@ -129,7 +129,7 @@ button{
   width: 100%;
 }
 .prompt-box .contrs button{
-  color: white;
+  color: var(--first);
   border-color: transparent;
-  background-color: red;
+  background-color: var(--sixth);
 }

@@ -36,7 +36,7 @@ let course = '',
       dataId = el.dataset.id
       
       inputEl.forEach(input => {
-        inputValue  = input.value
+        inputValue  = input.value.trim()
         if(inputValue == '') return
         if(dataId === 'course') course = inputValue.toLowerCase()
         if(dataId === 'overview') overview = inputValue

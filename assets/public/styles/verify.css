@@ -75,15 +75,15 @@ main-section {
   }
 }
 .verification-status {
-  color: green;
+  color: var(--third);
 }
 .invalid-code{
   display: block;
   margin: 20px auto;
-  background: red;
+  background: var(--sixth);
   text-align: center;
   padding: 10px;
-  color: white;
+  color: var(--first);
 }
 @media (min-width: 551px) {
   form {

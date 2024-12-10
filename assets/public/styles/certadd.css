@@ -7,7 +7,7 @@
   margin: 10px auto 10px auto;
 }
 .main-wrapper .cert-add-form{
-  background-color: green;
+  background-color: var(--third);
   display: flex;
   flex-direction: column;
   row-gap: 20px;
@@ -16,8 +16,8 @@
   .cert-add-form span:first-child{
     display: block;
     padding: 10px 20px;
-    background: white;
-    color: green;
+    background: var(--first);
+    color: var(--third);
     font-weight: 800;
     text-transform: uppercase;
     font-size: 18px;
@@ -26,7 +26,7 @@
     display: flex;
     column-gap: 10px;
     width: 100%;
-    color: white;
+    color: var(--first);
   }
   .cert-add-form label input{
     flex: 1;
@@ -38,28 +38,28 @@
   }
   .cert-add-form label input:focus{
     outline: none;
-    color: yellow;
+    color: var(--fourth);
   }
   .cert-add-form > input{
-    background: white;
+    background: var(--first);
     display: block;
     padding: 5px 10px;
-    color: green;
+    color: var(--third);
     border-radius: 10px;
     font-size: 17px;
-    border: 1px white;
+    border: 1px var(--first);
     cursor: pointer;
   }
   .add-success, .add-fail{
     display: block;
     margin: 20px auto;
-    background: green;
+    background: var(--third);
     text-align: center;
     padding: 10px;
-    color: white;
+    color: var(--first);
   }
   .add-fail {
-    background: red;
+    background: var(--sixth);
   }
   @media (max-width:550px){
     .cert-add-form{

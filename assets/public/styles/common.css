@@ -96,7 +96,7 @@ nav .auth-contrs a.auth-login{
 }
 nav .auth-contrs a.auth-login:hover{
   color: var(--first);
-  background: lightgreen;
+  background: var(--second);
 }
 nav .auth-contrs a.auth-signup{
   color: var(--first);
@@ -104,7 +104,7 @@ nav .auth-contrs a.auth-signup{
   border-radius: 5px;
 }
 nav .auth-contrs a.auth-signup:hover{
-  background: lightgreen;
+  background: var(--second);
 }
 nav .auth-contrs a.auth-logout{
   color: var(--first);
@@ -113,7 +113,7 @@ nav .auth-contrs a.auth-logout{
   margin-left: 10px;
 }
 nav .auth-contrs a.auth-logout:hover{
-  background: lightgreen;
+  background: var(--second);
 }
 header{
   margin: 2px;
@@ -148,7 +148,7 @@ header .main-menu span.menu-button{
     top: 3px;
   }
 header .main-menu ul.menu-list{
-  background-color: white;
+  background-color: var(--first);
   border: 1px solid;
   position: absolute;
   top: 100%;
@@ -265,7 +265,7 @@ footer{
   right: 0;
   bottom: 50dvh;
   padding: 10px;
-  background-color: white;
+  background-color: var(--first);
   box-shadow: -2px 0 3px var(--darker);
   color: var(--darker);
   display: flex;
@@ -291,7 +291,7 @@ footer{
   box-shadow: -2px 0 3px var(--darker);
   color: var(--darker);
   opacity: 0.8;
-  background-color: white;
+  background-color: var(--first);
 
 }
 .whatsapp-link1{
@@ -305,7 +305,7 @@ align-items: baseline;
   left: -5px;
 }
 .whatsapp-icon{
-  color: green;
+  color: var(--third);
 }
 .mail-link{
   position: fixed;
@@ -316,12 +316,12 @@ align-items: baseline;
   color: var(--darker);
   display: flex;
   opacity: 0.8;
-  background-color: white; 
+  background-color: var(--first); 
 }
 .mail-link .mail-icon{
   transform: scale(1.5);
   position: relative;
-  color: red;
+  color: var(--sixth);
   top: 5px;
   left: 5px;
 }
@@ -332,7 +332,7 @@ align-items: baseline;
   transform: scale(1.5);
   position: relative;
   top: 3px;
-  color: red;
+  color: var(--sixth);
 }
 svg{
   opacity: 1;

@@ -1,69 +1,76 @@
-main-section{
-  width: 100%;
-  min-height: 75%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.contact-page-wrapper{
+  width: 100dvw;
 }
-.container-wrapper{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-.contact-form{
-  width: 95%;
-  max-width: 800px;
-  font-size: var(--third-s);
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: -80px -80px 100px var(--first), 80px 80px 100px var(--second);
-}
-form .form-title{
-  font-family: acolonica;
-  font-size: var(--fifth-s);
-}
-label{
-  display: flex;
-  color: var(--sixth);
-}
-label input:focus{
-  outline: none;
-}
-label input {
-  border: none;
-  margin-left: 15px;
-  width: 100%;
-  border-bottom: 2px dotted var(--sixth);
-  font-family: alice;
-  font-size: var(--third-s);
-  flex: 1;
-}
-form label input:user-invalid{
-  border-bottom: 2px solid var(--sixth);
-}
-form label input:user-valid{
-  border-bottom: 2px solid var(--third);
-}
-form label input:focus{
-  outline: none;
-  border-bottom: 2px dotted var(--sixth);
-}
-.send-message{
-  align-self: center;
+.contact-page-wrapper .social-media{
   width: fit-content;
-  padding: 10px 20px;
-  background-color: var(--fourth);
-  color: var(--white);
-  font-size: var(--fourth);
-  border-radius: 20px;
-  margin-top: 30px;
-  cursor: pointer;
-  font-family: alice;
+  margin: 10px auto;
 }
-.send-message:hover{
-  opacity: 0.8;
+.contact-page-wrapper .social-media p{
+  display: flex;
+  gap: 20px;
+}
+.contact-page-wrapper .social-media p a{
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 0 2px  var(--second);
+  height: fit-content;
+  padding: 10px;
+  color: var(--third);
+  text-decoration: none;
+  color: var(--second);
+}
+.contact-page-wrapper .social-media p a .twitter-icon{
+  height: 30px;
+  color: var(--second);
+}
+.contact-page-wrapper .social-media p a .whatsapp-icon{
+  position: relative;
+  top: 0;
+}
+.contact-page-wrapper > span{
+  display: block;
+  font-weight: 900;
+  font-size: 1.5rem;
+  width: fit-content;
+  margin: 20px auto;
+} 
+.contact-page-wrapper .email-form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 95%;
+  max-width: 350px;
+  margin: auto;
+  border: 2px solid;
+  padding: 30px 20px 70px 20px;
+}
+.email-form h3{
+  width: fit-content;
+  margin: 0 auto;
+  font-size: 1.3rem;
+}
+.email-form label{
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+.email-form label span{
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.email-form label input{
+  width: 100%;
+  padding: 10px;
+}
+.email-form label:last-child textarea{
+  height: fit-content;
+ min-height: 100px;
+ resize: none;
+}
+.email-form button{
+  padding: 10px;
+  background: var(--third);
+  color: var(--first);
+  border: none;
+  font-size: 1.1rem;
 }

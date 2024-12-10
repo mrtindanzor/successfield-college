@@ -12,7 +12,7 @@
   column-gap: 5px;
   margin-bottom: 50px;
   align-items: end;
-  background: green;
+  background: var(--third);
   padding: 20px;
 }
 .find-certificate label{
@@ -22,7 +22,7 @@
   width: 100%;
 }
 .find-certificate label span{
-  color: white;
+  color: var(--first);
   font-size: 19px;
 }
 .find-certificate label input{
@@ -37,8 +37,8 @@
 .find-certificate > input{
   width: fit-content;
   height: fit-content;
-  background: white;
-  color: green;
+  background: var(--first);
+  color: var(--third);
   font-weight: 800;
   padding: 10px ;
   border: none;
@@ -47,7 +47,7 @@
 }
 
   .main-wrapper .cert-update-form{
-  background-color: green;
+  background-color: var(--third);
   display: flex;
   flex-direction: column;
   row-gap: 20px;
@@ -56,8 +56,8 @@
   .cert-update-form > span:first-child{
     display: block;
     padding: 10px 20px;
-    background: white;
-    color: green;
+    background: var(--first);
+    color: var(--third);
     font-weight: 800;
     text-transform: uppercase;
     font-size: 18px;
@@ -66,7 +66,7 @@
     display: flex;
     column-gap: 10px;
     width: 100%;
-    color: white;
+    color: var(--first);
   }
   .cert-update-form label input{
     flex: 1;
@@ -78,16 +78,16 @@
   }
   .cert-update-form label input:focus{
     outline: none;
-    color: yellow;
+    color: var(--fourth);
   }
   .cert-update-form > input{
-    background: white;
+    background: var(--first);
     display: block;
     padding: 5px 10px;
-    color: green;
+    color: var(--third);
     border-radius: 10px;
     font-size: 17px;
-    border: 1px white;
+    border: 1px var(--first);
     cursor: pointer;
     text-transform: uppercase;
     font-weight: 500;
@@ -95,13 +95,13 @@
   .update-success, .update-fail, .invalid-code{
     display: block;
     margin: 20px auto;
-    background: green;
+    background: var(--third);
     text-align: center;
     padding: 10px;
-    color: white;
+    color: var(--first);
   }
   .update-fail, .invalid-code{
-    background: red;
+    background: var(--sixth);
   }
   .old-certificate-code{
     display: none;

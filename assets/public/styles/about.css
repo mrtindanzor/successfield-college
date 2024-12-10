@@ -5,7 +5,7 @@
 }
 h2{
   margin: 20px 0;
-  color: green;
+  color: var(--third);
 }
 h3, h4{
   margin: 0 10px 10px 0;

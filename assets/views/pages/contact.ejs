@@ -1,21 +1,56 @@
-<div class="container-wrapper">
-  <form action="/contact" method="post" class="contact-form">
-    <span class="form-title">Contact us</span>
-    <label for="name-field">
-      <span>My name is</span>
-      <input type="text" name="name-field" id="name-field" placeholder="Name" minlength="3" required>
+<div class="contact-page-wrapper">
+  <div class="social-media">
+    <h3>
+     Contact us on 
+    </h3>
+    <p>
+      <a class="whatsapp-link1" href="https://wa.me/+233591413517" target="_blank"> 
+        <%- (new icons('whatsapp-icon', 'Whatsapp page')).whatsapp() %>
+        Whatsapp
+      </a>
+      <a class="twitter-link" href="https://twitter.com/gismanagement" target="_blank"> 
+        <%- (new icons('twitter-icon', 'Twitter page')).twitter() %>
+      </a>
+    </p>
+  </div>
+  <br>
+  <span>
+    OR
+  </span>
+  <br>
+  <form class="email-form">
+    <h3>
+      Send us a message  
+    </h3>
+    <label for="name">
+      <span>
+        Name:
+      </span>
+      <input type="text" name="name" id="name" minlength="4" required>
     </label>
-    <label for="phone-field">
-      <span>You can contact me at</span>
-      <input type="tel" name="phone-field" id="phone-field" placeholder="Telephone" minlength="9" required>
+    <label for="email">
+      <span>
+        Email:
+      </span>
+      <input type="email" name="email" id="email"  required>
     </label>
-    <label for="email-field">
-      <span>or at </span>
-      <input type="email" name="email-field" id="email-field" placeholder="Email" minlength="5" required>
+    <label for="phone">
+      <span>
+        No: 
+      </span>
+      <input type="number" name="phone" id="phone" minlength="9" maxlength="13">
     </label>
-    <label for="message-field">
-      <input type="text" name="message-field" id="message-field" placeholder="Message" minlength="20" required>
+    <label for="message">
+      <span>
+        Message:
+      </span>
+      <textarea name="message" id="message" minlength="10" required></textarea>
     </label>
-    <input type="submit" value="Send message" class="send-message">
+    <button>
+      Send
+    </button>
   </form>
 </div>
+<pre class="result">
+  
+</pre>

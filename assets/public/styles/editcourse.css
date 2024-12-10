@@ -12,7 +12,7 @@
   column-gap: 5px;
   margin-bottom: 50px;
   align-items: end;
-  background: green;
+  background: var(--third);
   padding: 20px;
 }
 .find-course label{
@@ -22,7 +22,7 @@
   width: 100%;
 }
 .find-course label span{
-  color: white;
+  color: var(--first);
   font-size: 19px;
 }
 .find-course label input{
@@ -37,8 +37,8 @@
 .find-course > input{
   width:fit-content;
   height: fit-content;
-  background: white;
-  color: green;
+  background: var(--first);
+  color: var(--third);
   font-weight: 800;
   padding: 10px ;
   border: none;

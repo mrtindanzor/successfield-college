@@ -39,7 +39,7 @@
     width: fit-content;
     padding: 10px 20px;
     border-radius: 10px;
-    background-color: green;
+    background-color: var(--third);
     text-decoration: none;
     color: var(--white);
     transition: 0.2s;
