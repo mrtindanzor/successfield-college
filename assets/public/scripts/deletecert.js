@@ -61,7 +61,7 @@ const findEl = document.querySelector('.find-cert-form input'),
                   if(inputValue === certificate){
                     const uri = '/admin/deletecertificate',
                       options = {
-                        method: 'POST',
+                        method: 'DELETE',
                         headers: {
                           'Content-Type': 'application/json'
                         },

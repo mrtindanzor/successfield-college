@@ -7,7 +7,7 @@ deletecourseRoute.get('/deletecourse', (req, res) => {
   return res.status(200).render('index', {page: 'deletecourse', title: 'Delete Course'})
 })
 
-deletecourseRoute.post('/deletecourse', async (req, res) => {
+deletecourseRoute.delete('/deletecourse', async (req, res) => {
   const course = req.body.course.toLowerCase().trim()
   if(!course) return res.status(400).json({status: 400, msg: 'Enter a valid course name'})
 

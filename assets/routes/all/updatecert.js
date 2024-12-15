@@ -6,7 +6,7 @@ const updatecertRoute = Router()
 updatecertRoute.get('/updatecert', (req, res) => {
   res.status(200).render('index', {page: 'updatecert', title: 'Edit a Certificate'})
 })
-updatecertRoute.post('/updatecert', async (req, res) => {
+updatecertRoute.put('/updatecert', async (req, res) => {
   const certificate = req.body,
     name = certificate.name.toLowerCase(),
     certificateCode = certificate.certificateCode.toLowerCase(),

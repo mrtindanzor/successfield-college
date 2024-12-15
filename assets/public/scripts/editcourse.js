@@ -171,7 +171,7 @@ let course = '',
     
     const uri = '/admin/editcourse',
       options = {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },

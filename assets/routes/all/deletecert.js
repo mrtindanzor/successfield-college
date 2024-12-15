@@ -7,7 +7,7 @@ deletecertRoute.get('/deletecertificate', (req, res) => {
   return res.status(200).render('index', {page: 'deletecert', title: 'Delete Certificate'})
 })
 
-deletecertRoute.post('/deletecertificate', async (req, res) => {
+deletecertRoute.delete('/deletecertificate', async (req, res) => {
   const certificateCode = req.body.certificateCode.toLowerCase().trim()
   if(!certificateCode) return res.status(400).json({status: 400, msg: 'Enter a valid certificate code'})
 

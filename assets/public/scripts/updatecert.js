@@ -75,7 +75,7 @@ findFormEl.addEventListener('submit', (e) => {
       jsonString = JSON.stringify(jsonData),
       uri = '/admin/updatecert',
       options = {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },

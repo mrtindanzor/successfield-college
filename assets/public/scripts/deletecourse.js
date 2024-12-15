@@ -60,7 +60,7 @@ const findEl = document.querySelector('.find-course-form input'),
                   if(inputValue === courseName){
                     const uri = '/admin/deletecourse',
                       options = {
-                        method: 'POST',
+                        method: 'DELETE',
                         headers: {
                           'Content-Type': 'application/json'
                         },

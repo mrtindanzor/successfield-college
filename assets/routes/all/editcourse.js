@@ -15,7 +15,7 @@ editcourseRoute.post('/findcourse', async (req, res) => {
   return res.status(200).json({status: 200, isCourse})
 })
 
-editcourseRoute.post('/editcourse', async (req, res) => {
+editcourseRoute.put('/editcourse', async (req, res) => {
   const newCourse = req.body,
     courseName = newCourse.course,
     id = newCourse.id

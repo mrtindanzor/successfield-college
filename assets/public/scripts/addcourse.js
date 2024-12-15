@@ -77,7 +77,7 @@ let course = '',
     
     const uri = '/admin/addcourse',
       options = {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },

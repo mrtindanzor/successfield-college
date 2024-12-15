@@ -3,7 +3,7 @@ import { certificateModel } from "../../../app.js"
 
 const certaddRoute = Router()
 
-certaddRoute.post('/certadd', async (req, res) => {
+certaddRoute.put('/certadd', async (req, res) => {
   const certificate = req.body
   
   const certificateCode = certificate.certificateCode.toLowerCase().trim(),

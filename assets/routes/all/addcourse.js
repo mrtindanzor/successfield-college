@@ -7,7 +7,7 @@ addcourseRoute.get('/addcourse', (req, res) => {
   res.status(200).render('index', {page: 'addcourse', title: 'Add new course'})
 } )
 
-addcourseRoute.post('/addcourse', async (req, res) => {
+addcourseRoute.put('/addcourse', async (req, res) => {
   const newCourse = req.body
   if(!newCourse) return res.status(400).json({status: 400, msg: 'No course was sent'})
   const isCourse = await courseModel.findOne({course: newCourse.course})
