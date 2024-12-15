@@ -241,6 +241,7 @@ footer{
 .footer-container{
   flex: 1;
   max-width: 200px;
+  min-width: fit-content;
   padding: 10px;
 }
 .footer-container a{
