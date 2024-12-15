@@ -339,7 +339,8 @@ align-items: baseline;
   width: 100%; 
   text-align: center;
   color: var(--third);
-  font-size: var(--third-s);
+  margin-top: 30px;
+  font-size: var(--second-s);
   text-transform: uppercase;
 }
 svg{
