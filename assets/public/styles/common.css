@@ -233,6 +233,7 @@ main-section{
 }
 footer{
   display: flex;
+  flex-wrap: wrap;
   background-color: var(--darker);
   padding: 50px 3% 100px 3%;
 }
@@ -333,6 +334,13 @@ align-items: baseline;
   position: relative;
   top: 3px;
   color: var(--sixth);
+}
+.date-container{
+  width: 100%; 
+  text-align: center;
+  color: var(--third);
+  font-size: var(--third-s);
+  text-transform: uppercase;
 }
 svg{
   opacity: 1;
