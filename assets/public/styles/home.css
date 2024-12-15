@@ -6,16 +6,9 @@
     font-family: alice;
   }
   .container-wrapper{
-    display: none;
     align-items: center;
     column-gap: 20px;
     padding: 20px;
-  }
-  .container-wrapper.wrapper3 .image-container{
-    display: none;
-  }
-  .container-wrapper.wrapper3 p{
-    padding-right: 40%;
   }
   .container-wrapper:nth-child(odd){
     background-color: var(--darker);
@@ -25,7 +18,7 @@
     background-color: var(--dark);
   }
   .container-wrapper .details-container h3{
-    color: var(--sixth);
+    color: var(--third);
     font-size: var(--fifth-s);
     font-family: acolonica;
     letter-spacing: 4px;
@@ -96,8 +89,5 @@
   }
   .container-wrapper.wrapper1 .details-container p{
     color: var(--white);
-  }
-  .container-wrapper.wrapper3 p{
-    padding-right: 1%;
   }
   }

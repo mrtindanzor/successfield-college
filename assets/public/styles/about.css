@@ -9,6 +9,7 @@ h2{
 }
 h3, h4{
   margin: 0 10px 10px 0;
+  color: var(--third);
 }
 h6{
   font-size: 0.9rem;
