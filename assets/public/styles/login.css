@@ -69,7 +69,7 @@ form label input:user-invalid{
   border: 2px solid var(--sixth);
 }
 form label input:user-valid +*{
-  display: none;
+  transform: translateY(-30px);
 }
 form label input:user-invalid +*{
   transform: translateY(-30px);
