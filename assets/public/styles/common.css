@@ -68,6 +68,7 @@ nav{
 nav .logo-container{
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 nav .logo-container .logo-text{
   font-size: 1.3rem;

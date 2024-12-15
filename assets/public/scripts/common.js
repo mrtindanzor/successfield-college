@@ -1,4 +1,5 @@
 const courseListBtn = document.querySelector('.course-list-button'),
+  logoContainer = document.querySelector('.logo-container'),
   menuBtn = document.querySelector('.menu-button'),
   dateContainer = document.querySelector('.date-year'),
   currentYear = new Date().getFullYear(),
@@ -20,7 +21,9 @@ svgs.forEach(el => {
   el.style.opacity = 1
 })
 
-
+logoContainer.addEventListener('click', () => {
+  window.location.href ='/'
+})
 menuBtn.addEventListener('click', () => {
   hideShow(menuList, 'flex')
 })
