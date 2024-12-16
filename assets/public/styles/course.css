@@ -32,8 +32,8 @@ header{
   font-size: var(--first-s);
 }
 .alt-navbar button:first-child:hover{
-  background-color: var(--fourth);
   color: var(--first);
+  background-color: var(--second);
 }
 .alt-navbar button:nth-child(3):hover{
   background-color: var(--third);
@@ -47,15 +47,22 @@ ul li{
 }
 b{
   display: inline-flex;
-  font-family: alice;
-  font-size: var(--fourth-s);
+  font-family: poppins-regular;
+  font-size: var(--second-s);
   margin-left: 10px;
+  margin-right: 10px;
+  color: var(--third);
+  font-style: italic;
+  text-transform: uppercase;
 }
 p.course-overview{
   padding: 10px;
 }
 .course-points{
   color: var(--sixth);
+}
+h3{
+  color: var(--third);
 }
 @media (min-width: 769px) {
   .content-wrapper{

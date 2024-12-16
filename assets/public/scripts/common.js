@@ -27,7 +27,7 @@ logoContainer.addEventListener('click', () => {
 menuBtn.addEventListener('click', () => {
   hideShow(menuList, 'flex')
 })
-dateContainer.textContent = currentYear
+if(dateContainer) dateContainer.textContent = currentYear
 courseListBtn.addEventListener('click', () => {
   hideShow(courseList)
 })

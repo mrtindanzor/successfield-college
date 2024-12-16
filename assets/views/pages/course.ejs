@@ -34,19 +34,19 @@
   <% } %>
   
   <div class="timeline">
-    <span>
-      <b>
-        Duration:
-      </b> 
-      Self-paced, complete at your own speed
-    </span>
+    <% const duration = findCourse.duration %>
+  <% if(duration){ %>
+      <b>Duration: </b>
+      <span> <%= duration %> </span>
+  <% } %>
+
     <br>
-    <span>
-      <b>
-        Availability:
-      </b>
-       Open to anyone, no prerequisites or restrictions
-    </span>
+
+    <% const availability = findCourse.availability %>
+  <% if(availability){ %>
+      <b>Availability: </b>
+      <span> <%= availability %> </span>
+  <% } %>
   </div>
 
   <% const benefits = findCourse.benefits %>

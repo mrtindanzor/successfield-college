@@ -13,6 +13,8 @@ const formEl = document.querySelectorAll('.form'),
 let course = '',
   overview = '',
   certificate = '',
+  availability = '',
+  duration = '',
   fee = '',
   newCourse = {}
   
@@ -42,6 +44,8 @@ let course = '',
         if(dataId === 'overview') overview = inputValue
         if(dataId === 'certificate') certificate = inputValue
         if(dataId === 'fee') fee = inputValue
+        if(dataId === 'availability') availability = inputValue
+        if(dataId === 'duration') duration = inputValue
         if(dataId === 'objectives'){
           const jsonObject = { objective: inputValue }
           objectives.push(jsonObject)
@@ -73,7 +77,7 @@ let course = '',
   })  
   
   acceptBtn.addEventListener('click', () => {
-    newCourse = {course, overview, objectives, outlines, benefits, certificate, fee}
+    newCourse = {course, overview, objectives, outlines, benefits, certificate, availability, duration, fee}
     
     const uri = '/admin/addcourse',
       options = {

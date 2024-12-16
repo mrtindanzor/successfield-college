@@ -14,6 +14,8 @@ const findCourseForm = document.querySelector('.find-course'),
 let course = '',
   overview = '',
   certificate = '',
+  availability = '',
+  duration = '',
   fee = '',
   id = '',
   newCourse = {}
@@ -52,6 +54,8 @@ let course = '',
             course = ''
             overview = ''
             certificate = ''
+            availability = ''
+            duration = ''
             fee = ''
             result.innerHTML = ''
             if(el.classList.contains('active')) el.classList.remove('active')
@@ -72,6 +76,14 @@ let course = '',
             }
             if(dataId === 'certificate') {
               newInput.value = data.isCourse.certificate
+              el.insertBefore(newInput, elTitle.nextSibling)
+            }
+            if(dataId === 'availability') {
+              newInput.value = data.isCourse.availability
+              el.insertBefore(newInput, elTitle.nextSibling)
+            }
+            if(dataId === 'duration') {
+              newInput.value = data.isCourse.duration
               el.insertBefore(newInput, elTitle.nextSibling)
             }
             if(dataId === 'fee') {
@@ -135,6 +147,8 @@ let course = '',
         if(dataId === 'course') course = inputValue.toLowerCase()
         if(dataId === 'overview') overview = inputValue
         if(dataId === 'certificate') certificate = inputValue
+        if(dataId === 'availability') availability = inputValue
+        if(dataId === 'duration') duration = inputValue
         if(dataId === 'fee') fee = inputValue
         if(dataId === 'objectives'){
           const jsonObject = { objective: inputValue }
@@ -167,7 +181,7 @@ let course = '',
   })  
   
   acceptBtn.addEventListener('click', () => {
-    newCourse = {id, course, overview, objectives, outlines, benefits, certificate, fee}
+    newCourse = {id, course, overview, objectives, outlines, benefits, certificate, availability, duration, fee}
     
     const uri = '/admin/editcourse',
       options = {

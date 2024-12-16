@@ -36,6 +36,8 @@ const uri = process.env.DATABASE,
     outlines: [{ outline: String}],
     objectives: [{ objective: String }],
     benefits: [{ benefit: String }],
+    duration: String,
+    availability: String,
     certificate: String,
     fee: String
   }),
