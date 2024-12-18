@@ -10,15 +10,12 @@ import { baseurl } from '../../../app.js'
 
 const authroute = Router(),
   alpahanumericPattern = /^[A-Za-z0-9 .]+$/,
-  emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  authenticated = (req, res, next) => {
+    if(req.isAuthenticated()) return res.redirect('/')
+    next()
+  }
 
-let error = 0,
-  emailerr = '',
-  fnerr = '',
-  snerr = '', 
-  passerr = '',
-  cpasserr = '',
-  emailExistsErr = ''
 authroute.use(express.urlencoded({extended: false}))
 passport.use(new localStrategy({usernameField: "email"}, async (email, password, done) => {
   email = email.trim()
@@ -57,13 +54,13 @@ passport.deserializeUser(async (id, done) => {
 authroute.get('/',(req, res) => {
   res.redirect('/')
 })
-authroute.get('/join',(req, res) => {
+authroute.get('/join', authenticated, (req, res) => {
   res.render('index', {page: 'join'})
 })
-authroute.get('/login',(req, res) => {
+authroute.get('/login', authenticated, (req, res) => {
   res.render('index', {page: 'login'})
 })
-authroute.post('/join', async (req, res) => {
+authroute.post('/join', authenticated,  async (req, res) => {
   let { body: {email, password, cpassword, firstname, surname} } = req,
         date = Date.now()
 
@@ -112,7 +109,7 @@ authroute.post('/join', async (req, res) => {
     })
     
 })
-authroute.post('/login', (req, res, next) => {
+authroute.post('/login', authenticated,  (req, res, next) => {
   passport.authenticate('local', async (err, user, info) => {
     if(err) return next(err)
       
@@ -132,14 +129,20 @@ authroute.post('/login', (req, res, next) => {
   })
   (req, res, next)
 })
-authroute.get('/verify/:date', async (req, res) => {
+authroute.get('/verify/:date', authenticated,  async (req, res) => {
+  let verificationDetails = {}
   const verificationCode = req.params.date
     const findUser = await userModel.findOne({verificationCode})
-    if(!findUser) return res.status(404).send({status: 404, msg: 'An error occured'})
+    if(!findUser) verificationDetails = {status: 404, msg: 'Invalid credentials'}
+    if(findUser && findUser.verified) verificationDetails = {status: 200, msg: 'Account already verified'}
     
-    const updateVerificationStatus = await userModel.findOneAndUpdate({verificationCode}, {$set: {verified: true}})
-    if(!updateVerificationStatus) return res.status(400).json({status: 400, msg: 'Error verifying your account'})
-    return res.status(200).json({status: 200, msg: 'Account verified successfully'})
+    if(findUser && !findUser.verified){
+      const updateVerificationStatus = await userModel.findOneAndUpdate({verificationCode}, {$set: {verified: true}})
+      if(!updateVerificationStatus) verificationDetails = {status: 400, msg: 'Error verifying your account'}
+      if(updateVerificationStatus) verificationDetails = {status: 200, msg: 'Account verified successfully'}
+    }
+
+  res.render('index', {page: 'verifyemail', title: 'Verify email address', verificationDetails })
 })
 authroute.get('/logout', (req, res) => {
   req.logOut(err => {

@@ -1,6 +1,5 @@
 import express from "express"
 import router from "./assets/routes/routes.js"
-import authroute from "./assets/routes/all/auth.js";
 import icons from "./assets/public/scripts/icons.js";
 import session from "express-session";
 import passport from "passport";
@@ -111,8 +110,8 @@ const page404 = (req, res) => res.status(404).render('index', {page: 404, title:
 app.use(express.json())
 app.set('views', path.join(dirname, './assets/views'))
 app.set('view engine', 'ejs')
+console.log(dirname)
 app.use(express.static('./assets/public'))
-router.use('/users', authroute)
 app.use(router)
 
 app.get('/contact', (req, res) => res.render('index', {page: 'contact'}))

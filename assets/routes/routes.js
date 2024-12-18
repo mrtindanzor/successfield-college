@@ -1,5 +1,6 @@
 import { Router } from "express";
 import homeroute from "./all/home.js";
+import authroute from "./all/auth.js";
 import contactroute from "./all/contact.js";
 import verifyroute from "./all/verify.js";
 import testroute from "./all/test.js";
@@ -9,6 +10,7 @@ import accreditationRoute from "./all/accreditation.js";
 
 const router = Router()
 router.use(homeroute)
+router.use('/users', authroute)
 router.use(contactroute)
 router.use(verifyroute)
 router.use(testroute)

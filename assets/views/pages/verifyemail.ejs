@@ -1,0 +1,17 @@
+<div class="email-verification-page-container">
+  <div class="wrapper">
+    <span class="info">
+      <% if(verificationDetails.status == 200 ){ %>
+        <span class="success"><%= verificationDetails.msg %>, redirecting to login page in <i class="timeout">10</i> secs</span>
+      <% } %>
+
+      <% if(verificationDetails.status !== 200 ){ %>
+        <span class="failed">
+          <%= verificationDetails.msg %>, 
+          <span href="/users/resend">resend email </span>
+        </span>
+      <% } %>
+      
+    </span>
+  </div>
+</div>

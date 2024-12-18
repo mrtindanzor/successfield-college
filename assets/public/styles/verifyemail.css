@@ -1,0 +1,31 @@
+main-section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.email-verification-page-container{
+  height: fit-content;
+  width: fit-content;
+  border: 2px solid var(--second);
+  border-radius: 2px;
+  margin: auto;
+  padding: 30px;
+  font-family: alice;
+}
+span.success{
+  color: var(--third);
+  font-size: var(--first-s);
+  font-weight: 500;
+}
+span.success .timeout{
+  color: var(--sixth);
+  font-family: acolonica;
+}
+span.failed{
+  color: var(--sixth);
+}
+span.failed span{
+  color: var(--third);
+  text-decoration: underline;
+  cursor: pointer;
+}
