@@ -14,6 +14,7 @@
   --first: white;
   --second: black;
   --third: green;
+  --fourth: yellow;
   --fifth: blue;
   --sixth: tomato;
   --white: white;
@@ -122,6 +123,8 @@ header{
 }
 header .main-menu{
   position: relative;
+  background-color: var(--first);
+  z-index: 99;
 }
 header .main-menu ul li.menu-item > a:hover, .main-menu ul li ul li a:hover, .course-list-button:hover{
   color: var(--first)!important;
