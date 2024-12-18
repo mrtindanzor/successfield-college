@@ -37,15 +37,15 @@ formEl.addEventListener('submit', e => {
 
   const uri = '/users/join',
     formData = new FormData(formEl),
-    jsonData = JSON.stringify(Object.fromEntries(formData))
+    jsonData = Object.fromEntries(formData),
     options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: jsonData
+      body: JSON.stringify(jsonData)
     }
-
+    
     fetch(uri, options)
       .then(res => res.json())
       .then(data => formEl.innerText = data.msg)
