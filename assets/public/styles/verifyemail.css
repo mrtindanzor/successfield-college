@@ -1,13 +1,11 @@
 main-section{
   display: flex;
-  align-items: center;
   justify-content: center;
+  margin-top: 60px;
 }
 .email-verification-page-container{
   height: fit-content;
   width: fit-content;
-  border: 2px solid var(--second);
-  border-radius: 2px;
   margin: auto;
   padding: 30px;
   font-family: alice;
@@ -22,10 +20,38 @@ span.success .timeout{
   font-family: acolonica;
 }
 span.failed{
+  width: fit-content;
   color: var(--sixth);
 }
+span.failed .email{
+  margin: 30px 0 5px 0;
+  padding: 10px;
+  width: 100%;
+  max-width: 350px;
+  display: inline-block;
+}
 span.failed span{
-  color: var(--third);
-  text-decoration: underline;
+  text-align: center;
+  font-family: alice;
+  min-width: 100%;
+  color: var(--first);
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid var(--third);
+  background-color: var(--third);
   cursor: pointer;
+}
+.result *{
+  padding: 10px;
+  color: var(--first);
+  margin-top: 30px;
+  font-size: var(--first-s);
+  text-align: center;
+  text-transform: uppercase;
+}
+.email-sent{
+  background-color: var(--third);
+}
+.email-not-sent{
+  background-color: var(--sixth);
 }

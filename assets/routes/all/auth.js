@@ -144,6 +144,31 @@ authroute.get('/verify/:date', authenticated,  async (req, res) => {
 
   res.render('index', {page: 'verifyemail', title: 'Verify email address', verificationDetails })
 })
+authroute.post('/resend', authenticated, async (req, res) => {
+  const email = req.body.email.trim().toLowerCase(),
+    isEmailMatch = email.match(emailPattern),
+    date = Date.now()
+
+  if(!isEmailMatch) return res.status(400).json({status: 400, msg: 'Invalid email format'})
+
+  const findUser = await userModel.findOne({email})
+  if(!findUser) return res.status(404).json({status: 404, msg: 'Enter the email you signed up with'})
+
+  const verificationStatus = findUser.verified
+  if(!verificationStatus) {
+    const setVerificationCode = await userModel.findOneAndUpdate({email}, {$set: {verificationCode: date}})
+    if(!setVerificationCode) return res.status(404).json({status: 404, msg: 'Error sending email'})
+  }
+  if(verificationStatus) return res.status(302).json({status: 302, msg: 'Email already verified'})
+
+  const subject = 'Verify email address',
+    link = `${baseurl}/users/verify/${date}`,
+    html = (new mailTemplates).verifyAccoutTemplate(link),
+    sendMail = await sendMailAsync(email, subject, html)
+
+    if(sendMail.accepted.length < 1) return res.status(400).json({status: 400, msg: 'Error sending email'})
+    if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
+})
 authroute.get('/logout', (req, res) => {
   req.logOut(err => {
     if(err) return next(err)
