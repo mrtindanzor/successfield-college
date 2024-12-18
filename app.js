@@ -66,9 +66,9 @@ MAILER_USER = process.env.MAILER_USER,
     next()
   },
   pingService = () => {
-    fetch(baseurl).then(() => console.log('pinging site'))
+    fetch(baseurl).then(() => console.log(`pinging ${baseurl}`))
   }
-
+  pingService()
   setInterval(pingService, time);
 
 try{
