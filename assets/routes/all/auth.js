@@ -24,24 +24,23 @@ passport.use(new localStrategy({usernameField: "email"}, async (email, password,
   email = email.trim()
   let date = Date.now()
   const user = await userModel.findOne({email})
-  if(!user) return done(null, false, {msg: "Invalid credentials"})
+  if(!user) return done(null, false, {status: 404})
     let verificationStatus = user.verified
   if(!verificationStatus) {
     const setVerificationCode = await userModel.findOneAndUpdate({email}, {$set: {verificationCode: date}})
-    if(!setVerificationCode) return done(null, false, {msg: 'An error occured while sending verification email'})
+    if(!setVerificationCode) return done(null, false, {status: 500})
 
     const to = email,
       subject =  `Verify email address`,
       link = `${baseurl}/users/verify/${date}`,
       html = (new mailTemplates).verifyAccoutTemplate(link)
     const sendMail = await sendMailAsync(to, subject, html)
-    if(sendMail.accepted.length < 1) return done(null, false, {msg: 'An error occured, try again'})
-    if(sendMail.accepted.length === 1) return done(null, false, {msg: 'Email sent to your address, please verify'})
-    
+    if(sendMail.accepted.length < 1) return done(null, false, {status: 500})
+    if(sendMail.accepted.length === 1) return done(null, false, {status: 201})
   }
   
   const isPasswordMatch = await bcrypt.compare(password.trim(), user.password)
-  if(!isPasswordMatch) return done(null, false, {msg: 'Incorrect password'})
+  if(!isPasswordMatch) return done(null, false, {status: 400})
   return done(null, user)
 }))
 
@@ -74,35 +73,16 @@ authroute.post('/join', async (req, res) => {
         firstname = firstname.trim()
         surname = surname.trim()
         
-  if(!email || !email.match(emailPattern)){
-    error = 1
-    emailerr = 'Invalid email format!'
-  }
+  if(!email || !email.match(emailPattern)) return res.status(400).json({status: 400, msg: 'Invalid email format!'})
 
-  if(cpassword !== password){
-    error = 1
-    cpasserr = 'Passwords do not match!'
-  }
+  if(cpassword !== password) return res.status(400).json({status: 400, msg: 'Passwords do not match!'})
   
-  if(!firstname || !firstname.match(alpahanumericPattern)){
-    error = 1
-    fnerr = 'Firstname must only contain alphanumeric characters!'
-  }
+  if(!firstname || !firstname.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Firstname must only contain alphanumeric characters!'})
 
-  if(!surname || !surname.match(alpahanumericPattern)){
-    error = 1
-    snerr = 'Surname must only contain alphanumeric characters!'
-  }
+  if(!surname || !surname.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Surname must only contain alphanumeric characters!'})
   
   const emailExists = await userModel.findOne({email})
-  if(emailExists){
-    error = 1
-    emailExistsErr = 'User with this email already exists!'
-}
-  
-  if(error == 1) {
-    return res.render('index', {page: 'join', fnerr, snerr, emailerr, passerr, cpasserr, emailExistsErr})
-  } 
+  if(emailExists) return res.status(400).json({status: 400, msg: 'Email already exists'})
   
   const  hashedPassword = await bcrypt.hash(password, 10),
   details = {
@@ -135,20 +115,22 @@ authroute.post('/join', async (req, res) => {
 authroute.post('/login', (req, res, next) => {
   passport.authenticate('local', async (err, user, info) => {
     if(err) return next(err)
-    
-    let passerr = '',
-        failure = ''
-
-    if(info) failure = info.msg
-
-    if(!user){ 
-      return res.render('index', {page:'login', failure, passerr})
+      
+    if(info){
+      if(info.status === 404) return res.status(404).json({status: 404, msg: 'Invalid credentials'})
+      if(info.status === 400) return res.status(400).json({status: 400, msg: 'Incorrect password'})
+      if(info.status === 500) return res.status(500).json({status: 500, msg: 'An error occured'})
+      if(info.status === 201) return res.status(201).json({status: 201, msg: 'Verification email sent, check your email'})  
     }
-    req.logIn(user, err => {
-      if(err) next(err)
-      return res.redirect('/')
+    
+    if(!user) return res.status(404).json({status: 404, msg: 'Invalid credentials'})
+    
+    req.logIn(user, (err) => {
+      if(err) return next(err)
+      return res.status(200).json({status: 200})
     })
-  })(req, res, next)
+  })
+  (req, res, next)
 })
 authroute.get('/verify/:date', async (req, res) => {
   const verificationCode = req.params.date
@@ -165,4 +147,14 @@ authroute.get('/logout', (req, res) => {
     res.redirect('/')
   })
 })
+// authroute.post('/update', async (req, res) => {
+//   userModel.updateOne({email: "ktindanzor@gmail.com"}, {$set: {admin: true}})
+//     .then( async (result) => {
+//       console.log(result)
+//       if(!result) return res.sendStatus(400)
+//       const user = await userModel.findOne({email: "ktindanzor@gmail.com"})
+//       return res.status(200).send(user)
+//       }
+//     )
+// })
 export default authroute

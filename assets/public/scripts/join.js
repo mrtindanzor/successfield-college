@@ -48,5 +48,5 @@ formEl.addEventListener('submit', e => {
     
     fetch(uri, options)
       .then(res => res.json())
-      .then(data => formEl.innerText = data.msg)
+      .then(data => formEl.querySelector('i').innerText = data.msg)
 })

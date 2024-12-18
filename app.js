@@ -33,7 +33,8 @@ MAILER_USER = process.env.MAILER_USER,
     email: String,
     date: String,
     verificationCode: String,
-    verified: Boolean
+    verified: Boolean,
+    admin: Boolean
   }),
   courseSchema = new schema({
     course: String,
@@ -96,9 +97,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(isAuthenticated)
 app.use(async (req, res, next) => {
-  if(req.isAuthenticated() && ((req.user.firstname.trim().toLowerCase() === process.env.ADMIN_SECRET.toLowerCase()) || (req.user.firstname.trim().toLowerCase() === process.env.DEVELOPER_SECRET.toLowerCase()))) {
-    req.isAdmin = true
-  }
+  if(req.isAuthenticated() && req.user.admin) req.isAdmin = true
   const courses = await courseModel.find({}),
     isLoggedIn = req.isLoggedIn
     res.locals.isAdmin = req.isAdmin

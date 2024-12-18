@@ -110,3 +110,13 @@ form span + i ,form label i{
 .state-active{
   display: block;
 }
+i span.success{
+  color: var(--third);
+  font-size: var(--first-s);
+  font-weight: 500;
+  font-family: alice;
+}
+i span.success .timeout{
+  color: var(--third);
+  font-family: acolonica;
+}
