@@ -24,17 +24,21 @@ svgs.forEach(el => {
 logoContainer.addEventListener('click', () => {
   window.location.href ='/'
 })
-menuBtn.addEventListener('click', () => {
+if(menuBtn){
+  menuBtn.addEventListener('click', () => {
   hideShow(menuList, 'flex')
 })
-if(dateContainer) dateContainer.textContent = currentYear
+
 courseListBtn.addEventListener('click', () => {
   hideShow(courseList)
 })
+}
+if(dateContainer) dateContainer.textContent = currentYear
 document.addEventListener('click', (e) => {
-  if(!menuBtn.contains(e.target) && !menuList.contains(e.target)) {
-    courseList.style.display = 'none'
-    menuList.style.display = 'none'
-    
+  if(menuBtn){
+    if(!menuBtn.contains(e.target) && !menuList.contains(e.target)) {
+      courseList.style.display = 'none'
+      menuList.style.display = 'none'
+    }
   }
 })

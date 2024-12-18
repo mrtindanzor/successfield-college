@@ -1,11 +1,5 @@
+.env
 node_modules/
-config/
-/config
-config/users.json
-config/users.json
+test.js
+.gitignore
 .env
-.env
-.env
-.env
-deletecert.htm
-deletecourse.htm

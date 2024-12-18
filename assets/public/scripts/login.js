@@ -1,5 +1,7 @@
-const showPassword = document.querySelectorAll('.form-eye-open'),
-      hidePassword = document.querySelectorAll('.form-eye-close')
+const formEl = document.querySelector('form'),
+  inputEl = formEl.querySelectorAll('input:not([type="submit"])'),
+  showPassword = document.querySelectorAll('.form-eye-open'),
+  hidePassword = document.querySelectorAll('.form-eye-close')
       
 for(let show of showPassword){
   show.addEventListener('click', ()=>{
@@ -24,3 +26,8 @@ for(let hide of hidePassword){
         hideInput.setAttribute("type", 'password')
   })
 }
+
+inputEl.forEach(el => {
+  el.style.background = 'transparent'
+  el.value = ' '
+})

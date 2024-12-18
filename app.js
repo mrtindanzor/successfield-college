@@ -15,6 +15,9 @@ dotenv.config()//dot env function
 
 
 const uri = process.env.DATABASE,
+baseurl = process.env.PROD_ENV === 'PROD' ? process.env.LIVE_BASE_URL : process.env.DEV_BASE_URL,
+MAILER_PASSWORD = process.env.MAILER_PASSWORD,
+MAILER_USER = process.env.MAILER_USER,
   schema = mongoose.Schema,
   certificateSchema = new schema({
     name: String,
@@ -28,7 +31,9 @@ const uri = process.env.DATABASE,
     surname: String,
     password: String,
     email: String,
-    date: String
+    date: String,
+    verificationCode: String,
+    verified: Boolean
   }),
   courseSchema = new schema({
     course: String,
@@ -61,7 +66,7 @@ const uri = process.env.DATABASE,
     next()
   },
   pingService = () => {
-    fetch('https://www.gism.online').then(() => console.log('pinging site'))
+    fetch(baseurl).then(() => console.log('pinging site'))
   }
 
   setInterval(pingService, time);
@@ -119,4 +124,4 @@ app.use(page404)
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`))
 
-export { app, certificateModel, userModel, courseModel }
+export { app, certificateModel, userModel, courseModel, MAILER_PASSWORD, MAILER_USER, baseurl }

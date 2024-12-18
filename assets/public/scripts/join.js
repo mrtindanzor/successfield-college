@@ -1,5 +1,7 @@
-const showPassword = document.querySelectorAll('.form-eye-open'),
-      hidePassword = document.querySelectorAll('.form-eye-close')
+const formEl = document.querySelector('form'),
+  inputEl = formEl.querySelectorAll('input:not([type="submit"])'),
+  showPassword = document.querySelectorAll('.form-eye-open'),
+  hidePassword = document.querySelectorAll('.form-eye-close')
       
 for(let show of showPassword){
   show.addEventListener('click', ()=>{
@@ -24,3 +26,27 @@ for(let hide of hidePassword){
         hideInput.setAttribute("type", 'password')
   })
 }
+
+inputEl.forEach(el => {
+  el.style.background = 'transparent'
+  el.value = ' '
+})
+
+formEl.addEventListener('submit', e => {
+  e.preventDefault()
+
+  const uri = '/users/join',
+    formData = new FormData(formEl),
+    jsonData = JSON.stringify(Object.fromEntries(formData))
+    options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: jsonData
+    }
+
+    fetch(uri, options)
+      .then(res => res.json())
+      .then(data => formEl.innerText = data.msg)
+})

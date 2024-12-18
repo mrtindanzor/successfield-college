@@ -5,9 +5,6 @@
   <span class="form-title">
     Sign in
   </span>
-  <% if(locals.successReg){ %>
-    <i class="success"><%= successReg %></i>
-  <% } %>
   <% if(locals.failure){ %>
     <i ><%= failure %></i>
   <% } %>
@@ -16,9 +13,6 @@
         <span class="text-overlay">
       Email
     </span>
-    <% if(locals.emailerr){ %>
-      <i><%- errorIcon %><%= emailerr %></i>
-    <% } %>
     </label>
         <label>
           <input type="password" class="password" name="password" minlength="8" required>
@@ -27,9 +21,6 @@
     </span>
     <%- eyeOpenIcon %>
     <%- eyeCloseIcon %>
-      <% if(locals.passerr){ %>
-        <i><%- errorIcon %><%= passerr %></i>
-      <% } %>
     </label>
             <input type="submit" value="Sign in" class="submit">
 </form>
