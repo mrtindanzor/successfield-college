@@ -188,10 +188,10 @@ authroute.post('/forgotpassword', async (req, res) => {
     const subject = 'Forgot password',
       link = `${baseurl}/users/forgotpassword/${date}`,
       html = (new mailTemplates).forgotPasswordTemplate(link),
-      sendMail = await sendMailAsync(email, subject, html)
-console.log(link)
-    if(sendMail.accepted.length < 1) return res.status(400).json({status: 400, msg: 'Error sending email'})
-    if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
+      sendMail = await sendMailAsync(subject, html, email)
+    if(sendMail && sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
+    
+    return res.status(400).json({status: 400, msg: 'Error sending email'})
 })
 authroute.get('/forgotpassword/:verificationCode', async (req, res) => {
   let email = ''
