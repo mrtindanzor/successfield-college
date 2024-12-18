@@ -96,3 +96,15 @@ form span + i{
 .state-active{
   display: block;
 }
+.other-contrs{
+  text-align: center;
+  background-color: var(--third);
+  padding: 8px 0;
+  color: var(--first);
+  width: 100%;
+}
+.other-contrs a{
+  color: var(--second);
+  display: inline-block;
+  margin-left: 5px;
+}

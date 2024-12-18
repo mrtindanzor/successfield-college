@@ -17,13 +17,13 @@ class mailTemplates{
     `
   }
   
-  forgotPasswordTemplate = (link, id) => {
+  forgotPasswordTemplate = (link) => {
     return `
       <h3>Hello,</h3>
       <p>
         We received a request to reset the password for your SuccessField College account. If you made this request, please click the link below to reset your password:
         <br>
-        <a href='${link}/${id}'>Verify email address</a>
+        <a href='${link}'>Verify email address</a>
         <br>
         <br>
         If you did not request a password reset, please ignore this email. Your account will remain secure.

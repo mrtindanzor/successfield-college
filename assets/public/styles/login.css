@@ -106,3 +106,16 @@ i span.success .timeout{
   color: var(--third);
   font-family: acolonica;
 }
+
+.other-contrs{
+  text-align: center;
+  background-color: var(--third);
+  padding: 8px 0;
+  color: var(--first);
+  width: 100%;
+}
+.other-contrs p a{
+  color: var(--second);
+  display: inline-block;
+  margin-left: 5px;
+}

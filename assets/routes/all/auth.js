@@ -137,7 +137,7 @@ authroute.get('/verify/:date', authenticated,  async (req, res) => {
     if(findUser && findUser.verified) verificationDetails = {status: 200, msg: 'Account already verified'}
     
     if(findUser && !findUser.verified){
-      const updateVerificationStatus = await userModel.findOneAndUpdate({verificationCode}, {$set: {verified: true}})
+      const updateVerificationStatus = await userModel.findOneAndUpdate({verificationCode}, {$set: {verified: true, verificationCode: ''}})
       if(!updateVerificationStatus) verificationDetails = {status: 400, msg: 'Error verifying your account'}
       if(updateVerificationStatus) verificationDetails = {status: 200, msg: 'Account verified successfully'}
     }
@@ -166,8 +166,52 @@ authroute.post('/resend', authenticated, async (req, res) => {
     html = (new mailTemplates).verifyAccoutTemplate(link),
     sendMail = await sendMailAsync(email, subject, html)
 
+  if(sendMail.accepted.length < 1) return res.status(400).json({status: 400, msg: 'Error sending email'})
+  if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
+})
+authroute.get('/forgotpassword', async (req, res) => {
+  res.status(200).render('index', {page: 'forgotpassword', title: 'Forgot password'})
+})
+authroute.post('/forgotpassword', async (req, res) => {
+  const email = req.body.email.trim().toLowerCase(),
+    isEmailMatch = email.match(emailPattern),
+    date = Date.now()
+
+    if(!isEmailMatch) return res.status(400).json({status: 400, msg: 'Invalid email format'})
+
+    const findUser = await userModel.findOne({email})
+    if(!findUser) return res.status(404).json({status: 404, msg: 'Invalid credentials'})
+
+    const setVerificationCode = await userModel.findOneAndUpdate({email}, {$set: {verificationCode: date}})
+    if(!setVerificationCode) return res.status(404).json({status: 404, msg: 'Error sending email'})
+
+    const subject = 'Forgot password',
+      link = `${baseurl}/users/forgotpassword/${date}`,
+      html = (new mailTemplates).forgotPasswordTemplate(link),
+      sendMail = await sendMailAsync(email, subject, html)
+console.log(link)
     if(sendMail.accepted.length < 1) return res.status(400).json({status: 400, msg: 'Error sending email'})
     if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
+})
+authroute.get('/forgotpassword/:verificationCode', async (req, res) => {
+  let email = ''
+  const verificationCode = req.params.verificationCode.trim()
+
+  const findUser = await userModel.findOne({verificationCode})
+  if(findUser) email = findUser.email
+  res.status(200).render('index', {page: 'setforgotpassword', title: 'Change password', email: email})
+})
+authroute.post('/forgotpassword/newpassword', async (req, res) => {
+  let { email, password, cpassword } = req.body
+  email = email.trim().toLowerCase()
+  password = password.trim()
+  cpassword = cpassword.trim()
+
+  if(password !== cpassword) return res.status(400).json({status: 400, msg: 'Passwords do not match'})
+  const hashedPassword = await bcrypt.hash(password, 10)
+  const updatePassword = await userModel.findOneAndUpdate({email}, {$set: {password: hashedPassword, verificationCode: ''}}, {new: true})
+  if(!updatePassword) return res.status(500).json({status: 500, msg: 'An error occured'})
+  return res.status(201).json({status: 201, msg: 'Password updated'})
 })
 authroute.get('/logout', (req, res) => {
   req.logOut(err => {
