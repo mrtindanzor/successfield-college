@@ -18,7 +18,8 @@ formEl.addEventListener('submit', e => {
     fetch(uri, options)
       .then(res => res.json())
       .then(data => {
-        if(data.status === 201) result.innerHTML = `
+        if(data.status === 201){
+          result.innerHTML = `
           <div class="mail-sent">
             <span class="text">
             ${data.mailIcon}
@@ -27,6 +28,8 @@ formEl.addEventListener('submit', e => {
             <button>OK</button>
           </div>
         `
+        formEl.reset()
+        } 
         if(data.status !== 201) result.innerHTML = `
           <div class="mail-not-sent">
             <span class="text">
