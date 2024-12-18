@@ -36,15 +36,21 @@
     </label>
     <label for="phone">
       <span>
-        No: 
+        Phone: 
       </span>
-      <input type="number" name="phone" id="phone" minlength="9" maxlength="13">
+      <input type="tel" name="phone" id="phone" minlength="9" maxlength="13" required>
+    </label>
+    <label for="subject">
+      <span>
+        Subject: 
+      </span>
+      <input type="text" name="subject" id="subject" minlength="4" required>
     </label>
     <label for="message">
       <span>
         Message:
       </span>
-      <textarea name="message" id="message" minlength="10" required></textarea>
+      <textarea name="text" id="message" minlength="10" required></textarea>
     </label>
     <button>
       Send
@@ -52,5 +58,4 @@
   </form>
 </div>
 <pre class="result">
-  
 </pre>

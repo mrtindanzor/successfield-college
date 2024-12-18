@@ -37,6 +37,20 @@ class mailTemplates{
     `
   }
   
+  contactForm = (name, email, phone, text ) => {
+    return `
+     <h3>Hello,</h3>
+      <p>
+       ${text.trim()}
+        <br>
+        You may contact me on this email ${email.trim()}, or phone number ${phone.trim()}.
+        <br>
+        Thank you,
+        <br>
+        ${name.trim().toUpperCase()}
+      </p>
+    `
+  }
 }
 
 export default mailTemplates

@@ -19,7 +19,7 @@ import { MAILER_PASSWORD, MAILER_USER } from "../../../app.js"
       })
     })
   },
-  sendMailAsync = async (to, subject, html) => {
+  sendMailAsync = async (subject, html, to=MAILER_USER ) => {
 
     const user = MAILER_USER,
     from = `SuccessField College <${user}>`,
@@ -32,5 +32,5 @@ import { MAILER_PASSWORD, MAILER_USER } from "../../../app.js"
       return error
     }
   }
-  
-  export default sendMailAsync
+
+  export { sendMailAsync } 

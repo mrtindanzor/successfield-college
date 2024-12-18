@@ -4,7 +4,7 @@ import passport from 'passport'
 import bcrypt from 'bcrypt'
 import { Strategy as localStrategy } from 'passport-local'
 import { userModel } from '../../../app.js'
-import sendMailAsync  from './sendmail.js'
+import { sendMailAsync }  from './sendmail.js'
 import mailTemplates from './mailtemplates.js'
 import { baseurl } from '../../../app.js'
 
