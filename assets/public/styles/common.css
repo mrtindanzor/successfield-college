@@ -133,7 +133,7 @@ header .main-menu ul li.menu-item > a:hover, .main-menu ul li ul li a:hover, .co
 header .main-menu .course-list-menu{
   background-color: var(--first);
 }
-@media (max-width: 550px){
+@media (max-width: 767px){
   header{
     border: 2px solid var(--third);
      padding: 5px 10px;

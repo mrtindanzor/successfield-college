@@ -68,6 +68,25 @@
   .container-wrapper.wrapper1 .details-container p{
     color: var(--black);
   }
+  .slideshow{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transform: translate(100%);
+    transition: 0.3s ease-out transform;
+  }
+  .slideshow.active{
+    opacity: 1;
+    transform: translate(0);
+  }
+  .slideshow-wrapper{
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+  }
   @media (max-width: 768px) {
     .container-wrapper{
       flex-direction: column;

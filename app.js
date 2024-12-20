@@ -10,6 +10,7 @@ import mongoose from "mongoose"
 import MongoStore from "connect-mongo"
 import { isAdmin } from './assets/routes/all/admin.js'
 
+
 dotenv.config()//dot env function
 
 
@@ -46,6 +47,7 @@ MAILER_USER = process.env.MAILER_USER,
     certificate: String,
     fee: String
   }),
+  uploadPath = path.resolve('./assets/uploads'),
   certificateModel = mongoose.model('certificate', certificateSchema),
   userModel = mongoose.model('user', userSchema),
   courseModel = mongoose.model('course', courseSchema),
@@ -122,4 +124,4 @@ app.use(page404)
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`))
 
-export { app, certificateModel, userModel, courseModel, MAILER_PASSWORD, MAILER_USER, baseurl }
+export { app, certificateModel, userModel, courseModel, MAILER_PASSWORD, MAILER_USER, baseurl, uploadPath }
