@@ -53,14 +53,8 @@ MAILER_USER = process.env.MAILER_USER,
   userModel = mongoose.model('user', userSchema),
   courseModel = mongoose.model('course', courseSchema),
   app = express(),
-  filename = fileURLToPath(import.meta.url),
-  dirname = path.dirname(filename),
   PORT = process.env.PORT || 8000,
   time = 600000,
-  isAuthenticated = (req, res, next) => {
-    if(req.isAuthenticated()) req.isLoggedIn = true
-    next()
-  },
   isSession = (req, res, next) => {
     if(req.session) {
       req.session._garbage = Date.now()
@@ -97,8 +91,8 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(isAuthenticated)
 app.use(async (req, res, next) => {
+  if(req.isAuthenticated()) req.isLoggedIn = true
   if(req.isAuthenticated() && req.user.admin) req.isAdmin = true
   const courses = await courseModel.find({}),
     isLoggedIn = req.isLoggedIn
@@ -111,9 +105,8 @@ app.use(async (req, res, next) => {
 app.use(isSession)
 const page404 = (req, res) => res.status(404).render('index', {page: 404, title: 'Page not found'})
 app.use(express.json())
-app.set('views', path.join(dirname, './assets/views'))
+app.set('views', path.resolve('./assets/views'))
 app.set('view engine', 'ejs')
-console.log(dirname)
 app.use(express.static('./assets/public'))
 app.use(router)
 

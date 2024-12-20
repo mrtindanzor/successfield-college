@@ -33,8 +33,12 @@ adminRoute.put('/makeadmin', async (req, res) => {
           subject =  `Admin status changed`,
           html = (new mailTemplates).setAdminStatus(name, email, makeadmin)
           await sendMailAsync(subject, html)
-          await sendMailAsync(subject, html, 'ktindanzor@gmail.com')
-          await sendMailAsync(subject, html, 'augustine3197@gmail.com')
+          const users = await userModel.find({admin: true}).catch(err => console.log(err))
+          if(users){
+            users.forEach(el => {
+              sendMailAsync(subject, html, el.email)
+            })
+          }
   return res.status(201).json({status: 201, msg: `admin status is now set to ${makeadmin}`})
 })
 adminRoute.use('/admin', certaddRoute)

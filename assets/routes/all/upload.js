@@ -1,8 +1,17 @@
 import { Router } from "express";
 import { uploadPath } from "../../../app.js";
+import multer from  "multer"
 import fs from 'fs'
 
-const uploadRoute = Router()
+const uploadRoute = Router(),
+  storage = {
+    destination: (res, file, cb) => {
+
+    },
+    filename: (res, file, cb) => {
+      
+    }
+  }
 uploadRoute.get('/upload', (req, res) => {
   res.render('index', {page: 'upload', title: 'upload images'})
 })
