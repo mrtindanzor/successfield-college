@@ -78,7 +78,7 @@ class mailTemplates{
   
   setAdminStatus = (name, email, status) => {
     let color = 'red'
-    if(status) color = 'green'
+    if(status === true) color = 'green'
     return `
      <h3>Mr. Admin,</h3>
         <br>
