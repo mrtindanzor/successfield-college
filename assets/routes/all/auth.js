@@ -99,7 +99,7 @@ authroute.post('/join', authenticated,  async (req, res) => {
           subject =  `Verify email address`,
           link = `${baseurl}/users/verify/${date}`,
           html = (new mailTemplates).verifyAccoutTemplate(link),
-          sendMail = await sendMailAsync(to, subject, html)
+          sendMail = await sendMailAsync(subject, html, to)
           if(sendMail.accepted.length < 1) {
             userModel.findOneAndDelete({email})
             return res.status(400).json({status: 400, msg: 'An error occured, try again'})
