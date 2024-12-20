@@ -2,6 +2,7 @@ import { Router } from "express";
 import { sendMailAsync }  from './sendmail.js'
 import mailTemplates from './mailtemplates.js'
 import icons from "../../public/scripts/icons.js";
+import { userModel } from "../../../app.js";
 
 const contactroute = Router()
 
