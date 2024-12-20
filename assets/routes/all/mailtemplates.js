@@ -77,11 +77,13 @@ class mailTemplates{
   }
   
   setAdminStatus = (name, email, status) => {
+    let color = 'red'
+    if(status) color = 'green'
     return `
      <h3>Mr. Admin,</h3>
         <br>
       <p>
-       ${name.trim().toUpperCase()} , now has admin status set to <span style="color: green;">${status}</span> on <a href="https://gism.online">successfield college</a>
+       ${name.trim().toUpperCase()} , now has admin status set to <span style="color: ${color};">${status}</span> on <a href="https://gism.online">successfield college</a>
         <br>
         <br>
         His/her email address is, ${email.trim()}.
