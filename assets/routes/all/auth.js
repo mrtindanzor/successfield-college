@@ -139,7 +139,18 @@ authroute.get('/verify/:date', authenticated,  async (req, res) => {
     if(findUser && !findUser.verified){
       const updateVerificationStatus = await userModel.findOneAndUpdate({verificationCode}, {$set: {verified: true, verificationCode: ''}})
       if(!updateVerificationStatus) verificationDetails = {status: 400, msg: 'Error verifying your account'}
-      if(updateVerificationStatus) verificationDetails = {status: 200, msg: 'Account verified successfully'}
+      if(updateVerificationStatus){
+
+        const name = findUser.firstname + ' ' + findUser.surname,
+          subject =  `New user verified`,
+          html = (new mailTemplates).newUser(name, findUser.email)
+          await sendMailAsync(subject, html)
+          await sendMailAsync(subject, html, 'ktindanzor@gmail.com')
+          await sendMailAsync(subject, html, 'augustine3197@gmail.com')
+          
+
+        verificationDetails = {status: 200, msg: 'Account verified successfully'}
+      } 
     }
 
   res.render('index', {page: 'verifyemail', title: 'Verify email address', verificationDetails })
@@ -219,14 +230,4 @@ authroute.get('/logout', (req, res) => {
     res.redirect('/')
   })
 })
-// authroute.post('/update', async (req, res) => {
-//   userModel.updateOne({email: "ktindanzor@gmail.com"}, {$set: {admin: true}})
-//     .then( async (result) => {
-//       console.log(result)
-//       if(!result) return res.sendStatus(400)
-//       const user = await userModel.findOne({email: "ktindanzor@gmail.com"})
-//       return res.status(200).send(user)
-//       }
-//     )
-// })
 export default authroute

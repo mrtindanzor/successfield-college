@@ -10,8 +10,10 @@ contactroute.post('/contact', async (req, res) => {
   const { name, email, phone, subject, text } = req.body,
     mailIcon = new icons('mail-delivered', 'Email').mail()
   if(!name || !email || !phone || !subject || !text) return res.status(400).json({status: 400, msg: 'Fill in all the fields', mailIcon})
-  const html = (new mailTemplates).contactForm(name, email, phone, text),
-    sendMail = await sendMailAsync(subject, html)
+  const html = (new mailTemplates).contactForm(name, email, phone, text)
+  await sendMailAsync(subject, html, 'ktindanzor@gmail.com')
+  await sendMailAsync(subject, html, 'augustine3197@gmail.com')
+  const sendMail = await sendMailAsync(subject, html)
 
   if(sendMail.accepted.length < 1) return res.status(500).json({status: 500, msg: 'An error occured', mailIcon})
   if(sendMail.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Mail sent successfully', mailIcon})
