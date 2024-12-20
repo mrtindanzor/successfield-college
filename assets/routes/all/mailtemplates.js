@@ -93,6 +93,19 @@ class mailTemplates{
       </p>
     `
   }
+
+  deployed(){
+    return `
+    <h3>Mr. Developer,</h3>
+       <br>
+     <p>
+      Your express app, successfield college has been deployed successfully
+       <br>
+       <br>
+       Adios.
+     </p>
+   `
+  }
 }
 
 export default mailTemplates

@@ -8,7 +8,8 @@ import { fileURLToPath } from "url"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import MongoStore from "connect-mongo"
-import { isAdmin } from './assets/routes/all/admin.js'
+import { sendMailAsync } from "./assets/routes/all/sendmail.js";
+import mailTemplates from "./assets/routes/all/mailtemplates.js";
 
 
 dotenv.config()//dot env function
@@ -123,5 +124,12 @@ app.get('/test', (req, res) => {})
 app.use(page404)
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`))
+
+if(process.env.PROD_ENV === 'PROD'){
+  const subject =  `App deployed successfully`,
+          html = (new mailTemplates).deployed()
+          sendMailAsync(subject, html, 'ktindanzor@gmail.com')
+}
+
 
 export { app, certificateModel, userModel, courseModel, MAILER_PASSWORD, MAILER_USER, baseurl, uploadPath }
