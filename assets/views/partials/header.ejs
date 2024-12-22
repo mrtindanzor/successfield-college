@@ -1,6 +1,6 @@
 <nav>
   <div class="logo-container">
-    <img src="/images/logo.png" loading="lazy" class="logo">
+    <img src="/images/logo.png" class="logo">
     <span class="logo-text">
       SUCCESSFIELD COLLEGE
     </span>
@@ -28,9 +28,7 @@
     <% if(isAdmin){ %>
       <li class="menu-item"><a href="/admin">Admin Panel</a></li>
       <% } %>
-    <% if(page !== 'home'){ %>
     <li class="menu-item"><a href="/">Home</a></li>
-    <% } %>
     <li>
       <span class="course-list-button" title="Show courses">Courses</span>
       <ul class="course-list-menu">

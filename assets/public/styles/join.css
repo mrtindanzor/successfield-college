@@ -3,8 +3,8 @@ main-section{
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 5dvh;
-  background: url('/images/000017.jpg');
+  
+  background: url('/images/1.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -16,7 +16,7 @@ form{
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 30px;
+  /* row-gap: 25px; */
   width: calc(100dvw - 20px);
   margin: 10px;
   margin-bottom: 100px;
@@ -32,6 +32,7 @@ form label{
   position: relative;
   width: 95%;
   display: flex;
+  margin-bottom: 20px;
 }
 form label span.text-overlay{
   display: block;
@@ -43,6 +44,7 @@ form label span.text-overlay{
   transition: .2s ease-out;
 }
 form label input{
+  border: 1px solid;
   padding: 14px;
   width: 100%;
 }
@@ -73,6 +75,7 @@ form > input{
   width: 95%;
   text-align: center;
   padding: 10px;
+  margin-bottom: 20px;
 }
 input[type='submit']{
   cursor: pointer;
@@ -91,9 +94,9 @@ form span + i{
   background-color: transparent;
   width: 33px;
   position: absolute;
-  top: 10px;
+  top: 8px;
   transform: scale(0.7);
-  right: 0;
+  right: 7px;
   cursor: pointer;
   z-index: 1;
   display: none;

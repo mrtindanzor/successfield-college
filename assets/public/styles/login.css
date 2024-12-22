@@ -3,7 +3,7 @@ main-section{
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 5dvh;
+  
   background: url('/images/000045.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -45,6 +45,7 @@ form label span.text-overlay{
 form label input{
   padding: 14px;
   width: 100%;
+  border: 1px solid;
 }
 form label input:focus{
   border: 1px dotted;
@@ -91,9 +92,9 @@ form span + i{
   background-color: transparent;
   width: 33px;
   position: absolute;
-  top: 10px;
+  top: 8px;
   transform: scale(0.7);
-  right: 0;
+  right: 7px;
   cursor: pointer;
   z-index: 1;
   display: none;

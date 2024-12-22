@@ -48,6 +48,7 @@ body{
   display: flex;
   flex-direction: column;
   margin: 0;
+  margin-top: 57px;
   min-height: 100dvh;
   width: 100dvw;
   user-select: none;
@@ -116,14 +117,10 @@ nav .auth-contrs a.auth-logout{
 nav .auth-contrs a.auth-logout:hover{
   background: var(--second);
 }
-header{
-  margin: 2px;
-  margin-top: 55px;
-}
 header .main-menu{
   position: relative;
-  background-color: var(--first);
   z-index: 99;
+  margin: 20px;
 }
 header .main-menu ul li.menu-item > a:hover, .main-menu ul li ul li a:hover, .course-list-button:hover{
   color: var(--first)!important;
@@ -135,7 +132,8 @@ header .main-menu .course-list-menu{
 @media (max-width: 767px){
   header{
     border: 2px solid var(--third);
-     padding: 5px 10px;
+    padding: 5px 10px;
+    margin: 58px 1px 1px 1px;
   }
 header .main-menu span.menu-button{
     display: block;
@@ -192,44 +190,57 @@ header .main-menu ul li ul li.course-item:last-child > a{
 }
 @media (min-width: 768px){
   header{
-    border-bottom: 1px solid var(--third);
-    width: 100dvw;
-    margin-top: 10px;
+    display: flex;
+    border: 2px solid var(--third);
+    padding: 0;
+    margin: 1px;
+    background-color: var(--third);
   }
   .menu-button{
     display: none;
   }
-header .main-menu ul.menu-list{
-  display: flex!important;
-  position: relative;
-  bottom: -15px;
-  list-style-type: none;
-  padding: 0;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-}
-header .main-menu ul li.menu-item > a, .course-list-button{
-  display: block;
-  padding: 10px;
-  text-decoration: none;
-  color: var(--second);
-  cursor: pointer;
-}
-header .main-menu ul li ul{
-  padding: 0;
-  list-style-type: none;
-  position: absolute;
-  top: 100%;
-  border: 1px solid;
-  display: none;
-}
-header .main-menu ul li ul li.course-item > a{
-  display: block;
-  border-top: 1px solid;
-  padding: 10px 120px 10px 20px;
-  text-decoration: none;
-  color: var(--second);
-}
+  header .main-menu{
+    padding: 0;
+    margin: 0;
+  }
+  header .main-menu ul.menu-list{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    text-transform: uppercase;
+    list-style: none;
+    font-size: var(--first-s);
+  }
+  header .main-menu ul li.menu-item > a, .course-list-button{
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--white);
+    cursor: pointer;
+    box-shadow: 0 0 1px var(--dark);
+    opacity: 0.8;
+    transition: 0.2s ease-out;
+  }
+  header .main-menu ul li.menu-item > a:hover, .course-list-button:hover{
+    box-shadow: 0 5px 10px var(--darker);
+    opacity: 1;
+  }
+
+  header .main-menu ul li ul{
+    padding: 0;
+    list-style-type: none;
+    position: absolute;
+    top: 100%;
+    border: 1px solid;
+    display: none;
+  }
+  header .main-menu ul li ul li.course-item > a{
+    display: block;
+    border-top: 1px solid;
+    padding: 10px 120px 10px 20px;
+    text-decoration: none;
+    color: var(--second);
+  }
 }
 main-section{
   flex: 1;
