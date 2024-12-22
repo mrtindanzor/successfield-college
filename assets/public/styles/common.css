@@ -154,6 +154,7 @@ header .main-menu .course-list-menu{
     top: 3px;
   }
   header .main-menu ul.menu-list{
+    width: 100%;
     background-color: var(--first);
     border: 1px solid;
     position: absolute;
