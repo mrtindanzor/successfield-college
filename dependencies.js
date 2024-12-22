@@ -3,8 +3,10 @@ import mongoose from "mongoose";
 import path from 'path'
 import mailTemplates from "./assets/routes/all/mailtemplates.js";
 import { sendMailAsync } from "./assets/routes/all/sendmail.js";
+import icons from "./assets/public/scripts/icons.js";
 
 const env = config().parsed,
+  baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL, 
   uri = env.DATABASE,
   schema = mongoose.Schema,
   certificateSchema = new schema({
@@ -44,6 +46,16 @@ const env = config().parsed,
   userModel = mongoose.model('user', userSchema),
   courseModel = mongoose.model('course', courseSchema),
   imageModel = mongoose.model('image', imageUploadSchema),
+  pingService = () => {
+    fetch(baseurl).then(() => console.log(`pinging ${baseurl}`))
+  },
+  isSession = (req, res, next) => {
+    if(req.session) {
+      req.session._garbage = Date.now()
+      req.session.touch()
+    }
+    next()
+  },
   page404 = (req, res) => res.status(404).render('index', {page: 404, title: 'Page not found'}),
   errhandler = async (err, req, res, next) => {
     console.log(err)
@@ -54,6 +66,22 @@ const env = config().parsed,
       html = (new mailTemplates).serverError(status, message)
       sendMailAsync(subject, html, to)
       next(err)
+  }
+  async function appStarted() {
+    const subject =  `App deployed successfully`,
+          html = (new mailTemplates).deployed()
+          sendMailAsync(subject, html, env.DEVELOPER_MAIL)
+  }
+  async function setVariables (req, res, next) {
+    if(req.isAuthenticated()) req.isLoggedIn = true
+    if(req.isAuthenticated() && req.user.admin) req.isAdmin = true
+    const courses = await courseModel.find({}),
+      isLoggedIn = req.isLoggedIn
+      res.locals.isAdmin = req.isAdmin
+      res.locals.courses = courses
+      res.locals.isLoggedIn = isLoggedIn
+      res.locals.icons = icons
+    next()
   }
 
 
@@ -69,5 +97,6 @@ const env = config().parsed,
 
 export { env, certificateModel, userModel, 
   courseModel, imageModel, uploadPath, 
-  errhandler, page404
+  errhandler, page404, appStarted,
+  setVariables, pingService, isSession
 }
