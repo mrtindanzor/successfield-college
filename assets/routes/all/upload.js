@@ -1,9 +1,15 @@
 import { Router } from "express";
-import { uploadPath } from "../../../app.js";
 import multer from  "multer"
 import fs from 'fs'
+import { v2 as cloudinary } from 'cloudinary'
+import { env, uploadPath, imageModel } from "../../../dependencies.js";
 
-const uploadRoute = Router(),
+
+const CLOUDINARY_NAME = env.CLOUDINARY_NAME,
+  CLOUDINARY_API_KEY = env.CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET = env.CLOUDINARY_API_SECRET,
+  cloudinaryKeys = { cloud_name: CLOUDINARY_NAME, api_key: CLOUDINARY_API_KEY, api_secret: CLOUDINARY_API_SECRET},
+  uploadRoute = Router(),
   storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, uploadPath)
@@ -12,19 +18,30 @@ const uploadRoute = Router(),
       const token = Date.now(),
       split = file.originalname.split('.'),
       ext = '.' + split[split.length - 1],
-      name = token+ext
-
+      name = "successfieldcollege"+token+ext
       cb(null, name)
     }
   }),
   upload = multer({ storage })
-  
-uploadRoute.get('/upload', (req, res) => {
-  res.render('index', {page: 'upload', title: 'upload images'})
-})
-uploadRoute.put('/upload', upload.single('picture'), (req, res) => {
-  if(!req.picture) return res.status(400).json({status: 400, msg: 'No image sent'})
-  return res.status(200).json({status: 400, msg: 'image sent'})
+
+  cloudinary.config(cloudinaryKeys)
+uploadRoute.put('/upload', upload.single('image'), async (req, res) => {
+  if(!req.file) return res.status(400).json({status: 400, msg: 'No image sent'})
+
+  const file = req.file,
+    path = file.path,
+    name = file.originalname
+
+  const upload = await cloudinary.uploader.upload(path).catch(err => console.log(err))
+
+  fs.unlinkSync(path)
+
+  if(!upload) return res.status(500).json({status: 500})
+  const url = upload.url
+  const image = new imageModel({ name, path: url })
+  image.save()
+
+  return res.status(201).json({status: 201, url})
 })
 
 export default uploadRoute

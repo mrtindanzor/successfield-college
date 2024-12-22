@@ -106,6 +106,22 @@ class mailTemplates{
      </p>
    `
   }
+
+  serverError(status, message){
+    return `
+       <h3>Mr. Developer,</h3>
+       <br>
+      <p>
+        Your express app, successfield college has failed with a status code of ${status}
+        <br>
+        <br>
+        ${message}
+        <br>
+        <br>
+        Adios.
+      </p>
+    `
+  }
 }
 
 export default mailTemplates

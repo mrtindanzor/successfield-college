@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { certificateModel } from "../../../app.js";
+import { certificateModel } from "../../../dependencies.js";
 
 const updatecertRoute = Router()
 

@@ -5,7 +5,7 @@ import addcourseRoute from "./addcourse.js";
 import editcourseRoute from "./editcourse.js";
 import deletecertRoute from "./deletecert.js"
 import deletecourseRoute from "./deletecourse.js"
-import { userModel } from "../../../app.js";
+import { userModel } from "../../../dependencies.js";
 import { sendMailAsync } from "./sendmail.js";
 import mailTemplates from "./mailtemplates.js";
 

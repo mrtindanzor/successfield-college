@@ -11,11 +11,27 @@
   flex-direction: column;
   gap: 10px;
 }
-.side-wrapper ul li a{
+.side-wrapper ul li ul{
+  display: none;
+}
+.side-wrapper ul li ul.active{
+  display: block;
+}
+.side-wrapper ul li a, .side-wrapper ul li span{
   margin-top: 10px;
   padding: 5px 10px;
   display: block;
   background: var(--first);
   text-decoration: none;
   color: var(--third);
+  cursor: pointer;
+}
+.side-wrapper ul li span{
+  color: var(--first);
+  background-color: var(--second);
+
+}
+.side-wrapper ul li a:hover{
+  text-decoration: underline;
+
 }

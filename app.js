@@ -4,56 +4,16 @@ import icons from "./assets/public/scripts/icons.js";
 import session from "express-session";
 import passport from "passport";
 import path from "path"
-import { fileURLToPath } from "url"
-import dotenv from "dotenv"
-import mongoose from "mongoose"
 import MongoStore from "connect-mongo"
 import { sendMailAsync } from "./assets/routes/all/sendmail.js";
 import mailTemplates from "./assets/routes/all/mailtemplates.js";
+import { env, courseModel, errhandler, page404 } from './dependencies.js'
 
 
-dotenv.config()//dot env function
-
-
-const uri = process.env.DATABASE,
-baseurl = process.env.PROD_ENV === 'PROD' ? process.env.LIVE_BASE_URL : process.env.DEV_BASE_URL,
-MAILER_PASSWORD = process.env.MAILER_PASSWORD,
-MAILER_USER = process.env.MAILER_USER,
-  schema = mongoose.Schema,
-  certificateSchema = new schema({
-    name: String,
-    studentNumber: String,
-    certificateCode: String,
-    programme: String,
-    dateCompleted: String
-  }),
-  userSchema = new schema({
-    firstname: String,
-    surname: String,
-    password: String,
-    email: String,
-    date: String,
-    verificationCode: String,
-    verified: Boolean,
-    admin: Boolean
-  }),
-  courseSchema = new schema({
-    course: String,
-    overview: String,
-    outlines: [{ outline: String}],
-    objectives: [{ objective: String }],
-    benefits: [{ benefit: String }],
-    duration: String,
-    availability: String,
-    certificate: String,
-    fee: String
-  }),
-  uploadPath = path.resolve('./assets/uploads'),
-  certificateModel = mongoose.model('certificate', certificateSchema),
-  userModel = mongoose.model('user', userSchema),
-  courseModel = mongoose.model('course', courseSchema),
+const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
+  uri = env.DATABASE,
   app = express(),
-  PORT = process.env.PORT || 8000,
+  PORT = env.PORT || 8000,
   time = 600000,
   isSession = (req, res, next) => {
     if(req.session) {
@@ -68,21 +28,12 @@ MAILER_USER = process.env.MAILER_USER,
   pingService()
   setInterval(pingService, time);
 
-try{
-  mongoose.Promise = global.Promise
-  mongoose.connect(uri)
-  mongoose.connection.once('open', () => console.log('connected to database successfully')).on('error', (error) => {
-    console.log('An error occured while connecting to database', error)
-  })
-} catch(err) {
-  console.log('a new error', err)
-}
 app.use(session({
   store: MongoStore.create({
     mongoUrl: uri,
-    collectionName: 'users'
+    collectionName: 'session'
   }),
-  secret: process.env.SESSION_SECRET,
+  secret: env.SESSION_SECRET,
   saveUninitialized: false,
   resave: false,
   cookie: {
@@ -103,7 +54,6 @@ app.use(async (req, res, next) => {
   next()
 })
 app.use(isSession)
-const page404 = (req, res) => res.status(404).render('index', {page: 404, title: 'Page not found'})
 app.use(express.json())
 app.set('views', path.resolve('./assets/views'))
 app.set('view engine', 'ejs')
@@ -115,14 +65,15 @@ app.get('/about', (req, res) => res.render('index', {page: 'about'}))
 app.get('/test', (req, res) => {})
 
 app.use(page404)
+app.use(errhandler)
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`))
 
-if(process.env.PROD_ENV === 'PROD'){
+if(env.PROD_ENV === 'PROD'){
   const subject =  `App deployed successfully`,
           html = (new mailTemplates).deployed()
-          sendMailAsync(subject, html, 'ktindanzor@gmail.com')
+          sendMailAsync(subject, html, env.DEVELOPER_MAIL)
 }
 
 
-export { app, certificateModel, userModel, courseModel, MAILER_PASSWORD, MAILER_USER, baseurl, uploadPath }
+export default app

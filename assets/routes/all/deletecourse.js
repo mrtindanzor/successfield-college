@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { courseModel } from "../../../app.js"
+import { courseModel } from "../../../dependencies.js"
 
 const deletecourseRoute = Router()
 

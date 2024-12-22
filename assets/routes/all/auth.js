@@ -3,10 +3,9 @@ import { Router } from "express"
 import passport from 'passport'
 import bcrypt from 'bcrypt'
 import { Strategy as localStrategy } from 'passport-local'
-import { userModel } from '../../../app.js'
 import { sendMailAsync }  from './sendmail.js'
 import mailTemplates from './mailtemplates.js'
-import { baseurl } from '../../../app.js'
+import { env, userModel } from '../../../dependencies.js'
 
 const authroute = Router(),
   alpahanumericPattern = /^[A-Za-z0-9 .]+$/,
@@ -29,7 +28,7 @@ passport.use(new localStrategy({usernameField: "email"}, async (email, password,
 
     const to = email,
       subject =  `Verify email address`,
-      link = `${baseurl}/users/verify/${date}`,
+      link = `${env.baseurl}/users/verify/${date}`,
       html = (new mailTemplates).verifyAccoutTemplate(link)
     const sendMail = await sendMailAsync(to, subject, html).catch(err => console.log(err))
     if(sendMail) if(sendMail.accepted.length === 1) return done(null, false, {status: 201})
@@ -106,7 +105,7 @@ authroute.post('/join', authenticated,  async (req, res) => {
       if(!newUser.isNew) {
         const to = email,
           subject =  `Verify email address`,
-          link = `${baseurl}/users/verify/${date}`,
+          link = `${env.baseurl}/users/verify/${date}`,
           html = (new mailTemplates).verifyAccoutTemplate(link),
           sendMail = await sendMailAsync(subject, html, to).catch(err => console.log(err))
           if(sendMail) if(sendMail.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Account created, an email was sent to your address, click link to verify'})
@@ -180,7 +179,7 @@ authroute.post('/resend', authenticated, async (req, res) => {
   if(verificationStatus) return res.status(302).json({status: 302, msg: 'Email already verified'})
 
   const subject = 'Verify email address',
-    link = `${baseurl}/users/verify/${date}`,
+    link = `${env.baseurl}/users/verify/${date}`,
     html = (new mailTemplates).verifyAccoutTemplate(link),
     sendMail = await sendMailAsync(email, subject, html).catch(err => console.log(err))
   if(sendMail) if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
@@ -203,7 +202,7 @@ authroute.post('/forgotpassword', async (req, res) => {
     if(!setVerificationCode) return res.status(404).json({status: 404, msg: 'Error sending email'})
 
     const subject = 'Forgot password',
-      link = `${baseurl}/users/forgotpassword/${date}`,
+      link = `${env.baseurl}/users/forgotpassword/${date}`,
       html = (new mailTemplates).forgotPasswordTemplate(link),
       sendMail = await sendMailAsync(subject, html, email)
     if(sendMail) if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})

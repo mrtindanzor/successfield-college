@@ -1,11 +1,11 @@
 import nodemailer from "nodemailer"
-import { MAILER_PASSWORD, MAILER_USER } from "../../../app.js"
+import { env } from "../../../dependencies.js"
 
-  const sendMail = async (options) => {
+  const pass = env.MAILER_PASSWORD,
+  user = env.MAILER_USER,
+  sendMail = async (options) => {
     return new Promise((resolve, reject) => {
-      const pass = MAILER_PASSWORD,
-      user = MAILER_USER,
-      transporter = nodemailer.createTransport({
+      const transporter = nodemailer.createTransport({
         service: 'gmail',
         secure: true,
         auth: {
@@ -19,10 +19,9 @@ import { MAILER_PASSWORD, MAILER_USER } from "../../../app.js"
       })
     })
   },
-  sendMailAsync = async (subject, html, to=MAILER_USER ) => {
+  sendMailAsync = async (subject, html, to=user ) => {
 
-    const user = MAILER_USER,
-    from = `SuccessField College <${user}>`,
+    const from = `SuccessField College <${user}>`,
     options = { from, to, subject, html }
 
     try{
