@@ -133,60 +133,66 @@ header .main-menu .course-list-menu{
   header{
     border: 2px solid var(--third);
     padding: 5px 10px;
-    margin: 58px 1px 1px 1px;
+    margin: 1px;
+    background-color: var(--third);
   }
-header .main-menu span.menu-button{
+  header .main-menu{
+    padding: 0;
+    margin: 0;
+  }
+  header .main-menu span.menu-button{
     display: block;
     width: fit-content;
     padding: 3px 7px;
-    border: 1px solid var(--third);
+    border: 1px solid var(--first);
     cursor: pointer;
+    color: var(--first)
   }
   header .main-menu .menu-button-icon{
-    fill: var(--third);
     width: 20px; 
     position: relative;
     top: 3px;
   }
-header .main-menu ul.menu-list{
-  background-color: var(--first);
-  border: 1px solid;
-  position: absolute;
-  top: 100%;
-  list-style-type: none;
-  padding: 0;
-  text-transform: uppercase;
-  display: none;
-}
-header .main-menu ul li.menu-item > a, .course-list-button{
-  border-top: 1px solid;
-  display: block;
-  padding: 10px 80px 10px 20px;
-  text-decoration: none;
-  color: var(--second);
-  cursor: pointer;
-}
-header .main-menu ul li:first-child > a{
-  border-top: none;
-}
-header .main-menu ul li ul{
-  padding: 0;
-  list-style-type: none;
-  display: none;
-}
-header .main-menu ul li ul li.course-item > a{
-  display: block;
-  border-top: 1px solid;
-  padding: 10px 80px 10px 60px;
-  text-decoration: none;
-  color: var(--second);
-}
-header .main-menu ul li ul li.course-item:first-child > a{
-  border-top: 2px solid;
-}
-header .main-menu ul li ul li.course-item:last-child > a{
-  border-bottom: 1px solid;
-}
+  header .main-menu ul.menu-list{
+    background-color: var(--first);
+    border: 1px solid;
+    position: absolute;
+    top: calc(100% - 10px);
+    left: -5px;
+    list-style-type: none;
+    padding: 0;
+    text-transform: uppercase;
+    display: none;
+  }
+  header .main-menu ul li.menu-item > a, .course-list-button{
+    border-top: 1px solid;
+    display: block;
+    padding: 10px 80px 10px 20px;
+    text-decoration: none;
+    color: var(--second);
+    cursor: pointer;
+  }
+  header .main-menu ul li:first-child > a{
+    border-top: none;
+  }
+  header .main-menu ul li ul{
+    padding: 0;
+    list-style-type: none;
+    display: none;
+  }
+  header .main-menu ul li ul li.course-item > a{
+    display: block;
+    border-top: 1px solid;
+    padding: 10px 80px 10px 60px;
+    text-decoration: none;
+    color: var(--second);
+  }
+  header .main-menu ul li ul li.course-item:first-child > a{
+    border-top: 2px solid;
+  }
+  header .main-menu ul li ul li.course-item:last-child > a{
+    border-bottom: 1px solid;
+  }
 }
 @media (min-width: 768px){
   header{
