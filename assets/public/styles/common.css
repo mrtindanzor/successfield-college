@@ -133,7 +133,6 @@ header .main-menu .course-list-menu{
   header{
     border: 2px solid var(--third);
     padding: 5px 10px;
-    margin: 1px;
     background-color: var(--third);
   }
   header .main-menu{
@@ -154,12 +153,12 @@ header .main-menu .course-list-menu{
     top: 3px;
   }
   header .main-menu ul.menu-list{
-    width: 100%;
+    width: calc(100dvw - 33px);
     background-color: var(--first);
-    border: 1px solid;
+    border: 1px solid var(--third);
     position: absolute;
     top: calc(100% - 10px);
-    left: -5px;
+    left: 5px;
     list-style-type: none;
     padding: 0;
     text-transform: uppercase;
@@ -189,10 +188,10 @@ header .main-menu .course-list-menu{
     color: var(--second);
   }
   header .main-menu ul li ul li.course-item:first-child > a{
-    border-top: 2px solid;
+    border-top: 2px solid var(--third);
   }
   header .main-menu ul li ul li.course-item:last-child > a{
-    border-bottom: 1px solid;
+    border-bottom: 1px solid var(--third);
   }
 }
 @media (min-width: 768px){
