@@ -4,6 +4,9 @@ main-section{
   display: flex;
   justify-content: center;
   margin-top: 5dvh;
+  background: url('/images/000017.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 form{
   position: relative;
@@ -16,8 +19,10 @@ form{
   row-gap: 30px;
   width: calc(100dvw - 20px);
   margin: 10px;
+  margin-bottom: 100px;
   max-width: 400px;
   height: fit-content;
+  background-color: var(--first);
 }
 form span.form-title{
   font-weight: 900;
@@ -107,4 +112,9 @@ form span + i{
   color: var(--second);
   display: inline-block;
   margin-left: 5px;
+}
+@media (min-width: 767px) {
+  form{
+    right: 150px;
+  }
 }

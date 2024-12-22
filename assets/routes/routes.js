@@ -7,6 +7,7 @@ import courseRoute from "./all/course.js";
 import { adminRoute } from "./all/admin.js";
 import accreditationRoute from "./all/accreditation.js";
 import uploadRoute from "./all/upload.js";
+import profileRoute from "./all/profile.js";
 
 const router = Router()
 router.use(homeroute)
@@ -17,5 +18,6 @@ router.use(courseRoute)
 router.use(adminRoute)
 router.use(accreditationRoute)
 router.use(uploadRoute)
+router.use(profileRoute)
 
 export default router

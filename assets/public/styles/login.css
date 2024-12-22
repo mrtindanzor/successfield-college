@@ -4,6 +4,9 @@ main-section{
   display: flex;
   justify-content: center;
   margin-top: 5dvh;
+  background: url('/images/000045.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 form{
   position: relative;
@@ -18,6 +21,8 @@ form{
   height: fit-content;
   margin: 10px;
   max-width: 400px;
+  background: var(--first);
+  margin-bottom: 100px;
 }
 form span.form-title{
   font-weight: 900;

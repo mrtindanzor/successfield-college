@@ -5,15 +5,11 @@ import bcrypt from 'bcrypt'
 import { Strategy as localStrategy } from 'passport-local'
 import { sendMailAsync }  from './sendmail.js'
 import mailTemplates from './mailtemplates.js'
-import { env, userModel } from '../../../dependencies.js'
+import { env, userModel, authenticated } from '../../../dependencies.js'
 
 const authroute = Router(),
   alpahanumericPattern = /^[A-Za-z0-9 .]+$/,
-  emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  authenticated = (req, res, next) => {
-    if(req.isAuthenticated()) return res.redirect('/')
-    next()
-  }
+  emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 authroute.use(express.urlencoded({extended: false}))
 passport.use(new localStrategy({usernameField: "email"}, async (email, password, done) => {

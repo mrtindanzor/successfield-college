@@ -5,15 +5,11 @@ import addcourseRoute from "./addcourse.js";
 import editcourseRoute from "./editcourse.js";
 import deletecertRoute from "./deletecert.js"
 import deletecourseRoute from "./deletecourse.js"
-import { userModel } from "../../../dependencies.js";
+import { userModel, isAdmin } from "../../../dependencies.js";
 import { sendMailAsync } from "./sendmail.js";
 import mailTemplates from "./mailtemplates.js";
 
-const adminRoute = Router(),
-isAdmin = (req, res, next) => {
-  if(!req.isAdmin) return res.status(403).redirect('/')
-  next()
-}
+const adminRoute = Router()
 
 adminRoute.use('/admin', isAdmin)
 adminRoute.get('/admin', (req, res) => {

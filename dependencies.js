@@ -66,6 +66,18 @@ const env = config().parsed,
       html = (new mailTemplates).serverError(status, message)
       sendMailAsync(subject, html, to)
       next(err)
+  },
+  authenticated = (req, res, next) => {
+    if(req.isAuthenticated()) return res.redirect('/')
+    next()
+  },
+  isNotAuthenticated = (req, res, next) => {
+    if(!req.isAuthenticated()) return res.redirect('/')
+    next()
+  },
+  isAdmin = (req, res, next) => {
+    if(!req.isAdmin) return res.status(403).redirect('/')
+    next()
   }
   async function appStarted() {
     const subject =  `App deployed successfully`,
@@ -73,14 +85,16 @@ const env = config().parsed,
           sendMailAsync(subject, html, env.DEVELOPER_MAIL)
   }
   async function setVariables (req, res, next) {
-    if(req.isAuthenticated()) req.isLoggedIn = true
+    res.locals.isLoggedIn = false
+    if(req.isAuthenticated()) {
+      res.locals.isLoggedIn = true
+      res.locals.user = req.user || null
+    }
     if(req.isAuthenticated() && req.user.admin) req.isAdmin = true
-    const courses = await courseModel.find({}),
-      isLoggedIn = req.isLoggedIn
-      res.locals.isAdmin = req.isAdmin
-      res.locals.courses = courses
-      res.locals.isLoggedIn = isLoggedIn
-      res.locals.icons = icons
+    const courses = await courseModel.find({})
+    res.locals.courses = courses
+    res.locals.isAdmin = req.isAdmin
+    res.locals.icons = icons
     next()
   }
 
@@ -98,5 +112,6 @@ const env = config().parsed,
 export { env, certificateModel, userModel, 
   courseModel, imageModel, uploadPath, 
   errhandler, page404, appStarted,
-  setVariables, pingService, isSession
+  setVariables, pingService, isSession,
+  isAdmin, authenticated, isNotAuthenticated
 }
