@@ -8,7 +8,6 @@
   .container-wrapper{
     align-items: center;
     column-gap: 20px;
-    /* padding: 20px; */
   }
   .container-wrapper:nth-child(odd){
     background-color: var(--darker);
@@ -58,6 +57,7 @@
   .container-wrapper.wrapper1{
     background-image: url('../images/1.jpg');
     background-size: cover;
+    padding: 20px;
     padding-left: 30%;
   }
   .container-wrapper.wrapper1 .details-container{

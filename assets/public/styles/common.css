@@ -204,7 +204,7 @@ header .main-menu .course-list-menu{
     margin: 0;
   }
   header .main-menu ul.menu-list{
-    display: flex;
+    display: flex!important;
     padding: 0;
     margin: 0;
     text-transform: uppercase;
