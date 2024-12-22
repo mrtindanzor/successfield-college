@@ -165,9 +165,9 @@ header .main-menu .course-list-menu{
     display: none;
   }
   header .main-menu ul li.menu-item > a, .course-list-button{
-    border-top: 1px solid;
+    border-top: 1px solid var(--third);
     display: block;
-    padding: 10px 80px 10px 20px;
+    padding: 10px 5px;
     text-decoration: none;
     color: var(--second);
     cursor: pointer;
@@ -182,16 +182,10 @@ header .main-menu .course-list-menu{
   }
   header .main-menu ul li ul li.course-item > a{
     display: block;
-    border-top: 1px solid;
-    padding: 10px 80px 10px 60px;
+    border-top: 1px solid var(--third);
+    padding: 5px 5px 5px 15px;
     text-decoration: none;
     color: var(--second);
-  }
-  header .main-menu ul li ul li.course-item:first-child > a{
-    border-top: 2px solid var(--third);
-  }
-  header .main-menu ul li ul li.course-item:last-child > a{
-    border-bottom: 1px solid var(--third);
   }
 }
 @media (min-width: 768px){
