@@ -23,8 +23,8 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
     next()
   },
   pingService = () => {
-    console.log(baseurl)
-    fetch(baseurl).then(() => console.log(`pinging ${baseurl}`))
+    console.log(env)
+    // fetch(baseurl).then(() => console.log(`pinging ${baseurl}`))
   }
   pingService()
   setInterval(pingService, time);
