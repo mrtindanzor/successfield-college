@@ -8,7 +8,7 @@
   .container-wrapper{
     align-items: center;
     column-gap: 20px;
-    padding: 20px;
+    /* padding: 20px; */
   }
   .container-wrapper:nth-child(odd){
     background-color: var(--darker);
@@ -88,15 +88,6 @@
     position: relative;
   }
   @media (max-width: 768px) {
-    .container-wrapper{
-      flex-direction: column;
-    }
-    .container-wrapper:nth-child(even){
-      flex-direction: column;
-    }
-    .container-wrapper .image-container{
-    width: 100%;
-  }
   .container-wrapper.wrapper1{
     background-image: none;
     padding-left: 0%;
@@ -104,7 +95,7 @@
   .container-wrapper.wrapper1 .details-container{
     color: var(--black);
     background-color: transparent;
-    padding: 40px;
+    padding: 20px;
   }
   .container-wrapper.wrapper1 .details-container p{
     color: var(--white);
