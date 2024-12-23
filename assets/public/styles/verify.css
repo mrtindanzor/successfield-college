@@ -55,12 +55,12 @@ form i{
   margin-bottom: 5px;
 }
 .show-found-student .student-details div b{
-  color: var(--first);
+  color: var(--fifth);
   font-size: var(--third-s);
   text-transform: uppercase;
 }
 .show-found-student .student-details div span{
-  color: var(--sixth);
+  color: var(--white);
   font-size: var(--second-s);
   margin-left: 5px;
 }
