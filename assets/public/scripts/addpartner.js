@@ -29,7 +29,7 @@ allPartners.forEach(el => {
 
 const partnerProfile = JSON.stringify({name, location, approvals, partnerId})
 
-const uri = '/admin/addpartner',
+const uri = '/admin/partner',
   options = {
     method: 'PUT',
     headers: {
