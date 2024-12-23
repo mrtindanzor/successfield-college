@@ -7,6 +7,9 @@ const partnerRoute = Router(),
 partnerAddRoute.get('/addpartner', (req, res) => {
   res.status(200).render('index', {page: 'addpartner', title: 'Add new partner'})
 })
+partnerAddRoute.get('/editpartner', (req, res) => {
+  res.status(200).render('index', {page: 'editpartner', title: 'Edit Partner'})
+})
 
 partnerRoute.get('/partners', async (req, res) => {
   const partners = await partnerModel.find({}).catch(err => console.log(err))
