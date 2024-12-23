@@ -1,5 +1,8 @@
 .contact-page-wrapper{
   width: 100dvw;
+  background-color: var(--dark);
+  color: var(--first);
+  padding: 40px;
 }
 .contact-page-wrapper .social-media{
   width: fit-content;
@@ -18,6 +21,7 @@
   color: var(--third);
   text-decoration: none;
   color: var(--second);
+  background-color: var(--white);
 }
 .contact-page-wrapper .social-media p a .twitter-icon{
   height: 30px;
@@ -42,17 +46,20 @@
   max-width: 350px;
   margin: auto;
   border: 2px solid;
-  padding: 30px 20px 70px 20px;
+  padding: 20px 20px 70px 20px;
+  background-color: var(--first);
 }
 .email-form h3{
   width: fit-content;
   margin: 0 auto;
+  color: var(--second);
   font-size: 1.3rem;
 }
 .email-form label{
   display: flex;
   gap: 5px;
   flex-direction: column;
+  color: var(--sixth);
 }
 .email-form label span{
   font-weight: 500;

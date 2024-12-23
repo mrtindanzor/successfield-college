@@ -1,5 +1,7 @@
 .members-page-wrapper{
   padding: 20px 2%;
+  background-color: var(--dark);
+  color: var(--first);
 }
 h1, h3{
   color: var(--third);

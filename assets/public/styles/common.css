@@ -52,7 +52,8 @@ body{
   min-height: 100dvh;
   width: 100dvw;
   user-select: none;
-  overflow-x: hidden;
+  overflow: hidden;
+  overflow-y: auto;
 }
 nav{
   width: 100dvw;
@@ -193,7 +194,6 @@ header .main-menu .course-list-menu{
     display: flex;
     border: 2px solid var(--third);
     padding: 0;
-    margin: 1px;
     background-color: var(--third);
   }
   .menu-button{

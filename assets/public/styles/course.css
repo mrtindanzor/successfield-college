@@ -1,7 +1,6 @@
-header{
-  display: none;
-}
 .content-wrapper{
+  background-color: var(--dark);
+  color: var(--first);
   padding: 20px;
 }
 .alt-navbar{

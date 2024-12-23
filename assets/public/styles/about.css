@@ -2,6 +2,8 @@
   width: 100dvw;
   padding: 20px 10%;
   overflow: hidden;
+  background-color: var(--dark);
+  color: var(--first);
 }
 h2{
   margin: 20px 0;

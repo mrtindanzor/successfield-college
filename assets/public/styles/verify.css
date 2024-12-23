@@ -1,5 +1,7 @@
 main-section {
-  margin: 40px;
+  background-color: var(--dark);
+  color: var(--first);
+  padding: 50px 20px;
 }
 .find-student-form {
   margin-bottom: 40px;
@@ -18,7 +20,7 @@ main-section {
   background-color: var(--third);
   color: var(--white);
   margin-left: 5px;
-  padding: 5px 20px;
+  padding: 8px 20px;
   font-size: var(--second-s);
   text-transform: uppercase;
   cursor: pointer;
@@ -47,6 +49,19 @@ main-section {
 .show-found-student .student-details div {
   margin-bottom: 5px;
 }
+.show-found-student .student-details div b{
+  color: var(--first);
+  font-size: var(--third-s);
+  text-transform: uppercase;
+}
+.show-found-student .student-details div span{
+  color: var(--sixth);
+  font-size: var(--second-s);
+  margin-left: 5px;
+}
+.show-found-student .student-details div span.verification-status {
+  color: var(--third);
+}
 @media (max-width: 550px) {
   main-section {
     margin: 10px;
@@ -73,9 +88,6 @@ main-section {
     width: 100dvw;
     align-items: center;
   }
-}
-.verification-status {
-  color: var(--third);
 }
 .invalid-code{
   display: block;
