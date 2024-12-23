@@ -1,11 +1,7 @@
 import { Router } from "express";
-import { certaddRoute } from "./certadd.js";
-import updatecertRoute from "./updatecert.js";
-import addcourseRoute from "./addcourse.js";
-import editcourseRoute from "./editcourse.js";
-import deletecertRoute from "./deletecert.js"
-import deletecourseRoute from "./deletecourse.js"
-import { partnerAddRoute } from "./partner.js";
+import { courseRoute } from './course.js'
+import certRoute from "./cert.js";
+import { partnerRoute } from "./partner.js";
 import { userModel, isAdmin } from "../../../dependencies.js";
 import { sendMailAsync } from "./sendmail.js";
 import mailTemplates from "./mailtemplates.js";
@@ -38,12 +34,8 @@ adminRoute.put('/makeadmin', async (req, res) => {
           }
   return res.status(201).json({status: 201, msg: `admin status is now set to ${makeadmin}`})
 })
-adminRoute.use('/admin', certaddRoute)
-adminRoute.use('/admin', updatecertRoute)
-adminRoute.use('/admin', addcourseRoute)
-adminRoute.use('/admin', editcourseRoute)
-adminRoute.use('/admin', deletecertRoute)
-adminRoute.use('/admin', deletecourseRoute)
-adminRoute.use('/admin', partnerAddRoute)
+adminRoute.use('/admin', courseRoute)
+adminRoute.use('/admin', certRoute)
+adminRoute.use('/admin', partnerRoute)
 
 export { adminRoute, isAdmin}
