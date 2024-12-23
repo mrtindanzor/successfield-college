@@ -83,7 +83,7 @@ const env = config().parsed,
     next()
   },
   isAdmin = (req, res, next) => {
-    // if(!req.isAdmin) return res.status(403).redirect('/')
+    if(!req.isAdmin) return res.status(403).redirect('/')
     next()
   }
   async function appStarted() {
