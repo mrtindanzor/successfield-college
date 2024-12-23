@@ -27,20 +27,25 @@
   <ul class="menu-list">
     <% if(isAdmin){ %>
       <li class="menu-item"><a href="/admin">Admin Panel</a></li>
-      <% } %>
+    <% } %>
     <li class="menu-item"><a href="/">Home</a></li>
-    <li>
-      <span class="course-list-button" title="Show courses">Courses</span>
-      <ul class="course-list-menu">
-        <% for(course of courses){ %>
-          <li class="course-item"><a href="/course/<%= course.course %>"><%= course.course %></a></li>
-        <% } %>
-      </ul>
-    </li>
+    <% if(courses.length > 0){ %>
+      <li>
+        <span class="course-list-button" title="Show courses">Courses</span>
+        <ul class="course-list-menu">
+            <% for(course of courses){ %>
+              <li class="course-item"><a href="/course/<%= course.course %>"><%= course.course %></a></li>
+            <% } %>
+        </ul>
+      </li>
+    <% } %>
     <li class="menu-item"><a href="/verify">Verify Certificate</a></li>
     <li class="menu-item"><a href="/member">Accreditation</a></li>
     <li class="menu-item"><a href="/gallery">Gallery</a></li>
-    <li class="menu-item"><a href="/train">Training Providers</a></li>
+    <% if(partner){ %>
+      <li class="menu-item"><a href="/partners">Training Partners</a></li>
+    <% } %>
+    
     <li class="menu-item"><a href="/about">About us</a></li>
     <li class="menu-item"><a href="/contact">Contact us</a></li>
   </ul>

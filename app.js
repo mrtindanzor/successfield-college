@@ -4,7 +4,7 @@ import session from "express-session";
 import passport from "passport";
 import path from "path"
 import MongoStore from "connect-mongo"
-import { env, courseModel, errhandler, page404, appStarted, setVariables, pingService, isSession} from './dependencies.js'
+import { env, courseModel, errhandler, page404, appStarted, setVariables, pingService, isSession, isPartner } from './dependencies.js'
 
 
 const uri = env.DATABASE,
@@ -31,6 +31,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(setVariables)
 app.use(isSession)
+app.use(isPartner)
 app.use(express.json())
 app.set('views', path.resolve('./assets/views'))
 app.set('view engine', 'ejs')

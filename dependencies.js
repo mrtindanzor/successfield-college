@@ -37,6 +37,14 @@ const env = config().parsed,
     certificate: String,
     fee: String
   }),
+  partnerSchema = new schema({
+    name: String,
+    location: String,
+    approvals: [{approval: String}],
+    phone: String,
+    email: String,
+    website: String
+  }),
   imageUploadSchema = new schema({
     name: String,
     path: String
@@ -46,6 +54,7 @@ const env = config().parsed,
   userModel = mongoose.model('user', userSchema),
   courseModel = mongoose.model('course', courseSchema),
   imageModel = mongoose.model('image', imageUploadSchema),
+  partnerModel = mongoose.model('partner', partnerSchema),
   pingService = () => {
     fetch(baseurl).then(() => console.log(`pinging ${baseurl}`))
   },
@@ -97,7 +106,12 @@ const env = config().parsed,
     res.locals.icons = icons
     next()
   }
-
+  async function isPartner(req, res, next){
+    res.locals.partner = false
+    const partner = await partnerModel.findOne({}).catch(err => console.log(err))
+    if(partner) res.locals.partner = true
+    next()
+  }
 
   try{
     mongoose.Promise = global.Promise
@@ -110,8 +124,9 @@ const env = config().parsed,
   }
 
 export { env, certificateModel, userModel, 
-  courseModel, imageModel, uploadPath, 
-  errhandler, page404, appStarted,
+  courseModel, imageModel, partnerModel,
+  uploadPath, errhandler, page404, appStarted,
   setVariables, pingService, isSession,
-  isAdmin, authenticated, isNotAuthenticated
+  isAdmin, authenticated, isNotAuthenticated,
+  isPartner
 }
