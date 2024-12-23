@@ -55,7 +55,7 @@ form i{
   margin-bottom: 5px;
 }
 .show-found-student .student-details div b{
-  color: var(--sixth);
+  color: var(--third);
   font-size: var(--third-s);
   text-transform: uppercase;
 }
@@ -65,7 +65,9 @@ form i{
   margin-left: 5px;
 }
 .show-found-student .student-details div span.verification-status {
-  color: var(--third);
+  color: var(--sixth);
+  font-weight: 900;
+  font-size: var(--fourth-s);
 }
 @media (max-width: 550px) {
   .find-student-form form {

@@ -76,6 +76,18 @@ class mailTemplates{
     `
   }
   
+  newCertificateIssued = (admin, name, studentNumber, certificateCode, certificate ) => {
+    return `
+     <h3>Mr. ${admin.toUpperCase()},</h3>
+        <br>
+      <p>
+       A new certificate has been is issued to ${name.toUpperCase()} with student number ${studentNumber.toUpperCase()} for ${certificate.toUpperCase()}. The certificate code is ${certificateCode.toUpperCase()}.
+        <br>
+        Adios.
+      </p>
+    `
+  }
+  
   setAdminStatus = (name, email, status) => {
     let color = 'red'
     if(status === true) color = 'green'
