@@ -9,6 +9,11 @@ main-section {
 .find-student-form form {
   display: flex;
 }
+form i{
+  font-style: normal;
+  font-size: var(--fourth-s);
+  color: var(--third);
+}
 .find-student-form form input {
   border: 1px solid var(--black);
   padding: 5px 20px;
@@ -63,9 +68,6 @@ main-section {
   color: var(--third);
 }
 @media (max-width: 550px) {
-  main-section {
-    margin: 10px;
-  }
   .find-student-form form {
     display: flex;
     flex-direction: column;
