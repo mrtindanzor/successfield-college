@@ -17,7 +17,7 @@ partnerRoute.get('/partners', async (req, res) => {
   res.render('index', {page: 'partner', title: 'Training Partners', partners})
 })
 
-partnerRoute.put('/partners', async (req, res) => {
+partnerRoute.put('/partner', async (req, res) => {
   const partner = req.body,
     name = partner.name,
     partnerId = partner.partnerId
