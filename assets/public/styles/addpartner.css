@@ -1,0 +1,90 @@
+  .provider-wrapper{
+    width: 100dvw;
+    padding: 50px 10px;
+  }
+  .provider-wrapper .result{
+    width: 95%;
+    max-width: 350px;
+    margin: auto;
+    color: var(--white);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .provider-wrapper .result span.add-success{
+    display: block;
+    background: var(--third);
+    padding: 20px;
+    margin: 10px 15px;
+  }
+  .provider-wrapper .result span.add-fail{
+    display: block;
+    background: red;
+    padding: 20px;
+    margin: 10px 15px;
+  }
+  .provider-wrapper .provider-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 95%;
+    max-width: 350px;
+    margin: auto;
+    border: 2px solid;
+    padding: 30px 20px 70px 20px;
+  }
+  .provider-form h3{
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 1.3rem;
+  }
+  .provider-form label{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+  }
+  .provider-form label:nth-child(3){
+    padding: 20px 0 0 0;
+  }
+  i.add-more{
+    display: block;
+    width: fit-content;
+    padding: 5px 10px;
+    background: var(--second);
+    margin: 5px;
+    color: var(--white);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .provider-form label span{
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+  .provider-form label input{
+    width: 100%;
+    padding: 10px;
+  }
+  .provider-form button{
+    padding: 10px;
+    background: var(--third);
+    color: var(--white);
+    border: none;
+    font-size: 1.1rem;
+  }
+  form.find-provider{
+    width: 95%;
+    max-width: 350px;
+    background: var(--third);
+    padding: 20px;
+    display: flex;
+    gap: 5px;
+    margin: 10px auto;
+  }
+  form.find-provider input[type="text"]{
+    padding: 10px;
+    width: 100%;
+  }
+  .form-provider input[type="submit"]{
+    
+    color: var(--third);
+    background: var(--white);
+  }

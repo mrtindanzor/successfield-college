@@ -5,6 +5,7 @@ import addcourseRoute from "./addcourse.js";
 import editcourseRoute from "./editcourse.js";
 import deletecertRoute from "./deletecert.js"
 import deletecourseRoute from "./deletecourse.js"
+import { partnerAddRoute } from "./partner.js";
 import { userModel, isAdmin } from "../../../dependencies.js";
 import { sendMailAsync } from "./sendmail.js";
 import mailTemplates from "./mailtemplates.js";
@@ -43,5 +44,6 @@ adminRoute.use('/admin', addcourseRoute)
 adminRoute.use('/admin', editcourseRoute)
 adminRoute.use('/admin', deletecertRoute)
 adminRoute.use('/admin', deletecourseRoute)
+adminRoute.use('/admin', partnerAddRoute)
 
 export { adminRoute, isAdmin}

@@ -7,11 +7,16 @@
         <% for (let detail of details){ %>
           <li class="li-list">
             <details>
-              <summary><%= detail.name %></summary>
+              <summary><%= detail.name.toUpperCase() %></summary>
               <ul>
                 <% let location = detail.location %>
                 <% if(location){ %>
-                  <li><b>Location: </b> <%= detail.location %></li>
+                  <li><b>Location: </b> <%= detail.location.toUpperCase() %></li>
+                <% } %>
+                
+                <% let id = detail.partnerId %>
+                <% if(id){ %>
+                  <li><b>Partner ID: </b> <%= id.toUpperCase() %></li>
                 <% } %>
 
                 <% let approvals = detail.approvals %>
@@ -20,25 +25,10 @@
                     <b>Programs Approved: </b> 
                     <ul>
                       <% for (let approval of approvals){ %>
-                        <li><%= approval.approval %></li>
+                        <li><%= approval.approval.toUpperCase() %></li>
                       <% } %>
                     </ul>
                   </li>
-                <% } %>
-                
-                <% let phone = detail.phone %>
-                <% if(phone){ %>
-                  <li><b>Telephone: </b> <%= phone %></li>
-                <% } %>
-
-                <% let email = detail.email %>
-                <% if(email){ %>
-                  <li><b>Email: </b> <%= email %></li>
-                <% } %>
-
-                <% let website = detail.website %>
-                <% if(website){ %>
-                  <li><b>Website: </b> <%= website %></li>
                 <% } %>
               </ul>
             </details>

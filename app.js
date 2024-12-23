@@ -1,5 +1,6 @@
 import express from "express"
 import router from "./assets/routes/routes.js"
+import cors from 'cors'
 import session from "express-session";
 import passport from "passport";
 import path from "path"
@@ -29,6 +30,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(cors())
 app.use(setVariables)
 app.use(isSession)
 app.use(isPartner)

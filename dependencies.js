@@ -41,9 +41,7 @@ const env = config().parsed,
     name: String,
     location: String,
     approvals: [{approval: String}],
-    phone: String,
-    email: String,
-    website: String
+    partnerId: String
   }),
   imageUploadSchema = new schema({
     name: String,

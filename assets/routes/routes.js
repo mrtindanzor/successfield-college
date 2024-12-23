@@ -8,7 +8,7 @@ import { adminRoute } from "./all/admin.js";
 import accreditationRoute from "./all/accreditation.js";
 import uploadRoute from "./all/upload.js";
 import profileRoute from "./all/profile.js";
-import partnerRoute from "./all/partner.js";
+import { partnerRoute } from "./all/partner.js";
 
 const router = Router()
 router.use(homeroute)

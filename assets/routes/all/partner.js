@@ -1,7 +1,12 @@
 import { Router } from "express";
 import { partnerModel, isAdmin, userModel } from "../../../dependencies.js";
 
-const partnerRoute = Router()
+const partnerRoute = Router(),
+  partnerAddRoute = Router()
+
+partnerAddRoute.get('/addpartner', (req, res) => {
+  res.status(200).render('index', {page: 'addpartner', title: 'Add new partner'})
+})
 
 partnerRoute.get('/partners', async (req, res) => {
   const partners = await partnerModel.find({}).catch(err => console.log(err))
@@ -11,18 +16,19 @@ partnerRoute.get('/partners', async (req, res) => {
 
 partnerRoute.put('/partners', async (req, res) => {
   const partner = req.body,
-    name = partner.name
+    name = partner.name,
+    partnerId = partner.partnerId
 
-  if(!name) return res.status(400).json({msg: 'Enter valid details'})
-
+  if(!name) return res.status(400).json({status: 400, msg: 'Enter valid details'})
+  const isId = await partnerModel.findOne({partnerId})
+  if(isId) return res.status(400).json({status: 400, msg: 'Partner ID already exists'})
   const partnerChar = new partnerModel(partner)
   partnerChar.save()
   if(!partnerChar.isNew){
     partnerChar.deleteOne()
-    return res.status(500).json({msg: 'Error adding partner'})
-  } 
-  
-  return res.status(201).json({msg: 'Partner added successfully'})
+    return res.status(500).json({status: 500, msg: 'Error adding partner'})
+  }
+  return res.status(201).json({status: 201, msg: 'Partner added successfully'})
 })
 
-export default partnerRoute
+export { partnerRoute, partnerAddRoute } 
