@@ -40,8 +40,7 @@ app.set('view engine', 'ejs')
 app.use(express.static('./assets/public'))
 app.use(router)
 
-app.get('/contact', (req, res) => res.render('index', {page: 'contact'}))
-app.get('/about', (req, res) => res.render('index', {page: 'about'}))
+app.get('/about', (req, res) => res.render('index', {page: 'about', title: 'About Successfield College'}))
 app.get('/test', (req, res) => {})
 
 app.use(page404)

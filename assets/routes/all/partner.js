@@ -4,17 +4,17 @@ import { partnerModel, isAdmin, userModel } from "../../../dependencies.js";
 const partnerRoute = Router(),
   showPartnerRoute = Router()
 
-partnerRoute.get('/addpartner', (req, res) => {
-  res.status(200).render('index', {page: 'addpartner', title: 'Add new partner'})
-})
-partnerRoute.get('/editpartner', async (req, res) => {
-  res.status(200).render('index', {page: 'editpartner', title: 'Edit Partner'})
+partnerRoute.get('/partner/:param', (req, res) => {
+  const param = req.params.param
+  if(param === 'add') return res.status(200).render('index', {page: 'partner', section: 'add', title: 'Add new partner'})
+  if(param === 'edit') return res.status(200).render('index', {page: 'partner', section: 'edit', title: 'Edit partner'})
+  if(param === 'delete') return res.status(200).render('index', {page: 'partner', section: 'delete', title: 'Delete partner'})
 })
 
 showPartnerRoute.get('/partners', async (req, res) => {
   const partners = await partnerModel.find({}).catch(err => console.log(err))
   if(partners.length < 1) return res.redirect('/')
-  res.render('index', {page: 'partner', title: 'Training Partners', partners})
+  res.render('index', {page: 'partner', section: 'show', title: 'Training Partners', partners})
 })
 
 partnerRoute.put('/partner', async (req, res) => {
@@ -34,21 +34,26 @@ partnerRoute.put('/partner', async (req, res) => {
   return res.status(201).json({status: 201, msg: 'Partner added successfully'})
 })
 
-partnerRoute.post('/findpartner', async (req, res) => {
+partnerRoute.post('/partner', async (req, res) => {
   const partnerId = req.body
   
   if(!partnerId) return res.status(400).json({status: 400, msg: 'Enter valid details'})
   const partner = await partnerModel.findOne(partnerId)
-  if(!partner) return res.status(404).json({status: 404, msg: 'No partner found with '+partnerId.partnerId})
-  return res.status(201).json({status: 201, partner})
+  if(!partner) return res.status(404).json({status: 404, msg: 'No partner found with ID: '+partnerId.partnerId})
+  return res.status(200).json({status: 200, ...partner._doc})
 })
 
-partnerRoute.put('/editpartner', async (req, res) => {
+partnerRoute.patch('/partner', async (req, res) => {
   const partner = req.body,
     name = partner.name,
-    partnerId = partner.partnerId
+    partnerId = partner.partnerId,
+    oldId = partner.oldApproval
 
-  if(!name) return res.status(400).json({status: 400, msg: 'Enter valid details'})
+  if(!name || !partnerId) return res.status(400).json({status: 400, msg: 'Enter valid details'})
+  
+  const isPartnerId = await partnerModel.findOne({partnerId})
+  if(isPartnerId && (isPartnerId.partnerId !== oldId)) return res.status(400).json({status: 400, msg: 'Partner ID already exists'})
+  delete partner.oldApproval
   const updated = await partnerModel.findOneAndUpdate({partnerId}, partner, {new: true})
   if(!updated) return res.status(500).json({status: 500, msg: 'An error occured'})
   return res.status(201).json({status: 201, msg: 'Partner updated successfully'})

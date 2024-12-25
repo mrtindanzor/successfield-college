@@ -5,7 +5,7 @@
       SUCCESSFIELD COLLEGE
     </span>
   </div>
-  <% if(page != "login" && page != "join"){ %>
+  <% if(locals.page != "login" && locals.page != "join"){ %>
   <div class="auth-contrs">
       <% if(isLoggedIn){ %>
           <a href="/users/logout" class="auth-logout">Logout</a>
@@ -18,31 +18,31 @@
   </div>
   <% } %>
 </nav>
-<% if(page != "login" && page != "join" && page != 'verifyemail' && page != 'forgotpassword' && page != 'setforgotpassword'){ %>
+<% if(locals.page != "login" && locals.page != "join" && locals.page != 'verifyemail' && locals.page != 'forgotpassword' && locals.page != 'setforgotpassword'){ %>
 <header>
   <div class="main-menu">
   <span class="menu-button">
-    <%- (new icons('menu-button-icon', 'Menu')).menu() %>
+    <%- (new locals.icons('menu-button-icon', 'Menu')).menu() %>
   </span>
   <ul class="menu-list">
-    <% if(isAdmin){ %>
+    <% if(locals.isAdmin){ %>
       <li class="menu-item"><a href="/admin">Admin Panel</a></li>
     <% } %>
     <li class="menu-item"><a href="/">Home</a></li>
-    <% if(courses.length > 0){ %>
+    <% if(locals.courses.length > 0){ %>
       <li>
         <span class="course-list-button" title="Show courses">Courses</span>
         <ul class="course-list-menu">
             <% for(course of courses){ %>
-              <li class="course-item"><a href="/course/<%= course.course %>"><%= course.course %></a></li>
+              <li class="course-item"><a href="/courses/<%= course.course %>"><%= course.course %></a></li>
             <% } %>
         </ul>
       </li>
     <% } %>
     <li class="menu-item"><a href="/verify">Verify Certificate</a></li>
-    <li class="menu-item"><a href="/member">Accreditation</a></li>
+    <li class="menu-item"><a href="/members">Accreditation</a></li>
     <li class="menu-item"><a href="/gallery">Gallery</a></li>
-    <% if(partner){ %>
+    <% if(locals.partner){ %>
       <li class="menu-item"><a href="/partners">Training Partners</a></li>
     <% } %>
     

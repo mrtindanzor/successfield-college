@@ -5,7 +5,15 @@ import mailTemplates from "./mailtemplates.js"
 import { env, userModel } from "../../../dependencies.js"
 const certRoute = Router()
 
-certRoute.put('/certadd', async (req, res) => {
+certRoute.get('/cert/:param', (req, res) => {
+  const param = req.params.param
+
+  if(param === 'add') return res.status(200).render('index', {page: 'cert', section: 'add', title: 'Add a certificate'})
+  if(param === 'edit') return res.status(200).render('index', {page: 'cert', section: 'edit', title: 'Edit a Certificate'})
+  if(param === 'delete') return res.status(200).render('index', {page: 'cert', section: 'delete', title: 'Delete Certificate'})
+})
+
+certRoute.put('/cert', async (req, res) => {
   const certificate = req.body
   const certificateCode = certificate.certificateCode.toLowerCase().trim(),
   user = await certificateModel.findOne({certificateCode})
@@ -34,14 +42,7 @@ certRoute.put('/certadd', async (req, res) => {
       return res.status(201).json({status: 201, msg: 'added successfully'})
     })
 
-certRoute.get('/certadd', (req, res) => {
-  res.status(200).render('index', {page: 'certadd', title: 'Add a certificate'})
-})
-
-certRoute.get('/updatecert', (req, res) => {
-  res.status(200).render('index', {page: 'updatecert', title: 'Edit a Certificate'})
-})
-certRoute.put('/updatecert', async (req, res) => {
+certRoute.patch('/cert', async (req, res) => {
   const certificate = req.body,
     name = certificate.name.toLowerCase(),
     certificateCode = certificate.certificateCode.toLowerCase(),
@@ -62,11 +63,7 @@ certRoute.put('/updatecert', async (req, res) => {
     })
 })
 
-certRoute.get('/deletecertificate', (req, res) => {
-  return res.status(200).render('index', {page: 'deletecert', title: 'Delete Certificate'})
-})
-
-certRoute.delete('/deletecertificate', async (req, res) => {
+certRoute.delete('/cert', async (req, res) => {
   const certificateCode = req.body.certificateCode.toLowerCase().trim()
   if(!certificateCode) return res.status(400).json({status: 400, msg: 'Enter a valid certificate code'})
 

@@ -58,12 +58,6 @@ authroute.put('/', async (req, res) => {
   const users = await userModel.find(data).catch(err => res.status(500).json({msg: `error occured while finding ${data} users`}))
   return res.status(200).json(users)
 })
-authroute.get('/join', authenticated, (req, res) => {
-  res.render('index', {page: 'join'})
-})
-authroute.get('/login', authenticated, (req, res) => {
-  res.render('index', {page: 'login'})
-})
 authroute.post('/join', authenticated,  async (req, res) => {
   let { email, password, cpassword, firstname, surname } = req.body,
         date = Date.now()
@@ -131,9 +125,9 @@ authroute.post('/login', authenticated,  (req, res, next) => {
   })
   (req, res, next)
 })
-authroute.get('/verify/:date', authenticated,  async (req, res) => {
+authroute.get('/verify/:confirmationCode', authenticated,  async (req, res) => {
   let verificationDetails = {}
-  const verificationCode = req.params.date
+  const verificationCode = req.params.confirmationCode
     const findUser = await userModel.findOne({verificationCode})
     if(!findUser) verificationDetails = {status: 404, msg: 'Invalid credentials'}
     if(findUser && findUser.verified) verificationDetails = {status: 200, msg: 'Account already verified'}
@@ -181,9 +175,6 @@ authroute.post('/resend', authenticated, async (req, res) => {
   if(sendMail) if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
   return res.status(400).json({status: 400, msg: 'Error sending email'})
 })
-authroute.get('/forgotpassword', async (req, res) => {
-  res.status(200).render('index', {page: 'forgotpassword', title: 'Forgot password'})
-})
 authroute.post('/forgotpassword', async (req, res) => {
   const email = req.body.email.trim().toLowerCase(),
     isEmailMatch = email.match(emailPattern),
@@ -212,7 +203,7 @@ authroute.get('/forgotpassword/:verificationCode', async (req, res) => {
   if(findUser) email = findUser.email
   res.status(200).render('index', {page: 'setforgotpassword', title: 'Change password', email: email})
 })
-authroute.post('/forgotpassword/newpassword', async (req, res) => {
+authroute.patch('/forgotpassword/newpassword', async (req, res) => {
   let { email, password, cpassword } = req.body
   email = email.trim().toLowerCase()
   password = password.trim()
@@ -230,4 +221,13 @@ authroute.get('/logout', (req, res) => {
     res.redirect('/')
   })
 })
+
+authroute.get('/:auth', authenticated, (req, res, next) => {
+  const route = req.params.auth.trim().toLowerCase()
+  if(route === 'join') return res.status(200).render('index', {page: 'join', title: 'Create account'})
+  if(route === 'login') return res.status(200).render('index', {page: 'login', title: 'Members Area'})
+  if(route === 'forgotpassword') return res.status(200).render('index', {page: 'forgotpassword', title: 'Forgot password'})
+  next()
+})
+
 export default authroute

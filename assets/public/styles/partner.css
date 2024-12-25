@@ -1,77 +1,268 @@
 main-section{
   display: block;
   width: 100dvw;
-  word-wrap: break-word;
   min-height: 80dvh;
-  background: var(--dark);
   overflow: hidden;
-  padding: 10px 20px;
-}
-ul.ul-wrapper{
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: var(--second-s);
-  border: 2px solid var(--third);
-  margin: 0 auto;
   background-color: var(--darker);
-  letter-spacing: 1px;
 }
-ul span.span-text{
-  /* background-color: var(--third);
-  font-size: var(--fourth-s);
-  color: var(--first);
-  padding: 10px 20px; */
-}
-summary{
-  padding: 10px;
-  cursor: pointer;
-  letter-spacing: 1px;
-  color: var(--third);
-}
-details[open] summary{
-  text-decoration: underline;
-  color: var(--white);
-}
-details[open] summary:hover{
-  color: var(--white);
-}
-summary:hover{
-  color: var(--third);
-}
-details ul{
-  list-style: none;
-  padding-left: 20px;
-}
-ul span.span-text{
-  background-color: var(--third);
-  font-size: var(--fourth-s);
-  color: var(--first);
-  padding: 10px 20px;
-}
-details ul li{
+
+.result .failed, .result .success{
   display: block;
-  padding: 10px;
-  line-height: normal;
+  background-color: var(--sixth);
   color: var(--white);
+  width: 90%;
+  max-width: 400px;
+  padding: 10px;
+  text-align: center;
+  margin: 0 auto;
+  text-transform: uppercase;
   font-size: var(--second-s);
 }
-details ul li b{
-  font-size: var(--third-s);
-  color: var(--third);
+
+.result .success{
+  background-color: var(--third);
 }
-@media (max-width: 767px) {
+
+main-section.show{
   ul.ul-wrapper{
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: var(--second-s);
+    border: 2px solid var(--third);
+    margin: 0 auto;
+    letter-spacing: 1px;
+  }
+  summary{
+    padding: 10px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    color: var(--third);
+  }
+  details[open] summary{
+    text-decoration: underline;
+    color: var(--white);
+  }
+  details[open] summary:hover{
+    color: var(--white);
+  }
+  summary:hover{
+    color: var(--third);
+  }
+  details ul{
+    list-style: none;
+    padding-left: 20px;
+  }
+  ul span.span-text{
+    background-color: var(--third);
+    font-size: var(--fourth-s);
+    color: var(--first);
+    padding: 10px 20px;
+  }
+  details ul li{
+    display: block;
+    padding: 10px;
+    line-height: normal;
+    color: var(--white);
+    font-size: var(--second-s);
+  }
+  details ul li b{
+    font-size: var(--third-s);
+    color: var(--third);
+  }
+  @media (max-width: 767px) {
+    ul.ul-wrapper{
+      width: 90%;
+      min-width: none;
+    }
+    
+  }
+  @media (min-width: 768px) {
+    ul.ul-wrapper{
+    width: fit-content;
+    min-width: 600px;
+    }
+  }
+}
+
+main-section.add{
+  .provider-wrapper{
+    width: 100dvw;
+    padding: 50px 10px;
+  }
+  .provider-wrapper .result{
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+    color: var(--white);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .provider-wrapper .result span.add-success{
+    display: block;
+    background: var(--third);
+    padding: 20px;
+    margin: 10px 15px;
+  }
+  .provider-wrapper .result span.add-fail{
+    display: block;
+    background: red;
+    padding: 20px;
+    margin: 10px 15px;
+  }
+  .provider-wrapper .provider-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+    border: 2px solid;
+    padding: 30px 20px 70px 20px;
+  }
+  .provider-form h3{
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 1.3rem;
+  }
+  .provider-form label{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+  }
+  .provider-form label:nth-child(3){
+    padding: 20px 0 0 0;
+  }
+  i.add-more{
+    display: block;
+    width: fit-content;
+    padding: 5px 10px;
+    background: var(--second);
+    margin: 5px;
+    color: var(--white);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .provider-form label span{
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+  .provider-form label input{
+    width: 100%;
+    padding: 10px;
+  }
+  .provider-form button{
+    padding: 10px;
+    background: var(--third);
+    color: var(--white);
+    border: none;
+    font-size: 1.1rem;
+  }
+  form.find-provider{
+    width: 95%;
+    max-width: 350px;
+    background: var(--third);
+    padding: 20px;
+    display: flex;
+    gap: 5px;
+    margin: 10px auto;
+  }
+  form.find-provider input[type="text"]{
+    padding: 10px;
+    width: 100%;
+  }
+  .form-provider input[type="submit"]{
+    
+    color: var(--third);
+    background: var(--white);
+  }
+
+}
+
+main-section.edit{
+  input[type="text"]{
+    background-color: var(--first);
+    display: block;
+    padding: 10px;
+    width: 100%;
+    border-radius: 4px;
+    border: none;
+  }
+  input[type="submit"], button{
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    color: var(--third);
+    font-weight: 900;
+    text-transform: capitalize;
+  }
+  form.find-partner{
+    width: 95%;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: var(--third);
+    display: flex;
+    padding: 10px 20px;
+    gap: 10px;
+  }
+  .result .partner-form {
+    width: 95%;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--first);
+    padding: 20px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .result .partner-form .approvals input{
+    margin-bottom: 10px;
+  }
+  .result .partner-form h3{
+    color: var(--third);
+  }
+  .result label{
+    display: block;
+    margin-bottom: 20px;
+  }
+  .result label span{
+    color: var(--third);
+  }
+  .result label input{
+    border: 1px solid;
+  }
+  .result button{
+    display: block;
     width: 90%;
-    min-width: none;
+    max-width: 300px;
+    margin: 0 auto;
+    background-color: var(--third);
+    color: var(--white);
+    cursor: pointer;
+    opacity: 0.8;
+    margin-top: 100px;
+    font-size: var(--second-s);
   }
-  
+  .result .add-more{
+    display: block;
+    padding: 10px 20px;
+    background-color: var(--darker);
+    color: var(--white);
+    margin-bottom: 10px;
+    width: fit-content;
+    position: absolute;
+    border-radius: 5px;
+    cursor: pointer;
+    right: 10px;
+  }
+  .result button:hover, .result .add-more:hover{
+    opacity: 0.8;
+  }
+
 }
-@media (min-width: 768px) {
-  ul.ul-wrapper{
-  width: fit-content;
-  min-width: 600px;
-  }
+
+main-section.delete{
+
 }

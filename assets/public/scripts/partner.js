@@ -1,4 +1,8 @@
-const details = document.querySelectorAll('details')
+const page = document.querySelector('[data-section]').dataset.section,
+  loader = document.querySelector('footer .loader')
+
+if(page === 'show'){
+  const details = document.querySelectorAll('details')
 
   details.forEach(el => {
     el.addEventListener('click', function(){
@@ -8,3 +12,202 @@ const details = document.querySelectorAll('details')
       })
     })
   })
+}
+
+if(page === 'add'){
+
+const formEl = document.querySelector('.provider-form'),
+result = document.querySelector('.result')
+
+formEl.addEventListener('click', e => {
+if(e.target.classList.contains('add-more')){
+ const input = document.createElement('input'),
+ provider = document.querySelector('.provider-form label:nth-child(5)')
+ provider.append(input)
+}
+})
+
+formEl.addEventListener('submit', async e => {
+e.preventDefault()
+
+result.innerHTML = ''
+
+const approvals = [],
+  name = formEl.querySelector('#name').value.toLowerCase().trim(),
+  allPartners = formEl.querySelectorAll('form label:nth-child(5) input'),
+  partnerId = formEl.querySelector('#id').value.toLowerCase().trim(),
+  location = formEl.querySelector('#location').value.toLowerCase().trim()
+
+allPartners.forEach(el => {
+  const value = el.value.toLowerCase().trim()
+  approvals.push({approval: value})
+})
+
+const partnerProfile = JSON.stringify({name, location, approvals, partnerId})
+
+const uri = '/admin/partner',
+  options = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: partnerProfile
+  }
+const data = await fetch(uri, options),
+  res = await data.json()
+
+if(res.status === 201){
+  result.innerHTML = `
+    <span class="add-success">
+      ${res.msg}
+    </span>
+  `
+}
+if(res.status !== 201){
+  result.innerHTML = `
+    <span class="add-fail">
+      ${res.msg}
+    </span>
+  `
+}
+})
+
+}
+
+if(page === 'edit'){
+  const formEl = document.querySelector('.find-partner'),
+    result = document.querySelector('.result')
+
+  formEl.addEventListener('submit', async function(e){
+    e.preventDefault()
+
+    result.innerHTML = ''
+    const id = formEl.querySelector('input').value.trim().toLowerCase()
+    if(!id) return result.textContent = 'Enter a valid partner ID'
+
+    loader.classList.add('active')
+    const partnerId = {partnerId: id},
+      uri = '/admin/partner',
+      options = {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(partnerId)
+      },
+      response = await fetch(uri, options),
+      res = await response.json()
+
+    if(res.status !== 200){
+      result.innerHTML = `
+        <span class="failed">
+          ${res.msg} 
+        </span>
+      `
+
+      loader.classList.remove('active')
+      return
+    }
+
+    result.innerHTML = `
+      <form class="partner-form">
+        <h3>
+          Edit Training Partner Information
+        </h3>
+        <label>
+          <span>
+            Training partner name:
+          </span>
+          <input type="text" id="name" value='${res.name}' required>
+        </label>
+        <label>
+          <span>
+            Partner ID:
+          </span>
+          <input type="text" id="id" value='${res.partnerId}' required>
+        </label>
+        <label>
+          <span>
+            Location:
+          </span>
+          <input type="text" id="location" value='${res.location}' required>
+        </label>
+        <label>
+          <span>
+            Program approvals:
+          </span>
+          <div class='approvals'>
+          </div>
+        </label>
+        <i class="add-more">add more</i>
+        <button>
+          Add partner
+        </button>
+        </form>
+    `
+
+    const approvalsContainer = document.querySelector('.approvals'),
+      approved = res.approvals
+
+    approved.forEach(el => approvalsContainer.innerHTML += `<input type='text' placeholder="Approved program" value='${el.approval}' >`)
+    
+    const addMore = document.querySelector('.add-more')
+
+    addMore.addEventListener('click', function(){
+      const input = '<input type="text" placeholder="Approved program">'
+      approvalsContainer.innerHTML += input
+    })
+    loader.classList.remove('active')
+
+    const editFormEl = document.querySelector('.partner-form')
+
+    editFormEl.addEventListener('submit', async function(e){
+      e.preventDefault()
+
+      loader.classList.add('active')
+      const newApproved = [],
+        name = editFormEl.querySelector('#name').value.toLowerCase().trim(),
+        allPartners = editFormEl.querySelectorAll('.approvals input'),
+        partnerId = editFormEl.querySelector('#id').value.toLowerCase().trim(),
+        location = editFormEl.querySelector('#location').value.toLowerCase().trim()
+
+      allPartners.forEach(el => {
+        const value = el.value.toLowerCase().trim()
+        newApproved.push({approval: value})
+      })
+
+      const partnerProfile = JSON.stringify({name, location, oldApproval: id, approvals: newApproved, partnerId}),
+      uri = '/admin/partner',
+      options = {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: partnerProfile
+      },
+      response = await fetch(uri, options),
+      res = await response.json()
+
+      if(res.status !== 201){
+        const fail = document.createElement('span')
+        fail.classList.add('failed')
+        fail.textContent = res.msg
+        result.insertBefore(fail, editFormEl)
+        setTimeout(function(){
+          fail.remove()
+        }, 5000)
+        loader.classList.remove('active')
+        return
+      }
+      
+      result.innerHTML = `
+        <span class="success">
+          ${res.msg} 
+        </span>
+      `
+      loader.classList.remove('active')
+    })
+  })
+}
+
+if(page === 'delete'){}

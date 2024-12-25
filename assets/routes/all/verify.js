@@ -3,7 +3,7 @@ import { certificateModel } from "../../../dependencies.js"
 
 const verifyroute = Router()
 
-verifyroute.get('/verify', (req, res) => res.render('index', {page: 'verify'}))
+verifyroute.get('/verify', (req, res) => res.render('index', {page: 'verify', title: 'Verify certificate'}))
 verifyroute.post('/verify', async (req, res) => {
   const certificateCode = req.body
   if(!certificateCode) return res.status(400).json({status: 400, msg: 'No certificate code provided'})

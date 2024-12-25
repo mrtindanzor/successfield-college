@@ -6,7 +6,7 @@ import { userModel } from "../../../dependencies.js";
 
 const contactroute = Router()
 
-contactroute.get('/contact', (req, res) => res.render('index', {page: 'contact'}))
+contactroute.get('/contact', (req, res) => res.render('index', {page: 'contact', title: 'Contact Successfield College'}))
 contactroute.post('/contact', async (req, res) => {
   const { name, email, phone, subject, text } = req.body,
     mailIcon = new icons('mail-delivered', 'Email').mail()

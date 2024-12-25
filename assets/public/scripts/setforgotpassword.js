@@ -22,7 +22,7 @@ formEl.addEventListener('submit', async (e) => {
     jsonData = JSON.stringify(Object.fromEntries(formData))
   const uri = '/users/forgotpassword/newpassword',
     options = {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },

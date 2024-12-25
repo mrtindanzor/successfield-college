@@ -4,18 +4,29 @@ import { courseModel } from "../../../dependencies.js"
 const courseRoute = Router(), 
   showCourseRoute = Router()
 
-  showCourseRoute.get('/course/:course', async (req, res) => {
+  showCourseRoute.get('/courses/:course', async (req, res) => {
   const course = req.params.course.toLowerCase().trim(),
   findCourse = await courseModel.findOne({course})
   if(!findCourse) return res.render('index', {page: 404})
-  res.status(200).render("index", {page: "course", title: course.toUpperCase(), findCourse})
+  res.status(200).render("index", {page: "course", section: 'show', title: course.toUpperCase(), findCourse})
 })
 
-courseRoute.get('/addcourse', (req, res) => {
-  res.status(200).render('index', {page: 'addcourse', title: 'Add new course'})
+courseRoute.get('/course/:param', (req, res) => {
+  const param = req.params.param
+  if(param === 'add') return res.status(200).render('index', {page: 'course', section: 'add', title: 'Add new course'})
+  if(param === 'edit') return res.status(200).render('index', {page: 'course', section: 'edit', title: 'Edit Course'})
+  if(param === 'delete') return res.status(200).render('index', {page: 'course', section: 'delete', title: 'Delete Course'})
 } )
 
-courseRoute.put('/addcourse', async (req, res) => {
+courseRoute.post('/course', async (req, res) => {
+  const course = req.body.course.toLowerCase().trim()
+  if(!course) return res.status(400).json({status: 400, msg: 'No course was sent'})
+  const isCourse = await courseModel.findOne({course})
+  if(!isCourse) return res.status(404).json({status: 404, msg: 'No course found'})
+  return res.status(200).json({status: 200, isCourse})
+})
+
+courseRoute.put('/course', async (req, res) => {
   const newCourse = req.body
   if(!newCourse) return res.status(400).json({status: 400, msg: 'No course was sent'})
   const isCourse = await courseModel.findOne({course: newCourse.course})
@@ -28,32 +39,7 @@ courseRoute.put('/addcourse', async (req, res) => {
   })
 })
 
-courseRoute.get('/deletecourse', (req, res) => {
-  return res.status(200).render('index', {page: 'deletecourse', title: 'Delete Course'})
-})
-
-courseRoute.delete('/deletecourse', async (req, res) => {
-  const course = req.body.course.toLowerCase().trim()
-  if(!course) return res.status(400).json({status: 400, msg: 'Enter a valid course name'})
-
-  const delCourse = await courseModel.findOneAndDelete({course})
-  if(!delCourse) return res.status(500).json({status: 500, msg: 'An error occured while trying to delete course'})
-  return res.status(200).json({status: 200, msg: "Course deleted"})
-})
-
-courseRoute.get('/editcourse', (req, res) => {
-  res.status(200).render('index', {page: 'editcourse', title: 'Edit a course'})
-} )
-
-courseRoute.post('/findcourse', async (req, res) => {
-  const course = req.body.course.toLowerCase().trim()
-  if(!course) return res.status(400).json({status: 400, msg: 'No course was sent'})
-  const isCourse = await courseModel.findOne({course})
-  if(!isCourse) return res.status(404).json({status: 404, msg: 'No course found'})
-  return res.status(200).json({status: 200, isCourse})
-})
-
-courseRoute.put('/editcourse', async (req, res) => {
+courseRoute.patch('/course', async (req, res) => {
   const newCourse = req.body,
     courseName = newCourse.course,
     id = newCourse.id
@@ -71,5 +57,17 @@ courseRoute.put('/editcourse', async (req, res) => {
       return res.status(500).json({status: 500, msg: err.msg})
     })
 })
+
+
+courseRoute.delete('/course', async (req, res) => {
+  const course = req.body.course.toLowerCase().trim()
+  if(!course) return res.status(400).json({status: 400, msg: 'Enter a valid course name'})
+
+  const delCourse = await courseModel.findOneAndDelete({course})
+  if(!delCourse) return res.status(500).json({status: 500, msg: 'An error occured while trying to delete course'})
+  return res.status(200).json({status: 200, msg: "Course deleted"})
+})
+
+
 
 export { courseRoute, showCourseRoute }

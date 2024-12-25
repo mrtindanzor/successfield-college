@@ -249,7 +249,21 @@ footer{
   display: flex;
   flex-wrap: wrap;
   background-color: var(--darker);
-  padding: 50px 3% 100px 3%;
+  padding: 30px 3% 20px 3%;
+}
+footer .loader{
+  width: 100dvw;
+  height: calc(100dvh - 57px);
+  background-color: var(--dark);
+  z-index: 1000;
+  position: fixed;
+  top: 57px;
+  left: 0;
+  transform: scale(0);
+  transition: 0.2s ease-out;
+}
+footer .loader.active{
+  transform: scale(1);
 }
 .footer-container{
   flex: 1;
@@ -257,6 +271,7 @@ footer{
   min-width: fit-content;
   padding: 10px;
 }
+
 .footer-container a{
   display: block;
   max-width: fit-content;

@@ -1,0 +1,72 @@
+<% if(locals.section === 'add'){ %>
+  <main-section class="add">
+    <div class="main-wrapper" data-section="add">
+  
+      <div class="result">
+        
+      </div>
+      <form class="cert-add-form">
+        <span>
+          Add Certificate
+        </span>
+        <label for="name">
+          <b>Name</b>
+          <input type="text" name="name" id="name">
+        </label>
+        <label for="studentNumber">
+          <b>Student number</b>
+          <input type="text" name="studentNumber" id="studentNumber">
+        </label>
+        <label for="certificateCode">
+          <b>Certificate ID</b>
+          <input type="text" name="certificateCode" id="certificateCode">
+        </label>
+        <label for="programme">
+          <b>Programme</b>
+          <input type="text" name="programme" id="programme">
+        </label>
+        <label for="dateCompleted">
+          <b>Date of Completion</b>
+          <input type="text" name="dateCompleted" id="dateCompleted">
+        </label>
+        <input type="submit" value="Add">
+      </form>
+    </div>
+  </main-section>
+<% } %>
+
+<% if(locals.section === 'edit'){ %>
+  <main-section class="edit">
+    <div class="main-wrapper"  data-section="edit">
+    
+      <form class="find-certificate">
+        <label for="find-certificate-code">
+        <span>
+          Search for Certificate ID
+        </span>
+          <input type="text" class="find-certificate-code" id="find-certificate-code">
+        </label>
+        
+        <input type="submit" value="Find" class="find-certificate-code">
+      </form>
+      
+      <div class="result">
+        
+      </div>
+    </div>
+  </main-section>
+<% } %>
+
+<% if(locals.section === 'delete'){ %>
+  <main-section class="delete">
+    <div class="delete-cert-wrapper"  data-section="delete">
+      <form class="find-cert-form">
+        <input type="text" class="cert">
+        <button>find</button>
+      </form>
+      <div class="result"> 
+      </div>
+    </div>
+  </main-section>
+<% } %>
+

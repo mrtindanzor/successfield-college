@@ -1,0 +1,325 @@
+main-section.add{
+  .main-wrapper{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 10px auto 10px auto;
+  }
+  .main-wrapper .cert-add-form{
+    background-color: var(--third);
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 50px 20px;
+    }
+    .cert-add-form span:first-child{
+      display: block;
+      padding: 10px 20px;
+      background: var(--first);
+      color: var(--third);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 18px;
+    }
+    .cert-add-form label{
+      display: flex;
+      column-gap: 10px;
+      width: 100%;
+      color: var(--first);
+    }
+    .cert-add-form label input{
+      flex: 1;
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 3px dotted;
+      font-size: 18px;
+    }
+    .cert-add-form label input:focus{
+      outline: none;
+      color: var(--fourth);
+    }
+    .cert-add-form > input{
+      background: var(--first);
+      display: block;
+      padding: 5px 10px;
+      color: var(--third);
+      border-radius: 10px;
+      font-size: 17px;
+      border: 1px var(--first);
+      cursor: pointer;
+    }
+    .add-success, .add-fail{
+      display: block;
+      margin: 20px auto;
+      background: var(--third);
+      text-align: center;
+      padding: 10px;
+      color: var(--first);
+    }
+    .add-fail {
+      background: var(--sixth);
+    }
+    @media (max-width:550px){
+      .cert-add-form{
+        width: calc(100% -20px);
+        margin: 0 auto;
+      }
+    }
+}
+
+main-section.edit{
+  .main-wrapper{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 10px auto 10px auto;
+  }
+  .main-wrapper .find-certificate{
+    width: 100%;
+    display: flex;
+    column-gap: 5px;
+    margin-bottom: 50px;
+    align-items: end;
+    background: var(--third);
+    padding: 20px;
+  }
+  .find-certificate label{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;
+  }
+  .find-certificate label span{
+    color: var(--first);
+    font-size: 19px;
+  }
+  .find-certificate label input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+  }
+  .find-certificate label input:focus{
+    outline: none;
+  }
+  .find-certificate > input{
+    width: fit-content;
+    height: fit-content;
+    background: var(--first);
+    color: var(--third);
+    font-weight: 800;
+    padding: 10px ;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+  }
+  
+    .main-wrapper .cert-update-form{
+    background-color: var(--third);
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 50px 20px;
+    }
+    .cert-update-form > span:first-child{
+      display: block;
+      padding: 10px 20px;
+      background: var(--first);
+      color: var(--third);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 18px;
+    }
+    .cert-update-form label{
+      display: flex;
+      column-gap: 10px;
+      width: 100%;
+      color: var(--first);
+    }
+    .cert-update-form label input{
+      flex: 1;
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 3px dotted;
+      font-size: 18px;
+    }
+    .cert-update-form label input:focus{
+      outline: none;
+      color: var(--fourth);
+    }
+    .cert-update-form > input{
+      background: var(--first);
+      display: block;
+      padding: 5px 10px;
+      color: var(--third);
+      border-radius: 10px;
+      font-size: 17px;
+      border: 1px var(--first);
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .update-success, .update-fail, .invalid-code{
+      display: block;
+      margin: 20px auto;
+      background: var(--third);
+      text-align: center;
+      padding: 10px;
+      color: var(--first);
+    }
+    .update-fail, .invalid-code{
+      background: var(--sixth);
+    }
+    .old-certificate-code{
+      display: none;
+    }
+    @media (max-width:550px){
+      .cert-update-form{
+        width: calc(100% -20px);
+        margin: 0 auto;
+      }
+    }
+}
+main-section.delete{
+  .delete-cert-wrapper{
+    width: 100dvw;
+  }
+  .find-cert-form{
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid var(--third);
+    display: flex;
+    padding: 20px 30px;
+    background-color: var(--third);
+    border-radius: 4px;
+    gap: 5px;
+    margin: 30px auto;
+  }
+  .delete-cert-wrapper .find-cert-form .cert{
+    width: 100%;
+    padding: 5px ;
+  }
+  .delete-cert-wrapper .find-cert-form .cert:focus{
+    outline: none;
+  }
+  .delete-cert-wrapper .find-cert-form button{
+    color: var(--third);
+  }
+  button{
+    background-color: var(--first);
+    border: 1px solid currentColor;
+    cursor: pointer;
+    padding: 7px 10px;
+  }
+  .delete-cert-wrapper .result{
+    width: 100%;
+    max-width: 400px;
+    margin: 10px auto;
+  }
+  .delete-cert-wrapper .result .invalid-code{
+    padding: 10px;
+  }
+  .delete-cert-wrapper .result .show-found-cert{
+    width: 100%;
+    border: 1px solid var(--third);
+    background-color: var(--third);
+    padding: 20px 10px;
+  }
+  .delete-cert-wrapper .result .show-found-cert .cert-name, .delete-cert-wrapper .result .show-found-cert .certificate-code{
+    color: var(--first);
+    display: block;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    margin: 0 20px 10px 20px;
+  }
+  .delete-cert-wrapper .result .show-found-cert .cert-name::before, .delete-cert-wrapper .result .show-found-cert .certificate-code::before{
+    content: 'Certificate ID:';
+    padding: 2px 10px;
+    margin-right: 4px;
+    font-weight: 800;
+    display: block;
+    background-color: var(--first);
+    color: var(--sixth);
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+  }
+  .delete-cert-wrapper .result .show-found-cert .cert-name::before{
+    content: 'Name: ';
+  }
+  .delete-cert-wrapper .result .show-found-cert > button, .result .is-not-deleted, .result .is-deleted, .delete-cert-wrapper .result .invalid-code, .deny-delete{
+    display: block;
+    width: calc(100% - 40px);
+    margin: 20px 0 30px 20px;
+    color: var(--first);
+    background-color: var(--sixth);
+    border-color: var(--sixth);
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .result .is-not-deleted{
+    padding: 5px 10px;
+  }
+  .result .is-deleted{
+    background-color: var(--third);
+    border: 1px solid currentColor;
+    padding: 5px 10px;
+  }
+  .result .prompt-dialog{
+    background-color: var(--first);
+    display: none;
+  }
+  .result .prompt-dialog.active{
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .prompt-box{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--third);
+    border: 1px solid var(--third);
+    padding: 10px;
+  }
+  .prompt-box span.confirm-text{
+    margin: 4px auto;
+    font-size: 1.2rem;
+    color: var(--first);
+  }
+  .prompt-box span.confirm-text .confirm-cert{
+    display: inline-block;
+    padding: 0 4px;
+    margin: 0 4px;
+    background-color: var(--first);
+    color: var(--sixth);
+  }
+  .prompt-box .contrs{
+    margin: 4px auto;
+    display: flex;
+    gap: 5px;
+  }
+  .prompt-box .contrs input{
+    padding: 6px 10px;
+    width: 100%;
+  }
+  .prompt-box .contrs button{
+    color: var(--first);
+    border-color: transparent;
+    background-color: var(--sixth);
+  }
+}

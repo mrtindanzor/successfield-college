@@ -1,40 +1,104 @@
-<div class="main-wrapper">
-  <% let details = partners %>
-  <% if(details){ %>
-    <p class="paragraph-wrapper">
-      <ul class="ul-wrapper">
-        <span class="span-text">Training Partners</span>
-        <% for (let detail of details){ %>
-          <li class="li-list">
-            <details>
-              <summary><%= detail.name.toUpperCase() %></summary>
-              <ul>
-                <% let location = detail.location %>
-                <% if(location){ %>
-                  <li><b>Location: </b> <%= detail.location.toUpperCase() %></li>
-                <% } %>
-                
-                <% let id = detail.partnerId %>
-                <% if(id){ %>
-                  <li><b>Partner ID: </b> <%= id.toUpperCase() %></li>
-                <% } %>
+<% if(locals.section === 'show'){ %>
+  <main-section class="show" data-section="show">
+    <div class="main-wrapper show">
+      <% let details = partners %>
+      <% if(details){ %>
+        <p class="paragraph-wrapper">
+          <ul class="ul-wrapper">
+            <span class="span-text">Training Partners</span>
+            <% for (let detail of details){ %>
+              <li class="li-list">
+                <details>
+                  <summary><%= detail.name.toUpperCase() %></summary>
+                  <ul>
+                    <% let location = detail.location %>
+                    <% if(location){ %>
+                      <li><b>Location: </b> <%= detail.location.toUpperCase() %></li>
+                    <% } %>
+                    
+                    <% let id = detail.partnerId %>
+                    <% if(id){ %>
+                      <li><b>Partner ID: </b> <%= id.toUpperCase() %></li>
+                    <% } %>
+    
+                    <% let approvals = detail.approvals %>
+                    <% if(approvals.length > 0){ %>
+                      <li>
+                        <b>Programs Approved: </b> 
+                        <ul>
+                          <% for (let approval of approvals){ %>
+                            <li><%= approval.approval.toUpperCase() %></li>
+                          <% } %>
+                        </ul>
+                      </li>
+                    <% } %>
+                  </ul>
+                </details>
+              </li>
+            <% }%>
+          </ul>
+        </p>
+      <% } %>
+    </div>
+  </main-section>
+<% } %>
+<% if(locals.section === 'add'){ %>
+  <main-section class="add" data-section="add">
 
-                <% let approvals = detail.approvals %>
-                <% if(approvals.length > 0){ %>
-                  <li>
-                    <b>Programs Approved: </b> 
-                    <ul>
-                      <% for (let approval of approvals){ %>
-                        <li><%= approval.approval.toUpperCase() %></li>
-                      <% } %>
-                    </ul>
-                  </li>
-                <% } %>
-              </ul>
-            </details>
-          </li>
-        <% }%>
-      </ul>
-    </p>
-  <% } %>
+<div class="partner-wrapper">
+  <div class="result">
+  </div>
+  <form class="partner-form">
+    <h3>
+      Register Training Partner
+    </h3>
+    <label>
+      <span>
+        Training partner name:
+      </span>
+      <input type="text" id="name" required>
+    </label>
+    <label>
+      <span>
+        Partner ID:
+      </span>
+      <input type="text" id="id" required>
+    </label>
+    <label>
+      <span>
+        Location:
+      </span>
+      <input type="text" id="location" required>
+    </label>
+    <label>
+      <span>
+        Program approvals:
+      </span>
+      <input type="text" >
+    </label>
+    <i class="add-more">add more</i>
+    <button>
+      Add partner
+    </button>
+  </form>
 </div>
+
+  </main-section>
+<% } %>
+
+<% if(locals.section === 'edit'){ %>
+  <main-section class="edit" data-section="edit">
+      <form class="find-partner">
+        <input type="text" class="partner">
+        <button>find</button>
+      </form>
+      <div class="result"> 
+      </div>
+  </main-section>
+<% } %>
+
+<% if(locals.section === 'delete'){ %>
+  <main-section class="delete" data-section="delete">
+    
+  </main-section>
+<% } %>

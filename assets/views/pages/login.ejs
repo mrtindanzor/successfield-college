@@ -1,5 +1,5 @@
-<% const eyeCloseIcon = (new icons('form-eye-close', 'Hide password')).eyeClose() %>
-<% const eyeOpenIcon = (new icons('form-eye-open state-active', 'Show password')).eyeOpen() %>
+<% const eyeCloseIcon = (new locals.icons('form-eye-close', 'Hide password')).eyeClose() %>
+<% const eyeOpenIcon = (new locals.icons('form-eye-open state-active', 'Show password')).eyeOpen() %>
 <form action="/users/login" method="post" class="signin">
   <span class="form-title">
     Sign in
