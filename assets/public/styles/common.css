@@ -387,7 +387,7 @@ button:hover{
 span.failed, span.success{
   display: block;
   background-color: var(--sixth);
-  color: var(--white);
+  color: var(--white)!important;
   width: 90%;
   max-width: 400px;
   padding: 10px;

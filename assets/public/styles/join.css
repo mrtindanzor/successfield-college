@@ -81,13 +81,11 @@ input[type='submit']{
   cursor: pointer;
 }
 form span + i{
-  color: var(--sixth);
-  font-size: var(--second-s);
-  display: flex;
   font-style: normal;
   font-family: alice;
   text-transform: uppercase;
-  margin-bottom: 5px;
+  width: 100%;
+  max-width: 450px;
 }
 .form-eye-close, .form-eye-open{
   color: var(--third);

@@ -29,12 +29,13 @@ for(let hide of hidePassword){
 
 inputEl.forEach(el => {
   el.style.background = 'transparent'
-  el.value = ' '
+  el.value.remove()
 })
 
-formEl.addEventListener('submit', e => {
+formEl.addEventListener('submit', async function(e){
   e.preventDefault()
 
+  loader.classList.add('active')
   const uri = '/users/join',
     formData = new FormData(formEl),
     jsonData = Object.fromEntries(formData),
@@ -44,9 +45,10 @@ formEl.addEventListener('submit', e => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(jsonData)
-    }
-    
-    fetch(uri, options)
-      .then(res => res.json())
-      .then(data => formEl.querySelector('i').innerText = data.msg)
+    },
+    response = await fetch(uri, options),
+    res = response.json()
+    loader.classList.add('active')
+    if(res.status !== 201) return formEl.querySelector('i').innerHTML = `<span class="failed">${res.msg}</span>`
+    return formEl.querySelector('i').innerHTML = `<span class="success">${res.msg}</span>`
 })

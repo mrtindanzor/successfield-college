@@ -32,7 +32,7 @@ inputEl.forEach(el => {
   el.value = ' '
 })
 
-formEl.addEventListener('submit', e => {
+formEl.addEventListener('submit', async function(e){
   e.preventDefault()
 
   const uri = '/users/login',
@@ -44,32 +44,31 @@ formEl.addEventListener('submit', e => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(jsonData)
-    }
-    
-    fetch(uri, options)
-      .then(res => res.json())
-      .then(data => {
-        if(data.status === 201) return formEl.querySelector('i').innerHTML = `
-        <span class="success">${data.msg}</span>
-      `
-        if(data.status !== 200 && data.status !== 201) return formEl.querySelector('i').innerText = data.msg
-        let count = 10
-        function counter(){
-          setInterval(()=> {
-            if(count === 1) return
-            count--
-            formEl.querySelector('.timeout').textContent = count
-          }, 1000)
-        }
-        function redirect(){
-          setTimeout(() => {
-            window.location.href = '/'
-          }, 5000);
-        }
-        formEl.querySelector('i').innerHTML = `
-          <span class="success">Login successfully, redirecting <i class='timeout'>${count}</i> seconds</span>
-        `
-        counter()
-        redirect()
-      })
+    },
+    response = await fetch(uri, options),
+    res = await response.json()
+    console.log(res)
+  if(res.status === 201) return formEl.querySelector('i').innerHTML = `<span class="success">${res.msg}</span>`
+  if(res.status === 200) {
+    let count = 10
+  function counter(){
+    setInterval(()=> {
+      if(count === 1) return
+      count--
+      formEl.querySelector('.timeout').textContent = count
+    }, 1000)
+  }
+  function redirect(){
+    setTimeout(() => {
+      window.location.href = '/'
+    }, 5000);
+  }
+  formEl.querySelector('i').innerHTML = `
+    <span class="success">Login successfully, redirecting <i class='timeout'>${count}</i> seconds</span>
+  `
+  counter()
+  redirect()
+    return
+  }
+  return formEl.querySelector('i').innerHTML = `<span class="failed">${res.msg}</span>`
 })
