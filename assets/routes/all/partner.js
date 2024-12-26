@@ -54,9 +54,9 @@ partnerRoute.patch('/partner', async (req, res) => {
   const isPartnerId = await partnerModel.findOne({partnerId})
   if(isPartnerId && (isPartnerId.partnerId !== oldId)) return res.status(400).json({status: 400, msg: 'Partner ID already exists'})
   delete partner.oldApproval
-  const updated = await partnerModel.findOneAndUpdate({oldId}, partner, {new: true})
+  const updated = await partnerModel.findOneAndUpdate({partnerId: oldId}, partner, {new: true})
   if(!updated) return res.status(500).json({status: 500, msg: 'An error occured'})
-  return res.status(201).json({status: 201, msg: 'Partner updated successfully'})
+  return res.status(201).json({status: 2071, msg: 'Partner updated successfully'})
 })
 
 partnerRoute.delete('/partner', async (req, res) => {
