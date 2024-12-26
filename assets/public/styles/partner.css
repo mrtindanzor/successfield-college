@@ -264,5 +264,96 @@ main-section.edit, main-section.delete{
 }
 
 main-section.delete{
-
+  .result .delete-wrapper{
+    background-color: var(--third);
+    width: 95%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px 10px;
+  }
+  .result .delete-wrapper > h3{
+    border-radius: 5px;
+    background-color: var(--white);
+    color: var(--third);
+    margin-bottom: 8px;
+    padding: 20px 10px 10px;
+  }
+  .result .delete-wrapper > h4{
+    background-color: var(--white);
+    color: var(--third);
+    margin-bottom: 8px;
+    margin-right: 8px;
+    padding: 5px 10px;
+  }
+  .result .delete-wrapper > span{
+    font-size: var(--second-s);
+    color: var(--white);
+  }
+  .result .delete-wrapper ol li{
+    margin-bottom: 5px;
+    font-size: var(--second-s);
+    color: var(--white);
+    text-transform: capitalize;
+  }
+  .result .delete-wrapper > button{
+    background: var(--sixth);
+    color: var(--white);
+    text-transform: uppercase;
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  .result .prompt-dialog{
+    position: fixed;
+    z-index: 1001;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+    padding: 10px 30px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    transform: scale(0);
+  }
+  .result .prompt-dialog.active{
+    transform: scale(1);
+  }
+  .result .prompt-dialog span .confirm{
+    color: var(--sixth);
+  }
+  .result .prompt-dialog span{
+    margin-bottom: 15px;
+  }
+  .result .prompt-dialog input{
+    border: 1px solid var(--sixth);
+  }
+  .result .prompt-dialog button{
+    border: 1px solid;
+    margin: 20px auto;
+  }
+  .result .prompt-dialog button.confirm-delete{
+    color: var(--white);
+    background-color: var(--sixth);
+    border: 1px solid currentColor;
+  }
+  .result .prompt-dialog button.confirm-delete:hover{
+    border-radius: 10px;
+  }
+  .result .prompt-dialog{
+    margin: 0;
+  }
+  .result .prompt-dialog button.deny-delete{
+    color: var(--sixth);
+    background-color: var(--white);
+    border: 1px solid currentColor;
+  }
+  .result .prompt-dialog button.deny-delete:hover{
+    color: var(--white);
+    background-color: var(--sixth);
+    border: 1px solid currentColor;
+  }
 }

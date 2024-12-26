@@ -63,7 +63,7 @@ partnerRoute.delete('/partner', async (req, res) => {
   const partnerId = req.body.partnerId.trim().toLowerCase()
 
   if(!partnerId) return res.status(400).json({status: 400, msg: 'Invalid partnerId'})
-  const isDeleted = await findOneAndDelete({partnerId})
+  const isDeleted = await partnerModel.findOneAndDelete({partnerId})
   if(!isDeleted) return res.status(500).json({status: 500, msg: 'An error occured'})
   return res.status(200).json({status: 200, msg: 'Deleted successfully'})
 })

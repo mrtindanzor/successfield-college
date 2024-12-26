@@ -376,3 +376,10 @@ align-items: baseline;
 svg{
   opacity: 1;
 }
+button{
+  cursor: pointer;
+  opacity: 0.8;
+}
+button:hover{
+  opacity: 1;
+}
