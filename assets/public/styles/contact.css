@@ -84,7 +84,7 @@
 }
 .result{
   position: fixed;
-  z-index: 99;
+  z-index: 1001;
   width: 100dvw;
   height: 100dvh;
   top: 0;
