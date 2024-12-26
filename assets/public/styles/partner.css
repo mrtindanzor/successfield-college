@@ -181,7 +181,7 @@ main-section.add{
 
 }
 
-main-section.edit{
+main-section.edit, main-section.delete{
   input[type="text"]{
     background-color: var(--first);
     display: block;

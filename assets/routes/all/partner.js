@@ -22,7 +22,7 @@ partnerRoute.put('/partner', async (req, res) => {
     name = partner.name,
     partnerId = partner.partnerId
 
-  if(!name) return res.status(400).json({status: 400, msg: 'Enter valid details'})
+  if(!name || !partnerId) return res.status(400).json({status: 400, msg: 'Enter valid details'})
   const isId = await partnerModel.findOne({partnerId})
   if(isId) return res.status(400).json({status: 400, msg: 'Partner ID already exists'})
   const partnerChar = new partnerModel(partner)
@@ -54,9 +54,18 @@ partnerRoute.patch('/partner', async (req, res) => {
   const isPartnerId = await partnerModel.findOne({partnerId})
   if(isPartnerId && (isPartnerId.partnerId !== oldId)) return res.status(400).json({status: 400, msg: 'Partner ID already exists'})
   delete partner.oldApproval
-  const updated = await partnerModel.findOneAndUpdate({partnerId}, partner, {new: true})
+  const updated = await partnerModel.findOneAndUpdate({oldId}, partner, {new: true})
   if(!updated) return res.status(500).json({status: 500, msg: 'An error occured'})
   return res.status(201).json({status: 201, msg: 'Partner updated successfully'})
+})
+
+partnerRoute.delete('/partner', async (req, res) => {
+  const partnerId = req.body.partnerId.trim().toLowerCase()
+
+  if(!partnerId) return res.status(400).json({status: 400, msg: 'Invalid partnerId'})
+  const isDeleted = await findOneAndDelete({partnerId})
+  if(!isDeleted) return res.status(500).json({status: 500, msg: 'An error occured'})
+  return res.status(200).json({status: 200, msg: 'Deleted successfully'})
 })
 
 export { showPartnerRoute, partnerRoute }  
