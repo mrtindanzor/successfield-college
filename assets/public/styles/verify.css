@@ -3,103 +3,110 @@ main-section {
   color: var(--first);
   padding: 50px 20px;
 }
-.find-student-form {
+h3{
+  width: fit-content;
+  background-color: var(--white);
+  color: var(--third);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+}
+.find-student {
   margin-bottom: 40px;
-}
-.find-student-form form {
+  background-color: var(--third);
   display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px 20px 30px 20px;
 }
-form i{
+i{
   font-style: normal;
   font-size: var(--fourth-s);
-  color: var(--third);
+  color: var(--first);
 }
-.find-student-form form input {
+.find-student form input {
   border: 1px solid var(--black);
-  padding: 5px 20px;
+  padding: 10px;
   font-size: var(--second-s);
   text-transform: uppercase;
+  width: 100%;
+  font-family: alice;
 }
-.find-student-form form button {
-  border: 1px solid var(--third);
-  background-color: var(--third);
-  color: var(--white);
+.find-student form button {
+  background-color: var(--white);
+  color: var(--third);
   margin-left: 5px;
-  padding: 8px 20px;
+  padding: 10px 15px;
   font-size: var(--second-s);
   text-transform: uppercase;
   cursor: pointer;
   font-family: alice;
   transition: 0.2s ease;
 }
-.find-student-form form button:hover {
+.find-student form button:hover {
   border-radius: 0 10px 10px 0;
   opacity: 0.8;
 }
-.show-found-student {
+.result {
+  flex-direction: column;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
   display: flex;
   gap: 50px;
+  background-color: var(--white);
+  border: 10px solid var(--third);
 }
-.show-found-student .student-image {
-  width: 250px;
-}
-.show-found-student .student-image img {
-  object-fit: cover;
-  width: 100%;
-}
-.show-found-student .student-details {
+.result .student-details {
   display: flex;
   flex-direction: column;
+  color: var(--black);
+  padding: 20px;
 }
-.show-found-student .student-details div {
+.result .student-details div {
   margin-bottom: 5px;
 }
-.show-found-student .student-details div b{
-  color: var(--third);
+.result .student-details div b{
+  color: var(--fifth);
   font-size: var(--third-s);
   text-transform: uppercase;
 }
-.show-found-student .student-details div span{
-  color: var(--white);
-  font-size: var(--second-s);
+.result .student-details div span{
+  color: var(--second);
+  font-size: var(--third-s);
   margin-left: 5px;
+  font-family: alice;
+  font-weight: 500;
 }
-.show-found-student .student-details div span.verification-status {
-  color: var(--sixth);
+.result .student-details div span.verification-status {
+  color: var(--third);
   font-weight: 900;
-  font-size: var(--fourth-s);
+  font-size: var(--third-s);
 }
 @media (max-width: 550px) {
-  .find-student-form form {
+  .find-student form {
     display: flex;
     flex-direction: column;
   }
-  .find-student-form form input {
-    width: calc(100dvw - 20px);
+  .find-student form input {
+    width: 100%;
   }
-  .find-student-form form button {
-    width: calc(100dvw - 20px);
+  .find-student form button {
+    width: 100%;
     margin-left: 0;
     margin-top: 10px;
     border-radius: 0;
   }
-  .find-student-form form button:hover {
+  .find-student form button:hover {
     border-radius: 0;
   }
-  .show-found-student {
+  .result {
     flex-direction: column;
     gap: 20px;
-    width: 100dvw;
     align-items: center;
   }
-}
-.invalid-code{
-  display: block;
-  margin: 20px auto;
-  background: var(--sixth);
-  text-align: center;
-  padding: 10px;
-  color: var(--first);
 }
 @media (min-width: 551px) {
   form {

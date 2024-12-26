@@ -15,6 +15,7 @@ certRoute.get('/cert/:param', (req, res) => {
 
 certRoute.put('/cert', async (req, res) => {
   const certificate = req.body
+  if(!certificate.certificateCode) return res.status(400).json({status: 400, msg: "Enter valid details"})
   const certificateCode = certificate.certificateCode.toLowerCase().trim(),
   user = await certificateModel.findOne({certificateCode})
 

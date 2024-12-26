@@ -1,10 +1,11 @@
-const verifyForm = document.querySelector('.find-student-form form'),
-      certificateNumber = document.getElementById('certificate_num'),
-      showFoundStudent = document.querySelector('.show-found-student')
+const verifyForm = document.querySelector('.find-student form'),
+      certificateNumber = document.getElementById('certificate'),
+      result = document.querySelector('.result')
 
-verifyForm.addEventListener('submit', (e) => {
+verifyForm.addEventListener('submit', async function(e){
   e.preventDefault()
 
+  loader.classList.add('active')
   let certificateCode = certificateNumber.value.toLowerCase().trim()
   if(certificateCode.length < 1) return
   const uri = '/verify',
@@ -14,28 +15,24 @@ verifyForm.addEventListener('submit', (e) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({certificateCode})
-    }
-  fetch(uri, options)
-  .then((res) => res.json())
-  .then(data => {
-  if(data.status === 500) {
-    return showFoundStudent.innerHTML =  `<b>${data.msg}</b>`
-  }
-  if(data.status === 404 || data.status === 400) {
-    return showFoundStudent.innerHTML =  `<b class="invalid-code">${data.msg}</b>`
+    },
+    response = await fetch(uri, options),
+    res = await response.json()
+  if(res.status !== 200) {
+    result.innerHTML =  `<span class="failed">${res.msg}</span>`
+    loader.classList.remove('active')
+    return 
   }
 
-  let name = data.user.name
-  let programme = data.user.programme
-  showFoundStudent.innerHTML =  `
+  result.innerHTML =  `
     <div class="student-details">
-        <div><b for="student-name">Name </b>:<span class="student-name">${name.toUpperCase()}</span></div>
-      <div><b for="student-number">Student number</b> : <span class="student-number">${data.user.studentNumber}</span></div>
-      <div><b for="student-certificate-num">Certificate code</b> : <span class="student-certificate-num">${data.user.certificateCode.toUpperCase()}</span></div>
+        <div><b for="student-name">Name </b>:<span class="student-name">${res.name.toUpperCase()}</span></div>
+      <div><b for="student-number">Student number</b> : <span class="student-number">${res.studentNumber}</span></div>
+      <div><b for="student-certificate-num">Certificate code</b> : <span class="student-certificate-num">${res.certificateCode.toUpperCase()}</span></div>
       <div><b for="verification-status">Status</b> : <span class="verification-status">VALID</span></div>
-      <div><b for="student-course">Programme</b> : <span class="student-course">${programme.toUpperCase()}</span></div>
-      <div><b for="date-completed">Date completed</b> : <span class="date-completed">${data.user.dateCompleted.toUpperCase()}</span></div>
+      <div><b for="student-course">Programme</b> : <span class="student-course">${res.programme.toUpperCase()}</span></div>
+      <div><b for="date-completed">Date completed</b> : <span class="date-completed">${res.dateCompleted.toUpperCase()}</span></div>
     </div>
 `
+loader.classList.remove('active')
   })
-})

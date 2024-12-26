@@ -378,8 +378,25 @@ svg{
 }
 button{
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 1;
+  border: none;
 }
 button:hover{
-  opacity: 1;
+  opacity: 0.8;
+}
+span.failed, span.success{
+  display: block;
+  background-color: var(--sixth);
+  color: var(--white);
+  width: 90%;
+  max-width: 400px;
+  padding: 10px;
+  text-align: center;
+  margin: 20px auto;
+  text-transform: uppercase;
+  font-size: var(--second-s);
+}
+
+span.success{
+  background-color: var(--third);
 }

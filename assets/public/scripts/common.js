@@ -1,5 +1,6 @@
 const courseListBtn = document.querySelector('.course-list-button'),
   logoContainer = document.querySelector('.logo-container'),
+  loader = document.querySelector('footer .loader'),
   menuBtn = document.querySelector('.menu-button'),
   dateContainer = document.querySelector('.date-year'),
   currentYear = new Date().getFullYear(),

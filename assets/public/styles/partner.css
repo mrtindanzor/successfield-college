@@ -6,23 +6,6 @@ main-section{
   background-color: var(--darker);
 }
 
-.result .failed, .result .success{
-  display: block;
-  background-color: var(--sixth);
-  color: var(--white);
-  width: 90%;
-  max-width: 400px;
-  padding: 10px;
-  text-align: center;
-  margin: 20px auto;
-  text-transform: uppercase;
-  font-size: var(--second-s);
-}
-
-.result .success{
-  background-color: var(--third);
-}
-
 main-section.show{
   ul.ul-wrapper{
     list-style-type: none;

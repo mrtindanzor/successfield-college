@@ -1,5 +1,4 @@
-const page = document.querySelector('[data-section]').dataset.section,
-  loader = document.querySelector('footer .loader')
+const page = document.querySelector('[data-section]').dataset.section
 
 if(page === 'show'){
   const details = document.querySelectorAll('details')
@@ -65,7 +64,7 @@ if(res.status !== 201){
       ${res.msg}
     </span>
   `
-  formEl.reset()
+  document.formEl.scrollTo = 0
   loader.classList.remove('active')
   return
 }

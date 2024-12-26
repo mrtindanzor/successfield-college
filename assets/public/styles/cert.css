@@ -1,3 +1,6 @@
+main-section{
+  background-color: var(--dark);
+}
 main-section.add{
   .main-wrapper{
     display: flex;
