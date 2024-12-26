@@ -16,13 +16,15 @@ if(page === 'show'){
 
 if(page === 'add'){
 
-const formEl = document.querySelector('.provider-form'),
+const formEl = document.querySelector('.partner-form'),
 result = document.querySelector('.result')
 
 formEl.addEventListener('click', e => {
 if(e.target.classList.contains('add-more')){
  const input = document.createElement('input'),
- provider = document.querySelector('.provider-form label:nth-child(5)')
+ provider = document.querySelector('.approvals')
+ input.setAttribute('type', 'text')
+ input.setAttribute('placeholder', 'Approved programs')
  provider.append(input)
 }
 })
@@ -34,7 +36,7 @@ result.innerHTML = ''
 
 const approvals = [],
   name = formEl.querySelector('#name').value.toLowerCase().trim(),
-  allPartners = formEl.querySelectorAll('form label:nth-child(5) input'),
+  allPartners = formEl.querySelectorAll('.approvals input'),
   partnerId = formEl.querySelector('#id').value.toLowerCase().trim(),
   location = formEl.querySelector('#location').value.toLowerCase().trim()
 
@@ -154,8 +156,11 @@ if(page === 'edit'){
     const addMore = document.querySelector('.add-more')
 
     addMore.addEventListener('click', function(){
-      const input = '<input type="text" placeholder="Approved program">'
-      approvalsContainer.innerHTML += input
+      const input = document.createElement('input'),
+      provider = document.querySelector('.approvals')
+      input.setAttribute('type', 'text')
+      input.setAttribute('placeholder', 'Approved programs')
+      approvalsContainer.append(input)
     })
     loader.classList.remove('active')
 
