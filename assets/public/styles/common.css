@@ -400,3 +400,57 @@ span.failed, span.success{
 span.success{
   background-color: var(--third);
 }
+.prompt-dialog{
+  position: fixed;
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  background-color: var(--white);
+  padding: 10px 30px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  transform: scale(0);
+  text-align: center;
+  transition: 0.3s ease-in;
+  width: 90%;
+  max-width: 400px;
+}
+.prompt-dialog.active{
+  transform: scale(1) translate(-50%, -50%);
+}
+.prompt-dialog span .confirm{
+  color: var(--sixth);
+}
+.prompt-dialog span{
+  margin-bottom: 15px;
+}
+.prompt-dialog input{
+  border: 1px solid var(--sixth)!important;
+}
+.prompt-dialog button{
+  border: 1px solid;
+  margin: 20px auto;
+}
+.prompt-dialog button.confirm-delete{
+  color: var(--white);
+  background-color: var(--sixth);
+  border: 1px solid currentColor;
+}
+.prompt-dialog button.confirm-delete:hover{
+  border-radius: 10px;
+}
+.prompt-dialog{
+  margin: 0;
+}
+.prompt-dialog button.deny-delete{
+  color: var(--sixth);
+  background-color: var(--white);
+  border: 1px solid currentColor;
+}
+.prompt-dialog button.deny-delete:hover{
+  color: var(--white);
+  background-color: var(--sixth);
+  border: 1px solid currentColor;
+}

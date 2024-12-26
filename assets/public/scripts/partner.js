@@ -257,11 +257,11 @@ formEl.addEventListener('submit', async function(e){
      <div class="delete-wrapper">
         <h3>Revoke Training Partner</h3>
           <h4>Name:</h4>
-          <span>${res.name.toUpperCase()}</span>
+          <span>${res.name}</span>
           <h4>Partner ID:</h4>
-          <span>${res.partnerId.toUpperCase()}</span>
+          <span>${res.partnerId}</span>
           <h4>Location:</h4>
-          <span>${res.location.toUpperCase()}</span>
+          <span>${res.location}</span>
           <h4>Approved:</h4>
           <ol class="approvals">
           </ol>
@@ -282,7 +282,7 @@ formEl.addEventListener('submit', async function(e){
   const approvalsContainer = document.querySelector('.approvals'),
     approved = res.approvals
 
-  approved.forEach(el => approvalsContainer.innerHTML += `<li>${el.approval.toUpperCase()}</li>`)
+  approved.forEach(el => approvalsContainer.innerHTML += `<li>${el.approval}</li>`)
 
   loader.classList.remove('active')
 

@@ -18,6 +18,8 @@ const courseListBtn = document.querySelector('.course-list-button'),
   menuList = document.querySelector('ul.menu-list'),
   courseList = document.querySelector('.course-list-menu')
 
+
+let prompt, deleteBtn, denyBtn, confirmBtn
 svgs.forEach(el => {
   el.style.opacity = 1
 })
@@ -43,3 +45,4 @@ document.addEventListener('click', (e) => {
     }
   }
 })
+

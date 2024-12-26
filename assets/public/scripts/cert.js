@@ -164,44 +164,55 @@ if(page === 'delete'){
       res = await response.json()
     if(res.status !== 200){
       result.innerHTML = `
-        <span class="invalid-code">${data.msg}</span>
+        <span class="invalid-code">${res.msg}</span>
       `
       loader.classList.remove('active')
       return 
     }
     result.innerHTML = `
-        <div class="show-found-cert">
-          <span class="cert-name" data-id="${res._id}">
-            ${res.name.toUpperCase()}
-          </span>
-          <span class="certificate-code">
-            ${res.certificateCode}
-          </span>
-          <button>Delete</button>
-          <div class="prompt-dialog">
-            <div class="prompt-box">
-              <span class="confirm-text">
-                Type "<span class="confirm-cert">${res.certificateCode.toLowerCase()}</span>" to delete
-              </span>
-              <div class="contrs">
-                <input type="text">
-                <button class="confirm-delete">delete</button>
-              </div>
-            <button class="deny-delete">close</button>
-            </div>
-          </div>
+      <div class="show-found-cert">
+        <h3 data-id="${res._id}">Delete Certificate</h3>
+        <h4>Name:</h4>
+        <span>${res.name}</span>
+        <h4>Student ID:</h4>
+        <span>${res.studentNumber}</span>
+        <h4>Certificate Code:</h4>
+        <span>${res.certificateCode}</span>
+        <h4>Program:</h4>
+        <span>${res.programme}</span>
+        <h4>Date Completed:</h4>
+        <span>${res.dateCompleted}</span>
+        <button class="delete-button">delete</button>
+        <div class="prompt-dialog">
+        <span class="confirm-text">
+          Type "<span class="confirm">${res.certificateCode.toLowerCase()}</span>" to delete
+        </span>
+        <div class="contrs">
+          <input type="text">
+          <button class="confirm-delete">delete</button>
         </div>
+        <button class="deny-delete">close</button>
+      </div>
       `
     loader.classList.remove('active')
-    const deleteBtn = document.querySelector('.result > button'),
+    const deleteBtn = document.querySelector('.result .delete-button'),
       prompt = document.querySelector('.prompt-dialog'),
-      confirmEl = document.querySelector('.prompt-box')
-
-    deleteBtn.addEventListener('click', () => prompt.classList.add('active'))
+      denyBtn = document.querySelector('.deny-delete'),
+      confirmEl = document.querySelector('.confirm-delete')
+    deleteBtn.addEventListener('click', () => {
+      loader.classList.add('active')
+      prompt.classList.add('active')
+    })
+    denyBtn.addEventListener('click', () => {
+      prompt.classList.remove('active')
+      loader.classList.remove('active')
+    })
 
     confirmEl.addEventListener('click', async function(e){
-      let inputValue = confirmEl.querySelector('.contrs input').value.toLowerCase().trim(),
-        certificate = confirmEl.querySelector('.confirm-cert').textContent.toLowerCase()
+      let inputValue = document.querySelector('.contrs input').value.toLowerCase().trim(),
+        certificate = document.querySelector('.confirm').textContent.toLowerCase()
+
+      if(!inputValue) return 
       if(e.target.classList.contains('confirm-delete') && inputValue === certificate){
         loader.classList.add('active')
         const uri = '/admin/cert',
@@ -213,11 +224,11 @@ if(page === 'delete'){
             body: JSON.stringify({certificateCode})
           },
         response = await fetch(uri, options),
-        res = await res.json()
+        res = await response.json()
         if(res.status !== 200){
           result.innerHTML =  `
-          <span class="is-not-deleted">
-            ${data.msg}
+          <span class="failed">
+            ${res.msg}
           </span>
           `
         prompt.classList.remove('active')
@@ -226,14 +237,12 @@ if(page === 'delete'){
         }
 
         result.innerHTML =  `
-          <span class="is-deleted">
-            ${data.msg}
+          <span class="success">
+            ${res.msg}
           </span>
           `
-      }
-      if(e.target.classList.contains('deny-delete')){
-        prompt.classList.remove('active')
         loader.classList.remove('active')
+        prompt.classList.remove('active')
       }
     })
   })
