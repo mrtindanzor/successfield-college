@@ -310,7 +310,6 @@ main-section.delete{
     z-index: 1001;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     background-color: var(--white);
     padding: 10px 30px;
     border-radius: 5px;
@@ -318,9 +317,11 @@ main-section.delete{
     flex-direction: column;
     height: fit-content;
     transform: scale(0);
+    text-align: center;
+    transition: 0.3s ease-in;
   }
   .result .prompt-dialog.active{
-    transform: scale(1);
+    transform: scale(1) translate(-50%, -50%);
   }
   .result .prompt-dialog span .confirm{
     color: var(--sixth);
