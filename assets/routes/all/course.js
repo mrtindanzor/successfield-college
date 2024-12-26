@@ -23,7 +23,7 @@ courseRoute.post('/course', async (req, res) => {
   if(!course) return res.status(400).json({status: 400, msg: 'No course was sent'})
   const isCourse = await courseModel.findOne({course})
   if(!isCourse) return res.status(404).json({status: 404, msg: 'No course found'})
-  return res.status(200).json({status: 200, isCourse})
+  return res.status(200).json({status: 200, ...isCourse._doc})
 })
 
 courseRoute.put('/course', async (req, res) => {

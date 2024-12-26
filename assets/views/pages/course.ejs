@@ -164,14 +164,14 @@
     </div>
     <div id="result">
     </div>
-    <div class="prompt-dialog remove">
+    <div class="prompt-dialog">
       <div class="confirmation-dialog">
         <span class="confirm-text">
           Confirm add course
         </span>
         <div class="prompt-contrs">
-        <button class="accept-prompt"> Yes  </button>
-    <button class="deny-prompt">No</button>
+        <button class="confirm"> Yes  </button>
+        <button class="close-button">No</button>
         </div>
       </div>
     </div>
@@ -270,8 +270,8 @@
           Confirm add course
         </span>
         <div class="prompt-contrs">
-        <button class="accept-prompt"> Yes  </button>
-    <button class="deny-prompt">No</button>
+        <button class="confirm">Yes</button>
+        <button class="close-button">No</button>
         </div>
       </div>
     </div>
@@ -281,7 +281,7 @@
 <% if(locals.section === 'delete'){ %>
   <main-section class="delete">
     <div class="delete-course-wrapper"  data-section="delete">
-      <form class="find-course-form">
+      <form class="find-course">
         <input type="text" class="course">
         <button>find</button>
       </form>

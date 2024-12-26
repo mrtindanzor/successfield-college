@@ -134,20 +134,21 @@ main-section.add{
     #result span.success{
       background-color: var(--third);
     }
-  .prompt-dialog.remove{
-    transform: scale(0);
+  .prompt-dialog.active{
+    transform: scale(1) translate(-50%, -50%);
   }
   .prompt-dialog{
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     width: 100dvw;
     height: 100dvh;
     background: var(--first);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 99;
+    transform: scale(0);
+    z-index: 1001;
   }
   .prompt-dialog .confirmation-dialog{
     display: flex;
@@ -167,10 +168,10 @@ main-section.add{
     border: none;
     cursor: pointer;
   }
-  .prompt-contrs .accept-prompt{
+  .prompt-contrs .confirm{
     background: var(--third);
   }
-  .prompt-contrs .deny-prompt{
+  .prompt-contrs .close-button{
     background: var(--sixth);
   }
   
@@ -278,8 +279,8 @@ main-section.edit{
   #result span.success{
     background-color: var(--third);
   }
-  .prompt-dialog.remove{
-    transform: scale(0);
+  .prompt-dialog.active{
+    transform: scale(1);
   }
   .prompt-dialog{
     position: fixed;
@@ -291,7 +292,8 @@ main-section.edit{
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 99;
+    transform: scale(0);
+    z-index: 1001;
   }
   .prompt-dialog .confirmation-dialog{
     display: flex;
@@ -310,152 +312,95 @@ main-section.edit{
     color: var(--first);
     border: none;
   }
-  .prompt-contrs .accept-prompt{
+  .prompt-contrs .confirm{
     background: var(--third);
   }
-  .prompt-contrs .deny-prompt{
+  .prompt-contrs .close-button{
     background: var(--sixth);
   }  
 }
 
 main-section.delete{
-  .forms-wrapper{
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    padding: 20px;
-    max-width: 500px;
-    margin: 10px auto 10px auto;
-  }
-  .forms-wrapper .find-course{
-    width: 100%;
-    display: flex;
-    column-gap: 5px;
-    margin-bottom: 50px;
-    align-items: end;
-    background: var(--third);
-    padding: 20px;
-  }
-  .find-course label{
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    width: 100%;
-  }
-  .find-course label span{
-    color: var(--first);
-    font-size: 19px;
-  }
-  .find-course label input{
-    width: 100%;
+  .delete-course-wrapper{
+    width: 100dvw;
     padding: 10px;
+  }
+  input[type="text"]{
+    background-color: var(--first);
+    display: block;
+    padding: 10px;
+    width: 100%;
+    border-radius: 4px;
     border: none;
-    border-radius: 5px 0 0 5px;
   }
-  .find-course label input:focus{
-    outline: none;
-  }
-  .find-course > input{
-    width:fit-content;
-    height: fit-content;
-    background: var(--first);
+  input[type="submit"], button{
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
     color: var(--third);
-    font-weight: 800;
-    padding: 10px ;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
+    font-weight: 900;
+    text-transform: capitalize;
   }
-  form.form{
-    display: none;
-  }
-  form.form.active{
-    background: var(--third);
-    padding: 30px 20px;
+  .find-course{
+    width: 100%;
+    max-width: 350px;
+    border: 1px solid var(--third);
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    padding: 10px;
+    background-color: var(--third);
+    border-radius: 4px;
+    gap: 5px;
+    margin: 30px auto;
   }
-  form span.form-title{
-    display: block;
-    padding: 10px 20px;
-    background: var(--first);
+  .result .show-found-course{
+    background-color: var(--third);
+    width: 95%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px 10px;
+  }
+  .result .show-found-course h3{
+    border-radius: 5px;
+    background-color: var(--white);
     color: var(--third);
-    font-weight: 800;
+    margin-bottom: 8px;
+    padding: 20px 10px 10px;
   }
-  form input, .back-button{
-    padding: 10px 20px;
+  .result .show-found-course h4{
+    background-color: var(--white);
+    color: var(--third);
+    margin-bottom: 8px;
+    margin-right: 8px;
+    padding: 5px 10px;
   }
-  .back-button{
-    display: block;
+
+  .result .show-found-course > button{
     background: var(--sixth);
-    color: var(--first);
-    text-align: center;
-    font-weight: 300;
-  }
-  .form span.add-more{
+    color: var(--white);
+    text-transform: uppercase;
     display: block;
     width: fit-content;
-    align-self: end;
-    border: 1px solid var(--third);
-    background: var(--second);
-    padding: 5px 10px;
-    color: var(--first);
+    margin: 20px auto;
+    padding: 10px 20px;
     border-radius: 5px;
-    font-size: 13px;
   }
-  #result span{
-    display: block;
+  .result .show-found-course > span{
+    font-size: var(--second-s);
+    color: var(--white);
+  }
+  .result .show-found-course ol li{
+    margin-bottom: 5px;
+    font-size: var(--second-s);
+    color: var(--white);
+    text-transform: capitalize;
+  }
+  .prompt-dialog .confirm-button{
+    color: var(--white)!important;
+    background-color: var(--sixth)!important;
+  }
+  .prompt-dialog .close-button{
+    color: var(--sixth);
     border: 1px solid currentColor;
-    padding: 10px;
-    text-align: center;
-    max-width: 450px;
-    margin: 10px auto;
-    color: var(--first);
-    border-radius: 4px;
   }
-  #result span.fail{
-    background-color: var(--sixth);
-  }
-  #result span.success{
-    background-color: var(--third);
-  }
-  .prompt-dialog.remove{
-    transform: scale(0);
-  }
-  .prompt-dialog{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100dvw;
-    height: 100dvh;
-    background: var(--first);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 99;
-  }
-  .prompt-dialog .confirmation-dialog{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-  }
-  .confirmation-dialog span.confirm-text{
-    font-weight: 600;
-  }
-  .prompt-contrs > *{
-    font-size: 1.3rem;
-    padding: 8px 20px;
-    margin: 20px 10px;
-    color: var(--first);
-    border: none;
-  }
-  .prompt-contrs .accept-prompt{
-    background: var(--third);
-  }
-  .prompt-contrs .deny-prompt{
-    background: var(--sixth);
-  }  
 }
