@@ -33,6 +33,7 @@ formEl.addEventListener('submit', async e => {
 e.preventDefault()
 
 result.innerHTML = ''
+loader.classList.add('active')
 
 const approvals = [],
   name = formEl.querySelector('#name').value.toLowerCase().trim(),
@@ -55,23 +56,26 @@ const uri = '/admin/partner',
     },
     body: partnerProfile
   }
-const data = await fetch(uri, options),
-  res = await data.json()
+const response = await fetch(uri, options),
+  res = await response.json()
 
-if(res.status === 201){
-  result.innerHTML = `
-    <span class="add-success">
-      ${res.msg}
-    </span>
-  `
-}
 if(res.status !== 201){
   result.innerHTML = `
-    <span class="add-fail">
+    <span class="failed">
       ${res.msg}
     </span>
   `
+  formEl.reset()
+  loader.classList.remove('active')
+  return
 }
+
+result.innerHTML = `
+<span class="success">
+  ${res.msg}
+</span>
+`
+loader.classList.remove('active')
 })
 
 }

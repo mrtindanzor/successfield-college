@@ -14,7 +14,7 @@ main-section{
   max-width: 400px;
   padding: 10px;
   text-align: center;
-  margin: 0 auto;
+  margin: 20px auto;
   text-transform: uppercase;
   font-size: var(--second-s);
 }
@@ -313,6 +313,8 @@ main-section.delete{
     transform: scale(0);
     text-align: center;
     transition: 0.3s ease-in;
+    min-width: 90%;
+    max-width: 400px;
   }
   .result .prompt-dialog.active{
     transform: scale(1) translate(-50%, -50%);
