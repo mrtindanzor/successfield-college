@@ -28,6 +28,25 @@ main-section{
   padding: 5px;
   margin: 0 auto;
 }
+.main-page .title-bar{
+  display: none;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 2px solid var(--darker);
+}
+.main-page .title-bar.active{
+  display: flex;
+}
+.title-bar .back-button{
+  width: 30px;
+  height: 30px;
+  color: var(--third);
+}
+.title-bar .title{
+  font-size: var(--fourth-s);
+  text-transform: capitalize;
+  color: var(--third);
+}
 
 @media (max-width: 550px) {
   .profile-img{
@@ -43,25 +62,6 @@ main-section{
     font-size: var(--second-s);
     text-transform: capitalize;
     opacity: 0.5;
-  }
-  .main-page .title-bar{
-    display: none;
-    align-items: center;
-    padding: 10px 20px;
-    border-bottom: 2px solid var(--darker);
-  }
-  .main-page .title-bar.active{
-    display: flex;
-  }
-  .title-bar .back-button{
-    width: 30px;
-    height: 30px;
-    color: var(--third);
-  }
-  .title-bar .title{
-    font-size: var(--fourth-s);
-    text-transform: capitalize;
-    color: var(--third);
   }
   .main-links{
     position: relative;
@@ -121,12 +121,23 @@ main-section{
   }
   .main-page{
     position: relative;
-    width: 40%;
+    width: 35dvw;
     max-width: 300px;
     border: 2px solid var(--darker);
     padding: 10px;
   }
   .main-page .title-bar{
+    display: none;
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 0;
+    white-space: nowrap;
+    border: none;
+  }
+  .main-page .title-bar.active{
+    display: flex;
+  }
+  .title-bar .back-button{
     display: none;
   }
   .main-links{
@@ -147,22 +158,29 @@ main-section{
     display: none;
     position: absolute;
     list-style: none;
-    height: calc(100% + 4px);
     left: calc(100% + 2px);
     border: 2px solid var(--darker);
     border-left: none;
-    width: fit-content;
-    min-width: 100%;
-    align-items: flex-start;
+    min-width: 60dvw;
+    flex-direction: column;
+    height: calc(100% + 4px);
     white-space: nowrap;
-    flex-wrap: wrap;
     top: -2px;
     padding: 20px;
+    padding-top: 60px;
   }
   .main-links li ul.active{
     display: flex;
   }
+  .main-links ul li a:hover{
+    color: var(--third);
+  }
   .main-links ul li a{
-    display: flex;
+    display: block;
+    background-color: transparent;
+    box-shadow: none;
+    margin: none;
+    text-decoration: none;
+    text-transform: capitalize;
   }
 }
