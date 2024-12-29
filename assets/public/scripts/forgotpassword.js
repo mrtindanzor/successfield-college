@@ -1,8 +1,11 @@
 const inputEl = document.querySelector('.email'),
-  sendBtn = document.querySelector('.send-button'),
+  formEl = document.querySelector('form.email-container'),
   result = document.querySelector('.result')
 
-sendBtn.addEventListener('click', async () => {
+formEl.addEventListener('submit', async function(e){
+  e.preventDefault()
+
+  loader.classList.add('active')
   let email = inputEl.value
   email = JSON.stringify({email})
   const uri = '/users/forgotpassword',
@@ -15,6 +18,7 @@ sendBtn.addEventListener('click', async () => {
     },
     response = await fetch(uri, options),
     res = await response.json()
-  if(data.status === 200) result.innerHTML = `<div class="email-sent">${res.msg}</div>`
-  if(data.status !== 200) result.innerHTML = `<div class="email-not-sent">${res.msg}</div>`
+  if(res.status === 200) result.innerHTML = `<div class="success">${res.msg}</div>`
+  if(res.status !== 200) result.innerHTML = `<div class="failed">${res.msg}</div>`
+  loader.classList.remove('active')
 })
