@@ -78,7 +78,7 @@ class mailTemplates{
   
   newCertificateIssued = (admin, name, studentNumber, certificateCode, certificateName) => {
     return `
-     <h3>Mr. ${admin.toUpperCase()},</h3>
+     <h3>${admin.toUpperCase()},</h3>
         <br>
       <p>
        A new certificate has been is issued to ${name.toUpperCase()} with student number ${studentNumber.toUpperCase()} for ${certificateName.toUpperCase()}. The certificate code is ${certificateCode.toUpperCase()}.
