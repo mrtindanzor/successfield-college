@@ -6,16 +6,16 @@
     </span>
   </div>
   <% if(locals.page != "login" && locals.page != "join"){ %>
-  <div class="auth-contrs">
-      <% if(isLoggedIn){ %>
-          <a href="/users/logout" class="auth-logout">Logout</a>
+    <div class="auth-contrs">
+        <% if(isLoggedIn){ %>
+          <a href="/users/profile" class="auth-logout">
+            <%- (new icons('user-line-icon', 'My profile')).userLine()%>
+          </a>
         <%} else { %>
-    <a href="/users/login" class="auth-login">
-      Login
-    </a>
-    <a href="/users/join" class="auth-signup">Signup</a>
-<% } %>
-  </div>
+          <a href="/users/login" class="auth-login">Login</a>
+          <a href="/users/join" class="auth-signup">Signup</a>
+        <% } %>
+      </div>
   <% } %>
 </nav>
 <% if(locals.page != "login" && locals.page != "join" && locals.page != 'verifyemail' && locals.page != 'forgotpassword' && locals.page != 'setforgotpassword'){ %>
