@@ -70,7 +70,7 @@ i{
   margin-bottom: 5px;
 }
 .result .student-details div b{
-  color: var(--fifth);
+  color: var(--second);
   font-size: var(--third-s);
   text-transform: uppercase;
 }

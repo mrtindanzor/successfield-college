@@ -31,11 +31,12 @@ certRoute.put('/cert', async (req, res) => {
         const name = certificate.name || '',
             studentNumber = certificate.studentNumber || '',
             certificateCode = certificate.certificateCode || '', 
-            certificateName = certificate.certificate || '',
+            certificateName = certificate.programme || '',
             subject = 'New certificate issued to '+name.toUpperCase()
             users.forEach(async el => {
-              const admin = el.firstname + ' ' + el.surname,
-                html = (new mailTemplates).newCertificateIssued(admin, name, studentNumber, certificateCode, certificateName)
+              let admin = el.firstname + ' ' + el.surname
+              if(el.firstname.toLowerCase() == 'augustine') admin = 'Dr (clin) ' + el.firstname + ' ' + el.surname
+              const html = (new mailTemplates).newCertificateIssued(admin, name, studentNumber, certificateCode, certificateName)
               await sendMailAsync(subject, html, el.email)
               })
             }
