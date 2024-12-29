@@ -146,7 +146,7 @@ if(page === 'edit'){
         </label>
         <i class="add-more">add more</i>
         <button>
-          Add partner
+          Edit partner
         </button>
         </form>
     `
