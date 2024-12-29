@@ -221,12 +221,13 @@ authroute.get('/logout', (req, res) => {
     res.redirect('/')
   })
 })
-
+authroute.get('/forgotpassword', (req, res) => {
+  res.status(200).render('index', {page: 'forgotpassword', title: 'Forgot password'})
+})
 authroute.get('/:auth', authenticated, (req, res, next) => {
   const route = req.params.auth.trim().toLowerCase()
   if(route === 'join') return res.status(200).render('index', {page: 'join', title: 'Create account'})
   if(route === 'login') return res.status(200).render('index', {page: 'login', title: 'Members Area'})
-  if(route === 'forgotpassword') return res.status(200).render('index', {page: 'forgotpassword', title: 'Forgot password'})
   next()
 })
 
