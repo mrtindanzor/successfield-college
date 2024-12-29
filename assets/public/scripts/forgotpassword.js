@@ -12,12 +12,9 @@ sendBtn.addEventListener('click', async () => {
         'Content-Type': 'application/json'
       },
       body: email
-    }
-
-    fetch(uri, options)
-    .then(res => res.json()) 
-    .then(data => {
-      if(data.status === 200) result.innerHTML = `<div class="email-sent">${data.msg}</div>`
-      if(data.status !== 200) result.innerHTML = `<div class="email-not-sent">${data.msg}</div>`
-    })
+    },
+    response = await fetch(uri, options),
+    res = await response.json()
+  if(data.status === 200) result.innerHTML = `<div class="email-sent">${res.msg}</div>`
+  if(data.status !== 200) result.innerHTML = `<div class="email-not-sent">${res.msg}</div>`
 })

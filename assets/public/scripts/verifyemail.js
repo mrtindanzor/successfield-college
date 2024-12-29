@@ -33,20 +33,17 @@ if(resendBtn){
           'Content-Type': 'application/json'
         },
         body: email
-      }
-
-     fetch(uri, options)
-      .then(res => res.json()) 
-      .then(data => {
-        if(data.status === 302) {
-          result.innerHTML = `<div class="email-not-sent">${data.msg}, redirecting in<span class="timeout">${count}</span>secs</div>`
-          const timeout = document.querySelector('.timeout')
-          counter(timeout)
-          redirect()
-          return 
-        }
-        if(data.status === 200) result.innerHTML = `<div class="email-sent">${data.msg}</div>`
-        if(data.status !== 200) result.innerHTML = `<div class="email-not-sent">${data.msg}</div>`
-      })
+      },
+     response = await fetch(uri, options),
+     res = await response.json()
+    if(res.status === 302) {
+      result.innerHTML = `<div class="email-not-sent">${res.msg}, redirecting in<span class="timeout">${count}</span>secs</div>`
+      const timeout = document.querySelector('.timeout')
+      counter(timeout)
+      redirect()
+      return 
+    }
+    if(res.status === 200) result.innerHTML = `<div class="email-sent">${res.msg}</div>`
+    if(res.status !== 200) result.innerHTML = `<div class="email-not-sent">${res.msg}</div>`
   })
 }

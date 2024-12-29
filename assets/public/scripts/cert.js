@@ -59,7 +59,7 @@ if(page === 'edit'){
     response = await fetch(uri, options),
     res = await response.json()
   if(res.status !== 200) {
-    result.innerHTML =  `<span class="failed">${data.msg}</span>`
+    result.innerHTML =  `<span class="failed">${res.msg}</span>`
     loader.classList.remove('active')
     return
   }
@@ -164,7 +164,7 @@ if(page === 'delete'){
       res = await response.json()
     if(res.status !== 200){
       result.innerHTML = `
-        <span class="invalid-code">${res.msg}</span>
+        <span class="failed">${res.msg}</span>
       `
       loader.classList.remove('active')
       return 

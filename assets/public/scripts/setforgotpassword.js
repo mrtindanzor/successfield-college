@@ -27,20 +27,17 @@ formEl.addEventListener('submit', async (e) => {
         'Content-Type': 'application/json'
       },
       body: jsonData
-    }
-
-    fetch(uri, options)
-    .then(res => res.json()) 
-    .then(data => {
-      if(data.status === 201){
-        result.innerHTML = `<div class="password-updated">${data.msg}, redirecting to login page in<span class="timeout">${count}</span>secs</div>`
-        const timeout = document.querySelector('.timeout')
-        counter(timeout)
-        redirect()
-        return
-      } 
-      if(data.status !== 200) return result.innerHTML = `<div class="password-not-updated">${data.msg}</div>`
-    })
+    },
+    response = await fetch(uri, options),
+    res = await response.json()
+  if(res.status === 201){
+    result.innerHTML = `<div class="password-updated">${res.msg}, redirecting to login page in<span class="timeout">${count}</span>secs</div>`
+    const timeout = document.querySelector('.timeout')
+    counter(timeout)
+    redirect()
+    return
+  } 
+  if(res.status !== 200) return result.innerHTML = `<div class="password-not-updated">${res.msg}</div>`
 })
 
 for(let show of showPassword){
