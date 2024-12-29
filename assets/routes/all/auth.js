@@ -105,7 +105,7 @@ authroute.post('/join', authenticated,  async (req, res) => {
     })
     
 })
-authroute.post('/login', authenticated,  (req, res, next) => {
+authroute.post('/login',  (req, res, next) => {
   passport.authenticate('local', async (err, user, info) => {
     if(err) return next(err)
       
@@ -227,7 +227,7 @@ authroute.get('/forgotpassword', (req, res) => {
 authroute.get('/:auth', authenticated, (req, res, next) => {
   const route = req.params.auth.trim().toLowerCase()
   if(route === 'join') return res.status(200).render('index', {page: 'join', title: 'Create account'})
-  if(route === 'login') return res.status(200).render('index', {page: 'login', title: 'Members Area'})
+  if(route === 'login' || req.query.switch === 'true') return res.status(200).render('index', {page: 'login', title: 'Members Area'})
   next()
 })
 

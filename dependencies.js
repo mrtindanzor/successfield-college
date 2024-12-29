@@ -75,7 +75,7 @@ const env = config().parsed,
       next(err)
   },
   authenticated = (req, res, next) => {
-    if(req.isAuthenticated()) return res.redirect('/')
+    if(req.isAuthenticated() && req.query.switch !== 'true') return res.redirect('/')
     next()
   },
   isNotAuthenticated = (req, res, next) => {
