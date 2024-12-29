@@ -112,6 +112,9 @@ main-section{
     justify-content: space-around;
     width: 100%;
   }
+  .main-links ul li a:hover{
+    color: var(--third);
+  }
 }
 @media (min-width: 551px) {
   .profile-wrapper{
