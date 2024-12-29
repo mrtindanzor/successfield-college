@@ -6,28 +6,48 @@ const slideshowImgs = ['000015.jpg', '000016.jpg', '000017.jpg', '000018.jpg', '
   chevronLeft = (new icons('left-chevron', 'Scroll left')).chevronLeft(),
   chevronRight = (new icons('right-chevron', 'Scroll right')).chevronRight()
 
-slideshowImgs.forEach(el => {
+let maxScrollWidth, lastScrollTime = 0
+
+slideshowImgs.forEach(appendImgs)
+ 
+    
+slideBtn.forEach(handleSlideBtns)
+
+slideshowEl.addEventListener('scroll', handleBtns)
+
+setInterval(autoScroll, 2000)
+
+function appendImgs(el){
   const img = document.createElement('img')
   img.src = 'images/'+el
   img.classList.add('slideshow-img')
   slideshowEl.append(img)
-})
-    
-function setScrollWidth(object, direction){
-  return object.clientWidth * direction
 }
-    
-slideBtn.forEach(btn => {
-	let direction = btn.classList.contains('left') ? -1 : 1;
+function handleBtns(){
+  maxScrollWidth = slideshowEl.scrollWidth - slideshowEl.clientWidth
+	slideBtn[0].style.display = slideshowEl.scrollLeft <= 0 ? 'none' : 'block';
+	slideBtn[1].style.display = slideshowEl.scrollLeft >= maxScrollWidth ? 'none' : 'block';
+}
+function handleSlideBtns(btn){
+  let direction = btn.classList.contains('left') ? -1 : 1;
   btn.innerHTML = btn.classList.contains('left') ? chevronLeft : chevronRight;
   btn.addEventListener('click', function(){
     let scrollWidth = setScrollWidth(slideshowEl, direction)
   	slideshowEl.scrollBy({left: scrollWidth, behavior: 'smooth'})
+    lastScrollTime = 10000
+    setTimeout(() => {
+      autoScroll()
+      lastScrollTime = 0
+    }, lastScrollTime)
   })
-})
-
-slideshowEl.addEventListener('scroll', function(){
-	let maxScrollWidth = slideshowEl.scrollWidth - slideshowEl.clientWidth
-	slideBtn[0].style.display = slideshowEl.scrollLeft <= 0 ? 'none' : 'block';
-	slideBtn[1].style.display = slideshowEl.scrollLeft >= maxScrollWidth ? 'none' : 'block';
-})
+}   
+function setScrollWidth(object, direction){
+  return object.clientWidth * direction
+}
+function autoScroll(){
+  if(lastScrollTime === 0){
+    let direction = slideshowEl.scrollLeft >= maxScrollWidth ? -1 * (slideshowEl.scrollWidth / slideshowEl.clientWidth) : 1;
+    let scrollWidth = setScrollWidth(slideshowEl, direction)
+    slideshowEl.scrollBy({left: scrollWidth, behavior: 'smooth'})
+  }
+}
