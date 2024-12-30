@@ -1,6 +1,6 @@
 const courseListBtn = document.querySelector('.course-list-button'),
   logoContainer = document.querySelector('.logo-container'),
-  loader = document.querySelector('footer .loader'),
+  loader = document.querySelector('nav .loader'),
   loadSlider = document.querySelector('.loader .loading-slide'),
   menuBtn = document.querySelector('.menu-button'),
   dateContainer = document.querySelector('.date-year'),
@@ -12,17 +12,15 @@ const courseListBtn = document.querySelector('.course-list-button'),
     if(currentDisplay === 'none'){
         object.style.display = display   
       object.style.flexDirection = 'column'
-  } else {
+    } else {
       object.style.display = 'none'
     }
   },
   menuList = document.querySelector('ul.menu-list'),
   courseList = document.querySelector('.course-list-menu')
 
-if(loader){
-  animateSlider()
-  setInterval(animateSlider, 600)
-}
+animateSlider()
+setInterval(animateSlider, 600)
   
 let prompt, deleteBtn, denyBtn, confirmBtn
 svgs.forEach(el => {
