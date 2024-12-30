@@ -1,6 +1,7 @@
 const courseListBtn = document.querySelector('.course-list-button'),
   logoContainer = document.querySelector('.logo-container'),
   loader = document.querySelector('footer .loader'),
+  loadSlider = document.querySelector('.loader .loading-slide'),
   menuBtn = document.querySelector('.menu-button'),
   dateContainer = document.querySelector('.date-year'),
   currentYear = new Date().getFullYear(),
@@ -18,7 +19,11 @@ const courseListBtn = document.querySelector('.course-list-button'),
   menuList = document.querySelector('ul.menu-list'),
   courseList = document.querySelector('.course-list-menu')
 
-
+if(loader){
+  animateSlider()
+  setInterval(animateSlider, 600)
+}
+  
 let prompt, deleteBtn, denyBtn, confirmBtn
 svgs.forEach(el => {
   el.style.opacity = 1
@@ -46,3 +51,7 @@ document.addEventListener('click', (e) => {
   }
 })
 
+function animateSlider(){
+  if(loadSlider.classList.contains('active')) return loadSlider.classList.remove('active')
+  return loadSlider.classList.add('active')
+}
