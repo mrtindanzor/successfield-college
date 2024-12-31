@@ -13,7 +13,6 @@ main-section.password, main-section.username, main-section.phone{
     margin: 50px auto;
     display: flex;
     flex-direction: column;
-    background-color: var(--third);
     padding: 20px;
     border-radius: 2px;
     gap: 10px;
@@ -36,6 +35,7 @@ main-section.password, main-section.username, main-section.phone{
     padding: 5px 10px;
     display: block;
     width: 100%;
+    border-radius: 4px;
   }
   .page-wrapper .form-container button{
     padding: 10px 20px;
