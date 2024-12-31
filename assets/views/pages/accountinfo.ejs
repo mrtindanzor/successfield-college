@@ -1,0 +1,89 @@
+<% if(section === 'username'){ %>
+  <main-section class="username">
+    <div class="page-wrapper">
+      <div class="result">
+        <!-- <span class="failed">This is a failed</span>
+        <span class="success">This is a success</span> -->
+      </div>
+      <form class="form-container">
+        <span>Change username</span>
+        <label>
+          <input type="text" name="firstname" placeholder="Firstname" value="<%= user.firstname %>" >
+        </label>
+        <label>
+          <input type="text" name="middlename" placeholder="Middle name" <% if(user.middlename){ %> value="<%= user.middlename %>" <% } %> >
+        </label>
+        <label>
+          <input type="text" name="surname" placeholder="surname" value="<%= user.surname %>" >
+        </label>
+        <button>Edit name</button>
+      </form>
+    </div>
+  </main-section>
+<% } %>
+
+<% if(section === 'phone'){ %>
+  <main-section class="phone">
+    <div class="page-wrapper">
+      <div class="result">
+        <!-- <span class="failed">This is a failed</span>
+        <span class="success">This is a success</span> -->
+      </div>
+      <form class="form-container">
+        <span>Update phone number</span>
+        <label>
+          <input type="tel" name="phone" placeholder="0200000000" <% if(user.phone){ %> value="<%= user.phone%>" <% } %> >
+        </label>
+        <button>Change phone number</button>
+      </form>
+    </div>
+  </main-section>
+<% } %>
+
+<% if(section === 'email'){ %>
+  <main-section class="phone">
+    <div class="page-wrapper">
+      <div class="result">
+        <!-- <span class="failed">This is a failed</span>
+        <span class="success">This is a success</span> -->
+      </div>
+      <form class="form-container">
+        <span>Update email</span>
+        <label>
+          <input type="email" name="email" placeholder="info@example.com" value="<%= user.email%>" >
+        </label>
+        <button>Change email address</button>
+      </form>
+    </div>
+  </main-section>
+<% } %>
+
+<% if(section === 'region'){ %>
+  <main-section class="region">
+
+  </main-section>
+<% } %>
+
+<% if(section === 'password'){ %>
+  <main-section class="password">
+    <div class="page-wrapper">
+      <div class="result">
+        <!-- <span class="failed">This is a failed</span>
+        <span class="success">This is a success</span> -->
+      </div>
+      <form class="form-container">
+        <span>Change password</span>
+        <label>
+          <input type="password" name="oldPassword" placeholder="Enter old password" >
+        </label>
+        <label>
+          <input type="password" name="password" placeholder="Enter new password" >
+        </label>
+        <label>
+          <input type="password" name="cpassword" placeholder="Confirm new password" >
+        </label>
+        <button>change password</button>
+      </form>
+    </div>
+  </main-section>
+<% } %>
