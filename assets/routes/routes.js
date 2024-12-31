@@ -10,11 +10,12 @@ import uploadRoute from "./all/upload.js";
 import { showPartnerRoute } from "./all/partner.js";
 import profileRoute from "./all/profile.js";
 import profileItemsRoute from "./all/profileItems.js";
+import { isNotAuthenticated } from "../../dependencies.js";
 
 const router = Router()
 router.use(homeroute)
 router.use('/users', profileRoute)
-router.use('/users', profileItemsRoute)
+router.use('/users', isNotAuthenticated, profileItemsRoute)
 router.use('/users', authroute)
 router.use(contactroute)
 router.use(verifyroute)
