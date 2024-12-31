@@ -5,11 +5,9 @@ import bcrypt from 'bcrypt'
 import { Strategy as localStrategy } from 'passport-local'
 import { sendMailAsync }  from './sendmail.js'
 import mailTemplates from './mailtemplates.js'
-import { env, userModel, authenticated } from '../../../dependencies.js'
+import { env, userModel, authenticated, emailPattern, alpahanumericPattern } from '../../../dependencies.js'
 
-const authroute = Router(),
-  alpahanumericPattern = /^[A-Za-z0-9 .]+$/,
-  emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const authroute = Router()
 
 authroute.use(express.urlencoded({extended: false}))
 passport.use(new localStrategy({usernameField: "email"}, async (email, password, done) => {
@@ -26,7 +24,7 @@ passport.use(new localStrategy({usernameField: "email"}, async (email, password,
       subject =  `Verify email address`,
       link = `${env.baseurl}/users/verify/${date}`,
       html = (new mailTemplates).verifyAccoutTemplate(link)
-    const sendMail = await sendMailAsync(to, subject, html).catch(err => console.log(err))
+    const sendMail = await sendMailAsync(subject, html, to).catch(err => console.log(err))
     if(sendMail) if(sendMail.accepted.length === 1) return done(null, false, {status: 201})
     return done(null, false, {status: 500})
   }
@@ -85,7 +83,8 @@ authroute.post('/join', authenticated,  async (req, res) => {
     password: hashedPassword, 
     firstname: firstname, 
     surname: surname, 
-    date, 
+    date,
+    namechanged: false,
     verificationCode: date,
     verified: false
   },
@@ -98,12 +97,11 @@ authroute.post('/join', authenticated,  async (req, res) => {
           link = `${env.baseurl}/users/verify/${date}`,
           html = (new mailTemplates).verifyAccoutTemplate(link),
           sendMail = await sendMailAsync(subject, html, to).catch(err => console.log(err))
-          if(sendMail) if(sendMail.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Account created, an email was sent to your address, click link to verify'})
-            userModel.findOneAndDelete({email})
-            return res.status(400).json({status: 400, msg: 'An error occured, try again'})
+      if(sendMail) if(sendMail.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Account created, an email was sent to your address, click link to verify'})
+      userModel.findOneAndDelete({email})
+      return res.status(400).json({status: 400, msg: 'An error occured, try again'})
       }
-    })
-    
+    }) 
 })
 authroute.post('/login',  (req, res, next) => {
   passport.authenticate('local', async (err, user, info) => {

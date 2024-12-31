@@ -1,9 +1,25 @@
 main-section{
   background: var(--dark);
 }
-main-section.email{}
 main-section.region{}
-main-section.password, main-section.username, main-section.phone{
+main-section.password{
+  .form-eye-close, .form-eye-open{
+    color: var(--third);
+    background-color: transparent;
+    width: 33px;
+    position: absolute;
+    top: 0;
+    transform: scale(0.7);
+    right: 7px;
+    cursor: pointer;
+    z-index: 1;
+    display: none;
+  }
+  .state-active{
+    display: block;
+  }
+}
+main-section.password,main-section.email, main-section.username, main-section.phone{
   .page-wrapper{
     width: 100%;
   }
@@ -27,6 +43,7 @@ main-section.password, main-section.username, main-section.phone{
     border-radius: 20px;
   }
   .page-wrapper .form-container label{
+    position: relative;
     display: block;
     width: 100%;
   }

@@ -18,12 +18,15 @@ const env = config().parsed,
   }),
   userSchema = new schema({
     firstname: String,
+    middlename: String,
     surname: String,
     password: String,
     email: String,
+    phone: Number,
     date: String,
     verificationCode: String,
     verified: Boolean,
+    namechanged: Boolean,
     admin: Boolean
   }),
   courseSchema = new schema({
@@ -74,6 +77,9 @@ const env = config().parsed,
       sendMailAsync(subject, html, to)
       next(err)
   },
+  alpahanumericPattern = /^[A-Za-z0-9 .]+$/,
+  emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  numberPattern = /^[0-9]+$/,
   authenticated = (req, res, next) => {
     if(req.isAuthenticated() && req.query.switch !== 'true') return res.redirect('/')
     next()
@@ -126,5 +132,5 @@ export { env, certificateModel, userModel,
   uploadPath, errhandler, page404, appStarted,
   setVariables, pingService, isSession,
   isAdmin, authenticated, isNotAuthenticated,
-  isPartner
+  isPartner, emailPattern, alpahanumericPattern, numberPattern
 }

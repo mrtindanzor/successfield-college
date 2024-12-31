@@ -1,9 +1,7 @@
 <% if(section === 'username'){ %>
-  <main-section class="username">
+  <main-section class="username" data-section="username">
     <div class="page-wrapper">
       <div class="result">
-        <!-- <span class="failed">This is a failed</span>
-        <span class="success">This is a success</span> -->
       </div>
       <form class="form-container">
         <span>Change username</span>
@@ -23,11 +21,9 @@
 <% } %>
 
 <% if(section === 'phone'){ %>
-  <main-section class="phone">
+  <main-section class="phone" data-section="phone">
     <div class="page-wrapper">
       <div class="result">
-        <!-- <span class="failed">This is a failed</span>
-        <span class="success">This is a success</span> -->
       </div>
       <form class="form-container">
         <span>Update phone number</span>
@@ -41,11 +37,9 @@
 <% } %>
 
 <% if(section === 'email'){ %>
-  <main-section class="phone">
+  <main-section class="email" data-section="email">
     <div class="page-wrapper">
       <div class="result">
-        <!-- <span class="failed">This is a failed</span>
-        <span class="success">This is a success</span> -->
       </div>
       <form class="form-container">
         <span>Update email</span>
@@ -59,28 +53,34 @@
 <% } %>
 
 <% if(section === 'region'){ %>
-  <main-section class="region">
+  <main-section class="region" data-section="region">
 
   </main-section>
 <% } %>
 
 <% if(section === 'password'){ %>
-  <main-section class="password">
+  <% const eyeCloseIcon = (new locals.icons('form-eye-close', 'Hide password')).eyeClose() %>
+  <% const eyeOpenIcon = (new locals.icons('form-eye-open state-active', 'Show password')).eyeOpen() %>
+  <main-section class="password" data-section="changepassword">
     <div class="page-wrapper">
       <div class="result">
-        <!-- <span class="failed">This is a failed</span>
-        <span class="success">This is a success</span> -->
       </div>
       <form class="form-container">
         <span>Change password</span>
         <label>
-          <input type="password" name="oldPassword" placeholder="Enter old password" >
+          <input type="password" name="oldpassword" placeholder="Enter old password" >
+          <%- eyeOpenIcon %>
+          <%- eyeCloseIcon %>
         </label>
         <label>
           <input type="password" name="password" placeholder="Enter new password" >
+          <%- eyeOpenIcon %>
+          <%- eyeCloseIcon %>
         </label>
         <label>
           <input type="password" name="cpassword" placeholder="Confirm new password" >
+          <%- eyeOpenIcon %>
+          <%- eyeCloseIcon %>
         </label>
         <button>change password</button>
       </form>

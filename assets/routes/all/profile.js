@@ -10,4 +10,5 @@ profileRoute.get('/profile', (req, res) => {
   res.render('index', {page: 'profile', title: `Dashboard - ${name.toLocaleUpperCase()}`, name})
 })
 
+
 export default profileRoute
