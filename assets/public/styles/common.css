@@ -91,18 +91,22 @@ nav .loader.active{
   width: 220px;
   height: 27px;
   border-radius: 20px;
+  transition: 0.6s ease-in-out;
+}
+.loading-anim.active{
+  border-color: var(--first);
 }
 .loading-slide{
   width: 20px;
   height: 20px;
-  background-color: var(--third);
+  background-color: var(--first);
   transform: translateX(2px);
   border-radius: 100%;
   transition: 0.6s ease-in-out;
 }
 .loading-slide.active{
   transform: translateX(200px);
-  background-color: var(--first);
+  background-color: var(--third);
   width: 15px;
   height: 15px;
 }

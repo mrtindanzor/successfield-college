@@ -2,6 +2,7 @@ const courseListBtn = document.querySelector('.course-list-button'),
   logoContainer = document.querySelector('.logo-container'),
   loader = document.querySelector('nav .loader'),
   loadSlider = document.querySelector('.loader .loading-slide'),
+  loadSliderContainer = document.querySelector('.loader .loading-anim'),
   menuBtn = document.querySelector('.menu-button'),
   dateContainer = document.querySelector('.date-year'),
   currentYear = new Date().getFullYear(),
@@ -50,6 +51,6 @@ document.addEventListener('click', (e) => {
 })
 
 function animateSlider(){
-  if(loadSlider.classList.contains('active')) return loadSlider.classList.remove('active')
-  return loadSlider.classList.add('active')
+  if(loadSlider.classList.contains('active')) return loadSlider.classList.remove('active'),loadSliderContainer.classList.remove('active')
+  return loadSlider.classList.add('active'),loadSliderContainer.classList.add('active')
 }
