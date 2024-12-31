@@ -42,6 +42,7 @@ if(page === 'add'){
       dataId = el.dataset.id
       
       inputEl.forEach(input => {
+        let inputValue = inputEl.value
         inputValue  = input.value.trim()
         if(inputValue == '') return
         if(dataId === 'course') course = inputValue.toLowerCase()
