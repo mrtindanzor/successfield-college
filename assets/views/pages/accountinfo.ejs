@@ -6,12 +6,15 @@
       <form class="form-container">
         <span>Change username</span>
         <label>
+          Firstname: 
           <input type="text" name="firstname" placeholder="Firstname" value="<%= user.firstname %>" >
         </label>
         <label>
+          Middle name:
           <input type="text" name="middlename" placeholder="Middle name" <% if(user.middlename){ %> value="<%= user.middlename %>" <% } %> >
         </label>
         <label>
+          Surname:
           <input type="text" name="surname" placeholder="surname" value="<%= user.surname %>" >
         </label>
         <button>Edit name</button>
@@ -28,6 +31,7 @@
       <form class="form-container">
         <span>Update phone number</span>
         <label>
+          Phone number:
           <input type="tel" name="phone" placeholder="0200000000" <% if(user.phone){ %> value="<%= user.phone%>" <% } %> >
         </label>
         <button>Change phone number</button>
@@ -44,7 +48,8 @@
       <form class="form-container">
         <span>Update email</span>
         <label>
-          <input type="email" name="email" placeholder="info@example.com" value="<%= user.email%>" >
+          Email:
+          <input type="email" name="email" placeholder="info@example.com" value="<%= user.email%>">
         </label>
         <button>Change email address</button>
       </form>
@@ -65,19 +70,23 @@
     <div class="page-wrapper">
       <div class="result">
       </div>
+
       <form class="form-container">
         <span>Change password</span>
         <label>
+          Old password:
           <input type="password" name="oldpassword" placeholder="Enter old password" >
           <%- eyeOpenIcon %>
           <%- eyeCloseIcon %>
         </label>
         <label>
+          New password:
           <input type="password" name="password" placeholder="Enter new password" >
           <%- eyeOpenIcon %>
           <%- eyeCloseIcon %>
         </label>
         <label>
+          Confirm new password:
           <input type="password" name="cpassword" placeholder="Confirm new password" >
           <%- eyeOpenIcon %>
           <%- eyeCloseIcon %>
