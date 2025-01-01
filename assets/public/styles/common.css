@@ -428,10 +428,7 @@ span.failed, span.success{
   text-transform: uppercase;
   font-size: var(--second-s);
   z-index: 1000;
-  left: 50%;
-  transform: translateX(-50%);
 }
-
 span.success{
   background-color: var(--third);
 }
@@ -488,4 +485,15 @@ span.success{
   color: var(--white);
   background-color: var(--sixth);
   border: 1px solid currentColor;
+}
+@media (max-width: 550px) {
+  span.failed, span.success{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 551px) {
+  span.failed, span.success{
+    right: 20px;
+  }
 }

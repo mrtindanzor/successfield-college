@@ -39,7 +39,7 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
     const isPasswordMatch = await bcrypt.compare(oldpassword.trim(), req.user.password)
     const isOldPasswordMatchNewPassword = await bcrypt.compare(password.trim(), req.user.password)
     if(!isPasswordMatch) return res.status(401).json({status: 401, msg: 'Old password is not correct'})
-    if(isOldPasswordMatchNewPassword) return res.status(403).json({status: 403, msg: 'You cannot use old password'})
+    if(isOldPasswordMatchNewPassword) return res.status(403).json({status: 403, msg: 'You cannot use an old password'})
     const hashedPassword = await bcrypt.hash(password, 10)
     const updatePassword = await userModel.findOneAndUpdate({email}, {$set: {password: hashedPassword}}, {new: true})
     if(!updatePassword) return res.status(500).json({status: 500, msg: 'An error occured'})
