@@ -27,10 +27,12 @@ for(let hide of hidePassword){
   })
 }
 
-inputEl.forEach(el => {
-  el.style.background = 'transparent'
-  el.value = ' '
-})
+setTimeout(function(){
+  inputEl.forEach(el => {
+    el.style.background = 'transparent'
+    el.value = ''
+  })
+}, 1000)
 
 formEl.addEventListener('submit', async function(e){
   e.preventDefault()
