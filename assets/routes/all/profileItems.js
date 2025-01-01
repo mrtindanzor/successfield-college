@@ -21,10 +21,10 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
   const route = req.params.route.toLowerCase().trim()
   
   if(route === 'username'){
-    const {firstname, middlename, surname} = req.body,
-    user = req.user
+    const { firstname, middlename, surname } = req.body,
+      user = req.user
     if(!firstname || !surname) return res.status(400).json({status: 400, msg: 'Enter a valid name'})
-    if((firstname.toLowerCase() === user.firstname.toLowerCase() && surname.toLowerCase() === user.surname.toLowerCase()) && (!middlename || middlename.toLowerCase() === user.middlename.toLowerCase())) return res.status(400).json({status: 400, msg: 'Name was not altered'})
+    if((firstname.toLowerCase() === user.firstname.toLowerCase() && surname.toLowerCase() === user.surname.toLowerCase()) && (middlename?.toLowerCase() === user.middlename?.toLowerCase())) return res.status(400).json({status: 400, msg: 'Name was not altered'})
     if(!firstname.match(alpahanumericPattern) || !surname.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Invalid characters'})
     let newName = {firstname, middlename, surname, namechanged: true}
     const result = await userModel.findOneAndUpdate({email}, {$set: newName}, {new: true})
