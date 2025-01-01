@@ -23,6 +23,7 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
   if(route === 'username'){
     const { firstname, middlename, surname } = req.body,
       user = req.user
+    if(user.namechanged === true) return res.status(403).json({status: 403, msg: 'Name edits allowed exceeded, contact support to change name'})
     if(!firstname || !surname) return res.status(400).json({status: 400, msg: 'Enter a valid name'})
     if((firstname.toLowerCase() === user.firstname.toLowerCase() && surname.toLowerCase() === user.surname.toLowerCase()) && (middlename?.toLowerCase() === user.middlename?.toLowerCase())) return res.status(400).json({status: 400, msg: 'Name was not altered'})
     if(!firstname.match(alpahanumericPattern) || !surname.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Invalid characters'})
