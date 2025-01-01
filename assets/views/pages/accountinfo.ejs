@@ -4,20 +4,24 @@
       <div class="result">
       </div>
       <form class="form-container">
-        <span>Change username</span>
+        <% if(!user.namechanged){ %>
+          <i>Name can only be edited once</i>
+        <% } %>
         <label>
           Firstname: 
-          <input type="text" name="firstname" placeholder="Firstname" value="<%= user.firstname %>" >
+          <input type="text" name="firstname" placeholder="Firstname" value="<%= user.firstname %>" <% if(user.namechanged){ %> disabled <% } %>>
         </label>
         <label>
           Middle name:
-          <input type="text" name="middlename" placeholder="Middle name" <% if(user.middlename){ %> value="<%= user.middlename %>" <% } %> >
+          <input type="text" name="middlename" placeholder="Middle name" <% if(user.middlename){ %> value="<%= user.middlename %>" <% } %> <% if(user.namechanged){ %> disabled <% } %>>
         </label>
         <label>
           Surname:
-          <input type="text" name="surname" placeholder="surname" value="<%= user.surname %>" >
+          <input type="text" name="surname" placeholder="surname" value="<%= user.surname %>" <% if(user.namechanged){ %> disabled <% } %>>
         </label>
-        <button>Edit name</button>
+        <% if(!user.namechanged){ %>
+          <button>Edit name</button>
+        <% } %>
       </form>
     </div>
   </main-section>
@@ -29,7 +33,6 @@
       <div class="result">
       </div>
       <form class="form-container">
-        <span>Update phone number</span>
         <label>
           Phone number:
           <input type="tel" name="phone" placeholder="0200000000" <% if(user.phone){ %> value="<%= user.phone%>" <% } %> >
@@ -46,7 +49,6 @@
       <div class="result">
       </div>
       <form class="form-container">
-        <span>Update email</span>
         <label>
           Email:
           <input type="email" name="email" placeholder="info@example.com" value="<%= user.email%>">

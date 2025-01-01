@@ -33,6 +33,13 @@ main-section.password,main-section.email, main-section.username, main-section.ph
     border-radius: 2px;
     gap: 10px;
   }
+  .page-wrapper .form-container i{
+    display: flex;
+    align-items: center;
+    background-color: var(--darker);
+    color: var(--first);
+    padding: 5px 20px;
+  }
   .page-wrapper .form-container span{
     display: block;
     background: var(--first);
