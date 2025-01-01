@@ -94,7 +94,7 @@ authroute.post('/join', authenticated,  async function(req, res){
   return res.status(500).json({status: 500, msg: 'An error occured, try again'})
   }
 })
-authroute.post('/login', function(req, res, next){
+authroute.post('/login', async function(req, res, next){
   passport.authenticate('local', async function(err, user, info){
     if(err) return next(err)
       
@@ -105,7 +105,15 @@ authroute.post('/login', function(req, res, next){
       if(info.status === 201) return res.status(201).json({status: 201, msg: 'Verification email sent, check your email'})  
     }
     if(!user) return res.status(404).json({status: 404, msg: 'Invalid credentials'})
-    
+    if(req.isAuthenticated()){
+      const isLoggedOut = await new Promise(function(resolve, reject){
+        req.logOut(function(err){
+          if(err) return reject(err)
+          resolve()
+        })
+      })
+      console.log(isLoggedOut)
+    } 
     req.logIn(user, function(err) {
       if(err) return next(err)
       return res.status(200).json({status: 200})
