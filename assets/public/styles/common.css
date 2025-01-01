@@ -427,6 +427,9 @@ span.failed, span.success{
   margin: 20px auto;
   text-transform: uppercase;
   font-size: var(--second-s);
+  z-index: 1000;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 span.success{
