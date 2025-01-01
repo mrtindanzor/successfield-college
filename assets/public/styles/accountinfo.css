@@ -36,18 +36,19 @@ main-section.password,main-section.email, main-section.username, main-section.ph
   .page-wrapper .form-container i{
     display: flex;
     align-items: center;
-    background-color: var(--darker);
+    background-color: var(--dark);
     color: var(--first);
     padding: 5px 20px;
+    font-size: 0.9rem;
   }
   .page-wrapper .form-container span{
     display: block;
     background: var(--first);
     color: var(--third);
     padding: 10px 20px;
-    width: fit-content;
+    font-size: var(--third-s);
     font-family: 'acolonica';
-    border-radius: 20px;
+    border-radius: 3px;
   }
   .page-wrapper .form-container label{
     position: relative;

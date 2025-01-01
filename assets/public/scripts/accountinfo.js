@@ -30,7 +30,6 @@ formEl.addEventListener('submit', async function(e){
   }
   if(res.status === 201){
     result.innerHTML = `<span class="success"> ${res.msg} </span>`
-    formEl.reset()
   }
   loader.classList.remove('active')
   resetElHtml(result)
