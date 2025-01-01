@@ -77,6 +77,13 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
   }
   next()
 })
+profileItemsRoute.patch('/user-image', async function(req, res){
+  const image = req.body
+  if(!image) return res.status(400).json({status: 400, msg: 'Invalid link'})
+  const updateProfilePic = await userModel.findOneAndUpdate({email}, {$set: image})
+  if(!updateProfilePic) return res.status(400).json({status: 400, msg: 'Error updating profile pic'})
+  return res.status(201).json({status: 201, msg: 'Photo updated'})
+})
 function setEmail(req, res, next){
   email = req.user.email
   next()

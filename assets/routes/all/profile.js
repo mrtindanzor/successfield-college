@@ -6,12 +6,12 @@ const profileRoute = Router()
 profileRoute.use('/profile', isNotAuthenticated)
 
 profileRoute.get('/profile', (req, res) => {
-  const firstname = req.user.firstname,
-    middlename = req.user.middlename ? req.user.middlename : '',
-    surname = req.user.surname,
+  const user = req.user,
+    firstname = user.firstname,
+    middlename = user.middlename ? user.middlename : '',
+    surname = user.surname,
     name = firstname + ' ' + middlename + ' ' + surname
-  res.render('index', {page: 'profile', title: `Dashboard - ${name.toLocaleUpperCase()}`, name})
+  res.render('index', {page: 'profile', title: `Dashboard - ${name.toLocaleUpperCase()}`, name, user})
 })
-
 
 export default profileRoute

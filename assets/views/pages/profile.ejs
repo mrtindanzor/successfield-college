@@ -1,7 +1,21 @@
+<% const pencil = (new icons('profile-editor-icon', 'Edit profile picture')).pencilFill() %>
+<% const profileIcon = (new icons('profile-photo-icon', name)).userLine() %>
+<% const profileImage = user.image %>
 <div class="profile-wrapper">
   <div class="main-page">
     <div class="profile-image-tab">
-      <img src="" alt="profile picture" class="profile-img">
+      <div class="photo-tab">
+        <% if(profileImage){ %>
+          <img src="<%= profileImage %>" alt="profile picture" class="profile-img">
+        <% }else{ %>
+          <%- profileIcon %>
+        <% } %>
+        <label class="photo-chooser">
+          <%- pencil %>
+          <input type="file" name="image" id="profile-photo-editor">
+          <div class="result"></div>
+        </label>
+      </div>
       <span class="username"><%= name %></span>
     </div>
     <div class="title-bar">

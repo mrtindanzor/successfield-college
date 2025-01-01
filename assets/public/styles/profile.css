@@ -9,6 +9,23 @@ main-section{
   width: 100%;
   background-color: transparent;
 }
+.photo-tab{
+  position: relative;
+}
+#profile-photo-editor{
+  display: none;
+}
+.photo-chooser{
+  position: absolute;
+  top: -10px;
+  margin: 0 auto;
+  width: fit-content;
+  left: 53%;
+}
+.profile-editor-icon{
+  color: var(--first);
+  width: 2rem;
+}
 .profile-image-tab .username{
   display: block;
   color: var(--first);
@@ -18,7 +35,7 @@ main-section{
   text-align: center;
   margin: 5px;
 }
-.profile-img{
+.profile-img, .profile-photo-icon{
   display: block;
   width: 100px;
   height: 100px;
@@ -26,7 +43,7 @@ main-section{
   border-radius: 100%;
   border: 3px solid var(--third);
   padding: 5px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 .main-page .title-bar{
   display: none;

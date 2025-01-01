@@ -38,9 +38,6 @@ uploadRoute.put('/upload', upload.single('image'), async (req, res) => {
 
   if(!upload) return res.status(500).json({status: 500})
   const url = upload.url
-  const image = new imageModel({ name, path: url })
-  image.save()
-
   return res.status(201).json({status: 201, url})
 })
 
