@@ -66,18 +66,18 @@ authroute.post('/join', authenticated,  async function(req, res){
         firstname = firstname.trim()
         surname = surname.trim()
         
-  if(!email || !email.match(emailPattern)) return res.status(400).json({status: 400, msg: 'Invalid email format!'})
+  if(!email || !email.match(emailPattern)) return res.status(400).json({status: 400, msg: 'The email contains invalid characters'})
 
   if(cpassword !== password) return res.status(400).json({status: 400, msg: 'Passwords do not match!'})
   
-  if(!firstname || !firstname.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Firstname must only contain alphanumeric characters!'})
+  if(!firstname || !firstname.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Firstname contains invalid characters'})
 
-  if(!surname || !surname.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Surname must only contain alphanumeric characters!'})
+  if(!surname || !surname.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Surname contains invalid characters'})
   
-  if(middlename && !middlename?.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Middle name must only contain alphanumeric characters!'})
+  if(middlename && !middlename?.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Middle contains invalid characters'})
 
   const emailExists = await userModel.findOne({email})
-  if(emailExists) return res.status(400).json({status: 400, msg: 'Email already exists'})
+  if(emailExists) return res.status(400).json({status: 400, msg: 'An account with this email already exists'})
   
   const  hashedPassword = await bcrypt.hash(password, 10),
     userDetails = { firstname, middlename, surname, email, password: hashedPassword, verificationCode: date },
@@ -89,7 +89,7 @@ authroute.post('/join', authenticated,  async function(req, res){
       link = `${env.baseurl}/users/verify/${date}`,
       html = (new mailTemplates).verifyAccoutTemplate(link),
       sendMail = await sendMailAsync(subject, html, to).catch(err => console.log(err))
-  if(sendMail?.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Account created, an email was sent to your address, click link to verify'})
+  if(sendMail?.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Account created. Check your email to verify'})
   userModel.findOneAndDelete({email})
   return res.status(500).json({status: 500, msg: 'An error occured, try again'})
   }
@@ -115,28 +115,30 @@ authroute.post('/login', function(req, res, next){
 })
 authroute.get('/verify/:confirmationCode', authenticated,  async function(req, res){
   let verificationDetails = {}
-  const verificationCode = req.params.confirmationCode
-    const findUser = await userModel.findOne({verificationCode})
-    if(!findUser) verificationDetails = {status: 404, msg: 'Invalid credentials'}
-    if(findUser && findUser.verified) verificationDetails = {status: 200, msg: 'Account already verified'}
+  const verificationCode = req.params.confirmationCode,
+    findUser = await userModel.findOne({verificationCode})
+  if(!findUser) verificationDetails = {status: 404, msg: 'Invalid credentials'}
+  if(findUser && findUser.verified) verificationDetails = {status: 200, msg: 'Account already verified'}
     
-    if(findUser && !findUser.verified){
-      const updateVerificationStatus = await userModel.findOneAndUpdate({verificationCode}, {$set: {verified: true, verificationCode: ''}})
-      if(!updateVerificationStatus) verificationDetails = {status: 400, msg: 'Error verifying your account'}
-      if(updateVerificationStatus){
+  if(findUser && !findUser.verified){
+    const updateVerificationStatus = await userModel.findOneAndUpdate({verificationCode}, {$set: {verified: true, verificationCode: ''}}),
+      admins = await userModel.find({admin: true})
+    if(!updateVerificationStatus) verificationDetails = {status: 400, msg: 'Error verifying your account'}
+    if(updateVerificationStatus){
 
-        const name = findUser.firstname + ' ' + findUser.surname,
-          subject =  `New user verified`,
-          html = (new mailTemplates).user(name, findUser.email)
-          await sendMailAsync(subject, html)
-          await sendMailAsync(subject, html, 'ktindanzor@gmail.com')
-          await sendMailAsync(subject, html, 'augustine3197@gmail.com')
-          
-
-        verificationDetails = {status: 200, msg: 'Account verified successfully'}
-      } 
-    }
-
+    const name = findUser.firstname + ' ' + findUser.surname,
+      subject =  `New user verified`,
+      html = (new mailTemplates).user(name, findUser.email)
+    await sendMailAsync(subject, html)
+    admins.forEach(async el => {
+      let admin = el.firstname + ' ' + el.surname
+      if(el.firstname.toLowerCase() == 'augustine') admin = 'Dr (clin) ' + el.firstname + ' ' + el.surname
+      const html = (new mailTemplates).user(admin, el.email)
+      await sendMailAsync(subject, html, el.email)
+    })
+      verificationDetails = {status: 200, msg: 'Account verified successfully'}
+    } 
+  }
   res.render('index', {page: 'verifyemail', title: 'Verify email address', verificationDetails })
 })
 authroute.post('/resend', authenticated, async function(req, res){
