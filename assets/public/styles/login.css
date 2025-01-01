@@ -121,3 +121,6 @@ i span.success .timeout{
   display: inline-block;
   margin-left: 5px;
 }
+.success, .failed{
+  font-size: 0.8;
+}

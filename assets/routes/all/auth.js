@@ -44,10 +44,10 @@ passport.deserializeUser(async (id, done) => {
   return done(null, user)
 })
 
-authroute.get('/',(req, res) => {
+authroute.get('/', function(req, res){
   res.redirect('/')
 })
-authroute.put('/', async (req, res) => {
+authroute.put('/', async function(req, res){
   const data = req.body
   if(!data){
     const users = await userModel.find({}).catch(err => res.status(500).json({msg: 'error occured while finding all users'}))
@@ -56,7 +56,7 @@ authroute.put('/', async (req, res) => {
   const users = await userModel.find(data).catch(err => res.status(500).json({msg: `error occured while finding ${data} users`}))
   return res.status(200).json(users)
 })
-authroute.post('/join', authenticated,  async (req, res) => {
+authroute.post('/join', authenticated,  async function(req, res){
   let { email, password, cpassword, firstname, surname } = req.body,
         date = Date.now()
 
@@ -103,8 +103,8 @@ authroute.post('/join', authenticated,  async (req, res) => {
       }
     }) 
 })
-authroute.post('/login',  (req, res, next) => {
-  passport.authenticate('local', async (err, user, info) => {
+authroute.post('/login', function(req, res, next){
+  passport.authenticate('local', async function(err, user, info){
     if(err) return next(err)
       
     if(info){
@@ -113,17 +113,16 @@ authroute.post('/login',  (req, res, next) => {
       if(info.status === 500) return res.status(500).json({status: 500, msg: 'An error occured'})
       if(info.status === 201) return res.status(201).json({status: 201, msg: 'Verification email sent, check your email'})  
     }
-    
     if(!user) return res.status(404).json({status: 404, msg: 'Invalid credentials'})
     
-    req.logIn(user, (err) => {
+    req.logIn(user, function(err) {
       if(err) return next(err)
       return res.status(200).json({status: 200})
     })
   })
   (req, res, next)
 })
-authroute.get('/verify/:confirmationCode', authenticated,  async (req, res) => {
+authroute.get('/verify/:confirmationCode', authenticated,  async function(req, res){
   let verificationDetails = {}
   const verificationCode = req.params.confirmationCode
     const findUser = await userModel.findOne({verificationCode})
@@ -149,7 +148,7 @@ authroute.get('/verify/:confirmationCode', authenticated,  async (req, res) => {
 
   res.render('index', {page: 'verifyemail', title: 'Verify email address', verificationDetails })
 })
-authroute.post('/resend', authenticated, async (req, res) => {
+authroute.post('/resend', authenticated, async function(req, res){
   const email = req.body.email.trim().toLowerCase(),
     isEmailMatch = email.match(emailPattern),
     date = Date.now()
@@ -173,7 +172,7 @@ authroute.post('/resend', authenticated, async (req, res) => {
   if(sendMail) if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
   return res.status(400).json({status: 400, msg: 'Error sending email'})
 })
-authroute.post('/forgotpassword', async (req, res) => {
+authroute.post('/forgotpassword', async function(req, res){
   const email = req.body.email.trim().toLowerCase(),
     isEmailMatch = email.match(emailPattern),
     date = Date.now()
@@ -193,7 +192,7 @@ authroute.post('/forgotpassword', async (req, res) => {
     if(sendMail) if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
     return res.status(400).json({status: 400, msg: 'Error sending email'})
 })
-authroute.get('/forgotpassword/:verificationCode', async (req, res) => {
+authroute.get('/forgotpassword/:verificationCode', async function(req, res){
   let email = ''
   const verificationCode = req.params.verificationCode.trim()
 
@@ -201,7 +200,7 @@ authroute.get('/forgotpassword/:verificationCode', async (req, res) => {
   if(findUser) email = findUser.email
   res.status(200).render('index', {page: 'setforgotpassword', title: 'Change password', email: email})
 })
-authroute.patch('/forgotpassword/newpassword', async (req, res) => {
+authroute.patch('/forgotpassword/newpassword', async function(req, res){
   let { email, password, cpassword } = req.body
   email = email.trim().toLowerCase()
   password = password.trim()
@@ -213,28 +212,28 @@ authroute.patch('/forgotpassword/newpassword', async (req, res) => {
   if(!updatePassword) return res.status(500).json({status: 500, msg: 'An error occured'})
   return res.status(201).json({status: 201, msg: 'Password updated'})
 })
-authroute.get('/logout', (req, res) => {
-  req.logOut(err => {
+authroute.get('/logout', function(req, res){
+  req.logOut(function(err){
     if(err) return next(err)
     res.redirect('/')
   })
 })
-authroute.get('/forgotpassword', (req, res) => {
+authroute.get('/forgotpassword', function(req, res){
   res.status(200).render('index', {page: 'forgotpassword', title: 'Forgot password'})
 })
-authroute.get('/:auth', authenticated, (req, res, next) => {
+authroute.get('/:auth', authenticated, function(req, res, next){
   const route = req.params.auth.trim().toLowerCase()
   if(route === 'join') return res.status(200).render('index', {page: 'join', title: 'Create account'})
   if(route === 'login' || req.query.switch === 'true') return res.status(200).render('index', {page: 'login', title: 'Members Area'})
 })
-authroute.delete('/delete', async (req, res) => {
+authroute.delete('/delete', async function(req, res){
   const { email } = req.body
 
   const user = await userModel.findOneAndDelete({email})
   if(!user) return res.status(500).json({status: 500, msg: 'could not delete'})
   return res.status(200).json({status: 200, msg: 'deleted'})
 })
-authroute.patch('/update-verification', async (req, res) => {
+authroute.patch('/update-verification', async function(req, res){
   const { email } = req.body 
 
   const user = await userModel.findOneAndUpdate({email}, {$set: {verified: true, admin: true}})

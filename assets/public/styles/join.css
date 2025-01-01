@@ -119,3 +119,6 @@ form span + i{
     right: 150px;
   }
 }
+.success, .failed{
+  font-size: 0.8;
+}

@@ -27,10 +27,13 @@ for(let hide of hidePassword){
   })
 }
 
-inputEl.forEach(el => {
-  el.style.background = 'transparent'
-  el.value.remove()
-})
+setTimeout(function(){
+  inputEl.forEach(el => {
+    el.style.background = 'transparent'
+    el.value = ''
+  })
+}, 1000)
+
 
 formEl.addEventListener('submit', async function(e){
   e.preventDefault()
@@ -38,8 +41,10 @@ formEl.addEventListener('submit', async function(e){
   loader.classList.add('active')
   const uri = '/users/join',
     formData = new FormData(formEl),
-    jsonData = Object.fromEntries(formData),
-    options = {
+    jsonData = Object.fromEntries(formData)
+    console.log(jsonData)
+
+    const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -47,8 +52,8 @@ formEl.addEventListener('submit', async function(e){
       body: JSON.stringify(jsonData)
     },
     response = await fetch(uri, options),
-    res = response.json()
-    loader.classList.add('active')
+    res = await response.json()
+    loader.classList.remove('active')
     if(res.status !== 201) return formEl.querySelector('i').innerHTML = `<span class="failed">${res.msg}</span>`
     return formEl.querySelector('i').innerHTML = `<span class="success">${res.msg}</span>`
 })
