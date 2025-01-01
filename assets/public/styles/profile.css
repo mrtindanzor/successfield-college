@@ -7,6 +7,7 @@ main-section{
 }
 .profile-wrapper{
   width: 100%;
+  padding: 20px 0;
   background-color: transparent;
 }
 .photo-tab{
@@ -64,7 +65,35 @@ main-section{
   text-transform: capitalize;
   color: var(--third);
 }
-
+.view-profile-image{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 100%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+  background-color: var(--darker);
+  padding: 15px 20px;
+  margin: 0 auto;
+  transform: scale(0);
+  transition: 0.1s ease-out;
+}
+.view-profile-image.active{
+  transform: scale(1) translateX(-50%);
+}
+.close-photo-icon{
+  position: absolute;
+  right: 0px;
+  top: -2px;
+  width: 30px;
+  color: var(--first);
+}
+.viewer-profile-img{
+  height: 98%;
+}
 @media (max-width: 550px) {
   .profile-img{
     margin: 0 auto;
@@ -135,9 +164,10 @@ main-section{
 }
 @media (min-width: 551px) {
   .profile-wrapper{
-    height: 100dvh;
+    height: fit-content;
     display: flex;
     align-items: center;
+    padding: 10px 0;
   }
   .main-page{
     position: relative;

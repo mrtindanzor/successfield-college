@@ -5,7 +5,12 @@ const selectLi = document.querySelectorAll('.main-links > li'),
   titleBackBtn = document.querySelector('.title-bar .back-button'), 
   profilePhotoBtn = document.getElementById('profile-photo-editor'),
   result = document.querySelector('.result'),
-  profileImage = document.querySelector('.profile-img')
+  profileImage = document.querySelector('.profile-img'),
+  viewerProfileImage = document.querySelector('.viewer-profile-img'),
+  photoTab = document.querySelector('.photo-tab'),
+  viewer = document.querySelector('.view-profile-image'),
+  dummyPhotoIcon = document.querySelector('.profile-photo-icon'),
+  closePhotoIcon = document.querySelector('.close-photo-icon')
 
 titleBackBtn.innerHTML = (new icons('back-button', 'Go Back')).chevronLeft()
 selectLi.forEach(el => {
@@ -21,7 +26,6 @@ ulElement.forEach(el => el.classList.remove('active'))
   titleBar.classList.add('active')
 })
 })
-
 titleBackBtn.addEventListener('click', function(){
 linksMenu.classList.remove('inactive')
 titleBar.classList.remove('active')
@@ -30,7 +34,6 @@ selectLi.forEach(el => {
   ulElement.classList.remove('active')
 })
 })
-
 profilePhotoBtn.addEventListener('change', async function(){
 
   loader.classList.add('active')
@@ -67,8 +70,25 @@ profilePhotoBtn.addEventListener('change', async function(){
     loader.classList.remove('active')
     return resetElHtml(result)
   }
+  if(!profileImage){
+    const img = document.createElement('img')
+    img.classList.add('profile-img')
+    img.src = res.url
+    dummyPhotoIcon.remove()
+    photoTab.prepend(img)
+  }
+  if(profileImage) profileImage.setAttribute('src', res.url)
   result.innerHTML = `<span class="success">${saved.msg}</span>`
-  profileImage.setAttribute('src', res.url)
   loader.classList.remove('active')
   return resetElHtml(result)
 })
+profileImage.addEventListener('click', () => togglePhoto('show'))
+document.body.addEventListener('click', function(e){
+  if(e.target !== viewerProfileImage && e.target !== profileImage) togglePhoto('hide')
+})
+closePhotoIcon.addEventListener('click', () => togglePhoto('hide'))
+
+function togglePhoto(view){
+  if(view === 'hide') viewer.classList.remove('active')
+  if(view === 'show') viewer.classList.add('active')
+}
