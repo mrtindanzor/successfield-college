@@ -57,7 +57,7 @@ authroute.put('/', async function(req, res){
   return res.status(200).json(users)
 })
 authroute.post('/join', authenticated,  async function(req, res){
-  let { email, password, cpassword, firstname, surname } = req.body,
+  let {firstname, middlename, surname, email, password, cpassword } = req.body,
         date = Date.now()
 
         email = email.trim()
@@ -74,34 +74,25 @@ authroute.post('/join', authenticated,  async function(req, res){
 
   if(!surname || !surname.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Surname must only contain alphanumeric characters!'})
   
+  if(middlename && !middlename?.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Middle name must only contain alphanumeric characters!'})
+
   const emailExists = await userModel.findOne({email})
   if(emailExists) return res.status(400).json({status: 400, msg: 'Email already exists'})
   
   const  hashedPassword = await bcrypt.hash(password, 10),
-  details = {
-    email: email, 
-    password: hashedPassword, 
-    firstname: firstname, 
-    surname: surname, 
-    date,
-    namechanged: false,
-    verificationCode: date,
-    verified: false
-  },
-  newUser = new userModel(details)
-  newUser.save()
-    .then( async function() {
-      if(!newUser.isNew) {
-        const to = email,
-          subject =  `Verify email address`,
-          link = `${env.baseurl}/users/verify/${date}`,
-          html = (new mailTemplates).verifyAccoutTemplate(link),
-          sendMail = await sendMailAsync(subject, html, to).catch(err => console.log(err))
-      if(sendMail) if(sendMail.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Account created, an email was sent to your address, click link to verify'})
-      userModel.findOneAndDelete({email})
-      return res.status(400).json({status: 400, msg: 'An error occured, try again'})
-      }
-    }) 
+    userDetails = { firstname, middlename, surname, email, password: hashedPassword, verificationCode: date },
+    user = new userModel(userDetails)
+  await user.save()
+  if(!user.isNew) {
+    const to = email,
+      subject =  `Verify email address`,
+      link = `${env.baseurl}/users/verify/${date}`,
+      html = (new mailTemplates).verifyAccoutTemplate(link),
+      sendMail = await sendMailAsync(subject, html, to).catch(err => console.log(err))
+  if(sendMail?.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Account created, an email was sent to your address, click link to verify'})
+  userModel.findOneAndDelete({email})
+  return res.status(500).json({status: 500, msg: 'An error occured, try again'})
+  }
 })
 authroute.post('/login', function(req, res, next){
   passport.authenticate('local', async function(err, user, info){
@@ -136,7 +127,7 @@ authroute.get('/verify/:confirmationCode', authenticated,  async function(req, r
 
         const name = findUser.firstname + ' ' + findUser.surname,
           subject =  `New user verified`,
-          html = (new mailTemplates).newUser(name, findUser.email)
+          html = (new mailTemplates).user(name, findUser.email)
           await sendMailAsync(subject, html)
           await sendMailAsync(subject, html, 'ktindanzor@gmail.com')
           await sendMailAsync(subject, html, 'augustine3197@gmail.com')
@@ -227,15 +218,17 @@ authroute.get('/:auth', authenticated, function(req, res, next){
   if(route === 'login' || req.query.switch === 'true') return res.status(200).render('index', {page: 'login', title: 'Members Area'})
 })
 authroute.delete('/delete', async function(req, res){
-  const { email } = req.body
-
+  const { email } = req.body,
+  findUser = await userModel.findOne({email})
+  if(!findUser) return res.status(404).json({status: 404, msg: 'user not found'})
   const user = await userModel.findOneAndDelete({email})
   if(!user) return res.status(500).json({status: 500, msg: 'could not delete'})
   return res.status(200).json({status: 200, msg: 'deleted'})
 })
-authroute.patch('/update-verification', async function(req, res){
-  const { email } = req.body 
-
+authroute.patch('/update-user', async function(req, res){
+  const { email } = req.body,
+    findUser = await userModel.findOne({email})
+  if(!findUser) return res.status(404).json({status: 404, msg: 'user not found'})
   const user = await userModel.findOneAndUpdate({email}, {$set: {verified: true, admin: true}})
   if(!user) return res.status(500).json({status: 500, msg: 'could not update'})
   return res.status(200).json({status: 200, msg: 'updated'})

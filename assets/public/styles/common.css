@@ -415,6 +415,8 @@ button:hover{
   opacity: 0.8;
 }
 span.failed, span.success{
+  position: fixed;
+  top: 60px;
   display: block;
   background-color: var(--sixth);
   color: var(--white)!important;
