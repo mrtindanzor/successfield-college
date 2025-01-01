@@ -26,7 +26,6 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
     if(!firstname || !surname) return res.status(400).json({status: 400, msg: 'Enter a valid name'})
     if(!firstname.match(alpahanumericPattern) || !surname.match(alpahanumericPattern)) return res.status(400).json({status: 400, msg: 'Invalid characters'})
     let newName = {firstname, middlename, surname, namechanged: true}
-    if(!middlename) delete newName.middlename
     const result = await userModel.findOneAndUpdate({email}, {$set: newName}, {new: true})
     if(!result) return res.status(403).json({status: 403, msg: 'Error occured while updating name'})
     return res.status(201).json({status: 201, msg: 'Name updated successfully'})
