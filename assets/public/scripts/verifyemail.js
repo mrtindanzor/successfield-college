@@ -45,5 +45,6 @@ if(resendBtn){
     }
     if(res.status === 200) result.innerHTML = `<div class="email-sent">${res.msg}</div>`
     if(res.status !== 200) result.innerHTML = `<div class="email-not-sent">${res.msg}</div>`
+    resetElHtml(result)
   })
 }

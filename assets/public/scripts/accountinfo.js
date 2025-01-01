@@ -33,6 +33,7 @@ formEl.addEventListener('submit', async function(e){
     formEl.reset()
   }
   loader.classList.remove('active')
+  resetElHtml(result)
 })
 if(page == 'changepassword'){
   const showPassword = document.querySelectorAll('.form-eye-open'),
@@ -61,3 +62,4 @@ for(let hide of hidePassword){
   })
 }
 }
+

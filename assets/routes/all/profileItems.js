@@ -1,6 +1,7 @@
 import { Router } from "express";
 import bcrypt from 'bcrypt'
-import { isNotAuthenticated, emailPattern, alpahanumericPattern, userModel, numberPattern, env  } from "../../../dependencies.js"
+import { emailPattern, alpahanumericPattern, userModel, numberPattern, env  } from "../../../dependencies.js"
+import { sendMailAsync } from "./sendmail.js";
 import mailTemplates from "./mailtemplates.js";
 const profileItemsRoute = Router()
 
@@ -53,20 +54,22 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
   }
   if(route === 'email'){
     const newEmail = req.body.email
+      date = Date.now()
     if(!newEmail) return res.status(403).json({status: 403, msg: 'Enter a valid email'})
     if(!newEmail.match(emailPattern)) return res.status(403).json({status: 403, msg: 'Enter a valid email format'})
     if(newEmail === email) return res.status(403).json({status: 403, msg: 'You are already using this email address'})
     const emailExists = await userModel.findOne({email: newEmail})
     if(emailExists) return res.status(403).json({status: 403, msg: 'Email already exists'})
-    const updateEmail = userModel.findOneAndUpdate({email}, {$set: {email: newEmail, verified: false}}, {new: true})
+    const updateEmail = await userModel.findOneAndUpdate({email}, {$set: {email: newEmail, verified: false, verificationCode: date}}, {new: true})
     if(!updateEmail) return res.status(500).json({status: 500, msg: 'An error occured'})
     const to = newEmail,
-      date = date.now(),
       subject =  `Verify email address`,
       link = `${env.baseurl}/users/verify/${date}`,
       html = (new mailTemplates).verifyAccoutTemplate(link),
       sendMail = await sendMailAsync(subject, html, to).catch(err => console.log(err))
-    if(sendMail) if(sendMail.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Email updated, verify using the link sent to email address'})
+    if(sendMail && sendMail.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Email updated, verify using the link sent to email address'})
+    const reverse = await userModel.findOneAndUpdate({email}, {$set: {email, verified: true}}, {new: true})
+    return res.status(500).json({status: 500, msg: 'An error occured'})
   }
   if(route === 'region'){
     return

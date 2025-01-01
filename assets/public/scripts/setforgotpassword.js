@@ -38,6 +38,7 @@ formEl.addEventListener('submit', async (e) => {
     return
   } 
   if(res.status !== 200) return result.innerHTML = `<div class="password-not-updated">${res.msg}</div>`
+  resetElHtml(result)
 })
 
 for(let show of showPassword){

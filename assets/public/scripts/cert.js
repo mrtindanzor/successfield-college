@@ -28,6 +28,7 @@ formEl.addEventListener('submit', async (e) => {
       <span class="success">${res.msg}</span>
     `
     loader.classList.remove('active')
+    resetElHtml(result)
     return
   }
     
@@ -35,6 +36,7 @@ formEl.addEventListener('submit', async (e) => {
     <span class="failed">${res.msg}</span>
   `
   loader.classList.remove('active')
+  resetElHtml(result)
 })
 }
 if(page === 'edit'){
@@ -45,7 +47,7 @@ if(page === 'edit'){
   e.preventDefault()
 
   loader.classList.add('active')
-  result.innerHTML = ''
+  
   const certificateCode = findFormEl.querySelector('input').value.toLowerCase().trim()
   if(certificateCode.length < 1) return
   const uri = '/verify',
@@ -61,6 +63,7 @@ if(page === 'edit'){
   if(res.status !== 200) {
     result.innerHTML =  `<span class="failed">${res.msg}</span>`
     loader.classList.remove('active')
+    resetElHtml(result)
     return
   }
 
@@ -136,6 +139,7 @@ if(page === 'edit'){
     <span class="success">${res.msg}</span>
     `
     loader.classList.remove('active')
+    resetElHtml(updateResultContainer)
     })
   })
 }
@@ -150,7 +154,7 @@ if(page === 'delete'){
     e.preventDefault()
 
     loader.classList.add('active')
-    result.innerHTML = ''
+    
     const certificateCode = findEl.querySelector('input').value.trim().toLowerCase(),
       uri = '/verify',
       options = {
@@ -167,6 +171,7 @@ if(page === 'delete'){
         <span class="failed">${res.msg}</span>
       `
       loader.classList.remove('active')
+      resetElHtml(result)
       return 
     }
     result.innerHTML = `
@@ -233,6 +238,7 @@ if(page === 'delete'){
           `
         prompt.classList.remove('active')
         loader.classList.remove('active')
+        resetElHtml(result)
         return 
         }
 
@@ -243,6 +249,7 @@ if(page === 'delete'){
           `
         loader.classList.remove('active')
         prompt.classList.remove('active')
+        resetElHtml(result)
       }
     })
   })

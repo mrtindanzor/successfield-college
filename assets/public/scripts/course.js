@@ -111,6 +111,7 @@ if(page === 'add'){
     })
     prompt.classList.remove('active')
     loader.classList.remove('active')
+    resetElHtml(result)
   })
   
   closeBtn.addEventListener('click', () => {
@@ -165,6 +166,7 @@ if(page === 'edit'){
     if(res.status !== 200){
       result.innerHTML = `<span class='fail'> ${res.msg} </span> `
       loader.classList.remove('active')
+      resetElHtml(result)
       return
     }  
     formEl.forEach(el => {
@@ -188,7 +190,7 @@ if(page === 'edit'){
       availability = ''
       duration = ''
       fee = ''
-      result.innerHTML = ''
+      
       if(el.classList.contains('active')) el.classList.remove('active')
       const dataId = el.dataset.id,
       elTitle = el.querySelector('.form-title'),
@@ -348,6 +350,7 @@ if(page === 'edit'){
     })
     prompt.classList.remove('active')
     loader.classList.remove('active')
+    resetElHtml(result)
     })
 
   

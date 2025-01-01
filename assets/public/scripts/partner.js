@@ -31,7 +31,7 @@ if(e.target.classList.contains('add-more')){
 formEl.addEventListener('submit', async e => {
 e.preventDefault()
 
-result.innerHTML = ''
+
 loader.classList.add('active')
 
 const approvals = [],
@@ -66,6 +66,7 @@ if(res.status !== 201){
   `
   document.formEl.scrollTo = 0
   loader.classList.remove('active')
+  resetElHtml(result)
   return
 }
 
@@ -75,6 +76,7 @@ result.innerHTML = `
 </span>
 `
 loader.classList.remove('active')
+resetElHtml(result)
 })
 
 }
@@ -86,7 +88,7 @@ if(page === 'edit'){
   formEl.addEventListener('submit', async function(e){
     e.preventDefault()
 
-    result.innerHTML = ''
+    
     const id = formEl.querySelector('input').value.trim().toLowerCase()
     if(!id) return result.textContent = 'Enter a valid partner ID'
 
@@ -111,6 +113,7 @@ if(page === 'edit'){
       `
 
       loader.classList.remove('active')
+      resetElHtml(result)
       return
     }
 
@@ -214,6 +217,7 @@ if(page === 'edit'){
         </span>
       `
       loader.classList.remove('active')
+      resetElHtml(result)
     })
   })
 }
@@ -225,7 +229,7 @@ if(page === 'delete'){
 formEl.addEventListener('submit', async function(e){
   e.preventDefault()
 
-  result.innerHTML = ''
+  
   const id = formEl.querySelector('input').value.trim().toLowerCase()
   if(!id) return result.textContent = 'Enter a valid partner ID'
 
@@ -250,6 +254,7 @@ formEl.addEventListener('submit', async function(e){
     `
 
     loader.classList.remove('active')
+    resetElHtml(result)
     return
   }
 
@@ -335,6 +340,7 @@ formEl.addEventListener('submit', async function(e){
     `
     loader.classList.remove('active')
     prompt.classList.remove('active')
+    resetElHtml(result)
   })
 
   denyBtn.addEventListener('click', function(){

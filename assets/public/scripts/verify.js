@@ -21,6 +21,7 @@ verifyForm.addEventListener('submit', async function(e){
   if(res.status !== 200) {
     result.innerHTML =  `<span class="failed">${res.msg}</span>`
     loader.classList.remove('active')
+    resetElHtml(result)
     return 
   }
 
@@ -36,3 +37,6 @@ verifyForm.addEventListener('submit', async function(e){
 `
 loader.classList.remove('active')
   })
+  function resetElHtml(object){
+    setTimeout(() => object.innerHTML = '', 4000)
+  }

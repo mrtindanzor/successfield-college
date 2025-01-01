@@ -49,8 +49,10 @@ document.addEventListener('click', (e) => {
     }
   }
 })
-
 function animateSlider(){
   if(loadSlider.classList.contains('active')) return loadSlider.classList.remove('active'),loadSliderContainer.classList.remove('active')
   return loadSlider.classList.add('active'),loadSliderContainer.classList.add('active')
+}
+function resetElHtml(object){
+  setTimeout(() => object.innerHTML = '', 4000)
 }

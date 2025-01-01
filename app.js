@@ -10,7 +10,7 @@ import { env, courseModel, errhandler, page404, appStarted, setVariables, pingSe
 
 const uri = env.DATABASE,
   app = express(),
-  PORT = env.PORT || 8000,
+  PORT = env.PORT || 3000,
   time = 600000
 
   pingService()

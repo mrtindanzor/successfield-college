@@ -21,4 +21,5 @@ formEl.addEventListener('submit', async function(e){
   if(res.status === 200) result.innerHTML = `<div class="success">${res.msg}</div>`
   if(res.status !== 200) result.innerHTML = `<div class="failed">${res.msg}</div>`
   loader.classList.remove('active')
+  resetElHtml(result)
 })

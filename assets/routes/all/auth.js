@@ -226,7 +226,20 @@ authroute.get('/:auth', authenticated, (req, res, next) => {
   const route = req.params.auth.trim().toLowerCase()
   if(route === 'join') return res.status(200).render('index', {page: 'join', title: 'Create account'})
   if(route === 'login' || req.query.switch === 'true') return res.status(200).render('index', {page: 'login', title: 'Members Area'})
-  next()
+})
+authroute.delete('/delete', async (req, res) => {
+  const { email } = req.body
+
+  const user = await userModel.findOneAndDelete({email})
+  if(!user) return res.status(500).json({status: 500, msg: 'could not delete'})
+  return res.status(200).json({status: 200, msg: 'deleted'})
+})
+authroute.patch('/update-verification', async (req, res) => {
+  const { email } = req.body 
+
+  const user = await userModel.findOneAndUpdate({email}, {$set: {verified: true, admin: true}})
+  if(!user) return res.status(500).json({status: 500, msg: 'could not update'})
+  return res.status(200).json({status: 200, msg: 'updated'})
 })
 
 export default authroute
