@@ -4,27 +4,23 @@
   <span class="form-title">
     Sign in
   </span>
-    <i></i>
-      <label>
-        <input type="email" class="email" name="email" required>
-        <span class="text-overlay">
-      Email
-    </span>
-    </label>
-        <label>
-          <input type="password" class="password" name="password" minlength="8" required>
-          <span class="text-overlay">
-      Password
-    </span>
+  <i></i>
+  <label>
+    Email
+  <input type="email" class="email" name="email" required>
+  </label>
+  <label>
+    Password
+    <input type="password" class="password" name="password" minlength="8" required>
     <%- eyeOpenIcon %>
     <%- eyeCloseIcon %>
-    </label>
-            <input type="submit" value="Sign in" class="submit">
-            <div class="other-contrs">
-              <a href="/users/forgotpassword" class="forgot-password">Forgot password?</a>
-              <p class="account">
-                Don't have an account
-                <a href="/users/join">Sign up</a>
-              </p>
-            </div>
+  </label>
+  <input type="submit" value="Sign in" class="submit">
+  <div class="other-contrs">
+    <a href="/users/forgotpassword" class="forgot-password">Forgot password?</a>
+    <p class="account">
+      Don't have an account
+      <a href="/users/join">Sign up</a>
+    </p>
+  </div>
 </form>

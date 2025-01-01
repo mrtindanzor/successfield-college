@@ -3,7 +3,6 @@ main-section{
   width: 100%;
   display: flex;
   justify-content: center;
-  
   background: url('/images/000045.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -11,69 +10,52 @@ main-section{
 form{
   position: relative;
   top: 50px;
-  border: solid 2px var(--third);
+  border-radius: 10px;
   padding: 20px 20px 60px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 30px;
   width: calc(100dvw - 20px);
-  height: fit-content;
   margin: 10px;
-  max-width: 400px;
-  background: var(--first);
   margin-bottom: 100px;
+  max-width: 400px;
+  height: fit-content;
+  background-color: var(--dark);
 }
 form span.form-title{
+  color: var(--third);
   font-weight: 900;
   font-size: 2rem;
 }
 form label{
   position: relative;
   width: 95%;
-  display: flex;
-}
-form label span.text-overlay{
-  display: block;
-  position: absolute;
-  left: 15px;
-  top: 12px;
-  background: var(--first);
-  padding: 3px 5px;
-  transition: .2s ease-out;
+  margin-bottom: 20px;
+  color: var(--third);
 }
 form label input{
+  border: 1px solid var(--first);
+  color: var(--first);
   padding: 14px;
   width: 100%;
-  border: 1px solid;
 }
 form label input:focus{
   border: 1px dotted;
   outline: none;
 }
-form label input:focus +*{
-  transform: translateY(-30px);
-  display: block;
-  color: var(--second);
-}
 form label input:user-valid{
   border: 2px solid var(--third);
+  box-shadow: 0 0 2px var(--third);
 }
 form label input:user-invalid{
   border: 2px solid var(--sixth);
-}
-form label input:user-valid +*{
-  transform: translateY(-30px);
-}
-form label input:user-invalid +*{
-  transform: translateY(-30px);
-  display: block;
-  color: var(--sixth);
+  box-shadow: 0 0 2px var(--sixth);
 }
 form > input{
   width: 95%;
   text-align: center;
   padding: 10px;
+  margin-bottom: 20px;
 }
 input[type='submit']{
   cursor: pointer;
@@ -90,7 +72,7 @@ form span + i{
   background-color: transparent;
   width: 33px;
   position: absolute;
-  top: 8px;
+  bottom: 8px;
   transform: scale(0.7);
   right: 7px;
   cursor: pointer;
@@ -100,15 +82,6 @@ form span + i{
 .state-active{
   display: block;
 }
-i span.success{
-  font-size: var(--first-s);
-  font-weight: 500;
-  font-family: alice;
-}
-i span.success .timeout{
-  font-family: acolonica;
-}
-
 .other-contrs{
   text-align: center;
   background-color: var(--third);
@@ -116,10 +89,15 @@ i span.success .timeout{
   color: var(--first);
   width: 100%;
 }
-.other-contrs p a{
+.other-contrs a{
   color: var(--second);
   display: inline-block;
   margin-left: 5px;
+}
+@media (min-width: 767px) {
+  form{
+    right: 150px;
+  }
 }
 .success, .failed{
   font-size: 0.8;

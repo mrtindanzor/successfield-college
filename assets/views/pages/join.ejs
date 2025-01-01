@@ -1,51 +1,40 @@
 <% const eyeCloseIcon = (new locals.icons('form-eye-close', 'Hide password')).eyeClose() %>
 <% const eyeOpenIcon = (new locals.icons('form-eye-open state-active', 'Show password')).eyeOpen() %>
-  <form action="/users/join" method="post" class="signup" autocomplete="off">
-    <span class="form-title">
-      Sign up
-    </span>
-      <i>
-      </i>
-    <label>
-      <input type="text" class="firstname" name="firstname" minlength="3" required>
-      <span class="text-overlay">
-        Firstname
-      </span>
-      </label>
-      <label>
-        <input type="text" class="surname" name="surname" minlength="3" required>
-        <span class="text-overlay">
-        Surname
-      </span>
-        </label>
-        <label>
-          <input type="email" class="email" name="email" required>
-          
-          <span class="text-overlay">
-        Email
-      </span>
-      </label>
-          <label>
-            <input type="password" class="password" name="password" minlength="8" required>
-            <span class="text-overlay">
-        Password
-      </span>
-      <%- eyeOpenIcon %>
-      <%- eyeCloseIcon %>
-            </label>
-            <label>
-              <input type="password" class="confirm-password" name="cpassword" minlength="8" required>
-              <span class="text-overlay">
-        confirm password
-      </span>
-      <%- eyeOpenIcon %>
-      <%- eyeCloseIcon %>
-              </label>
-              <input type="submit" value="Sign up" class="submit">
-              <div class="other-contrs">
-                <p class="account">
-                  Already have an account
-                  <a href="/users/login">Sign in</a>
-                </p>
-              </div>
-  </form>
+<form action="/users/join" method="post" class="signup" autocomplete="off">
+  <span class="form-title">
+    Sign up
+  </span>
+    <i>
+    </i>
+  <label>
+    Firstname:
+    <input type="text" class="firstname" name="firstname" minlength="3" required>
+  </label>
+  <label>
+    Surname:
+    <input type="text" class="surname" name="surname" minlength="3" required>
+  </label>
+  <label>
+    Email:
+    <input type="email" class="email" name="email" required>
+  </label>
+  <label>
+    Password:
+    <input type="password" class="password" name="password" minlength="8" required>
+    <%- eyeOpenIcon %>
+    <%- eyeCloseIcon %>
+  </label>
+  <label>
+    Confirm password:
+    <input type="password" class="confirm-password" name="cpassword" minlength="8" required>
+    <%- eyeOpenIcon %>
+    <%- eyeCloseIcon %>
+  </label>
+  <input type="submit" value="Sign up" class="submit">
+  <div class="other-contrs">
+    <p class="account">
+      Already have an account
+      <a href="/users/login">Sign in</a>
+    </p>
+  </div>
+</form>
