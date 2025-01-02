@@ -1,14 +1,14 @@
 @font-face {
-  font-family: poppins-regular;
-  src: url('../fonts/Poppins/Poppins-Regular.ttf');
+  font-family: poppins-light;
+  src: url('/fonts/Poppins/Poppins-Light.ttf');
 }
 @font-face {
   font-family: alice;
-  src: url('../fonts/Alice/Alice-Regular.ttf');
+  src: url('/fonts/Alice/Alice-Regular.ttf');
 }
 @font-face {
   font-family: acolonica;
-  src: url('../fonts/Aclonica/Aclonica-Regular.ttf');
+  src: url('/fonts/Aclonica/Aclonica-Regular.ttf');
 }
 :root{
   --first: white;
@@ -36,7 +36,7 @@
 }
 *{
   box-sizing: border-box;
-  font-family: poppins-regular;
+  font-family: poppins-light;
 }
 svg{
   opacity: 0;
@@ -310,7 +310,7 @@ footer{
   text-decoration: none;
   color: var(--white);
   font-size: var(--second-s);
-  font-family: poppins-regular;
+  font-family: poppins-light;
 }
 .footer-container a:hover{
   text-decoration: underline;
