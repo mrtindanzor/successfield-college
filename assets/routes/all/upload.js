@@ -51,4 +51,4 @@ uploadRoute.delete('/deletephoto', async function(req, res){
 async function deletePhoto (publicId){
  cloudinary.uploader.destroy(publicId).catch(err => console.log(err))
 }
-export default uploadRoute
+export{ uploadRoute, deletePhoto }

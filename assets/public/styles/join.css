@@ -38,18 +38,28 @@ form label input{
   color: var(--first);
   padding: 14px;
   width: 100%;
+  background-color: transparent;
 }
+
 form label input:focus{
   border: 1px dotted;
   outline: none;
 }
 form label input:user-valid{
   border: 2px solid var(--third);
+  background-color: transparent;
   box-shadow: 0 0 2px var(--third);
 }
 form label input:user-invalid{
   border: 2px solid var(--sixth);
   box-shadow: 0 0 2px var(--sixth);
+  background-color: transparent;
+}
+form label input:-webkit-autofill{
+  background: var(--dark);
+}
+form label input:-webkit-autofill:focus{
+  background: var(--dark);
 }
 form > input{
   width: 95%;

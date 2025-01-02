@@ -134,5 +134,5 @@ export { env, certificateModel, userModel,
   uploadPath, errhandler, page404, appStarted,
   setVariables, pingService, isSession,
   isAdmin, authenticated, isNotAuthenticated,
-  isPartner, emailPattern, alpahanumericPattern, numberPattern
+  isPartner, emailPattern, alpahanumericPattern, numberPattern, baseurl
 }

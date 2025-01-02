@@ -5,7 +5,8 @@ import bcrypt from 'bcrypt'
 import { Strategy as localStrategy } from 'passport-local'
 import { sendMailAsync }  from './sendmail.js'
 import mailTemplates from './mailtemplates.js'
-import { env, userModel, authenticated, emailPattern, alpahanumericPattern } from '../../../dependencies.js'
+import { env, baseurl, userModel, authenticated, emailPattern, alpahanumericPattern } from '../../../dependencies.js'
+import { deletePhoto } from './upload.js'
 
 const authroute = Router()
 
@@ -190,7 +191,7 @@ authroute.post('/forgotpassword', async function(req, res){
     if(!setVerificationCode) return res.status(404).json({status: 404, msg: 'Error sending email'})
 
     const subject = 'Forgot password',
-      link = `${env.baseurl}/users/forgotpassword/${date}`,
+      link = `${baseurl}/users/forgotpassword/${date}`,
       html = (new mailTemplates).forgotPasswordTemplate(link),
       sendMail = await sendMailAsync(subject, html, email)
     if(sendMail) if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
@@ -235,15 +236,7 @@ authroute.delete('/delete', async function(req, res){
   findUser = await userModel.findOne({email})
   if(!findUser) return res.status(404).json({status: 404, msg: 'user not found'})
   if(findUser.image){
-    const uri = '/deletephoto',
-    options = {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({publicId: findUser.image.publicId})
-    }
-    await fetch(uri, options).catch(err => console.log(err))
+    await deletePhoto(findUser.image.publicId)
   }
   const user = await userModel.findOneAndDelete({email})
   if(!user) return res.status(500).json({status: 500, msg: 'could not delete'})
