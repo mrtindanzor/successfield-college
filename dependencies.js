@@ -9,6 +9,10 @@ const env = config().parsed,
   baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL, 
   uri = env.DATABASE,
   schema = mongoose.Schema,
+  imageSchema = new schema({
+    publicId: String,
+    url: String
+  }),
   certificateSchema = new schema({
     name: String,
     studentNumber: String,
@@ -23,7 +27,7 @@ const env = config().parsed,
     password: String,
     email: String,
     phone: Number,
-    image: String,
+    image: imageSchema,
     date: String,
     verificationCode: String,
     verified: Boolean,
@@ -47,15 +51,11 @@ const env = config().parsed,
     approvals: [{approval: String}],
     partnerId: String
   }),
-  imageUploadSchema = new schema({
-    name: String,
-    path: String
-  }),
   uploadPath = path.resolve('./assets/uploads'),
   certificateModel = mongoose.model('certificate', certificateSchema),
   userModel = mongoose.model('user', userSchema),
   courseModel = mongoose.model('course', courseSchema),
-  imageModel = mongoose.model('image', imageUploadSchema),
+  imageModel = mongoose.model('image', imageSchema),
   partnerModel = mongoose.model('partner', partnerSchema),
   pingService = () => {
     fetch(baseurl).then(() => console.log(`pinging ${baseurl}`))

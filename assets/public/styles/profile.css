@@ -26,6 +26,7 @@ main-section{
 .profile-editor-icon{
   color: var(--first);
   width: 2rem;
+  cursor: pointer;
 }
 .profile-image-tab .username{
   display: block;
@@ -79,6 +80,7 @@ main-section{
   padding: 15px 20px;
   margin: 0 auto;
   transform: scale(0);
+  cursor: pointer;
   transition: 0.1s ease-out;
 }
 .view-profile-image.active{
@@ -90,6 +92,7 @@ main-section{
   top: -2px;
   width: 30px;
   color: var(--first);
+  cursor: pointer;
 }
 .viewer-profile-img{
   height: 98%;

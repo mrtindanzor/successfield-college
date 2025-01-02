@@ -2,7 +2,7 @@ import { Router } from "express";
 import multer from  "multer"
 import fs from 'fs'
 import { v2 as cloudinary } from 'cloudinary'
-import { env, uploadPath, imageModel } from "../../../dependencies.js";
+import { env, uploadPath, imageModel, userModel } from "../../../dependencies.js";
 
 
 const CLOUDINARY_NAME = env.CLOUDINARY_NAME,
@@ -30,15 +30,25 @@ uploadRoute.put('/upload', upload.single('image'), async (req, res) => {
 
   const file = req.file,
     path = file.path,
-    name = file.originalname
+    havePublicId = req.user.image.publicId
+    console.log(havePublicId)
+  if(havePublicId) await deletePhoto(havePublicId)
 
   const upload = await cloudinary.uploader.upload(path).catch(err => console.log(err))
 
   fs.unlinkSync(path)
 
   if(!upload) return res.status(500).json({status: 500})
-  const url = upload.url
-  return res.status(201).json({status: 201, url})
+  const url = upload.url,
+    publicId = upload.public_id
+  return res.status(201).json({status: 201, url, publicId})
 })
-
+uploadRoute.delete('/deletephoto', async function(req, res){
+  const publicId = req.body
+  await deletePhoto(publicId)
+  return res.status(201).json({status: 201, msg: 'Image deleted'})
+})
+async function deletePhoto (publicId){
+ cloudinary.uploader.destroy(publicId).catch(err => console.log(err))
+}
 export default uploadRoute

@@ -53,7 +53,7 @@ profilePhotoBtn.addEventListener('change', async function(){
     loader.classList.remove('active')
     return resetElHtml(result)
   }
-  const photoUrl = {image: res.url},
+  const photoUrl = {publicId: res.publicId, url: res.url},
     photoUpdateUri = '/users/user-image',
     newOptions = {
       method: 'PATCH',
@@ -80,6 +80,7 @@ profilePhotoBtn.addEventListener('change', async function(){
   if(profileImage) profileImage.setAttribute('src', res.url)
   result.innerHTML = `<span class="success">${saved.msg}</span>`
   loader.classList.remove('active')
+  profilePhotoBtn.value = ''
   return resetElHtml(result)
 })
 profileImage.addEventListener('click', () => togglePhoto('show'))
