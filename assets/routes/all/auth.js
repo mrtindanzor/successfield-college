@@ -23,7 +23,7 @@ passport.use(new localStrategy({usernameField: "email"}, async (email, password,
 
     const to = email,
       subject =  `Verify email address`,
-      link = `${env.baseurl}/users/verify/${date}`,
+      link = `${baseurl}/users/verify/${date}`,
       html = (new mailTemplates).verifyAccoutTemplate(link)
     const sendMail = await sendMailAsync(subject, html, to).catch(err => console.log(err))
     if(sendMail) if(sendMail.accepted.length === 1) return done(null, false, {status: 201})
@@ -87,7 +87,7 @@ authroute.post('/join', authenticated,  async function(req, res){
   if(!user.isNew) {
     const to = email,
       subject =  `Verify email address`,
-      link = `${env.baseurl}/users/verify/${date}`,
+      link = `${baseurl}/users/verify/${date}`,
       html = (new mailTemplates).verifyAccoutTemplate(link),
       sendMail = await sendMailAsync(subject, html, to).catch(err => console.log(err))
   if(sendMail?.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Account created. Check your email to verify'})
