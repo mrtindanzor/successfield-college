@@ -91,7 +91,34 @@
           <li>
             <span>Account Region</span>
             <div class="account-item">
-    
+              <form class="form-container">
+                <span>Address</span>
+                <label>
+                  Country:
+                  <input type="text" name="country" value="<%= user.address?.country ?? '' %>">
+                </label>
+                <label>
+                  State / Region:
+                  <input type="text" name="state" value="<%= user.address?.state ?? '' %>">
+                </label>
+                <label>
+                  City:
+                  <input type="text" name="city" value="<%= user.address?.state ?? '' %>">
+                </label>
+                <label>
+                  Address Line 1:
+                  <input type="text" name="address1" value="<%= user.address?.address1 ?? '' %>">
+                </label>
+                <label>
+                  Address Line 2:
+                  <input type="text" name="address2" value="<%= user.address?.address2 ?? '' %>">
+                </label>
+                <label>
+                  Postal code:
+                  <input type="text" name="postalCode" value="<%= user.address?.postalCode ?? '' %>">
+                </label>
+                <button>Update</button>
+              </form>
             </div>
           </li>
           <li>

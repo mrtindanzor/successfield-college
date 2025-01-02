@@ -63,7 +63,12 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
     return res.status(500).json({status: 500, msg: 'An error occured'})
   }
   if(route === 'region'){
-    return
+    const { country, state, city, address1, address2, postalCode } = req.body
+    if(!country || !state || !city || !address1) return res.status(403).json({status: 403, msg: 'Enter a valid address'})
+    if(!country.match(alpahanumericPattern) || !state.match(alpahanumericPattern) || !city.match(alpahanumericPattern) || !address1.match(alpahanumericPattern) || (address2 && !address2?.match(alpahanumericPattern)) || (postalCode && !postalCode?.match(alpahanumericPattern))) return res.status(403).json({status: 403, msg: 'Address contains invalid characters'})
+    const updateAddress = await userModel.findOneAndUpdate({email}, {$set: {address: {country, state, city, address1, address2, postalCode}}}, {new: true})
+    if(!updateAddress) return res.status(500).json({status: 500, msg: 'An error occured'})
+    return res.status(201).json({status: 201, msg: 'Address updated'})
   }
   next()
 })

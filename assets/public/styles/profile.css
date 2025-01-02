@@ -274,6 +274,9 @@ main-section{
   .main-links li ul li div.active{
     display: flex;
   }
+  .main-links li  ul li div.account-item{
+    height: fit-content;
+  }
 }
 @media (min-width: 551px) {
   .profile-wrapper{
@@ -302,6 +305,7 @@ main-section{
   }
   .main-links{
     display: flex;
+    height: 100dvh;
     flex-direction: column;
     gap: 5px;
     list-style: none;

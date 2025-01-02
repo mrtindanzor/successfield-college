@@ -20,6 +20,14 @@ const env = config().parsed,
     programme: String,
     dateCompleted: String
   }),
+  addressShema = new schema({
+    country: String,
+    state: String,
+    city: String,
+    address1: String,
+    address2: String,
+    postalCode: String
+  }),
   userSchema = new schema({
     firstname: String,
     middlename: String,
@@ -28,6 +36,7 @@ const env = config().parsed,
     email: String,
     phone: Number,
     image: imageSchema,
+    address: addressShema,
     studentNumber: String,
     admin: Boolean,
     date: String,
@@ -58,6 +67,7 @@ const env = config().parsed,
   userModel = mongoose.model('user', userSchema),
   courseModel = mongoose.model('course', courseSchema),
   imageModel = mongoose.model('image', imageSchema),
+  addressModel = mongoose.model('address', addressShema),
   partnerModel = mongoose.model('partner', partnerSchema),
   pingService = () => {
     fetch(baseurl).then(() => console.log(`pinging ${baseurl}`))
@@ -80,7 +90,7 @@ const env = config().parsed,
       sendMailAsync(subject, html, to)
       next(err)
   },
-  alpahanumericPattern = /^[A-Za-z0-9 .]+$/,
+  alpahanumericPattern = /^[A-Za-z0-9 .,&-_()]+$/,
   emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   numberPattern = /^[0-9]+$/,
   authenticated = (req, res, next) => {
@@ -152,5 +162,6 @@ export { env, certificateModel, userModel,
   setVariables, pingService, isSession,
   isAdmin, authenticated, isNotAuthenticated,
   isPartner, emailPattern, alpahanumericPattern,
-  numberPattern, baseurl, createStudentId
+  numberPattern, baseurl, createStudentId,
+  addressModel
 }
