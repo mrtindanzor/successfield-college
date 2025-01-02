@@ -28,11 +28,12 @@ const env = config().parsed,
     email: String,
     phone: Number,
     image: imageSchema,
+    admin: Boolean,
     date: String,
     verificationCode: String,
+    isnew: Boolean,
     verified: Boolean,
-    namechanged: Boolean,
-    admin: Boolean
+    namechanged: Boolean
   }),
   courseSchema = new schema({
     course: String,

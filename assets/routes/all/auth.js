@@ -80,7 +80,7 @@ authroute.post('/join', authenticated,  async function(req, res){
   if(emailExists) return res.status(400).json({status: 400, msg: 'An account with this email already exists'})
   
   const  hashedPassword = await bcrypt.hash(password, 10),
-    userDetails = { firstname, middlename, surname, email, password: hashedPassword, verificationCode: date },
+    userDetails = { firstname, middlename, surname, email, password: hashedPassword, verificationCode: date, isnew: true },
     user = new userModel(userDetails)
   await user.save()
   if(!user.isNew) {
@@ -134,17 +134,20 @@ authroute.get('/verify/:confirmationCode', authenticated,  async function(req, r
     if(!updateVerificationStatus) verificationDetails = {status: 400, msg: 'Error verifying your account'}
     if(updateVerificationStatus){
 
-    const name = findUser.firstname + ' ' + findUser.surname,
-      subject =  `New user verified`,
-      html = (new mailTemplates).user(name, findUser.email)
-    await sendMailAsync(subject, html)
-    admins.forEach(async el => {
-      let admin = el.firstname + ' ' + el.surname
-      if(el.firstname.toLowerCase() == 'augustine') admin = 'Dr (clin) ' + el.firstname + ' ' + el.surname
-      const html = (new mailTemplates).user(admin, el.email)
-      await sendMailAsync(subject, html, el.email)
-    })
-      verificationDetails = {status: 200, msg: 'Account verified successfully'}
+    if(req.user.isnew){
+      const name = findUser.firstname + ' ' + findUser.surname,
+        subject =  `New user verified`,
+        html = (new mailTemplates).user(name, findUser.email)
+      await sendMailAsync(subject, html)
+      admins.forEach(async el => {
+        let admin = el.firstname + ' ' + el.surname
+        if(el.firstname.toLowerCase() == 'augustine') admin = 'Dr (clin) ' + el.firstname + ' ' + el.surname
+        const html = (new mailTemplates).user(admin, el.email)
+        await sendMailAsync(subject, html, el.email)
+      })
+      await userModel.findOneAndUpdate({verificationCode}, {$set: {isnew: false}})
+    }
+    verificationDetails = {status: 200, msg: 'Account verified successfully'}
     } 
   }
   res.render('index', {page: 'verifyemail', title: 'Verify email address', verificationDetails })
