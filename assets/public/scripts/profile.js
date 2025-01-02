@@ -2,6 +2,7 @@ import icons from './icons.js'
 const spanSelectors = document.querySelectorAll('.li-heading'),
   subSpanSeletors = document.querySelectorAll('.main-links li ul li span'),
   linksMenu = document.querySelector('.main-links'),
+  studentIDSelector = document.querySelector('.student-number'),
   titleBar = document.querySelector('.main-page .title-bar'),
   title = titleBar.querySelector('.title'),
   titleBackBtn = document.querySelector('.title-bar .back-button'), 
@@ -19,6 +20,11 @@ const spanSelectors = document.querySelectorAll('.li-heading'),
 
 let temp  = '',
  page = ''
+ studentIDSelector.addEventListener('click', function(){
+  navigator.clipboard.writeText(studentIDSelector.textContent)
+  result.innerHTML = `<span class="success">Student ID copied</span>`
+  resetElHtml(result)
+ })
 titleBackBtn.innerHTML = (new icons('back-button', 'Go Back')).chevronLeft()
 spanSelectors.forEach(el => {
   el.addEventListener('click', function(){

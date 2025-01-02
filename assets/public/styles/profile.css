@@ -28,7 +28,7 @@ main-section{
   width: 2rem;
   cursor: pointer;
 }
-.profile-image-tab .username, .profile-image-tab .studentNumber{
+.profile-image-tab .username, .profile-image-tab .student-number{
   display: block;
   color: var(--first);
   font-size: var(--second-s);
@@ -37,7 +37,7 @@ main-section{
   text-align: center;
   margin: 5px;
 }
-.profile-image-tab .studentNumber{
+.profile-image-tab .student-number{
   font-size: var(--first-s);
   opacity: 0.4;
 }
