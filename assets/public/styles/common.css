@@ -288,6 +288,7 @@ header .main-menu .course-list-menu{
 }
 main-section{
   flex: 1;
+  overflow-x: hidden;
 }
 footer{
   display: flex;
