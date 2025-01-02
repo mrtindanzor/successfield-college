@@ -430,7 +430,8 @@ span.failed, span.success{
   text-transform: uppercase;
   font-size: var(--second-s);
   z-index: 1000;
-  box-shadow: 0 0 2px var(--dark);
+  box-shadow: 0 0 30px var(--dark);
+  border: 1px dotted var(--dark);
 }
 span.success{
   background-color: var(--third);
