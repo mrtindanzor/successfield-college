@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt'
 import { Strategy as localStrategy } from 'passport-local'
 import { sendMailAsync }  from './sendmail.js'
 import mailTemplates from './mailtemplates.js'
-import { env, baseurl, userModel, authenticated, emailPattern, alpahanumericPattern } from '../../../dependencies.js'
+import { env, baseurl, userModel, authenticated, emailPattern, alpahanumericPattern, createStudentId } from '../../../dependencies.js'
 import { deletePhoto } from './upload.js'
 
 const authroute = Router()
@@ -59,14 +59,14 @@ authroute.put('/', async function(req, res){
 })
 authroute.post('/join', authenticated,  async function(req, res){
   let {firstname, middlename, surname, email, password, cpassword } = req.body,
-        date = Date.now()
-
-        email = email.trim()
-        password = password.trim()
-        cpassword = cpassword.trim()
-        firstname = firstname.trim()
-        surname = surname.trim()
+    date = Date.now()
+    email = email.trim(), password = password.trim(), cpassword = cpassword.trim(), firstname = firstname.trim(), surname = surname.trim()
         
+  const year = new Date().getFullYear(),
+    day = new Date().getDate(),
+    month = new Date().getMonth(),
+    currentDate = `${day}-${month+1}-${year}`
+
   if(!email || !email.match(emailPattern)) return res.status(400).json({status: 400, msg: 'The email contains invalid characters'})
 
   if(cpassword !== password) return res.status(400).json({status: 400, msg: 'Passwords do not match!'})
@@ -81,7 +81,8 @@ authroute.post('/join', authenticated,  async function(req, res){
   if(emailExists) return res.status(400).json({status: 400, msg: 'An account with this email already exists'})
   
   const  hashedPassword = await bcrypt.hash(password, 10),
-    userDetails = { firstname, middlename, surname, email, password: hashedPassword, verificationCode: date, isnew: true },
+    studentNumber = await createStudentId(userModel),
+    userDetails = { firstname, middlename, surname, email, password: hashedPassword, studentNumber, date: currentDate, verificationCode: date, isnew: true },
     user = new userModel(userDetails)
   await user.save()
   if(!user.isNew) {
@@ -127,27 +128,26 @@ authroute.get('/verify/:confirmationCode', authenticated,  async function(req, r
   const verificationCode = req.params.confirmationCode,
     findUser = await userModel.findOne({verificationCode})
   if(!findUser) verificationDetails = {status: 404, msg: 'Invalid credentials'}
-  if(findUser && findUser.verified) verificationDetails = {status: 200, msg: 'Account already verified'}
+  if(findUser?.verified) verificationDetails = {status: 200, msg: 'Account already verified'}
     
   if(findUser && !findUser.verified){
     const updateVerificationStatus = await userModel.findOneAndUpdate({verificationCode}, {$set: {verified: true, verificationCode: ''}}),
       admins = await userModel.find({admin: true})
     if(!updateVerificationStatus) verificationDetails = {status: 400, msg: 'Error verifying your account'}
     if(updateVerificationStatus){
-
-    if(req.user.isnew){
-      const name = findUser.firstname + ' ' + findUser.surname,
-        subject =  `New user verified`,
-        html = (new mailTemplates).user(name, findUser.email)
-      await sendMailAsync(subject, html)
-      admins.forEach(async el => {
+      if(req.user.isnew){
+        const name = findUser.firstname + ' ' + findUser.surname,
+          subject =  `New user verified`,
+          html = (new mailTemplates).user(name, findUser.email)
+        await sendMailAsync(subject, html)
+        admins.forEach(async el => {
         let admin = el.firstname + ' ' + el.surname
         if(el.firstname.toLowerCase() == 'augustine') admin = 'Dr (clin) ' + el.firstname + ' ' + el.surname
         const html = (new mailTemplates).user(admin, el.email)
         await sendMailAsync(subject, html, el.email)
-      })
-      await userModel.findOneAndUpdate({verificationCode}, {$set: {isnew: false}})
-    }
+        })
+        await userModel.findOneAndUpdate({email: findUser.email}, {$set: {isnew: false}})
+      }
     verificationDetails = {status: 200, msg: 'Account verified successfully'}
     } 
   }

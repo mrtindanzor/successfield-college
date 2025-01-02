@@ -28,6 +28,7 @@ const env = config().parsed,
     email: String,
     phone: Number,
     image: imageSchema,
+    studentNumber: String,
     admin: Boolean,
     date: String,
     verificationCode: String,
@@ -118,6 +119,22 @@ const env = config().parsed,
     if(partner) res.locals.partner = true
     next()
   }
+  async function createStudentId(db) {
+    let isMatch = true
+    let studentNumber = ''
+    while(isMatch){
+      const prefix = 'SFC',
+      year = new Date().getFullYear(),
+      code = Date.now().toString(),
+      splitCode = code.split('').splice(7).join('')
+      studentNumber = prefix + "-" + year + "-" + splitCode
+  
+      const isStudent = await db.findOne({studentNumber})
+      if(!isStudent) isMatch = false
+    }
+    return studentNumber
+  }
+
 
   try{
     mongoose.Promise = global.Promise
@@ -134,5 +151,6 @@ export { env, certificateModel, userModel,
   uploadPath, errhandler, page404, appStarted,
   setVariables, pingService, isSession,
   isAdmin, authenticated, isNotAuthenticated,
-  isPartner, emailPattern, alpahanumericPattern, numberPattern, baseurl
+  isPartner, emailPattern, alpahanumericPattern,
+  numberPattern, baseurl, createStudentId
 }

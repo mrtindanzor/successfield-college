@@ -28,14 +28,18 @@ main-section{
   width: 2rem;
   cursor: pointer;
 }
-.profile-image-tab .username{
+.profile-image-tab .username, .profile-image-tab .studentNumber{
   display: block;
   color: var(--first);
   font-size: var(--second-s);
   text-transform: capitalize;
-  opacity: 0.5;
+  opacity: 0.6;
   text-align: center;
   margin: 5px;
+}
+.profile-image-tab .studentNumber{
+  font-size: var(--first-s);
+  opacity: 0.4;
 }
 .profile-img, .profile-photo-icon{
   display: block;
