@@ -30,9 +30,9 @@ uploadRoute.put('/upload', upload.single('image'), async (req, res) => {
 
   const file = req.file,
     path = file.path,
-    havePublicId = req.user.image.publicId
-    console.log(havePublicId)
-  if(havePublicId) await deletePhoto(havePublicId)
+    hasImage = req.user.image
+    
+  if(hasImage) await deletePhoto(hasImage.publicId)
 
   const upload = await cloudinary.uploader.upload(path).catch(err => console.log(err))
 
@@ -44,7 +44,7 @@ uploadRoute.put('/upload', upload.single('image'), async (req, res) => {
   return res.status(201).json({status: 201, url, publicId})
 })
 uploadRoute.delete('/deletephoto', async function(req, res){
-  const publicId = req.body
+  const publicId = req.body.publicId
   await deletePhoto(publicId)
   return res.status(201).json({status: 201, msg: 'Image deleted'})
 })

@@ -234,6 +234,17 @@ authroute.delete('/delete', async function(req, res){
   const { email } = req.body,
   findUser = await userModel.findOne({email})
   if(!findUser) return res.status(404).json({status: 404, msg: 'user not found'})
+  if(findUser.image){
+    const uri = '/deletephoto',
+    options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({publicId: findUser.image.publicId})
+    }
+    await fetch(uri, options).catch(err => console.log(err))
+  }
   const user = await userModel.findOneAndDelete({email})
   if(!user) return res.status(500).json({status: 500, msg: 'could not delete'})
   return res.status(200).json({status: 200, msg: 'deleted'})
