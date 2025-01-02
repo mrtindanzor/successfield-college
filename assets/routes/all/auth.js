@@ -171,7 +171,7 @@ authroute.post('/resend', authenticated, async function(req, res){
   if(verificationStatus) return res.status(302).json({status: 302, msg: 'Email already verified'})
 
   const subject = 'Verify email address',
-    link = `${env.baseurl}/users/verify/${date}`,
+    link = `${baseurl}/users/verify/${date}`,
     html = (new mailTemplates).verifyAccoutTemplate(link),
     sendMail = await sendMailAsync(email, subject, html).catch(err => console.log(err))
   if(sendMail) if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
