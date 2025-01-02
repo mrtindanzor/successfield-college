@@ -1,16 +1,16 @@
 <% const pencil = (new icons('profile-editor-icon', 'Edit profile picture')).pencilFill() %>
 <% const profileIcon = (new icons('profile-photo-icon', name)).userLine() %>
 <% const closeIcon = (new icons('close-photo-icon', 'Exit')).close() %>
-<% const profileImage = user.image.url %>
+<% const profileImage = user.image %>
 <div class="profile-wrapper">
   <div class="main-page">
     <div class="profile-image-tab">
       <div class="photo-tab">
         <% if(profileImage){ %>
-          <img src="<%= profileImage %>" alt="profile picture" class="profile-img">
+          <img src="<%= profileImage.url %>" alt="profile picture" class="profile-img">
           <div class="view-profile-image">
             <%- closeIcon %>
-            <img src="<%= profileImage %>" alt="profile picture" class="viewer-profile-img">
+            <img src="<%= profileImage.url %>" alt="profile picture" class="viewer-profile-img">
           </div>
         <% }else{ %>
           <%- profileIcon %>
