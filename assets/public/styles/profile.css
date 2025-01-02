@@ -50,6 +50,7 @@ main-section{
   border: 3px solid var(--third);
   padding: 5px;
   margin: 20px auto;
+  cursor: pointer;
 }
 .main-page .title-bar{
   display: none;
@@ -77,27 +78,29 @@ main-section{
   justify-content: center;
   align-items: center;
   top: 100%;
-  left: 50%;
-  width: 200px;
-  height: 200px;
+  width: 95%;
+  max-width: 400px;
+  height: 300px;
   z-index: 1;
   background-color: var(--darker);
-  padding: 15px 20px;
-  margin: 0 auto;
+  padding: 0 20px;
+  margin: 10px auto;
   transform: scale(0);
-  cursor: pointer;
   transition: 0.1s ease-out;
 }
 .view-profile-image.active{
-  transform: scale(1) translateX(-50%);
+  transform: scale(1);
 }
 .close-photo-icon{
   position: absolute;
-  right: 0px;
-  top: -2px;
+  right: 15px;
+  top: 5px;
   width: 30px;
   color: var(--first);
   cursor: pointer;
+}
+.close-photo-icon:hover{
+  opacity: 0.8;
 }
 .viewer-profile-img{
   height: 98%;
@@ -183,6 +186,7 @@ main-section{
 @media (max-width: 550px) {
   .profile-img{
     margin: 0 auto;
+  cursor: pointer;
   }
   .main-page{
     display: flex;

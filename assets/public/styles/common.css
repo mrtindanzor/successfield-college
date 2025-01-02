@@ -54,6 +54,7 @@ body{
   user-select: none;
   overflow: hidden;
   overflow-y: auto;
+  transition: 0.3s ease-in;
 }
 nav{
   width: 100dvw;

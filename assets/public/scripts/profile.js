@@ -124,13 +124,14 @@ profilePhotoBtn.addEventListener('change', async function(){
     dummyPhotoIcon.remove()
     photoTab.prepend(img)
   }
-  if(profileImage) profileImage.setAttribute('src', res.url)
+  profileImage?.setAttribute('src', res.url)
+  viewerProfileImage?.setAttribute('src', res.url)
   result.innerHTML = `<span class="success">${saved.msg}</span>`
   loader.classList.remove('active')
   profilePhotoBtn.value = ''
   return resetElHtml(result)
 })
-profileImage.addEventListener('click', () => togglePhoto('show'))
+profileImage?.addEventListener('click', () => togglePhoto('show'))
 document.body.addEventListener('click', function(e){
   if(e.target !== viewerProfileImage && e.target !== profileImage) togglePhoto('hide')
 })

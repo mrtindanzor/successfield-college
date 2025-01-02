@@ -10,13 +10,13 @@
       <div class="photo-tab">
         <% if(profileImage){ %>
           <img src="<%= profileImage.url %>" alt="profile picture" class="profile-img">
-          <div class="view-profile-image">
-            <%- closeIcon %>
-            <img src="<%= profileImage.url %>" alt="profile picture" class="viewer-profile-img">
-          </div>
         <% }else{ %>
           <%- profileIcon %>
         <% } %>
+        <div class="view-profile-image">
+          <%- closeIcon %>
+          <img src="<%= profileImage ? profileImage.url : '' %>" alt="profile picture" class="viewer-profile-img">
+        </div>
         <label class="photo-chooser">
           <%- pencil %>
           <input type="file" name="image" id="profile-photo-editor" accept=".jpg, .jpeg, .png">
