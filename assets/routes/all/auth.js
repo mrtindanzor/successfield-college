@@ -177,6 +177,15 @@ authroute.post('/resend', authenticated, async function(req, res){
   if(sendMail) if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
   return res.status(400).json({status: 400, msg: 'Error sending email'})
 })
+authroute.get('/logout', function(req, res){
+  req.logOut(function(err){
+    if(err) return next(err)
+    res.redirect('/')
+  })
+})
+authroute.get('/forgotpassword', function(req, res){
+  res.status(200).render('index', {page: 'passwordreset', section: 'request-password', title: 'Forgot password'})
+})
 authroute.post('/forgotpassword', async function(req, res){
   const email = req.body.email.trim().toLowerCase(),
     isEmailMatch = email.match(emailPattern),
@@ -194,16 +203,8 @@ authroute.post('/forgotpassword', async function(req, res){
       link = `${baseurl}/users/forgotpassword/${date}`,
       html = (new mailTemplates).forgotPasswordTemplate(link),
       sendMail = await sendMailAsync(subject, html, email)
-    if(sendMail) if(sendMail.accepted.length === 1) return res.status(200).json({status: 200, msg: 'Email sent, check your inbox'})
+    if(sendMail) if(sendMail.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Email sent, check your inbox'})
     return res.status(400).json({status: 400, msg: 'Error sending email'})
-})
-authroute.get('/forgotpassword/:verificationCode', async function(req, res){
-  let email = ''
-  const verificationCode = req.params.verificationCode.trim()
-
-  const findUser = await userModel.findOne({verificationCode})
-  if(findUser) email = findUser.email
-  res.status(200).render('index', {page: 'setforgotpassword', title: 'Change password', email: email})
 })
 authroute.patch('/forgotpassword/newpassword', async function(req, res){
   let { email, password, cpassword } = req.body
@@ -217,14 +218,13 @@ authroute.patch('/forgotpassword/newpassword', async function(req, res){
   if(!updatePassword) return res.status(500).json({status: 500, msg: 'An error occured'})
   return res.status(201).json({status: 201, msg: 'Password updated'})
 })
-authroute.get('/logout', function(req, res){
-  req.logOut(function(err){
-    if(err) return next(err)
-    res.redirect('/')
-  })
-})
-authroute.get('/forgotpassword', function(req, res){
-  res.status(200).render('index', {page: 'forgotpassword', title: 'Forgot password'})
+authroute.get('/forgotpassword/:verificationCode', async function(req, res){
+  let email = ''
+  const verificationCode = req.params.verificationCode.trim()
+
+  const findUser = await userModel.findOne({verificationCode})
+  if(findUser) email = findUser.email
+  res.status(200).render('index', {page: 'passwordreset', section: 'set-password', title: 'Change password', email: email})
 })
 authroute.get('/:auth', authenticated, function(req, res, next){
   const route = req.params.auth.trim().toLowerCase()

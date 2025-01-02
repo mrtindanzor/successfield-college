@@ -60,6 +60,7 @@ main-section{
   width: 30px;
   height: 30px;
   color: var(--third);
+  cursor: pointer;
 }
 .title-bar .title{
   font-size: var(--fourth-s);
@@ -97,6 +98,84 @@ main-section{
 .viewer-profile-img{
   height: 98%;
 }
+.account-item{
+  display: none;
+  .form-container{
+    width: 90dvw;
+    max-width: 450px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 2px;
+    gap: 10px;
+  }
+  .form-container i{
+    display: flex;
+    align-items: center;
+    background-color: var(--dark);
+    color: var(--first);
+    padding: 5px 20px;
+    font-size: 0.9rem;
+  }
+  .form-container span{
+    display: block;
+    background: var(--first);
+    color: var(--third);
+    padding: 10px 20px;
+    font-size: var(--third-s);
+    font-family: 'acolonica';
+    border-radius: 3px;
+  }
+  .form-container label{
+    position: relative;
+    display: block;
+    width: 100%;
+    color: var(--third);
+  }
+  .form-container input{
+    font-size: var(--first-s);
+    padding: 10px;
+    display: block;
+    width: 100%;
+    background: none;
+    border-radius: 6px;
+    color: var(--first);
+    border: 1px solid currentColor;
+  }
+  .form-container button{
+    padding: 10px 20px;
+    display: block;
+    width: fit-content;
+    margin: 20px auto 0 auto;
+    font-size: var(--second-s);
+    background: var(--first);
+    color: var(--third);
+    border-radius: 30px;
+    text-transform: capitalize;
+  }
+  input[disabled]{
+    color: var(--first);
+    background: none;
+    border-radius: 8px;
+    border: 1px solid currentColor;
+  }
+}
+.form-eye-close, .form-eye-open{
+  color: var(--third);
+  background-color: transparent;
+  width: 33px;
+  position: absolute;
+  bottom: 6px;
+  transform: scale(0.7);
+  right: 7px;
+  cursor: pointer;
+  z-index: 1;
+  display: none;
+}
+.state-active{
+  display: block;
+}
 @media (max-width: 550px) {
   .profile-img{
     margin: 0 auto;
@@ -127,7 +206,7 @@ main-section{
   .main-links.inactive{
     transform: translateX(calc(-100% - 20px));
   }
-  .main-links > li, .main-links > li ul li a{
+  .main-links > li, .main-links li ul li span, .main-links ul li a{
     display: flex;
     color: var(--first);
     opacity: 0.8;
@@ -138,7 +217,7 @@ main-section{
     padding: 20px;
     text-decoration: none;
   }
-  .main-links li ul li:last-child a, .main-links li:last-child{
+  .main-links li ul li:last-child span, .main-links li:last-child{
     border: none;
   }
   .main-links > li:hover{
@@ -154,6 +233,7 @@ main-section{
     left: calc(100% + 20px);
     list-style-type: none;
     padding: 0;
+    transition: 0.2s ease-out;
   }
   .main-links > li ul.active{
     display: flex;
@@ -161,8 +241,30 @@ main-section{
     justify-content: space-around;
     width: 100%;
   }
+  .main-links > li ul.inactive{
+    transform: translateX(calc(-100% - 20px));
+  }
   .main-links ul li a:hover{
     color: var(--third);
+  }
+
+  .main-links ul li a{
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid var(--dark);
+    text-decoration: none;
+  }
+  .main-links ul li:last-child a{
+    border-bottom: none;
+  }
+  .main-links li ul li div{
+    position: absolute;
+    top: 0;
+    left: calc(100% + 20px);
+    display: none;
+  }
+  .main-links li ul li div.active{
+    display: flex;
   }
 }
 @media (min-width: 551px) {
@@ -190,9 +292,6 @@ main-section{
   .main-page .title-bar.active{
     display: flex;
   }
-  .title-bar .back-button{
-    display: none;
-  }
   .main-links{
     display: flex;
     flex-direction: column;
@@ -207,6 +306,9 @@ main-section{
     color: var(--first);
     opacity: 0.7;
   }
+  .main-links > li > span{
+    display: block;
+  }
   .main-links li ul{
     display: none;
     position: absolute;
@@ -215,25 +317,55 @@ main-section{
     border: 2px solid var(--darker);
     border-left: none;
     min-width: 60dvw;
-    flex-direction: column;
     height: calc(100% + 4px);
     white-space: nowrap;
     top: -2px;
     padding: 20px;
     padding-top: 60px;
+    flex-direction: column;
   }
   .main-links li ul.active{
     display: flex;
+    gap: 2px;
   }
-  .main-links ul li a:hover{
+  .main-links .wrapper{
+    min-width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .main-links ul li span:hover, .main-links ul li a:hover{
     color: var(--third);
+  }
+  .main-links ul li span{
+    display: inline-block;
+    width: fit-content;
+    box-shadow: 0 0 2px var(--dark);
+    padding: 5px 8px;
+    background-color: var(--dark);
+    margin: none;
+    text-transform: capitalize;
   }
   .main-links ul li a{
     display: block;
-    background-color: transparent;
-    box-shadow: none;
-    margin: none;
+    width: 100%;
     text-decoration: none;
-    text-transform: capitalize;
+  }
+  .main-links ul li:last-child a{
+    border-bottom: none;
+  }
+  .main-links li  ul li div.account-item{
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+  }
+  div.account-item .form-container{
+    padding: 0;
+    margin: 0;
+  }
+  .main-links li ul li div.account-item.active{
+    display: flex;
   }
 }

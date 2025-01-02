@@ -1,6 +1,8 @@
 <% const pencil = (new icons('profile-editor-icon', 'Edit profile picture')).pencilFill() %>
 <% const profileIcon = (new icons('profile-photo-icon', name)).userLine() %>
 <% const closeIcon = (new icons('close-photo-icon', 'Exit')).close() %>
+<% const eyeCloseIcon = (new locals.icons('form-eye-close', 'Hide password')).eyeClose() %>
+<% const eyeOpenIcon = (new locals.icons('form-eye-open state-active', 'Show password')).eyeOpen() %>
 <% const profileImage = user.image %>
 <div class="profile-wrapper">
   <div class="main-page">
@@ -31,12 +33,107 @@
       <li>
       <span class="li-heading">Account information</span>
       <ul>
-      <li><a href="/users/account-information/username">Name</a></li>
-      <li><a href="/users/account-information/phone number">Phone number</a></li>
-      <li><a href="/users/account-information/email">Email</a></li>
-      <li><a href="/users/account-information/region">Account Region</a></li>
-      <li><a href="/users/account-information/change password">Change password</a></li>
-      <li><a href="/users/forgotpassword">Reset password</a></li>
+        <div class="wrapper">
+          <li>
+            <span>Name</span>
+            <div class="account-item">
+              <form class="form-container">
+                <% if(!user.namechanged){ %>
+                  <span>Update name</span>
+                  <i>Name can only be edited once</i>
+                <% } %>
+                <label>
+                  Firstname: 
+                  <input type="text" name="firstname" placeholder="Firstname" value="<%= user.firstname %>" <% if(user.namechanged){ %> disabled <% } %>>
+                </label>
+                <label>
+                  Middle name:
+                  <input type="text" name="middlename" placeholder="Middle name" <% if(user.middlename){ %> value="<%= user.middlename %>" <% } %> <% if(user.namechanged){ %> disabled <% } %>>
+                </label>
+                <label>
+                  Surname:
+                  <input type="text" name="surname" placeholder="surname" value="<%= user.surname %>" <% if(user.namechanged){ %> disabled <% } %>>
+                </label>
+                <% if(!user.namechanged){ %>
+                  <button>Edit name</button>
+                <% } %>
+              </form>
+            </div>
+          </li>
+          <li>
+            <span>Phone number</span>
+            <div class="account-item">
+              <form class="form-container">
+                <span>Change phone number</span>
+                <label>
+                  Phone number:
+                  <input type="tel" name="phone" placeholder="0200000000" <% if(user.phone){ %> value="<%= user.phone%>" <% } %> >
+                </label>
+                <button>Update</button>
+              </form>
+            </div>
+          </li>
+          <li>
+            <span>Email</span>
+            <div class="account-item">
+              <form class="form-container">
+                <span>Change email address</span>
+                <label>
+                  Email:
+                  <input type="email" name="email" placeholder="info@example.com" value="<%= user.email%>">
+                </label>
+                <button>Update</button>
+              </form>
+            </div>
+          </li>
+          <li>
+            <span>Account Region</span>
+            <div class="account-item">
+    
+            </div>
+          </li>
+          <li>
+            <span>Change password</span>
+            <div class="account-item">
+              <form class="form-container">
+                <span>Change password</span>
+                <label>
+                  Old password:
+                  <input type="password" name="oldpassword" placeholder="Enter old password" >
+                  <%- eyeOpenIcon %>
+                  <%- eyeCloseIcon %>
+                </label>
+                <label>
+                  New password:
+                  <input type="password" name="password" placeholder="Enter new password" >
+                  <%- eyeOpenIcon %>
+                  <%- eyeCloseIcon %>
+                </label>
+                <label>
+                  Confirm new password:
+                  <input type="password" name="cpassword" placeholder="Confirm new password" >
+                  <%- eyeOpenIcon %>
+                  <%- eyeCloseIcon %>
+                </label>
+                <button>update</button>
+              </form>
+            </div>
+          </li>
+          <li>
+            <span>Reset password</span>
+            <div class="account-item">
+              <form class="form-container">
+                <span>Reset password</span>
+                <label>
+                  Email:
+                  <input type="email" name="email" placeholder="info@example.com" value="<%= user.email%>">
+                </label>
+                <button>Send email</button>
+              </form>
+            </div>
+          </li>
+
+        </div>
       </ul>
       </li>
       <li>
