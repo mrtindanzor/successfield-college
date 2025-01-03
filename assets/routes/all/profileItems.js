@@ -3,13 +3,13 @@ import bcrypt from 'bcrypt'
 import { emailPattern, alpahanumericPattern, userModel, numberPattern, baseurl  } from "../../../dependencies.js"
 import { sendMailAsync } from "./sendmail.js";
 import mailTemplates from "./mailtemplates.js";
-const profileItemsRoute = Router(),
-  user = req.user
-
+const profileItemsRoute = Router()
 let email
 profileItemsRoute.use('/', setEmail)
 profileItemsRoute.patch('/account-information/:route', async (req, res, next) => {
-  const route = req.params.route.toLowerCase().trim()
+  const route = req.params.route.toLowerCase().trim(),
+  user = req.user
+
   if(route === 'username'){
     const { firstname, middlename, surname } = req.body
     if(user.namechanged === true) return res.status(403).json({status: 403, msg: 'Name edit limit reached. Contact support for assistance.'})
