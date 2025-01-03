@@ -7,7 +7,7 @@ function counter(object){
   let count = 10
   object.textContent = count
   setInterval(()=> {
-    if(count === 1) return
+    if(count < 1) return
     count--
     object.textContent = count
   }, 1000)
