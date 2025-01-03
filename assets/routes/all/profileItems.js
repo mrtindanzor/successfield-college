@@ -1,6 +1,6 @@
 import { Router } from "express";
 import bcrypt from 'bcrypt'
-import { emailPattern, alpahanumericPattern, userModel, numberPattern, env  } from "../../../dependencies.js"
+import { emailPattern, alpahanumericPattern, userModel, numberPattern, baseurl  } from "../../../dependencies.js"
 import { sendMailAsync } from "./sendmail.js";
 import mailTemplates from "./mailtemplates.js";
 const profileItemsRoute = Router()
@@ -55,7 +55,7 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
     if(!updateEmail) return res.status(500).json({status: 500, msg: 'An error occured'})
     const to = newEmail,
       subject =  `Verify email address`,
-      link = `${env.baseurl}/users/verify/${date}`,
+      link = `${baseurl}/users/verify/${date}`,
       html = (new mailTemplates).verifyAccoutTemplate(link),
       sendMail = await sendMailAsync(subject, html, to).catch(err => console.log(err))
     if(sendMail?.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Email updated, verify using the link sent to email address'})

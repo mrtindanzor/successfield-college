@@ -3,21 +3,6 @@ const timeout = document.querySelector('.timeout'),
   resendBtn = document.querySelector('.resend-button'),
   result = document.querySelector('.result')
 
-function counter(object){
-  let count = 10
-  object.textContent = count
-  setInterval(()=> {
-    if(count < 1) return
-    count--
-    object.textContent = count
-  }, 1000)
-}
-function redirect(){ setTimeout(() => { window.location.href = '/users/login' }, 5000) }
-if(timeout){
-  counter(timeout)
-  redirect()
-}
-
 if(resendBtn){
   resendBtn.addEventListener('click', async () => {
     let email = inputEl.value
@@ -43,4 +28,19 @@ if(resendBtn){
     if(res.status !== 200) result.innerHTML = `<span class="failed">${res.msg}</span>`
     resetElHtml(result)
   })
+}
+
+function counter(object){
+  let count = 10
+  object.textContent = count
+  setInterval(()=> {
+    if(count < 1) return
+    count--
+    object.textContent = count
+  }, 1000)
+}
+function redirect(){ setTimeout(() => { window.location.href = '/users/login' }, 5000) }
+if(timeout){
+  counter(timeout)
+  redirect()
 }
