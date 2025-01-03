@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.gism.online/</loc>
+  <lastmod>2025-01-03T00:11:12+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.gism.online/users/login</loc>
+  <lastmod>2025-01-03T00:11:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.gism.online/users/join</loc>
+  <lastmod>2025-01-03T00:11:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.gism.online/courses/advanced%20diploma%20in%20nursing%20assistant%20studies%20(caregiving)</loc>
+  <lastmod>2025-01-03T00:11:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.gism.online/courses/advanced%20diploma%20in%20graphic%20designing</loc>
+  <lastmod>2025-01-03T00:11:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.gism.online/verify</loc>
+  <lastmod>2025-01-03T00:11:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.gism.online/members</loc>
+  <lastmod>2025-01-03T00:11:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.gism.online/partners</loc>
+  <lastmod>2025-01-03T00:11:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.gism.online/about</loc>
+  <lastmod>2025-01-03T00:11:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.gism.online/contact</loc>
+  <lastmod>2025-01-03T00:11:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.gism.online/users/forgotpassword</loc>
+  <lastmod>2025-01-03T00:11:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
