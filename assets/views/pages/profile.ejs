@@ -15,7 +15,7 @@
         <% } %>
         <div class="view-profile-image">
           <%- closeIcon %>
-          <img src="<%= profileImage ? profileImage.url : '' %>" alt="profile picture" class="viewer-profile-img">
+          <img src="<%= profileImage ? profileImage.url : '' %>" alt="profile picture" loading="lazy" class="viewer-profile-img">
         </div>
         <label class="photo-chooser">
           <%- pencil %>
