@@ -143,7 +143,7 @@ authroute.get('/verify/:confirmationCode', authenticated,  async function(req, r
         admins.forEach(async el => {
         let admin = el.firstname + ' ' + el.surname
         if(el.firstname.toLowerCase() == 'augustine') admin = 'Dr (clin) ' + admin
-        const html = (new mailTemplates).newUser(admin, el.email)
+        const html = (new mailTemplates).newUser(admin, findUser.email)
         await sendMailAsync(subject, html, el.email)
         })
         await userModel.findOneAndUpdate({email: findUser.email}, {$set: {isnew: false, verificationCode: ''}})
@@ -254,7 +254,7 @@ authroute.patch('/isnew', async function(req, res){
   const users = await userModel.find({})
   for(let user of users){
     const update = await userModel.findOneAndUpdate({studentNumber: user.studentNumber}, {$set: {isnew: false}}, {new: true})
-    if(update) console.log('updated', user.firstname, 'to', update.isnew, update.studentNumber)
+    if(update) console.log('updated', user.firstname, 'to', update.isnew, update.email)
     if(!update) console.log('update for ', user.firstname, 'failed')
   }
   return res.status(201).send()
