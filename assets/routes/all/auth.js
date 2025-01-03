@@ -135,7 +135,7 @@ authroute.get('/verify/:confirmationCode', authenticated,  async function(req, r
       admins = await userModel.find({admin: true})
     if(!updateVerificationStatus) verificationDetails = {status: 400, msg: 'Error verifying your account'}
     if(updateVerificationStatus){
-      if(req.findUser?.isnew){
+      if(findUser?.isnew){
         const name = findUser.firstname + ' ' + findUser.surname,
           subject =  `New user verified`,
           html = (new mailTemplates).user(name, findUser.email)
