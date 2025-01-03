@@ -94,6 +94,9 @@ form span + i{
   display: inline-block;
   margin-left: 5px;
 }
+.timeout{
+  font-style: normal;
+}
 @media (min-width: 767px) {
   form{
     right: 150px;
