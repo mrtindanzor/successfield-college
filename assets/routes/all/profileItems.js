@@ -9,7 +9,6 @@ let email
 profileItemsRoute.use('/', setEmail)
 profileItemsRoute.patch('/account-information/:route', async (req, res, next) => {
   const route = req.params.route.toLowerCase().trim()
-  
   if(route === 'username'){
     const { firstname, middlename, surname } = req.body,
       user = req.user
@@ -22,6 +21,7 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
     if(!result) return res.status(403).json({status: 403, msg: 'Error occured while updating name'})
     return res.status(201).json({status: 201, msg: 'Name updated successfully'})
   }
+
   if(route === 'changepassword'){
     const {oldpassword, password, cpassword} = req.body
     if(!oldpassword || !password || !cpassword) return res.status(403).json({status: 403, msg: 'Enter valid passwords'})
@@ -35,6 +35,7 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
     if(!updatePassword) return res.status(500).json({status: 500, msg: 'An error occured'})
     return res.status(201).json({status: 201, msg: 'Password updated'})
   }
+
   if(route === 'phonenumber'){
     const {phone} = req.body
     if(!phone) return res.status(403).json({status: 403, msg: 'Enter a valid phone number'})
@@ -43,12 +44,13 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
     if(!updatePhone) return res.status(403).json({status: 403, msg: 'An error occured'})
     return res.status(201).json({status: 201, msg: 'Phone number updated'})
   }
+
   if(route === 'email'){
     const newEmail = req.body.email,
       date = Date.now()
     if(!newEmail) return res.status(403).json({status: 403, msg: 'Enter a valid email'})
     if(!newEmail.match(emailPattern)) return res.status(403).json({status: 403, msg: 'Enter a valid email format'})
-    if(newEmail === email) return res.status(403).json({status: 403, msg: 'You are already using this email address'})
+    if(newEmail === email && user.verified) return res.status(403).json({status: 403, msg: 'You are already using this email address'})
     const emailExists = await userModel.findOne({email: newEmail})
     if(emailExists) return res.status(403).json({status: 403, msg: 'Email already exists'})
     const updateEmail = await userModel.findOneAndUpdate({email}, {$set: {email: newEmail, verified: false, verificationCode: date}}, {new: true})
@@ -62,6 +64,7 @@ profileItemsRoute.patch('/account-information/:route', async (req, res, next) =>
     await userModel.findOneAndUpdate({email}, {$set: {email, verified: true}})
     return res.status(500).json({status: 500, msg: 'An error occured'})
   }
+  
   if(route === 'region'){
     const { country, state, city, address1, address2, postalCode } = req.body
     if(!country || !state || !city || !address1) return res.status(403).json({status: 403, msg: 'Enter a valid address'})
