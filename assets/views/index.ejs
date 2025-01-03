@@ -17,7 +17,7 @@
   <body class="active">
     <%- include ('partials/header') %>
     <main-section>
-      <%- include (`pages/${locals.page}`) %>
+      <%- include (`pages/`+locals.page) %>
     </main-section>
     <% if(page != 'join' && page != 'login' && page != 'admin'){ %>
       <footer>
