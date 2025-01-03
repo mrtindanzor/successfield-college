@@ -7,21 +7,24 @@ const slideshowImgs = ['000015.jpg', '000016.jpg', '000017.jpg', '000018.jpg', '
   chevronRight = (new icons('right-chevron', 'Scroll right')).chevronRight()
 
 let maxScrollWidth, lastScrollTime = 0
-
-slideshowImgs.forEach(appendImgs)
  
-    
+appendImgs()
 slideBtn.forEach(handleSlideBtns)
-
 slideshowEl.addEventListener('scroll', handleBtns)
-
 setInterval(autoScroll, 2000)
 
-function appendImgs(el){
-  const img = document.createElement('img')
-  img.src = 'images/'+el
-  img.classList.add('slideshow-img')
-  slideshowEl.append(img)
+function appendImgs(){
+  let i = 0
+  const length = slideshowImgs.length,
+    interval = setInterval(function(){
+      const el = slideshowImgs[i],
+        img = document.createElement('img')
+      img.src = 'images/'+el
+      img.classList.add('slideshow-img')
+      slideshowEl.append(img)
+        i++
+          if(i === length) return clearInterval(interval)
+      }, 500)
 }
 function handleBtns(){
   maxScrollWidth = slideshowEl.scrollWidth - slideshowEl.clientWidth
