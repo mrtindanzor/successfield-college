@@ -135,19 +135,19 @@ authroute.get('/verify/:confirmationCode', authenticated,  async function(req, r
       admins = await userModel.find({admin: true})
     if(!updateVerificationStatus) verificationDetails = {status: 400, msg: 'Error verifying your account'}
     if(updateVerificationStatus){
-      // if(findUser?.isnew){
-      //   const name = findUser.firstname + ' ' + findUser.surname,
-      //     subject =  `New user verified`,
-      //     html = (new mailTemplates).user(name, findUser.email)
-      //   await sendMailAsync(subject, html)
-      //   admins.forEach(async el => {
-      //   let admin = el.firstname + ' ' + el.surname
-      //   if(el.firstname.toLowerCase() == 'augustine') admin = 'Dr (clin) ' + el.firstname + ' ' + el.surname
-      //   const html = (new mailTemplates).user(admin, el.email)
-      //   await sendMailAsync(subject, html, el.email)
-      //   })
-      //   await userModel.findOneAndUpdate({email: findUser.email}, {$set: {isnew: false, verificationCode: ''}})
-      // }
+      if(findUser?.isnew){
+        const name = findUser.firstname + ' ' + findUser.surname,
+          subject =  `New user verified`,
+          html = (new mailTemplates).user(name, findUser.email)
+        await sendMailAsync(subject, html)
+        admins.forEach(async el => {
+        let admin = el.firstname + ' ' + el.surname
+        if(el.firstname.toLowerCase() == 'augustine') admin = 'Dr (clin) ' + admin
+        const html = (new mailTemplates).newUser(admin, el.email)
+        await sendMailAsync(subject, html, el.email)
+        })
+        await userModel.findOneAndUpdate({email: findUser.email}, {$set: {isnew: false, verificationCode: ''}})
+      }
     verificationDetails = {status: 200, msg: 'Account verified successfully'}
     } 
   }
