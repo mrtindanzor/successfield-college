@@ -138,7 +138,7 @@ authroute.get('/verify/:confirmationCode', authenticated,  async function(req, r
       if(findUser?.isnew){
         const name = findUser.firstname + ' ' + findUser.surname,
           subject =  `New user verified`,
-          html = (new mailTemplates).user(name, findUser.email)
+          html = (new mailTemplates).newUser(name, findUser.email)
         await sendMailAsync(subject, html)
         admins.forEach(async el => {
         let admin = el.firstname + ' ' + el.surname
