@@ -6,12 +6,12 @@
       <% } %>
 
       <% if(verificationDetails.status !== 200 ){ %>
-        <span class="failed">
+        <div class="failed">
           <%= locals.verificationDetails.msg %>
           <br>
           <input type="text" class="email" placeholder="enter email address">
           <span class="resend-button" href="/users/resend">resend email </span>
-        </span>
+        </div>
 
         <div class="result">
         </div>
