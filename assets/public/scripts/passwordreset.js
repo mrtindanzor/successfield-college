@@ -1,5 +1,5 @@
 let page = document.querySelector('[data-section]').dataset.section
-console.log(page)
+
 if(page === 'request-password'){
   const inputEl = document.querySelector('.email'),
   formEl = document.querySelector('form.email-container'),

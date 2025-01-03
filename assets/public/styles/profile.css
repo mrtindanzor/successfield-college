@@ -344,6 +344,7 @@ main-section{
     min-width: 100%;
     height: fit-content;
     display: flex;
+    gap: 5px;
     flex-wrap: wrap;
   }
   .main-links ul li span:hover, .main-links ul li a:hover{

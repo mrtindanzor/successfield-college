@@ -114,7 +114,7 @@ authroute.post('/login', async function(req, res, next){
           resolve()
         })
       })
-      console.log(isLoggedOut)
+      
     } 
     req.logIn(user, function(err) {
       if(err) return next(err)
