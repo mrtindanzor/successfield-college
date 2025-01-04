@@ -253,22 +253,6 @@ main-section.edit{
     border-radius: 5px;
     font-size: 13px;
   }
-  #result span{
-    display: block;
-    border: 1px solid currentColor;
-    padding: 10px;
-    text-align: center;
-    max-width: 450px;
-    margin: 10px auto;
-    color: var(--white);
-    border-radius: 4px;
-  }
-  #result span.fail{
-    background-color: var(--secondary-a);
-  }
-  #result span.success{
-    background-color: var(--primary);
-  }
   .prompt-dialog.active{
     transform: scale(1);
   }

@@ -2,6 +2,19 @@
   padding: 20px 2%;
   color: var(--white);
 }
-h1, h3{
+h1{
   color: var(--primary);
+  font-size: var(--fourth-s);
+  font-family: acolonica;
+}
+h3{
+  color: var(--secondary-a);
+  text-align: left;
+}
+p, ol{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 30px;
+  margin-bottom: 50px;
 }

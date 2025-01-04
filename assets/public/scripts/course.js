@@ -97,7 +97,7 @@ if(page === 'add'){
       response = await fetch(uri, options),
       res = await response.json()
     if(res.status === 201) result.innerHTML = `<span class='success'> ${res.msg}</span>`
-    if(res.status !== 201) result.innerHTML = `<span class='fail'> ${res.msg}</span>`
+    if(res.status !== 201) result.innerHTML = `<span class='failed'> ${res.msg}</span>`
     formEl.forEach(el => {
       el.reset()
       let i = formEl.length,
@@ -152,7 +152,7 @@ if(page === 'edit'){
 
     loader.classList.add('active')
     
-    const courseName = findCourseForm.querySelector('#find-course').value.toLowerCase().trim()
+    const courseName = findCourseForm.querySelector('#find-course').value.toLowerCase().trim(),
       uri = '/admin/course',
       options = {
         method: 'POST',
@@ -164,7 +164,7 @@ if(page === 'edit'){
       response = await fetch(uri, options),
       res = await response.json()
     if(res.status !== 200){
-      result.innerHTML = `<span class='fail'> ${res.msg} </span> `
+      result.innerHTML = `<span class='failed'> ${res.msg} </span> `
       loader.classList.remove('active')
       resetElHtml(result)
       return
@@ -284,7 +284,7 @@ if(page === 'edit'){
       dataId = el.dataset.id
       
       inputEl.forEach(input => {
-        inputValue  = input.value.trim()
+        let inputValue  = input.value.trim()
         if(!inputValue) return
         if(dataId === 'course' && inputValue) course = inputValue.toLowerCase()
         if(dataId === 'overview' && inputValue) overview = inputValue
@@ -338,7 +338,7 @@ if(page === 'edit'){
       response = await fetch(uri, options),
       res = await response.json()
     if(res.status === 201) result.innerHTML = `<span class='success'> ${res.msg}</span>`
-    if(res.status !== 201) result.innerHTML = `<span class='fail'> ${res.msg}</span>`
+    if(res.status !== 201) result.innerHTML = `<span class='failed'> ${res.msg}</span>`
     formEl.forEach(el => {
       el.reset()
       findCourseForm.reset()
