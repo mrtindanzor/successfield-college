@@ -47,6 +47,7 @@ main-section.show{
   }
   h3{
     color: var(--secondary-a);
+    text-align: left;
   }
   h3.topic{
     text-align: center;
