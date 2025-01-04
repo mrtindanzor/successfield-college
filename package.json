@@ -2,7 +2,7 @@
   "name": "gism",
   "version": "1.0.0",
   "description": "",
-  "main": "./api/index.js",
+  "main": "./app.js",
   "scripts": {
     "start": "node ./app.js",
     "app": "nodemon ./app.js"

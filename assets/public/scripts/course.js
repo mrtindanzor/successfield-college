@@ -21,6 +21,7 @@ if(page === 'show'){
       i++
       sectors[i].classList.remove('hide')
       if(i === sectors.length - 1) nextBtn.classList.add('hide-btn')
+      scrollTo(0,0)
     }
     function back(){
       sectors[i].classList.add('hide')
@@ -28,6 +29,7 @@ if(page === 'show'){
       if(i < sectors.length) nextBtn.classList.remove('hide-btn')
       i--
       sectors[i].classList.remove('hide')
+      scrollTo(0,0)
     }
   }
 }
