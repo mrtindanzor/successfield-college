@@ -4,27 +4,30 @@
 </div>
 <div class="footer-container">
   <span>Social Media Links</span>
-  <a class="twitter-link" href="https://twitter.com/succollege" target="_blank"> 
-    <%- (new icons('twitter-icon', 'Twitter page')).twitter() %>
-  </a>
   <a class="twitter-link1" href="https://twitter.com/succollege" target="_blank"> 
     <%- (new icons('twitter-icon', 'Twitter page')).twitter() %>
     Twitter
-  </a>
-  <a class="whatsapp-link" href="https://wa.me/+233591413517" target="_blank"> 
-    <%- (new icons('whatsapp-icon', 'Whatsapp page')).whatsapp() %>
   </a>
   <a class="whatsapp-link1" href="https://wa.me/+233591413517" target="_blank"> 
     <%- (new icons('whatsapp-icon', 'Whatsapp page')).whatsapp() %>
     Whatsapp
   </a>
-  <a class="mail-link" href="mailto:successfieldcollege@gmail.com" target="_blank"> 
-    <%- (new icons('mail-icon', 'Email page')).mail() %>
-  </a>
   <a class="mail-link1" href="mailto:successfieldcollege@gmail.com" target="_blank"> 
     <%- (new icons('mail-icon', 'Email page')).mail() %>
     Email
   </a>
+  <% if(page !== 'course'){ %>
+    <a class="whatsapp-link" href="https://wa.me/+233591413517" target="_blank"> 
+      <%- (new icons('whatsapp-icon', 'Whatsapp page')).whatsapp() %>
+    </a>
+    <a class="mail-link" href="mailto:successfieldcollege@gmail.com" target="_blank"> 
+      <%- (new icons('mail-icon', 'Email page')).mail() %>
+    </a>
+    <a class="twitter-link" href="https://twitter.com/succollege" target="_blank"> 
+      <%- (new icons('twitter-icon', 'Twitter page')).twitter() %>
+    </a>
+  
+  <% } %>
 </div>
 <div class="date-container">
   <span class="date-year"></span>

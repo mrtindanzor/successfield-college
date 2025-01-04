@@ -28,6 +28,7 @@
   --fifth-s: 5rem; 
 }
 *{
+  word-wrap: break-word;
   box-sizing: border-box;
   font-family: poppins-light;
   font-size: var(--first-s);

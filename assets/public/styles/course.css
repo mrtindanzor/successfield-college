@@ -1,7 +1,9 @@
 main-section.show{
   .content-wrapper{
     color: var(--white);
-    padding: 20px;
+    padding: 20px 4%;
+    letter-spacing: 0.03rem;
+    line-height: 2rem;
   }
   .alt-navbar{
     text-align: center;
@@ -9,7 +11,6 @@ main-section.show{
     text-align: center;
   }
   .next-tab{
-    padding: 10px 20px;
     margin-bottom: 50px;
   }
   .next-tab .proceed-btn{
@@ -26,36 +27,43 @@ main-section.show{
   .next-tab .proceed-btn:hover{
     border-radius: 15px;
   }
-  li{
-    padding-left: 0;
+  ul{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
-  main-section ul li{
-    list-style-type: circle;
+  ul li{
+    list-style-type: disc;
+  }
+  ul li::marker{
+    color: var(--primary);
   }
   b{
-    display: inline-flex;
-    font-family: poppins-regular;
+    display: inline-block;
     font-size: var(--first-s);
-    margin-left: 10px;
     margin-right: 10px;
-    color: var(--primary);
-    font-style: italic;
+    color: var(--secondary-a);
+    font-family: alice;
     text-transform: uppercase;
   }
   p.course-overview{
-    padding: 10px;
+    text-align: justify;
+    text-justify: inter-word;
   }
-  .course-points{
+  p.course-overview::first-letter{
+    font-size: var(--fourth-s);
     color: var(--secondary-a);
   }
   h3{
+    color: var(--secondary-a);
+  }
+  h3.topic{
     color: var(--primary);
+    font-size: var(--third-s);
   }
-  @media (min-width: 769px) {
-    .content-wrapper{
-    }
-    
-  }
+  span.certificate{
+    text-align: justify;
+    text-justify: inter-word;}
 }
 
 main-section.add{

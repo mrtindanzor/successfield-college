@@ -65,7 +65,7 @@
       <% if(certificate){ %>
         <p>
           <h3>Certificate: </h3>
-          <span> <%= certificate %> </span>
+          <span class="certificate"> <%= certificate %> </span>
         </p>
       <% } %>
     
@@ -76,9 +76,9 @@
           <span> <%= fee %> </span>
         </p>
       <% } %>
-    </div>
-    <div class="next-tab">
-      <a href="/courses/<%= findCourse.course %><%= findCourse.course.module ? '/'+findCourse.course.module : '' %>" class="proceed-btn">Start Course</a>
+      <div class="next-tab">
+        <a href="/courses/<%= findCourse.course %><%= findCourse.course.module ? '/'+findCourse.course.module : '' %>" class="proceed-btn">Start Course</a>
+      </div>
     </div>
   </main-section>
 <% } %>
