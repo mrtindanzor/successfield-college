@@ -23,7 +23,7 @@ form{
   background-color: var(--darker);
 }
 form span.form-title{
-  color: var(--third);
+  color: var(--primary);
   font-weight: 900;
   font-size: 2rem;
 }
@@ -31,11 +31,11 @@ form label{
   position: relative;
   width: 95%;
   margin-bottom: 20px;
-  color: var(--third);
+  color: var(--primary);
 }
 form label input{
-  border: 1px solid var(--first);
-  color: var(--first);
+  border: 1px solid var(--white);
+  color: var(--white);
   padding: 14px;
   width: 100%;
   background-color: transparent;
@@ -46,13 +46,13 @@ form label input:focus{
   outline: none;
 }
 form label input:user-valid{
-  border: 2px solid var(--third);
+  border: 2px solid var(--primary);
   background-color: transparent;
-  box-shadow: 0 0 2px var(--third);
+  box-shadow: 0 0 2px var(--primary);
 }
 form label input:user-invalid{
-  border: 2px solid var(--sixth);
-  box-shadow: 0 0 2px var(--sixth);
+  border: 2px solid var(--secondary-a);
+  box-shadow: 0 0 2px var(--secondary-a);
   background-color: transparent;
 }
 form label input:-webkit-autofill{
@@ -78,7 +78,7 @@ form span + i{
   max-width: 450px;
 }
 .form-eye-close, .form-eye-open{
-  color: var(--third);
+  color: var(--primary);
   background-color: transparent;
   width: 33px;
   position: absolute;
@@ -94,13 +94,13 @@ form span + i{
 }
 .other-contrs{
   text-align: center;
-  background-color: var(--third);
+  background-color: var(--primary);
   padding: 8px 0;
-  color: var(--first);
+  color: var(--white);
   width: 100%;
 }
 .other-contrs a{
-  color: var(--second);
+  color: var(--black);
   display: inline-block;
   margin-left: 5px;
 }

@@ -24,21 +24,21 @@ main-section{
   left: 53%;
 }
 .profile-editor-icon{
-  color: var(--first);
+  color: var(--white);
   width: 2rem;
   cursor: pointer;
 }
 .profile-image-tab .username, .profile-image-tab .student-number{
   display: block;
-  color: var(--first);
-  font-size: var(--second-s);
+  color: var(--white);
+  font-size: var(--first-s);
   text-transform: capitalize;
   opacity: 0.6;
   text-align: center;
   margin: 5px;
 }
 .profile-image-tab .student-number{
-  font-size: var(--first-s);
+  font-size: var(--base-s);
   opacity: 0.4;
 }
 .profile-img, .profile-photo-icon{
@@ -47,7 +47,7 @@ main-section{
   height: 100px;
   object-fit: cover;
   border-radius: 100%;
-  border: 3px solid var(--third);
+  border: 3px solid var(--primary);
   padding: 5px;
   margin: 20px auto;
   cursor: pointer;
@@ -64,13 +64,13 @@ main-section{
 .title-bar .back-button{
   width: 30px;
   height: 30px;
-  color: var(--third);
+  color: var(--primary);
   cursor: pointer;
 }
 .title-bar .title{
-  font-size: var(--fourth-s);
+  font-size: var(--third-s);
   text-transform: capitalize;
-  color: var(--third);
+  color: var(--primary);
 }
 .view-profile-image{
   position: absolute;
@@ -96,7 +96,7 @@ main-section{
   right: 15px;
   top: 5px;
   width: 30px;
-  color: var(--first);
+  color: var(--white);
   cursor: pointer;
 }
 .close-photo-icon:hover{
@@ -121,16 +121,16 @@ main-section{
     display: flex;
     align-items: center;
     background-color: var(--dark);
-    color: var(--first);
+    color: var(--white);
     padding: 5px 20px;
     font-size: 0.9rem;
   }
   .form-container span{
     display: block;
-    background: var(--first);
-    color: var(--third);
+    background: var(--white);
+    color: var(--primary);
     padding: 10px 20px;
-    font-size: var(--third-s);
+    font-size: var(--second-s);
     font-family: 'acolonica';
     border-radius: 3px;
   }
@@ -138,16 +138,16 @@ main-section{
     position: relative;
     display: block;
     width: 100%;
-    color: var(--third);
+    color: var(--primary);
   }
   .form-container input{
-    font-size: var(--first-s);
+    font-size: var(--base-s);
     padding: 10px;
     display: block;
     width: 100%;
     background: none;
     border-radius: 6px;
-    color: var(--first);
+    color: var(--white);
     border: 1px solid currentColor;
   }
   .form-container button{
@@ -155,21 +155,21 @@ main-section{
     display: block;
     width: fit-content;
     margin: 20px auto 0 auto;
-    font-size: var(--second-s);
-    background: var(--first);
-    color: var(--third);
+    font-size: var(--first-s);
+    background: var(--white);
+    color: var(--primary);
     border-radius: 30px;
     text-transform: capitalize;
   }
   input[disabled]{
-    color: var(--first);
+    color: var(--white);
     background: none;
     border-radius: 8px;
     border: 1px solid currentColor;
   }
 }
 .form-eye-close, .form-eye-open{
-  color: var(--third);
+  color: var(--primary);
   background-color: transparent;
   width: 33px;
   position: absolute;
@@ -194,8 +194,8 @@ main-section{
     height: 100%;
   }
   .profile-image-tab .username{
-    color: var(--first);
-    font-size: var(--second-s);
+    color: var(--white);
+    font-size: var(--first-s);
     text-transform: capitalize;
     opacity: 0.5;
   }
@@ -216,9 +216,9 @@ main-section{
   }
   .main-links > li, .main-links li ul li span, .main-links ul li a{
     display: flex;
-    color: var(--first);
+    color: var(--white);
     opacity: 0.8;
-    font-size: var(--second-s);
+    font-size: var(--first-s);
     text-transform: capitalize;
     cursor: pointer;
     border-bottom: 2px solid var(--darker);
@@ -229,7 +229,7 @@ main-section{
     border: none;
   }
   .main-links > li:hover{
-    color: var(--third);
+    color: var(--primary);
   }
   .main-links > li span{
     display: block;
@@ -253,7 +253,7 @@ main-section{
     transform: translateX(calc(-100% - 20px));
   }
   .main-links ul li a:hover{
-    color: var(--third);
+    color: var(--primary);
   }
 
   .main-links ul li a{
@@ -318,7 +318,7 @@ main-section{
     border-top: 1px solid var(--darker);
     padding: 10px;
     cursor: pointer;
-    color: var(--first);
+    color: var(--white);
     opacity: 0.7;
   }
   .main-links > li > span{
@@ -351,7 +351,7 @@ main-section{
     flex-wrap: wrap;
   }
   .main-links ul li span:hover, .main-links ul li a:hover{
-    color: var(--third);
+    color: var(--primary);
   }
   .main-links ul li span{
     display: inline-block;

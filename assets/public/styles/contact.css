@@ -1,7 +1,7 @@
 .contact-page-wrapper{
   width: 100dvw;
   background-color: var(--dark);
-  color: var(--first);
+  color: var(--white);
   padding: 10px;
 }
 .contact-page-wrapper .social-media{
@@ -15,17 +15,17 @@
 .contact-page-wrapper .social-media p a{
   display: inline-flex;
   align-items: center;
-  box-shadow: 0 0 2px  var(--second);
+  box-shadow: 0 0 2px  var(--black);
   height: fit-content;
   padding: 10px;
-  color: var(--third);
+  color: var(--primary);
   text-decoration: none;
-  color: var(--second);
+  color: var(--black);
   background-color: var(--white);
 }
 .contact-page-wrapper .social-media p a .twitter-icon{
   height: 30px;
-  color: var(--second);
+  color: var(--black);
 }
 .contact-page-wrapper .social-media p a .whatsapp-icon{
   position: relative;
@@ -47,19 +47,19 @@
   margin: auto;
   border: 2px solid;
   padding: 20px 20px 70px 20px;
-  background-color: var(--first);
+  background-color: var(--white);
 }
 .email-form h3{
   width: fit-content;
   margin: 0 auto;
-  color: var(--second);
+  color: var(--black);
   font-size: 1.3rem;
 }
 .email-form label{
   display: flex;
   gap: 5px;
   flex-direction: column;
-  color: var(--sixth);
+  color: var(--secondary-a);
 }
 .email-form label span{
   font-weight: 500;
@@ -76,8 +76,8 @@
 }
 .email-form button{
   padding: 10px;
-  background: var(--third);
-  color: var(--first);
+  background: var(--primary);
+  color: var(--white);
   border: none;
   font-size: 1.1rem;
   cursor: pointer;
@@ -101,11 +101,11 @@
 }
 .mail-delivered{
   width: 30px;
-  color: var(--first);
+  color: var(--white);
 }
 .result .mail-sent, .mail-not-sent{
-  background-color: var(--third);
-  color: var(--first);
+  background-color: var(--primary);
+  color: var(--white);
   display: flex;
   flex-direction: column;
   padding: 4% 7%;
@@ -119,9 +119,9 @@
   margin-bottom: 30px;
 }
 .result .mail-sent span.text span, .mail-not-sent span.text span{
-  color: var(--sixth);
+  color: var(--secondary-a);
   font-weight: 500;
-  font-size: var(--third-s);
+  font-size: var(--second-s);
   font-family: acolonica;
 }
 .result button{

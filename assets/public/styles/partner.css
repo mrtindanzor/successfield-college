@@ -13,8 +13,8 @@ main-section.show{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    font-size: var(--second-s);
-    border: 2px solid var(--third);
+    font-size: var(--first-s);
+    border: 2px solid var(--primary);
     margin: 0 auto;
     letter-spacing: 1px;
   }
@@ -22,7 +22,7 @@ main-section.show{
     padding: 10px;
     cursor: pointer;
     letter-spacing: 1px;
-    color: var(--third);
+    color: var(--primary);
   }
   details[open] summary{
     text-decoration: underline;
@@ -32,16 +32,16 @@ main-section.show{
     color: var(--white);
   }
   summary:hover{
-    color: var(--third);
+    color: var(--primary);
   }
   details ul{
     list-style: none;
     padding-left: 20px;
   }
   ul span.span-text{
-    background-color: var(--third);
-    font-size: var(--fourth-s);
-    color: var(--first);
+    background-color: var(--primary);
+    font-size: var(--third-s);
+    color: var(--white);
     padding: 10px 20px;
   }
   details ul li{
@@ -49,11 +49,11 @@ main-section.show{
     padding: 10px;
     line-height: normal;
     color: var(--white);
-    font-size: var(--second-s);
+    font-size: var(--first-s);
   }
   details ul li b{
-    font-size: var(--third-s);
-    color: var(--third);
+    font-size: var(--second-s);
+    color: var(--primary);
   }
   @media (max-width: 767px) {
     ul.ul-wrapper{
@@ -72,7 +72,7 @@ main-section.show{
 
 main-section.add{
   input[type="text"]{
-    background-color: var(--first);
+    background-color: var(--white);
     display: block;
     padding: 10px;
     width: 100%;
@@ -87,7 +87,7 @@ main-section.add{
     padding: 10px;
     border-radius: 4px;
     border: none;
-    color: var(--third);
+    color: var(--primary);
     font-weight: 900;
     text-transform: capitalize;
   }
@@ -95,7 +95,7 @@ main-section.add{
     width: 95%;
     max-width: 400px;
     margin: 20px auto;
-    background-color: var(--third);
+    background-color: var(--primary);
     display: flex;
     padding: 10px 20px;
     gap: 10px;
@@ -104,7 +104,7 @@ main-section.add{
     width: 95%;
     max-width: 500px;
     margin: 0 auto;
-    background-color: var(--first);
+    background-color: var(--white);
     padding: 20px;
     margin-bottom: 40px;
     position: relative;
@@ -116,14 +116,14 @@ main-section.add{
     margin-bottom: 10px;
   }
    .partner-form h3{
-    color: var(--third);
+    color: var(--primary);
   }
    label{
     display: block;
     margin-bottom: 20px;
   }
    label span{
-    color: var(--third);
+    color: var(--primary);
   }
    label input{
     border: 1px solid;
@@ -133,12 +133,12 @@ main-section.add{
     width: 90%;
     max-width: 300px;
     margin: 0 auto;
-    background-color: var(--third);
+    background-color: var(--primary);
     color: var(--white);
     cursor: pointer;
     opacity: 0.8;
     margin-top: 100px;
-    font-size: var(--second-s);
+    font-size: var(--first-s);
   }
    .add-more{
     display: block;
@@ -160,7 +160,7 @@ main-section.add{
 
 main-section.edit, main-section.delete{
   input[type="text"]{
-    background-color: var(--first);
+    background-color: var(--white);
     display: block;
     padding: 10px;
     width: 100%;
@@ -172,7 +172,7 @@ main-section.edit, main-section.delete{
     padding: 10px;
     border-radius: 4px;
     border: none;
-    color: var(--third);
+    color: var(--primary);
     font-weight: 900;
     text-transform: capitalize;
   }
@@ -180,7 +180,7 @@ main-section.edit, main-section.delete{
     width: 95%;
     max-width: 400px;
     margin: 20px auto;
-    background-color: var(--third);
+    background-color: var(--primary);
     display: flex;
     padding: 10px 20px;
     gap: 10px;
@@ -189,7 +189,7 @@ main-section.edit, main-section.delete{
     width: 95%;
     max-width: 500px;
     margin: 0 auto;
-    background-color: var(--first);
+    background-color: var(--white);
     padding: 20px;
     margin-bottom: 40px;
     position: relative;
@@ -198,14 +198,14 @@ main-section.edit, main-section.delete{
     margin-bottom: 10px;
   }
   .result .partner-form h3{
-    color: var(--third);
+    color: var(--primary);
   }
   .result label{
     display: block;
     margin-bottom: 20px;
   }
   .result label span{
-    color: var(--third);
+    color: var(--primary);
   }
   .result label input{
     border: 1px solid;
@@ -215,12 +215,12 @@ main-section.edit, main-section.delete{
     width: 90%;
     max-width: 300px;
     margin: 0 auto;
-    background-color: var(--third);
+    background-color: var(--primary);
     color: var(--white);
     cursor: pointer;
     opacity: 0.8;
     margin-top: 100px;
-    font-size: var(--second-s);
+    font-size: var(--first-s);
   }
   .result .add-more{
     display: block;
@@ -242,7 +242,7 @@ main-section.edit, main-section.delete{
 
 main-section.delete{
   .result .delete-wrapper{
-    background-color: var(--third);
+    background-color: var(--primary);
     width: 95%;
     max-width: 400px;
     margin: 20px auto;
@@ -251,29 +251,29 @@ main-section.delete{
   .result .delete-wrapper > h3{
     border-radius: 5px;
     background-color: var(--white);
-    color: var(--third);
+    color: var(--primary);
     margin-bottom: 8px;
     padding: 20px 10px 10px;
   }
   .result .delete-wrapper > h4{
     background-color: var(--white);
-    color: var(--third);
+    color: var(--primary);
     margin-bottom: 8px;
     margin-right: 8px;
     padding: 5px 10px;
   }
   .result .delete-wrapper > span{
-    font-size: var(--second-s);
+    font-size: var(--first-s);
     color: var(--white);
   }
   .result .delete-wrapper ol li{
     margin-bottom: 5px;
-    font-size: var(--second-s);
+    font-size: var(--first-s);
     color: var(--white);
     text-transform: capitalize;
   }
   .result .delete-wrapper > button{
-    background: var(--sixth);
+    background: var(--secondary-a);
     color: var(--white);
     text-transform: uppercase;
     display: block;

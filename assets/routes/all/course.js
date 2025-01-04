@@ -4,11 +4,19 @@ import { courseModel } from "../../../dependencies.js"
 const courseRoute = Router(), 
   showCourseRoute = Router()
 
-  showCourseRoute.get('/courses/:course', async (req, res) => {
+showCourseRoute.get('/courses/:course', async (req, res) => {
   const course = req.params.course.toLowerCase().trim(),
   findCourse = await courseModel.findOne({course})
   if(!findCourse) return res.render('index', {page: 404})
   res.status(200).render("index", {page: "course", section: 'show', title: course.toUpperCase(), findCourse})
+})
+
+showCourseRoute.get('/courses/:course/:module', async (req, res) => {
+  let { course, module} = req.params
+  course = course.trim().toLocaleLowerCase()
+  const findCourse = await courseModel.findOne({course})
+  if(!findCourse) return res.render('index', {page: 404})
+  res.status(200).render("index", {page: "module", section: 'show', title: 'module', findCourse})
 })
 
 courseRoute.get('/course/:param', (req, res) => {

@@ -3,15 +3,15 @@
   padding: 20px 10%;
   overflow: hidden;
   background-color: var(--dark);
-  color: var(--first);
+  color: var(--white);
 }
 h2{
   margin: 20px 0;
-  color: var(--third);
+  color: var(--primary);
 }
 h3, h4{
   margin: 0 10px 10px 0;
-  color: var(--third);
+  color: var(--primary);
 }
 h6{
   font-size: 0.9rem;

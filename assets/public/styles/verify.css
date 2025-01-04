@@ -1,19 +1,19 @@
 main-section {
   background-color: var(--dark);
-  color: var(--first);
+  color: var(--white);
   padding: 50px 20px;
 }
 h3{
   width: fit-content;
   background-color: var(--white);
-  color: var(--third);
+  color: var(--primary);
   border-radius: 10px;
   padding: 20px;
   margin: 10px;
 }
 .find-student {
   margin-bottom: 40px;
-  background-color: var(--third);
+  background-color: var(--primary);
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -23,23 +23,23 @@ h3{
 }
 i{
   font-style: normal;
-  font-size: var(--fourth-s);
-  color: var(--first);
+  font-size: var(--third-s);
+  color: var(--white);
 }
 .find-student form input {
   border: 1px solid var(--black);
   padding: 10px;
-  font-size: var(--second-s);
+  font-size: var(--first-s);
   text-transform: uppercase;
   width: 100%;
   font-family: alice;
 }
 .find-student form button {
   background-color: var(--white);
-  color: var(--third);
+  color: var(--primary);
   margin-left: 5px;
   padding: 10px 15px;
-  font-size: var(--second-s);
+  font-size: var(--first-s);
   text-transform: uppercase;
   cursor: pointer;
   font-family: alice;
@@ -57,7 +57,7 @@ i{
   display: flex;
   gap: 50px;
   background-color: var(--white);
-  border: 10px solid var(--third);
+  border: 10px solid var(--primary);
   text-transform: uppercase;
 }
 .result .student-details {
@@ -70,21 +70,21 @@ i{
   margin-bottom: 5px;
 }
 .result .student-details div b{
-  color: var(--second);
-  font-size: var(--third-s);
+  color: var(--black);
+  font-size: var(--second-s);
   text-transform: uppercase;
 }
 .result .student-details div span{
-  color: var(--second);
-  font-size: var(--third-s);
+  color: var(--black);
+  font-size: var(--second-s);
   margin-left: 5px;
   font-family: alice;
   font-weight: 500;
 }
 .result .student-details div span.verification-status {
-  color: var(--third);
+  color: var(--primary);
   font-weight: 900;
-  font-size: var(--third-s);
+  font-size: var(--second-s);
 }
 @media (max-width: 550px) {
   .find-student form {

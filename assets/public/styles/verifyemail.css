@@ -22,17 +22,17 @@ form input{
   width: 90%;
   padding: 10px;
   background-color: transparent;
-  border: 1px solid var(--first);
-  color: var(--first);
-  font-size: var(--second-s);
+  border: 1px solid var(--white);
+  color: var(--white);
+  font-size: var(--first-s);
 }
 form button{
   width: 90%;
   padding: 10px;
   border: none;
-  background-color: var(--first);
-  color: var(--third);
-  font-size: var(--second-s);
+  background-color: var(--white);
+  color: var(--primary);
+  font-size: var(--first-s);
   text-transform: capitalize;
 }
 span.verified{
@@ -41,7 +41,7 @@ span.verified{
   width: 95%;
   background-color: var(--darker);
   border-radius: 5px;
-  color: var(--first);
-  font-size: var(--third-s);
+  color: var(--white);
+  font-size: var(--second-s);
   padding: 60px;
 }

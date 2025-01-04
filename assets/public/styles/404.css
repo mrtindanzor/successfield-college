@@ -15,21 +15,21 @@ main-section{
   height: fit-content;
 }
 .page-not-found span{
-  color: var(--second);
-  font-size: var(--sixth-s);
+  color: var(--black);
+  font-size: var(--fifth-s);
   font-family: acolonica;
 }
 .page-not-found p{
-  color: var(--sixth);
-  font-size: var(--third-s);
+  color: var(--secondary-a);
+  font-size: var(--second-s);
   font-family: alice;
 }
 .page-not-found a{
   display: block;
   width: fit-content;
-  color: var(--first);
-  background-color: var(--third);
-  font-size: var(--fourth-s);
+  color: var(--white);
+  background-color: var(--primary);
+  font-size: var(--third-s);
   padding: 10px 20px;
   border: none;
   font-family: alice;

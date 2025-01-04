@@ -11,28 +11,21 @@
   src: url('/fonts/Aclonica/Aclonica-Regular.ttf');
 }
 :root{
-  --first: white;
-  --second: black;
-  --third: green;
+  --primary: green;
   --fourth: yellow;
-  --fifth: red;
-  --sixth: tomato;
+  --secondary: red;
+  --secondary-a: tomato;
   --white: white;
   --black: black;
   --darker: rgba(0, 0, 0, 0.829);
   --dark: rgba(0, 0, 0, 0.808);
 
-  --first-s: 0.9rem;
-  --second-s: 1.1rem;
-  --third-s: 1.3rem;
-  --fourth-s: 1.5rem;
-  --fifth-s: 2rem;
-  --sixth-s: 5rem; 
-
-  --first-m: 10px;
-  --second-m: 20px;
-  --third-m: 50px;
-  --fourth-m: 100px;
+  --base-s: 0.9rem;
+  --first-s: 1.1rem;
+  --second-s: 1.3rem;
+  --third-s: 1.5rem;
+  --fourth-s: 2rem;
+  --fifth-s: 5rem; 
 }
 *{
   box-sizing: border-box;
@@ -59,7 +52,7 @@ body{
 }
 nav{
   width: 100dvw;
-  background-color: var(--first);
+  background-color: var(--white);
   display: flex;
   padding: 0 1%;
   justify-content: space-between;
@@ -89,26 +82,26 @@ nav .loader.active{
 .loading-anim{
   display: flex;
   align-items: center;
-  border: 2px solid var(--third);
+  border: 2px solid var(--primary);
   width: 220px;
   height: 27px;
   border-radius: 20px;
   transition: 0.6s ease-in-out;
 }
 .loading-anim.active{
-  border-color: var(--first);
+  border-color: var(--white);
 }
 .loading-slide{
   width: 20px;
   height: 20px;
-  background-color: var(--first);
+  background-color: var(--white);
   transform: translateX(2px);
   border-radius: 100%;
   transition: 0.6s ease-in-out;
 }
 .loading-slide.active{
   transform: translateX(200px);
-  background-color: var(--third);
+  background-color: var(--primary);
   width: 15px;
   height: 15px;
 }
@@ -119,7 +112,7 @@ nav .logo-container{
 }
 nav .logo-container .logo-text{
   font-size: 1.3rem;
-  color: var(--third);
+  color: var(--primary);
   font-family: acolonica;
   position: relative;
   top: 3px;
@@ -135,7 +128,7 @@ nav .auth-contrs{
 nav .auth-contrs a{
   display: block;
   text-decoration: none;
-  color: var(--second);
+  color: var(--black);
   padding: 10px;
   font-size: 0.9rem;
 }
@@ -143,16 +136,16 @@ nav .auth-contrs a.auth-login{
   font-size: 1rem;
 }
 nav .auth-contrs a.auth-login:hover{
-  color: var(--first);
-  background: var(--second);
+  color: var(--white);
+  background: var(--black);
 }
 nav .auth-contrs a.auth-signup{
-  color: var(--first);
-  background: var(--third);
+  color: var(--white);
+  background: var(--primary);
   border-radius: 5px;
 }
 nav .auth-contrs a.auth-signup:hover{
-  background: var(--second);
+  background: var(--black);
 }
 nav .auth-contrs a .user-line-icon{
   width: 30px;
@@ -162,7 +155,7 @@ nav .auth-contrs a .user-line-icon{
   border-radius: 100%;
 }
 nav .auth-contrs a .user-line-icon:hover{
-  color: var(--third);
+  color: var(--primary);
 }
 header .main-menu{
   position: relative;
@@ -170,17 +163,17 @@ header .main-menu{
   margin: 20px;
 }
 header .main-menu ul li.menu-item > a:hover, .main-menu ul li ul li a:hover, .course-list-button:hover{
-  color: var(--first)!important;
-  background-color: var(--third);
+  color: var(--white)!important;
+  background-color: var(--primary);
 }
 header .main-menu .course-list-menu{
-  background-color: var(--first);
+  background-color: var(--white);
 }
 @media (max-width: 767px){
   header{
-    border: 2px solid var(--third);
+    border: 2px solid var(--primary);
     padding: 5px 10px;
-    background-color: var(--third);
+    background-color: var(--primary);
   }
   header .main-menu{
     padding: 0;
@@ -190,9 +183,9 @@ header .main-menu .course-list-menu{
     display: block;
     width: fit-content;
     padding: 3px 7px;
-    border: 1px solid var(--first);
+    border: 1px solid var(--white);
     cursor: pointer;
-    color: var(--first)
+    color: var(--white)
   }
   header .main-menu .menu-button-icon{
     width: 20px; 
@@ -201,8 +194,8 @@ header .main-menu .course-list-menu{
   }
   header .main-menu ul.menu-list{
     width: calc(100dvw - 33px);
-    background-color: var(--first);
-    border: 1px solid var(--third);
+    background-color: var(--white);
+    border: 1px solid var(--primary);
     position: absolute;
     top: calc(100% - 10px);
     left: 5px;
@@ -212,11 +205,11 @@ header .main-menu .course-list-menu{
     display: none;
   }
   header .main-menu ul li.menu-item > a, .course-list-button{
-    border-top: 1px solid var(--third);
+    border-top: 1px solid var(--primary);
     display: block;
     padding: 10px 5px;
     text-decoration: none;
-    color: var(--second);
+    color: var(--black);
     cursor: pointer;
   }
   header .main-menu ul li:first-child > a{
@@ -229,18 +222,18 @@ header .main-menu .course-list-menu{
   }
   header .main-menu ul li ul li.course-item > a{
     display: block;
-    border-top: 1px solid var(--third);
+    border-top: 1px solid var(--primary);
     padding: 5px 5px 5px 15px;
     text-decoration: none;
-    color: var(--second);
+    color: var(--black);
   }
 }
 @media (min-width: 768px){
   header{
     display: flex;
-    border: 2px solid var(--third);
+    border: 2px solid var(--primary);
     padding: 0;
-    background-color: var(--third);
+    background-color: var(--primary);
   }
   .menu-button{
     display: none;
@@ -255,7 +248,7 @@ header .main-menu .course-list-menu{
     margin: 0;
     text-transform: uppercase;
     list-style: none;
-    font-size: var(--first-s);
+    font-size: var(--base-s);
   }
   header .main-menu ul li.menu-item > a, .course-list-button{
     display: block;
@@ -285,12 +278,13 @@ header .main-menu .course-list-menu{
     border-top: 1px solid;
     padding: 10px 120px 10px 20px;
     text-decoration: none;
-    color: var(--second);
+    color: var(--black);
   }
 }
 main-section{
   flex: 1;
   overflow-x: hidden;
+  background-color: var(--dark);
 }
 footer{
   display: flex;
@@ -310,7 +304,7 @@ footer{
   max-width: fit-content;
   text-decoration: none;
   color: var(--white);
-  font-size: var(--second-s);
+  font-size: var(--first-s);
   font-family: poppins-light;
 }
 .footer-container a:hover{
@@ -318,18 +312,18 @@ footer{
 }
 .footer-container span{
   font-family: acolonica;
-  color: var(--third);
-  font-size: var(--second-s);
+  color: var(--primary);
+  font-size: var(--first-s);
 }
 .footer-container .twitter-icon, .whatsapp-icon{
-  width: calc(var(--second-m) + var(--first-m));
+  width: calc(20px + 10px);
 }
 .footer-container .twitter-link{
   position: fixed;
   right: 0;
   bottom: 50dvh;
   padding: 10px;
-  background-color: var(--first);
+  background-color: var(--white);
   box-shadow: -2px 0 3px var(--darker);
   color: var(--darker);
   display: flex;
@@ -344,7 +338,7 @@ footer{
   align-items: center;
 }
 .twitter-link1 .twitter-icon, .mail-icon{
-  width: var(--second-m);
+  width: 20px;
   margin-right: 10px;
 }
 .whatsapp-link{
@@ -355,7 +349,7 @@ footer{
   box-shadow: -2px 0 3px var(--darker);
   color: var(--darker);
   opacity: 0.8;
-  background-color: var(--first);
+  background-color: var(--white);
 
 }
 .whatsapp-link1{
@@ -369,7 +363,7 @@ align-items: baseline;
   left: -5px;
 }
 .whatsapp-icon{
-  color: var(--third);
+  color: var(--primary);
 }
 .mail-link{
   position: fixed;
@@ -380,12 +374,12 @@ align-items: baseline;
   color: var(--darker);
   display: flex;
   opacity: 0.8;
-  background-color: var(--first); 
+  background-color: var(--white); 
 }
 .mail-link .mail-icon{
   transform: scale(1.5);
   position: relative;
-  color: var(--sixth);
+  color: var(--secondary-a);
   top: 5px;
   left: 5px;
 }
@@ -396,14 +390,14 @@ align-items: baseline;
   transform: scale(1.5);
   position: relative;
   top: 3px;
-  color: var(--sixth);
+  color: var(--secondary-a);
 }
 .date-container{
   width: 100%; 
   text-align: center;
-  color: var(--third);
+  color: var(--primary);
   margin-top: 30px;
-  font-size: var(--second-s);
+  font-size: var(--first-s);
   text-transform: uppercase;
 }
 svg{
@@ -418,31 +412,31 @@ button:hover{
   opacity: 0.8;
 }
 .timeout{
-  color: var(--first);
+  color: var(--white);
   font-family: acolonica;
   display: inline-flex;
   margin: 3px;
   padding: 3px;
-  font-size: var(--second-s);
+  font-size: var(--first-s);
 }
 span.failed, span.success{
   position: fixed;
   top: 60px;
   display: block;
-  background-color: var(--sixth);
+  background-color: var(--secondary-a);
   color: var(--white)!important;
   width: 90%;
   max-width: 400px;
   padding: 4px 4px 4px 10px;
   margin: 0 auto;
   text-transform: uppercase;
-  font-size: var(--second-s);
+  font-size: var(--first-s);
   z-index: 1000;
   box-shadow: 0 0 30px var(--dark);
   border: 1px dotted var(--dark);
 }
 span.success{
-  background-color: var(--third);
+  background-color: var(--primary);
 }
 .prompt-dialog{
   position: fixed;
@@ -465,13 +459,13 @@ span.success{
   transform: scale(1) translate(-50%, -50%);
 }
 .prompt-dialog span .confirm{
-  color: var(--sixth);
+  color: var(--secondary-a);
 }
 .prompt-dialog span{
   margin-bottom: 15px;
 }
 .prompt-dialog input{
-  border: 1px solid var(--sixth)!important;
+  border: 1px solid var(--secondary-a)!important;
 }
 .prompt-dialog button{
   border: 1px solid;
@@ -479,7 +473,7 @@ span.success{
 }
 .prompt-dialog button.confirm-delete{
   color: var(--white);
-  background-color: var(--sixth);
+  background-color: var(--secondary-a);
   border: 1px solid currentColor;
 }
 .prompt-dialog button.confirm-delete:hover{
@@ -489,13 +483,13 @@ span.success{
   margin: 0;
 }
 .prompt-dialog button.deny-delete{
-  color: var(--sixth);
+  color: var(--secondary-a);
   background-color: var(--white);
   border: 1px solid currentColor;
 }
 .prompt-dialog button.deny-delete:hover{
   color: var(--white);
-  background-color: var(--sixth);
+  background-color: var(--secondary-a);
   border: 1px solid currentColor;
 }
 @media (max-width: 550px) {

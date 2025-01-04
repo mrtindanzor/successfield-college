@@ -11,7 +11,7 @@ main-section.add{
     margin: 10px auto 10px auto;
   }
   .main-wrapper .cert-add-form{
-    background-color: var(--third);
+    background-color: var(--primary);
     display: flex;
     flex-direction: column;
     row-gap: 20px;
@@ -20,8 +20,8 @@ main-section.add{
     .cert-add-form span:first-child{
       display: block;
       padding: 10px 20px;
-      background: var(--first);
-      color: var(--third);
+      background: var(--white);
+      color: var(--primary);
       font-weight: 800;
       text-transform: uppercase;
       font-size: 18px;
@@ -30,7 +30,7 @@ main-section.add{
       display: flex;
       column-gap: 10px;
       width: 100%;
-      color: var(--first);
+      color: var(--white);
     }
     .cert-add-form label input{
       flex: 1;
@@ -45,25 +45,25 @@ main-section.add{
       color: var(--fourth);
     }
     .cert-add-form > input{
-      background: var(--first);
+      background: var(--white);
       display: block;
       padding: 5px 10px;
-      color: var(--third);
+      color: var(--primary);
       border-radius: 10px;
       font-size: 17px;
-      border: 1px var(--first);
+      border: 1px var(--white);
       cursor: pointer;
     }
     .add-success, .add-fail{
       display: block;
       margin: 20px auto;
-      background: var(--third);
+      background: var(--primary);
       text-align: center;
       padding: 10px;
-      color: var(--first);
+      color: var(--white);
     }
     .add-fail {
-      background: var(--sixth);
+      background: var(--secondary-a);
     }
     @media (max-width:550px){
       .cert-add-form{
@@ -88,7 +88,7 @@ main-section.edit{
     column-gap: 5px;
     margin-bottom: 50px;
     align-items: end;
-    background: var(--third);
+    background: var(--primary);
     padding: 20px;
   }
   .find-certificate label{
@@ -98,7 +98,7 @@ main-section.edit{
     width: 100%;
   }
   .find-certificate label span{
-    color: var(--first);
+    color: var(--white);
     font-size: 19px;
   }
   .find-certificate label input{
@@ -113,8 +113,8 @@ main-section.edit{
   .find-certificate > input{
     width: fit-content;
     height: fit-content;
-    background: var(--first);
-    color: var(--third);
+    background: var(--white);
+    color: var(--primary);
     font-weight: 800;
     padding: 10px ;
     border: none;
@@ -123,7 +123,7 @@ main-section.edit{
   }
   
     .main-wrapper .cert-update-form{
-    background-color: var(--third);
+    background-color: var(--primary);
     display: flex;
     flex-direction: column;
     row-gap: 20px;
@@ -132,8 +132,8 @@ main-section.edit{
     .cert-update-form > span:first-child{
       display: block;
       padding: 10px 20px;
-      background: var(--first);
-      color: var(--third);
+      background: var(--white);
+      color: var(--primary);
       font-weight: 800;
       text-transform: uppercase;
       font-size: 18px;
@@ -142,7 +142,7 @@ main-section.edit{
       display: flex;
       column-gap: 10px;
       width: 100%;
-      color: var(--first);
+      color: var(--white);
     }
     .cert-update-form label input{
       flex: 1;
@@ -157,13 +157,13 @@ main-section.edit{
       color: var(--fourth);
     }
     .cert-update-form > input{
-      background: var(--first);
+      background: var(--white);
       display: block;
       padding: 5px 10px;
-      color: var(--third);
+      color: var(--primary);
       border-radius: 10px;
       font-size: 17px;
-      border: 1px var(--first);
+      border: 1px var(--white);
       cursor: pointer;
       text-transform: uppercase;
       font-weight: 500;
@@ -171,13 +171,13 @@ main-section.edit{
     .update-success, .update-fail, .invalid-code{
       display: block;
       margin: 20px auto;
-      background: var(--third);
+      background: var(--primary);
       text-align: center;
       padding: 10px;
-      color: var(--first);
+      color: var(--white);
     }
     .update-fail, .invalid-code{
-      background: var(--sixth);
+      background: var(--secondary-a);
     }
     .old-certificate-code{
       display: none;
@@ -195,7 +195,7 @@ main-section.delete{
     padding: 10px;
   }
   input[type="text"]{
-    background-color: var(--first);
+    background-color: var(--white);
     display: block;
     padding: 10px;
     width: 100%;
@@ -207,23 +207,23 @@ main-section.delete{
     padding: 10px;
     border-radius: 4px;
     border: none;
-    color: var(--third);
+    color: var(--primary);
     font-weight: 900;
     text-transform: capitalize;
   }
   .find-cert{
     width: 100%;
     max-width: 350px;
-    border: 1px solid var(--third);
+    border: 1px solid var(--primary);
     display: flex;
     padding: 10px;
-    background-color: var(--third);
+    background-color: var(--primary);
     border-radius: 4px;
     gap: 5px;
     margin: 30px auto;
   }
   .result .show-found-cert{
-    background-color: var(--third);
+    background-color: var(--primary);
     width: 95%;
     max-width: 400px;
     margin: 20px auto;
@@ -232,20 +232,20 @@ main-section.delete{
   .result .show-found-cert h3{
     border-radius: 5px;
     background-color: var(--white);
-    color: var(--third);
+    color: var(--primary);
     margin-bottom: 8px;
     padding: 20px 10px 10px;
   }
   .result .show-found-cert h4{
     background-color: var(--white);
-    color: var(--third);
+    color: var(--primary);
     margin-bottom: 8px;
     margin-right: 8px;
     padding: 5px 10px;
   }
 
   .result .show-found-cert > button{
-    background: var(--sixth);
+    background: var(--secondary-a);
     color: var(--white);
     text-transform: uppercase;
     display: block;
@@ -255,7 +255,7 @@ main-section.delete{
     border-radius: 5px;
   }
   .result .show-found-cert > span{
-    font-size: var(--second-s);
+    font-size: var(--first-s);
     color: var(--white);
   }
   

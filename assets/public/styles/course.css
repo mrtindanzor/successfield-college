@@ -1,7 +1,7 @@
 main-section.show{
   .content-wrapper{
     background-color: var(--dark);
-    color: var(--first);
+    color: var(--white);
     padding: 20px;
   }
   .alt-navbar{
@@ -21,23 +21,23 @@ main-section.show{
   }
   .alt-navbar button:first-child{
     border-radius: 5px 0 0 5px;
-    background-color: var(--first);
+    background-color: var(--white);
     color: var(--fourth);
-    font-size: var(--first-s);
+    font-size: var(--base-s);
   }
   .alt-navbar button:nth-child(3){
     border-radius: 0 5px 5px 0;
-    background-color: var(--first);
-    color: var(--third);
-    font-size: var(--first-s);
+    background-color: var(--white);
+    color: var(--primary);
+    font-size: var(--base-s);
   }
   .alt-navbar button:first-child:hover{
-    color: var(--first);
-    background-color: var(--second);
+    color: var(--white);
+    background-color: var(--black);
   }
   .alt-navbar button:nth-child(3):hover{
-    background-color: var(--third);
-    color: var(--first);
+    background-color: var(--primary);
+    color: var(--white);
   }
   li{
     padding-left: 0;
@@ -48,10 +48,10 @@ main-section.show{
   b{
     display: inline-flex;
     font-family: poppins-regular;
-    font-size: var(--second-s);
+    font-size: var(--first-s);
     margin-left: 10px;
     margin-right: 10px;
-    color: var(--third);
+    color: var(--primary);
     font-style: italic;
     text-transform: uppercase;
   }
@@ -59,10 +59,10 @@ main-section.show{
     padding: 10px;
   }
   .course-points{
-    color: var(--sixth);
+    color: var(--secondary-a);
   }
   h3{
-    color: var(--third);
+    color: var(--primary);
   }
   @media (min-width: 769px) {
     .content-wrapper{
@@ -84,7 +84,7 @@ main-section.add{
     display: none;
   }
     form.form.active{
-      background: var(--third);
+      background: var(--primary);
       padding: 30px 20px;
       display: flex;
       flex-direction: column;
@@ -93,8 +93,8 @@ main-section.add{
     form span.form-title{
       display: block;
       padding: 10px 20px;
-      background: var(--first);
-      color: var(--third);
+      background: var(--white);
+      color: var(--primary);
       font-weight: 800;
     }
     form input, .back-button{
@@ -102,8 +102,8 @@ main-section.add{
     }
     .back-button{
       display: block;
-      background: var(--sixth);
-      color: var(--first);
+      background: var(--secondary-a);
+      color: var(--white);
       text-align: center;
       font-weight: 300;
     }
@@ -111,10 +111,10 @@ main-section.add{
       display: block;
       width: fit-content;
       align-self: end;
-      border: 1px solid var(--third);
-      background: var(--second);
+      border: 1px solid var(--primary);
+      background: var(--black);
       padding: 5px 10px;
-      color: var(--first);
+      color: var(--white);
       border-radius: 5px;
       font-size: 13px;
     }
@@ -125,14 +125,14 @@ main-section.add{
       text-align: center;
       max-width: 450px;
       margin: 10px auto;
-      color: var(--first);
+      color: var(--white);
       border-radius: 4px;
     }
     #result span.fail{
-      background-color: var(--sixth);
+      background-color: var(--secondary-a);
     }
     #result span.success{
-      background-color: var(--third);
+      background-color: var(--primary);
     }
   .prompt-dialog.active{
     transform: scale(1) translate(-50%, -50%);
@@ -143,7 +143,7 @@ main-section.add{
     left: 50%;
     width: 100dvw;
     height: 100dvh;
-    background: var(--first);
+    background: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,15 +164,15 @@ main-section.add{
     font-size: 1.3rem;
     padding: 8px 20px;
     margin: 20px 10px;
-    color: var(--first);
+    color: var(--white);
     border: none;
     cursor: pointer;
   }
   .prompt-contrs .confirm{
-    background: var(--third);
+    background: var(--primary);
   }
   .prompt-contrs .close-button{
-    background: var(--sixth);
+    background: var(--secondary-a);
   }
   
 }
@@ -192,7 +192,7 @@ main-section.edit{
     column-gap: 5px;
     margin-bottom: 50px;
     align-items: end;
-    background: var(--third);
+    background: var(--primary);
     padding: 20px;
   }
   .find-course label{
@@ -202,7 +202,7 @@ main-section.edit{
     width: 100%;
   }
   .find-course label span{
-    color: var(--first);
+    color: var(--white);
     font-size: 19px;
   }
   .find-course label input{
@@ -217,8 +217,8 @@ main-section.edit{
   .find-course > input{
     width:fit-content;
     height: fit-content;
-    background: var(--first);
-    color: var(--third);
+    background: var(--white);
+    color: var(--primary);
     font-weight: 800;
     padding: 10px ;
     border: none;
@@ -229,7 +229,7 @@ main-section.edit{
     display: none;
   }
   form.form.active{
-    background: var(--third);
+    background: var(--primary);
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
@@ -238,8 +238,8 @@ main-section.edit{
   form span.form-title{
     display: block;
     padding: 10px 20px;
-    background: var(--first);
-    color: var(--third);
+    background: var(--white);
+    color: var(--primary);
     font-weight: 800;
   }
   form input, .back-button{
@@ -247,8 +247,8 @@ main-section.edit{
   }
   .back-button{
     display: block;
-    background: var(--sixth);
-    color: var(--first);
+    background: var(--secondary-a);
+    color: var(--white);
     text-align: center;
     font-weight: 300;
   }
@@ -256,10 +256,10 @@ main-section.edit{
     display: block;
     width: fit-content;
     align-self: end;
-    border: 1px solid var(--third);
-    background: var(--second);
+    border: 1px solid var(--primary);
+    background: var(--black);
     padding: 5px 10px;
-    color: var(--first);
+    color: var(--white);
     border-radius: 5px;
     font-size: 13px;
   }
@@ -270,14 +270,14 @@ main-section.edit{
     text-align: center;
     max-width: 450px;
     margin: 10px auto;
-    color: var(--first);
+    color: var(--white);
     border-radius: 4px;
   }
   #result span.fail{
-    background-color: var(--sixth);
+    background-color: var(--secondary-a);
   }
   #result span.success{
-    background-color: var(--third);
+    background-color: var(--primary);
   }
   .prompt-dialog.active{
     transform: scale(1);
@@ -288,7 +288,7 @@ main-section.edit{
     left: 0;
     width: 100dvw;
     height: 100dvh;
-    background: var(--first);
+    background: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -309,14 +309,14 @@ main-section.edit{
     font-size: 1.3rem;
     padding: 8px 20px;
     margin: 20px 10px;
-    color: var(--first);
+    color: var(--white);
     border: none;
   }
   .prompt-contrs .confirm{
-    background: var(--third);
+    background: var(--primary);
   }
   .prompt-contrs .close-button{
-    background: var(--sixth);
+    background: var(--secondary-a);
   }  
 }
 
@@ -326,7 +326,7 @@ main-section.delete{
     padding: 10px;
   }
   input[type="text"]{
-    background-color: var(--first);
+    background-color: var(--white);
     display: block;
     padding: 10px;
     width: 100%;
@@ -338,23 +338,23 @@ main-section.delete{
     padding: 10px;
     border-radius: 4px;
     border: none;
-    color: var(--third);
+    color: var(--primary);
     font-weight: 900;
     text-transform: capitalize;
   }
   .find-course{
     width: 100%;
     max-width: 350px;
-    border: 1px solid var(--third);
+    border: 1px solid var(--primary);
     display: flex;
     padding: 10px;
-    background-color: var(--third);
+    background-color: var(--primary);
     border-radius: 4px;
     gap: 5px;
     margin: 30px auto;
   }
   .result .show-found-course{
-    background-color: var(--third);
+    background-color: var(--primary);
     width: 95%;
     max-width: 400px;
     margin: 20px auto;
@@ -363,20 +363,20 @@ main-section.delete{
   .result .show-found-course h3{
     border-radius: 5px;
     background-color: var(--white);
-    color: var(--third);
+    color: var(--primary);
     margin-bottom: 8px;
     padding: 20px 10px 10px;
   }
   .result .show-found-course h4{
     background-color: var(--white);
-    color: var(--third);
+    color: var(--primary);
     margin-bottom: 8px;
     margin-right: 8px;
     padding: 5px 10px;
   }
 
   .result .show-found-course > button{
-    background: var(--sixth);
+    background: var(--secondary-a);
     color: var(--white);
     text-transform: uppercase;
     display: block;
@@ -386,21 +386,21 @@ main-section.delete{
     border-radius: 5px;
   }
   .result .show-found-course > span{
-    font-size: var(--second-s);
+    font-size: var(--first-s);
     color: var(--white);
   }
   .result .show-found-course ol li{
     margin-bottom: 5px;
-    font-size: var(--second-s);
+    font-size: var(--first-s);
     color: var(--white);
     text-transform: capitalize;
   }
   .prompt-dialog .confirm-button{
     color: var(--white)!important;
-    background-color: var(--sixth)!important;
+    background-color: var(--secondary-a)!important;
   }
   .prompt-dialog .close-button{
-    color: var(--sixth);
+    color: var(--secondary-a);
     border: 1px solid currentColor;
   }
 }

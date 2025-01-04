@@ -21,23 +21,23 @@ header{
 }
 .alt-navbar button:first-child{
   border-radius: 5px 0 0 5px;
-  background-color: var(--first);
+  background-color: var(--white);
   color: var(--fourth);
-  font-size: var(--first-s);
+  font-size: var(--base-s);
 }
 .alt-navbar button:nth-child(3){
   border-radius: 0 5px 5px 0;
-  background-color: var(--first);
-  color: var(--third);
-  font-size: var(--first-s);
+  background-color: var(--white);
+  color: var(--primary);
+  font-size: var(--base-s);
 }
 .alt-navbar button:first-child:hover{
   background-color: var(--fourth);
-  color: var(--first);
+  color: var(--white);
 }
 .alt-navbar button:nth-child(3):hover{
-  background-color: var(--third);
-  color: var(--first);
+  background-color: var(--primary);
+  color: var(--white);
 }
 li{
   padding-left: 0;
@@ -48,14 +48,14 @@ ul li{
 b{
   display: inline-flex;
   font-family: alice;
-  font-size: var(--fourth-s);
+  font-size: var(--third-s);
   margin-left: 10px;
 }
 p.course-overview{
   padding: 10px;
 }
 .course-points{
-  color: var(--sixth);
+  color: var(--secondary-a);
 }
 @media (min-width: 769px) {
   .content-wrapper{
