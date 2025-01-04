@@ -157,6 +157,9 @@ nav .auth-contrs a .user-line-icon{
 nav .auth-contrs a .user-line-icon:hover{
   color: var(--primary);
 }
+header *{
+  font-size: var(--base-s);
+}
 header .main-menu{
   position: relative;
   z-index: 99;
