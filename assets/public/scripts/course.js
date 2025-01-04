@@ -34,7 +34,6 @@ if(page === 'show'){
       goToTop()
     }
     function setValues(){
-      sectors.forEach(el => el.classList.add('hide'))
       showSector()
       i != 0 ? showBtn(backBtn) : hideBtn(backBtn)
       i < sectorsLen ? showBtn(nextBtn) : hideBtn(nextBtn)
