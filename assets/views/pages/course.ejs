@@ -78,7 +78,7 @@
       <% } %>
     </div>
     <div class="next-tab">
-      <a href="/courses/<%= findCourse.course %>/<%= findCourse.course.module ? findCourse.course.module : 'test' %>" class="proceed-btn">Next</a>
+      <a href="/courses/<%= findCourse.course %><%= findCourse.course.module ? '/'+findCourse.course.module : '' %>" class="proceed-btn">Start Course</a>
     </div>
   </main-section>
 <% } %>

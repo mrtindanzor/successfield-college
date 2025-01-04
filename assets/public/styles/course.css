@@ -9,17 +9,22 @@ main-section.show{
     text-align: center;
   }
   .next-tab{
-    text-align: right;
-    padding: 10px 100px;
-    border: 1px solid;
+    padding: 10px 20px;
+    margin-bottom: 50px;
   }
   .next-tab .proceed-btn{
     cursor: pointer;
-    padding: 10px 25px;
+    padding: 7px 25px;
     color: var(--white);
+    font-size: var(--second-s);
     background-color: var(--primary);
     height: fit-content;
     text-decoration: none;
+    border-radius: 5px;
+    transition: 0.2s ease;
+  }
+  .next-tab .proceed-btn:hover{
+    border-radius: 15px;
   }
   li{
     padding-left: 0;
