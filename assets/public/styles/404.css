@@ -1,6 +1,6 @@
 main-section{
   display: flex;
-  min-height: 75%;
+  min-height: 75dvh;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -33,6 +33,10 @@ main-section{
   padding: 10px 20px;
   border: none;
   font-family: alice;
-  border-radius: 20px;
+  border-radius: 5px;
   text-decoration: none;
+  transition: 0.3s ease;
+}
+.page-not-found a:hover{
+  border-radius: 25px;
 }
