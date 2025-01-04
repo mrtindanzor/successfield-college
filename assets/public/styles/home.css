@@ -18,7 +18,7 @@
     color: var(--primary);
     font-size: var(--fourth-s);
     font-family: acolonica;
-    letter-spacing: 4px;
+    text-align: center;
   }
   .container-wrapper .details-container p{
     color: var(--white);

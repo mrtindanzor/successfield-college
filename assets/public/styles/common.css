@@ -32,6 +32,8 @@
   box-sizing: border-box;
   font-family: poppins-light;
   font-size: var(--first-s);
+  text-align: justify;
+  hyphens: auto;
 }
 svg{
   opacity: 0;

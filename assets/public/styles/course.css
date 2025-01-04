@@ -47,8 +47,6 @@ main-section.show{
     text-transform: uppercase;
   }
   p.course-overview{
-    text-align: justify;
-    text-justify: inter-word;
   }
   p.course-overview::first-letter{
     font-size: var(--fourth-s);
@@ -61,9 +59,6 @@ main-section.show{
     color: var(--primary);
     font-size: var(--third-s);
   }
-  span.certificate{
-    text-align: justify;
-    text-justify: inter-word;}
 }
 
 main-section.add{

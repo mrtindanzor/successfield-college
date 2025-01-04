@@ -16,7 +16,7 @@
     <%- (new icons('mail-icon', 'Email page')).mail() %>
     Email
   </a>
-  <% if(page !== 'course'){ %>
+  <% if(page !== 'course' && page !== 'contact' && page !== 'about'){ %>
     <a class="whatsapp-link" href="https://wa.me/+233591413517" target="_blank"> 
       <%- (new icons('whatsapp-icon', 'Whatsapp page')).whatsapp() %>
     </a>
