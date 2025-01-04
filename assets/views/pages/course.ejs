@@ -1,57 +1,64 @@
 <% if(locals.section === 'show'){ %>
-  <main-section class="show">
+  <main-section class="show" data-section="show">
     <div class="content-wrapper">
       <div class="alt-navbar">
         <h3 class="topic"> <%= findCourse.course.toUpperCase() %></h3>
       </div>
     
-      <p class="course-overview">
-        <%= findCourse.overview %>
-      </p>
-    
-      <% const outlines = findCourse.outlines %>
-      <% if(outlines){ %>
-        <p class="course-highlights">
-          <h3>PROGRAMME OUTLINES</h3>
-          <ul class="course-high-list">
-            <% outlines.forEach(item => { %>
-              <li><%= item.outline %> </li>
-            <% }) %>
-          </ul>
+      <div class="sectors">
+        <p class="course-overviews">
+          <%= findCourse.overview %>
         </p>
-      <% } %>
-    
-      <% const objectives = findCourse.objectives %>
-      <% if(objectives){ %>
-      <p class="project-topics">
-        <h3>PROGRAMME OBJECTIVES:</h3>
-        <ol>
-          <% objectives.forEach(item => { %>
-            <li><%= item.objective %> </li>
-          <% }) %>
-        </ol>
-      </p>
-      <% } %>
-      
-      <div class="timeline">
-        <% const duration = findCourse.duration %>
-      <% if(duration){ %>
-          <b>Duration: </b>
-          <span> <%= duration %> </span>
-      <% } %>
-    
-        <br>
-    
-        <% const availability = findCourse.availability %>
-      <% if(availability){ %>
-          <b>Availability: </b>
-          <span> <%= availability %> </span>
-      <% } %>
       </div>
     
+      <% const outlines = findCourse.outlines %>
+      <div class="sectors hide">
+        <% if(outlines){ %>
+          <p class="course-highlights">
+            <h3>PROGRAMME OUTLINES</h3>
+            <ul class="course-high-list">
+              <% outlines.forEach(item => { %>
+                <li><%= item.outline %> </li>
+              <% }) %>
+            </ul>
+          </p>
+        <% } %>
+      </div>
+     
+      <% const objectives = findCourse.objectives %>
+      <div class="sectors hide">
+        <% if(objectives){ %>
+          <p class="project-topics">
+            <h3>PROGRAMME OBJECTIVES:</h3>
+            <ol>
+              <% objectives.forEach(item => { %>
+                <li><%= item.objective %> </li>
+              <% }) %>
+            </ol>
+          </p>
+        <% } %>
+
+        <div class="timeline">
+          <% const duration = findCourse.duration %>
+          <% if(duration){ %>
+            <b>Duration: </b>
+            <span> <%= duration %> </span>
+          <% } %>
+
+          <br>
+
+          <% const availability = findCourse.availability %>
+          <% if(availability){ %>
+            <b>Availability: </b>
+            <span> <%= availability %> </span>
+          <% } %>
+        </div>
+      </div>
+      
       <% const benefits = findCourse.benefits %>
       <% if(benefits){ %>
-        <p>
+        <div class="sectors hide">
+          <p>
           <h3>Benefits of <%= findCourse.course.toLocaleUpperCase() %></h3>
           <ul>
             <% benefits.forEach(item => { %>
@@ -59,25 +66,33 @@
             <% }) %> 
           </ul>
         </p>
+        </div>
       <% } %>
     
       <% const certificate = findCourse.certificate %>
-      <% if(certificate){ %>
-        <p>
-          <h3>Certificate: </h3>
-          <span class="certificate"> <%= certificate %> </span>
-        </p>
-      <% } %>
-    
-      <% const fee = findCourse.fee %>
-      <% if(fee){ %>
-        <p>
-          <h3>Fee: </h3>
-          <span> <%= fee %> </span>
-        </p>
-      <% } %>
-      <div class="next-tab">
-        <a href="/courses/<%= findCourse.course %><%= findCourse.course.module ? '/'+findCourse.course.module : '' %>" class="proceed-btn">Start Course</a>
+      <div class="sectors hide">
+        <% if(certificate){ %>
+          <p>
+            <h3>Certificate: </h3>
+            <span class="certificate"> <%= certificate %> </span>
+          </p>
+        <% } %>
+      
+        <% const fee = findCourse.fee %>
+        <% if(fee){ %>
+          <p>
+            <h3>Fee: </h3>
+            <span> <%= fee %> </span>
+          </p>
+        <% } %>
+        <div class="next-tab">
+          <a href="/courses/<%= findCourse.course %><%= findCourse.course.module ? '/'+findCourse.course.module : '' %>" class="proceed-btn">Start Course</a>
+        </div>
+      </div>
+      
+      <div class="contrs">
+        <button class="back-btn hide-btn">back</button>
+        <button class="next-btn">next</button>
       </div>
     </div>
   </main-section>

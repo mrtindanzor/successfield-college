@@ -1,5 +1,36 @@
 let page = document.querySelector('[data-section]')
 if(page) page = page.dataset.section
+console.log(page)
+
+if(page === 'show'){
+  handleBtnClicks()
+
+  function handleBtnClicks(){
+    const nextBtn = document.querySelector('.next-btn'),
+     backBtn = document.querySelector('.back-btn'),
+     sectors = document.querySelectorAll('.sectors')
+
+    let i = 0
+
+    nextBtn.addEventListener('click', next)
+    backBtn.addEventListener('click', back)
+    
+    function next(){
+      sectors[i].classList.add('hide')
+      if(i === 0) backBtn.classList.remove('hide-btn')
+      i++
+      sectors[i].classList.remove('hide')
+      if(i === sectors.length - 1) nextBtn.classList.add('hide-btn')
+    }
+    function back(){
+      sectors[i].classList.add('hide')
+      if(i <= 1) backBtn.classList.add('hide-btn')
+      if(i < sectors.length) nextBtn.classList.remove('hide-btn')
+      i--
+      sectors[i].classList.remove('hide')
+    }
+  }
+}
 
 if(page === 'add'){
   const formEl = document.querySelectorAll('.form'),

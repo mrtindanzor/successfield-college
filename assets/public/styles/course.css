@@ -53,6 +53,31 @@ main-section.show{
     color: var(--primary);
     font-size: var(--third-s);
   }
+  .sectors.hide{
+    display: none;
+  }
+  .contrs{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+  }
+  .contrs button{
+    padding: 7px 15px;
+    color: var(--white);
+    border-radius: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .contrs .next-btn{
+    background-color: var(--primary);
+  }
+  .contrs .back-btn{
+    background-color: var(--secondary-a);
+  }
+  .hide-btn{
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 main-section.add{
