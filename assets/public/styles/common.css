@@ -37,6 +37,7 @@
 *{
   box-sizing: border-box;
   font-family: poppins-light;
+  font-size: var(--first-s);
 }
 svg{
   opacity: 0;
@@ -415,6 +416,14 @@ button{
 }
 button:hover{
   opacity: 0.8;
+}
+.timeout{
+  color: var(--first);
+  font-family: acolonica;
+  display: inline-flex;
+  margin: 3px;
+  padding: 3px;
+  font-size: var(--second-s);
 }
 span.failed, span.success{
   position: fixed;

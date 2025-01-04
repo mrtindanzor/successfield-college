@@ -1,22 +1,15 @@
-<div class="email-verification-page-container">
-  <div class="wrapper">
-    <span class="info">
-      <% if(locals.verificationDetails.status === 200 ){ %>
-        <span class="success"><%= locals.verificationDetails.msg %>, redirecting to login page in <i class="timeout">10</i> secs</span>
-      <% } %>
+<% if(locals.verificationDetails.status === 200 ){ %>
+  <span class="verified">
+    <%= locals.verificationDetails.msg %>, redirecting to login page in <span class="timeout">10</span> secs
+  </span>
+<% } %>
 
-      <% if(verificationDetails.status !== 200 ){ %>
-        <div class="failed">
-          <%= locals.verificationDetails.msg %>
-          <br>
-          <input type="text" class="email" placeholder="enter email address">
-          <span class="resend-button" href="/users/resend">resend email </span>
-        </div>
-
-        <div class="result">
-        </div>
-      <% } %>
-      
-    </span>
+<% if(verificationDetails.status !== 200 ){ %>
+  <form class="resend-form">
+    <input type="text" name="email" placeholder="enter email address">
+    <button class="resend-button" href="/users/resend">resend email </button>
+  </form>
+  <div class="result">
+    <span class="failed"><%= locals.verificationDetails.msg %></span>
   </div>
-</div>
+<% } %>

@@ -1,56 +1,47 @@
 main-section{
   display: flex;
   justify-content: center;
+  align-items: center;
+  background: url('/images/000023.jpg');
+  background-repeat: no-repeat;
+  object-fit:fill;
+  min-height: 70%;
 }
-.email-verification-page-container{
-  height: fit-content;
-  width: fit-content;
-  margin: auto;
-  padding: 30px;
-  font-family: alice;
+form.resend-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 90%;
+  max-width: 450px;
+  background-color: var(--dark);
+  padding: 60px 20px 60px 20px;
+  border-radius: 5px;
 }
-span.success{
+form input{
+  width: 90%;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid var(--first);
+  color: var(--first);
+  font-size: var(--second-s);
+}
+form button{
+  width: 90%;
+  padding: 10px;
+  border: none;
+  background-color: var(--first);
   color: var(--third);
-  font-size: var(--first-s);
-  font-weight: 500;
+  font-size: var(--second-s);
+  text-transform: capitalize;
 }
-span.success .timeout{
-  color: var(--sixth);
-  font-family: acolonica;
-}
-span.failed{
-  width: fit-content;
-  color: var(--sixth);
-}
-span.failed .email{
-  margin: 30px 0 5px 0;
-  padding: 10px;
-  width: 100%;
-  max-width: 350px;
-  display: inline-block;
-}
-span.failed span{
-  text-align: center;
-  font-family: alice;
-  min-width: 100%;
+span.verified{
+  display: block;
+  max-width: 500px;
+  width: 95%;
+  background-color: var(--darker);
+  border-radius: 5px;
   color: var(--first);
-  display: inline-block;
-  padding: 5px;
-  border: 1px solid var(--third);
-  background-color: var(--third);
-  cursor: pointer;
-}
-.result *{
-  padding: 10px;
-  color: var(--first);
-  margin-top: 30px;
-  font-size: var(--first-s);
-  text-align: center;
-  text-transform: uppercase;
-}
-.email-sent{
-  background-color: var(--third);
-}
-.email-not-sent{
-  background-color: var(--sixth);
+  font-size: var(--third-s);
+  padding: 60px;
 }

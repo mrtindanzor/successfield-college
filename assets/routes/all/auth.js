@@ -123,7 +123,7 @@ authroute.post('/login', async function(req, res, next){
   })
   (req, res, next)
 })
-authroute.get('/verify/:confirmationCode', authenticated,  async function(req, res){
+authroute.get('/verify/:confirmationCode',  async function(req, res){
   let verificationDetails = {}
   const verificationCode = req.params.confirmationCode,
     findUser = await userModel.findOne({verificationCode})
@@ -153,9 +153,11 @@ authroute.get('/verify/:confirmationCode', authenticated,  async function(req, r
   }
   res.render('index', {page: 'verifyemail', title: 'Verify email address', verificationDetails })
 })
-authroute.post('/resend', authenticated, async function(req, res){
-  const email = req.body.email.trim().toLowerCase(),
-    isEmailMatch = email.match(emailPattern),
+authroute.post('/resend', async function(req, res){
+  let email = req.body.email
+  if(!email) return res.status(403).json({status: 403, msg: 'Enter a valid email address'})
+  email = email.trim().toLowerCase()
+  const isEmailMatch = email.match(emailPattern),
     date = Date.now()
 
   if(!isEmailMatch) return res.status(400).json({status: 400, msg: 'Invalid email format'})
@@ -168,7 +170,7 @@ authroute.post('/resend', authenticated, async function(req, res){
     const setVerificationCode = await userModel.findOneAndUpdate({email}, {$set: {verificationCode: date}})
     if(!setVerificationCode) return res.status(404).json({status: 404, msg: 'Error sending email'})
   }
-  if(verificationStatus) return res.status(302).json({status: 302, msg: 'Email already verified'})
+  if(verificationStatus) return res.status(200).json({status: 200, msg: 'Email already verified'})
 
   const subject = 'Verify email address',
     link = `${baseurl}/users/verify/${date}`,
@@ -254,7 +256,7 @@ authroute.patch('/isnew', async function(req, res){
   const users = await userModel.find({})
   for(let user of users){
     const update = await userModel.findOneAndUpdate({studentNumber: user.studentNumber}, {$set: {isnew: false}}, {new: true})
-    if(update) console.log('updated', user.firstname, 'to', update.isnew, update.email)
+    if(update) console.log('updated', user.firstname, 'to', update.isnew, update.date)
     if(!update) console.log('update for ', user.firstname, 'failed')
   }
   return res.status(201).send()

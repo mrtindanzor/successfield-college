@@ -303,6 +303,9 @@ main-section{
   .main-page .title-bar.active{
     display: flex;
   }
+  .title-bar .back-button{
+    display: none;
+  }
   .main-links{
     display: flex;
     height: 100dvh;
