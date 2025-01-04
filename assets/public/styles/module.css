@@ -11,8 +11,11 @@
 }
 .module-title-bar .btn{
   display: block;
+  width: 70px;
+  height: 70px;
   padding: 10px;
   font-size: var(--base-s);
+  text-align: center;
   text-transform: uppercase;
   color: var(--white);
   height: fit-content;
