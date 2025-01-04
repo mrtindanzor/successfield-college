@@ -55,3 +55,4 @@ function hideShow(object, display= 'block'){
     object.style.display = 'none'
   }
 }
+function goToTop(){ scrollTo(0, 0)}

@@ -1,6 +1,4 @@
-let page = document.querySelector('[data-section]')
-if(page) page = page.dataset.section
-console.log(page)
+let page = document.querySelector('[data-section]')?.dataset.section
 
 if(page === 'show'){
   handleBtnClicks()
@@ -8,29 +6,44 @@ if(page === 'show'){
   function handleBtnClicks(){
     const nextBtn = document.querySelector('.next-btn'),
      backBtn = document.querySelector('.back-btn'),
-     sectors = document.querySelectorAll('.sectors')
+     sectors = document.querySelectorAll('.sectors'),
+     sectorsLen = sectors.length - 1,
+     course = document.querySelector('.topic')?.textContent.trim().toLowerCase()
 
-    let i = 0
-
+    let i = localStorage.getItem(course) || 0
+    setValues()
     nextBtn.addEventListener('click', next)
     backBtn.addEventListener('click', back)
     
     function next(){
-      sectors[i].classList.add('hide')
-      if(i === 0) backBtn.classList.remove('hide-btn')
+      hideSector()
       i++
-      sectors[i].classList.remove('hide')
-      if(i === sectors.length - 1) nextBtn.classList.add('hide-btn')
-      scrollTo(0,0)
+      i === sectorsLen ? hideBtn(nextBtn) : ''
+      showBtn(backBtn)
+      showSector()
+      setI(i)
+      goToTop()
     }
     function back(){
-      sectors[i].classList.add('hide')
-      if(i <= 1) backBtn.classList.add('hide-btn')
-      if(i < sectors.length) nextBtn.classList.remove('hide-btn')
+      hideSector()
       i--
-      sectors[i].classList.remove('hide')
-      scrollTo(0,0)
+      i === 0 ? hideBtn(backBtn) : ''
+      i < sectorsLen ? showBtn(nextBtn) : ''
+      showSector()
+      setI(i)
+      goToTop()
     }
+    function setValues(){
+      sectors.forEach(el => el.classList.add('hide'))
+      showSector()
+      i != 0 ? showBtn(backBtn) : hideBtn(backBtn)
+      i < sectorsLen ? showBtn(nextBtn) : hideBtn(nextBtn)
+    }
+    function showSector(){ sectors[i].classList.remove('hide') }
+    function hideSector(){ sectors[i].classList.add('hide') }
+    function showBtn(btn){ btn.classList.remove('hide-btn') }
+    function hideBtn(btn){ btn.classList.add('hide-btn') }
+    function setI(i){ localStorage.setItem(course, i) }
   }
 }
 
