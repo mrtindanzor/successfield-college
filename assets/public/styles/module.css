@@ -16,15 +16,11 @@
   font-size: var(--third-s);
 }
 .module-nav-bar{
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
-  align-items: first baseline;
-  gap: 20px;
-  padding: 10px 2%;
   margin: 20px auto;
-  color: var(--white);
-  text-transform: capitalize;
+  max-width: 900px;
 }
 .module-nav-bar .btn{
   display: block;

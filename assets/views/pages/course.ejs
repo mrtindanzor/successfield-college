@@ -3,7 +3,6 @@
     <div class="content-wrapper">
       <div class="alt-navbar">
         <h3 class="topic"> <%= findCourse.course.toUpperCase() %></h3>
-        <button class="alt-navbar-next-btn">Next</button>
       </div>
     
       <p class="course-overview">
@@ -77,6 +76,9 @@
           <span> <%= fee %> </span>
         </p>
       <% } %>
+    </div>
+    <div class="next-tab">
+      <a href="/courses/<%= findCourse.course %>/<%= findCourse.course.module ? findCourse.course.module : 'test' %>" class="proceed-btn">Next</a>
     </div>
   </main-section>
 <% } %>

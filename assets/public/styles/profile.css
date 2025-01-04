@@ -1,7 +1,6 @@
 main-section{
   display: block;
   width: 100dvw;
-  background-color: var(--dark);
   width: 100%;
   padding: 10px;
 }

@@ -3,7 +3,6 @@ main-section{
   width: 100dvw;
   min-height: 80dvh;
   overflow: hidden;
-  background-color: var(--darker);
 }
 
 main-section.show{

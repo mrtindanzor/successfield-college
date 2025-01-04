@@ -2,7 +2,6 @@
   width: 100dvw;
   padding: 20px 10%;
   overflow: hidden;
-  background-color: var(--dark);
   color: var(--white);
 }
 h2{

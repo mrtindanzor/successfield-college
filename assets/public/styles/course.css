@@ -1,43 +1,25 @@
 main-section.show{
   .content-wrapper{
-    background-color: var(--dark);
     color: var(--white);
     padding: 20px;
   }
   .alt-navbar{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    gap: 10px;
     text-align: center;
-    align-items: baseline;
+    padding: 10px 0;
+    text-align: center;
   }
-  
-  .alt-navbar button{
+  .next-tab{
+    text-align: right;
+    padding: 10px 100px;
+    border: 1px solid;
+  }
+  .next-tab .proceed-btn{
     cursor: pointer;
-    border: 2px solid currentColor;
-    padding: 5px 8px;
-    height: fit-content;
-  }
-  .alt-navbar button:first-child{
-    border-radius: 5px 0 0 5px;
-    background-color: var(--white);
-    color: var(--fourth);
-    font-size: var(--base-s);
-  }
-  .alt-navbar button:nth-child(3){
-    border-radius: 0 5px 5px 0;
-    background-color: var(--white);
-    color: var(--primary);
-    font-size: var(--base-s);
-  }
-  .alt-navbar button:first-child:hover{
+    padding: 10px 25px;
     color: var(--white);
-    background-color: var(--black);
-  }
-  .alt-navbar button:nth-child(3):hover{
     background-color: var(--primary);
-    color: var(--white);
+    height: fit-content;
+    text-decoration: none;
   }
   li{
     padding-left: 0;

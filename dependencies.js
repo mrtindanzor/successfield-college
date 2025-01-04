@@ -28,6 +28,10 @@ const env = config().parsed,
     address2: String,
     postalCode: String
   }),
+  moduleSchema = new schema({
+    module: String,
+    link: String
+  }),
   userSchema = new schema({
     firstname: String,
     middlename: String,
@@ -51,6 +55,7 @@ const env = config().parsed,
     outlines: [{ outline: String}],
     objectives: [{ objective: String }],
     benefits: [{ benefit: String }],
+    modules: [moduleSchema],
     duration: String,
     availability: String,
     certificate: String,

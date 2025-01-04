@@ -9,11 +9,9 @@
     column-gap: 20px;
   }
   .container-wrapper:nth-child(odd){
-    background-color: var(--darker);
     box-shadow: 0 0 1px var(--darker);
   }
   .container-wrapper:nth-child(even){
-    background-color: var(--dark);
     box-shadow: 0 0 1px var(--dark);
   }
   .container-wrapper .details-container h3{

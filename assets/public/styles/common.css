@@ -319,12 +319,13 @@ footer{
   font-size: var(--first-s);
 }
 .footer-container .twitter-icon, .whatsapp-icon{
-  width: calc(20px + 10px);
+  width: 30px;
 }
 .footer-container .twitter-link{
   position: fixed;
   right: 0;
-  bottom: 50dvh;
+  bottom: 23dvh;
+  transform: translateY(calc(100% + 10px));
   padding: 10px;
   background-color: var(--white);
   box-shadow: -2px 0 3px var(--darker);
@@ -348,7 +349,7 @@ footer{
   position: fixed;
   padding: 10px;
   right: 0;
-  bottom: calc(50dvh + 70px);
+  bottom: 23dvh;
   box-shadow: -2px 0 3px var(--darker);
   color: var(--darker);
   opacity: 0.8;
@@ -371,7 +372,8 @@ align-items: baseline;
 .mail-link{
   position: fixed;
   right: 0;
-  bottom: calc(50dvh - 70px);
+  bottom: 23dvh;
+  transform: translateY(calc(-100% - 20px));
   padding: 10px;
   box-shadow: -2px 0 3px var(--darker);
   color: var(--darker);
