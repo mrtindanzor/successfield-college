@@ -68,6 +68,7 @@ form > input{
   margin-bottom: 20px;
 }
 input[type='submit']{
+  text-align: center;
   cursor: pointer;
 }
 form span + i{
