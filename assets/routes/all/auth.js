@@ -143,7 +143,7 @@ authroute.get('/verify/:confirmationCode',  async function(req, res){
         admins.forEach(async el => {
         let admin = el.firstname + ' ' + el.surname
         if(el.firstname.toLowerCase() == 'augustine') admin = 'Dr (clin) ' + admin
-        const html = (new mailTemplates).newUser(admin, findUser.email)
+        const html = (new mailTemplates).newUser(name, findUser.email)
         await sendMailAsync(subject, html, el.email)
         })
         await userModel.findOneAndUpdate({email: findUser.email}, {$set: {isnew: false, verificationCode: ''}})
