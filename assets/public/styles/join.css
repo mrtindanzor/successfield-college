@@ -94,6 +94,8 @@ form span + i{
   display: block;
 }
 .other-contrs{
+  display: flex;
+  justify-content: center;
   text-align: center;
   background-color: var(--primary);
   padding: 8px 0;
