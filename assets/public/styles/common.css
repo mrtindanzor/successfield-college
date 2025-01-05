@@ -442,7 +442,7 @@ span.failed, span.success{
   box-shadow: 0 0 30px var(--dark);
   border: 1px solid currentColor;
   padding: 10px;
-  text-align: center;
+  text-align: left;
 }
 span.success{
   background-color: var(--primary);
