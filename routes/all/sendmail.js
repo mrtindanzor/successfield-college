@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer"
-import { env } from "../../../dependencies.js"
+import { env } from "../../dependencies.js"
 
   const pass = env.MAILER_PASSWORD,
   user = env.MAILER_USER,

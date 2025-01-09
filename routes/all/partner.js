@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { partnerModel, isAdmin, userModel } from "../../../dependencies.js";
+import { partnerModel, isAdmin, userModel } from "../../dependencies.js";
 
 const partnerRoute = Router(),
   showPartnerRoute = Router()

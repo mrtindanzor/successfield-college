@@ -2,7 +2,7 @@ import { Router } from "express";
 import multer from  "multer"
 import fs from 'fs'
 import { v2 as cloudinary } from 'cloudinary'
-import { env, uploadPath, imageModel, userModel } from "../../../dependencies.js";
+import { env, uploadPath, imageModel, userModel } from "../../dependencies.js";
 
 
 const CLOUDINARY_NAME = env.CLOUDINARY_NAME,

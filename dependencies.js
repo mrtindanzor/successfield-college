@@ -1,9 +1,9 @@
 import { config } from "dotenv";
 import mongoose from "mongoose";
 import path from 'path'
-import mailTemplates from "./assets/routes/all/mailtemplates.js";
-import { sendMailAsync } from "./assets/routes/all/sendmail.js";
-import icons from "./assets/public/scripts/icons.js";
+import mailTemplates from "./routes/all/mailtemplates.js";
+import { sendMailAsync } from "./routes/all/sendmail.js";
+import icons from "./public/scripts/icons.js";
 
 const env = config().parsed,
   baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL, 

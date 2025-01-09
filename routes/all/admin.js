@@ -2,7 +2,7 @@ import { Router } from "express";
 import { courseRoute } from './course.js'
 import certRoute from "./cert.js";
 import { partnerRoute } from "./partner.js";
-import { userModel, isAdmin } from "../../../dependencies.js";
+import { userModel, isAdmin } from "../../dependencies.js";
 import { sendMailAsync } from "./sendmail.js";
 import mailTemplates from "./mailtemplates.js";
 

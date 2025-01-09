@@ -1,5 +1,5 @@
 import express from "express"
-import router from "./assets/routes/routes.js"
+import router from "./routes/routes.js"
 import cors from 'cors'
 import session from "express-session";
 import passport from "passport";
@@ -35,9 +35,9 @@ app.use(setVariables)
 app.use(isSession)
 app.use(isPartner)
 app.use(express.json())
-app.set('views', path.resolve('./assets/views'))
+app.set('views', path.resolve('./views'))
 app.set('view engine', 'ejs')
-app.use(express.static('./assets/public'))
+app.use(express.static('./public'))
 app.use(router)
 
 app.get('/about', (req, res) => res.render('index', {page: 'about', title: 'About Successfield College'}))

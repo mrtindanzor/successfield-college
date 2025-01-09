@@ -10,7 +10,7 @@ import { uploadRoute } from "./all/upload.js";
 import { showPartnerRoute } from "./all/partner.js";
 import profileRoute from "./all/profile.js";
 import profileItemsRoute from "./all/profileItems.js";
-import { isNotAuthenticated } from "../../dependencies.js";
+import { isNotAuthenticated } from "../dependencies.js";
 
 const router = Router()
 router.use(homeroute)

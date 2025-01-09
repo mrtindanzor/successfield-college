@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { isNotAuthenticated } from "../../../dependencies.js"
+import { isNotAuthenticated } from "../../dependencies.js"
 
 const profileRoute = Router()
 

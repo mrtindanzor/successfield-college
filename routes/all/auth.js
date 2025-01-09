@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt'
 import { Strategy as localStrategy } from 'passport-local'
 import { sendMailAsync }  from './sendmail.js'
 import mailTemplates from './mailtemplates.js'
-import { env, baseurl, userModel, authenticated, emailPattern, alpahanumericPattern, createStudentId } from '../../../dependencies.js'
+import { env, baseurl, userModel, authenticated, emailPattern, alpahanumericPattern, createStudentId } from '../../dependencies.js'
 import { deletePhoto } from './upload.js'
 
 const authroute = Router()

@@ -1,8 +1,7 @@
 import { Router } from "express"
-import { certificateModel } from "../../../dependencies.js"
 import { sendMailAsync } from "./sendmail.js"
 import mailTemplates from "./mailtemplates.js"
-import { env, userModel } from "../../../dependencies.js"
+import { env, userModel, certificateModel } from "../../dependencies.js"
 const certRoute = Router()
 
 certRoute.get('/cert/:param', (req, res) => {

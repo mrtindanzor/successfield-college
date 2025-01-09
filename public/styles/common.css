@@ -178,8 +178,9 @@ header .main-menu .course-list-menu{
 @media (max-width: 767px){
   header{
     border: 2px solid var(--primary);
-    padding: 5px 10px;
+    padding: 2px 10px;
     background-color: var(--primary);
+    width: 100dvw;
   }
   header .main-menu{
     padding: 0;
@@ -199,7 +200,7 @@ header .main-menu .course-list-menu{
     top: 3px;
   }
   header .main-menu ul.menu-list{
-    width: calc(100dvw - 33px);
+    width: calc(100vw - 30px);
     background-color: var(--white);
     border: 1px solid var(--primary);
     position: absolute;
@@ -235,6 +236,20 @@ header .main-menu .course-list-menu{
   }
 }
 @media (min-width: 768px){
+
+  header .main-menu{
+    position: relative;
+    z-index: 99;
+    margin: 20px;
+  }
+  header .main-menu ul li.menu-item > a:hover, .main-menu ul li ul li a:hover, .course-list-button:hover{
+    color: var(--white)!important;
+    background-color: var(--primary);
+  }
+  header .main-menu .course-list-menu{
+    background-color: var(--white);
+  }
+
   header{
     display: flex;
     border: 2px solid var(--primary);

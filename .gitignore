@@ -1,5 +1,8 @@
 .env
 node_modules/
-assets/public/uploads/
-assets/public/videos/
+public/uploads/
+public/videos/
 .gitignore
+public/.DS_Store
+public/.DS_Store
+.DS_Store

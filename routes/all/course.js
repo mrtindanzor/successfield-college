@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { courseModel } from "../../../dependencies.js"
+import { courseModel } from "../../dependencies.js"
 
 const courseRoute = Router(), 
   showCourseRoute = Router()

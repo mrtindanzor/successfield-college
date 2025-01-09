@@ -1,6 +1,6 @@
 import { Router } from "express";
 import bcrypt from 'bcrypt'
-import { emailPattern, alpahanumericPattern, userModel, numberPattern, baseurl  } from "../../../dependencies.js"
+import { emailPattern, alpahanumericPattern, userModel, numberPattern, baseurl  } from "../../dependencies.js"
 import { sendMailAsync } from "./sendmail.js";
 import mailTemplates from "./mailtemplates.js";
 const profileItemsRoute = Router()
