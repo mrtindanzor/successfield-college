@@ -2,7 +2,7 @@
   width: fit-content;
   background-color: var(--primary);
   padding: 10px 10px 0 20px;
-  height: 100dvh;
+  height: 100vh;
 }
 .side-wrapper ul{
   list-style-type: none;

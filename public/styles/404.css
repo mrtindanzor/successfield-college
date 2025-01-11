@@ -1,6 +1,6 @@
 main-section{
   display: flex;
-  min-height: 75dvh;
+  min-height: 75vh;
   width: 100%;
   justify-content: center;
   align-items: center;

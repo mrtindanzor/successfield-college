@@ -188,7 +188,7 @@ main-section.edit{
 }
 main-section.delete{
   .delete-cert-wrapper{
-    width: 100dvw;
+    width: 100vw;
     padding: 10px;
   }
   input[type="text"]{

@@ -1,6 +1,6 @@
 main-section{
   display: block;
-  width: 100dvw;
+  width: 100vw;
   width: 100%;
   padding: 10px;
 }
@@ -107,7 +107,7 @@ main-section{
 .account-item{
   display: none;
   .form-container{
-    width: 90dvw;
+    width: 90vw;
     max-width: 450px;
     margin: 50px auto;
     display: flex;
@@ -286,7 +286,7 @@ main-section{
   }
   .main-page{
     position: relative;
-    width: 35dvw;
+    width: 35vw;
     max-width: 300px;
     border: 2px solid var(--darker);
     padding: 10px;
@@ -307,7 +307,7 @@ main-section{
   }
   .main-links{
     display: flex;
-    height: 100dvh;
+    height: 100vh;
     flex-direction: column;
     gap: 5px;
     list-style: none;
@@ -330,7 +330,7 @@ main-section{
     left: calc(100% + 2px);
     border: 2px solid var(--darker);
     border-left: none;
-    min-width: 60dvw;
+    min-width: 60vw;
     height: calc(100% + 4px);
     white-space: nowrap;
     top: -2px;

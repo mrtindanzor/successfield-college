@@ -68,7 +68,7 @@
   }
   .slideshow-wrapper{
     height: 230px;
-    width: 95dvw;
+    width: 95vw;
     position: relative;
     display: flex;
     gap: 10px;
@@ -116,10 +116,10 @@
       flex-wrap: wrap;
     }
     .container-wrapper{
-      min-width: 50dvw;
+      min-width: 50vw;
       flex: 1;
     }
     .container-wrapper.wrapper1, .container-wrapper.slide-container{
-      min-width: 100dvw;
+      min-width: 100vw;
     }
   }
