@@ -110,6 +110,7 @@ nav .logo-container{
   display: flex;
   align-items: center;
   cursor: pointer;
+  flex: 1;
 }
 nav .logo-container .logo-text{
   font-size: var(--first-s);
@@ -131,10 +132,10 @@ nav .auth-contrs a{
   text-decoration: none;
   color: var(--black);
   padding: 10px;
-  font-size: var(--first-s);
+  font-size: var(--base-s);
 }
 nav .auth-contrs a.auth-login{
-  font-size: var(--first-s);
+  font-size: var(--base-s);
 }
 nav .auth-contrs a.auth-login:hover{
   color: var(--white);
