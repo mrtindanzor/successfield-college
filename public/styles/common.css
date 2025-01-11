@@ -112,7 +112,7 @@ nav .logo-container{
   cursor: pointer;
 }
 nav .logo-container .logo-text{
-  font-size: 1.3rem;
+  font-size: var(--first-s);
   color: var(--primary);
   font-family: acolonica;
   position: relative;
@@ -131,10 +131,10 @@ nav .auth-contrs a{
   text-decoration: none;
   color: var(--black);
   padding: 10px;
-  font-size: 0.9rem;
+  font-size: var(--first-s);
 }
 nav .auth-contrs a.auth-login{
-  font-size: 1rem;
+  font-size: var(--first-s);
 }
 nav .auth-contrs a.auth-login:hover{
   color: var(--white);
