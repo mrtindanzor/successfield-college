@@ -22,7 +22,7 @@ main-section{
 .page-not-found p{
   color: var(--secondary-a);
   font-size: var(--second-s);
-  font-family: alice;
+  font-family: alice; 
 }
 .page-not-found a{
   display: block;
