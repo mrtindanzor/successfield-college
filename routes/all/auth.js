@@ -12,7 +12,7 @@ const authroute = Router()
 
 authroute.use(express.urlencoded({extended: false}))
 passport.use(new localStrategy({usernameField: "email"}, async (email, password, done) => {
-  email = email.trim()
+  email = email.trim().toLowerCase()
   let date = Date.now()
   const user = await userModel.findOne({email})
   if(!user) return done(null, false, {status: 404})
