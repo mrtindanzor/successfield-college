@@ -2,18 +2,14 @@
   display: block;
   padding: 10px;
   width: 97%;
-  background-color: var(--dark);
   color: var(--primary);
   margin: 10px auto 20px auto;
   text-align: center;
   text-transform: capitalize;
-  font-family: alice;
+  font-family: poppins-bold;
   letter-spacing: 1px;
   border-radius: 5px;
   word-wrap: break-word;
-}
-.title::first-letter{
-  font-size: var(--third-s);
 }
 .module-nav-bar{
   width: 90%;
@@ -21,21 +17,6 @@
   justify-content: space-between;
   margin: 20px auto;
   max-width: 900px;
-}
-.module-nav-bar .btn{
-  display: block;
-  width: 70px;
-  height: 70px;
-  padding: 10px;
-  font-size: var(--base-s);
-  text-align: center;
-  text-transform: uppercase;
-  color: var(--white);
-  height: fit-content;
-  text-decoration: none;
-}
-.module-nav-bar .btn:hover{
-  opacity: 0.8;
 }
 .module-nav-bar .module-back{
   background-color: var(--secondary-a);
@@ -48,6 +29,7 @@
 .module-content{
   width: 99%;
   max-width: 900px;
+  height: 70vh;
   margin: 10px auto;
   display: flex;
   flex-direction: column;
