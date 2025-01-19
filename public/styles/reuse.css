@@ -1,0 +1,22 @@
+.hts{
+  color: var(--primary);
+  font-family: poppins-bold;
+  text-shadow: 2px 2px 3px var(--black);
+}
+.button{
+  color: var(--white);
+  background-color: var(--secondary-a);
+  border: none;
+  border-radius: 4px;
+  display: block;
+  width: fit-content;
+  padding: 5px 8px;
+  outline: none;
+  text-decoration: none;
+  transition: .4s linear;
+
+  &:hover{
+    transform: translateY(-5px);
+    transition: 0.2s ease-out;
+  }
+}
