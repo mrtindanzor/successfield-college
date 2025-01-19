@@ -3,6 +3,10 @@
   src: url('/fonts/Poppins/Poppins-Light.ttf');
 }
 @font-face {
+  font-family: poppins-bold;
+  src: url('/fonts/Poppins/Poppins-Bold.ttf');
+}
+@font-face {
   font-family: alice;
   src: url('/fonts/Alice/Alice-Regular.ttf');
 }
@@ -31,10 +35,10 @@
   word-wrap: break-word;
   box-sizing: border-box;
   font-family: poppins-light;
-  font-size: var(--first-s);
 }
 svg{
-  opacity: 0;
+  visibility: hidden;
+  transition: .3s ease-out;
 }
 h3{
   font-family: acolonica;
@@ -423,7 +427,7 @@ align-items: baseline;
   text-transform: uppercase;
 }
 svg{
-  opacity: 1;
+  visibility: visible;
 }
 button{
   cursor: pointer;
@@ -524,5 +528,27 @@ span.success{
 @media (min-width: 551px) {
   span.failed, span.success{
     right: 20px;
+  }
+}
+.hts{
+  color: var(--primary);
+  font-family: poppins-bold;
+  text-shadow: 3px 3px 3px var(--black);
+}
+.button{
+  color: var(--white);
+  background-color: var(--secondary-a);
+  border: none;
+  border-radius: 4px;
+  display: block;
+  width: fit-content;
+  padding: 5px 8px;
+  outline: none;
+  text-decoration: none;
+  transition: .4s linear;
+
+  &:hover{
+    transform: translateY(-5px);
+    transition: 0.2s ease-out;
   }
 }
