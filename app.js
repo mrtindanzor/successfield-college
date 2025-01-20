@@ -17,10 +17,7 @@ const uri = env.DATABASE,
   setInterval(pingService, time);
 
 app.use(session({
-  store: MongoStore.create({
-    mongoUrl: uri,
-    collectionName: 'session'
-  }),
+
   secret: env.SESSION_SECRET,
   saveUninitialized: false,
   resave: false,
