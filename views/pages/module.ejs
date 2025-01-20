@@ -6,11 +6,11 @@
         <%= locals.findModule.title %>
       </h1>
   
-      <div class="module-content">
-        <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/<%= link %>&amp;controls=0&amp;clipboard-write=0" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <div class="module-content aspect-16-9 mw-900p mg-inline-auto">
+        <iframe src="https://www.youtube-nocookie.com/embed/<%= link %>&amp;controls=0&amp;clipboard-write=0" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="pd-inline-30"></iframe>
       </div>
   
-      <div class="module-nav-bar">
+      <div class="module-nav-bar w-100 mg-inline-auto mg-block-20 mw-900p pd-30">
         <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.lastModule %>" class="module-back button">back</a>
         <% if(locals.nextModule) { %>
           <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.nextModule %>" class="module-next button">next</a>

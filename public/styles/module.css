@@ -12,11 +12,8 @@
   word-wrap: break-word;
 }
 .module-nav-bar{
-  width: 90%;
   display: flex;
   justify-content: space-between;
-  margin: 20px auto;
-  max-width: 900px;
 }
 .module-nav-bar .module-back{
   background-color: var(--secondary-a);
@@ -25,17 +22,4 @@
 .module-nav-bar .module-next{
   background-color: var(--primary);
   border-radius: 0 3px 3px  0;
-} 
-.module-content{
-  width: 99%;
-  max-width: 900px;
-  height: 70vh;
-  margin: 10px auto;
-  padding-inline: 10px;
-  display: flex;
-  flex-direction: column;
-}
-.module-content .module-video{
-  width: 100%;
-  height: 50%;
 }
