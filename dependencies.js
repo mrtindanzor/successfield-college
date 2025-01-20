@@ -29,7 +29,8 @@ const env = config().parsed,
     postalCode: String
   }),
   moduleSchema = new schema({
-    module: String,
+    index: Number,
+    title: String,
     link: String
   }),
   userSchema = new schema({
@@ -67,10 +68,11 @@ const env = config().parsed,
     approvals: [{approval: String}],
     partnerId: String
   }),
-  uploadPath = path.resolve('./assets/uploads'),
+  uploadPath = path.resolve('./src/uploads'),
   certificateModel = mongoose.model('certificate', certificateSchema),
   userModel = mongoose.model('user', userSchema),
   courseModel = mongoose.model('course', courseSchema),
+  modulesModel = mongoose.model('module', moduleSchema),
   imageModel = mongoose.model('image', imageSchema),
   addressModel = mongoose.model('address', addressShema),
   partnerModel = mongoose.model('partner', partnerSchema),
@@ -168,5 +170,5 @@ export { env, certificateModel, userModel,
   isAdmin, authenticated, isNotAuthenticated,
   isPartner, emailPattern, alpahanumericPattern,
   numberPattern, baseurl, createStudentId,
-  addressModel
+  addressModel, modulesModel
 }

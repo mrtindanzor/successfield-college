@@ -14,19 +14,16 @@ showCourseRoute.get('/courses/:course', async (req, res) => {
 showCourseRoute.get('/courses/:course/:module', async (req, res) => {
   let { course, module} = req.params
   if(isNaN(module)) return res.render('index', {page: 404, title: 'No module found'})
-  module = Number(module)
-  const MODULES = [
-    {
-      title: 'Introduction to Caregiving',
-      link: 'nD0Hg_eCyCQ?si=rbYyQ_G4kDuZRLGY&amp;controls=0&amp;start=17'
-    }
-  ]
-  const findModule = MODULES[module]
-  const lastModule = module === 0 ? '' : module - 1
-  const nextModule = module !== MODULES.length - 1 ? module + 1 : 0
   course = course.trim().toLocaleLowerCase()
-  const findCourse = await courseModel.findOne({course})
-  if(!findCourse) return res.render('index', {page: 404})
+  module = Number(module)
+  const findCourse = await courseModel.find({course})
+  if(!findCourse) return res.render('index', {page: 404, title: 'Page not found'})
+  const modules = findCourse[0].modules
+  if(modules.length < 1) return res.redirect(`/course/${course}`)
+  const findModule = modules.find(el => el.index === module)
+  if(!findModule) return res.render('index', {page: 404, title: 'Page not found'})
+  const lastModule = module === 1 ? '' : module - 1
+  const nextModule = module !== modules.length ? module + 1 : ''
   res.status(200).render("index", {page: "module", section: 'show', title: findModule.title, findModule, nextModule, lastModule, findCourse})
 })
 

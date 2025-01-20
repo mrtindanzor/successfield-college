@@ -1,6 +1,5 @@
 const timeout = document.querySelector('.timeout'),
-  formEl = document.querySelector('form.resend-form'),
-  result = document.querySelector('.result')
+  formEl = document.querySelector('form.resend-form')
 
 if(formEl){
   formEl.addEventListener('submit', async function(e){
@@ -22,7 +21,7 @@ if(formEl){
      res = await response.json()
     switch(res.status){
     case 201:
-        result.innerHTML = `<span class="success">${res.msg}</span>`
+        success(res)
         resetElHtml(result)
       break
 
@@ -34,7 +33,7 @@ if(formEl){
       break
 
     default:
-        result.innerHTML = `<span class="failed">${res.msg}</span>`
+        failed(res)
         resetElHtml(result)
     }
     

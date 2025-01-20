@@ -42,7 +42,6 @@ formEl.addEventListener('submit', async function(e){
   const uri = '/users/join',
     formData = new FormData(formEl),
     jsonData = Object.fromEntries(formData),
-    result = formEl.querySelector('i'),
     options = {
       method: 'POST',
       headers: {
@@ -54,10 +53,10 @@ formEl.addEventListener('submit', async function(e){
     res = await response.json()
     loader.classList.remove('active')
     if(res.status !== 201){
-      result.innerHTML = `<span class="failed">${res.msg}</span>`
+      failed(res)
       resetElHtml(result)
       return
     } 
     resetElHtml(result)
-    return result.innerHTML = `<span class="success">${res.msg}</span>`
+    return success(res)
 })

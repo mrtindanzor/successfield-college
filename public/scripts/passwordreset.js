@@ -2,8 +2,7 @@ let page = document.querySelector('[data-section]').dataset.section
 
 if(page === 'request-password'){
   const inputEl = document.querySelector('.email'),
-  formEl = document.querySelector('form.email-container'),
-  result = document.querySelector('.result')
+  formEl = document.querySelector('form.email-container')
 
   formEl.addEventListener('submit', async function(e){
     e.preventDefault()
@@ -21,8 +20,8 @@ if(page === 'request-password'){
       },
       response = await fetch(uri, options),
       res = await response.json()
-    if(res.status === 201) result.innerHTML = `<span class="success">${res.msg}</span>`
-    if(res.status !== 201) result.innerHTML = `<span class="failed">${res.msg}</span>`
+    if(res.status === 201) success(res)
+    if(res.status !== 201) failed(res)
     loader.classList.remove('active')
     resetElHtml(result)
   })
@@ -30,7 +29,6 @@ if(page === 'request-password'){
 
 if(page === 'set-password'){
   const formEl = document.querySelector('form'),
-    result = document.querySelector('.result'),
     showPassword = document.querySelectorAll('.form-eye-open'),
     hidePassword = document.querySelectorAll('.form-eye-close')
   let count = 10
@@ -71,7 +69,7 @@ if(page === 'set-password'){
       return
     } 
     if(res.status !== 201){
-      result.innerHTML = `<span class="failed">${res.msg}</span>`
+      failed(res)
       loader.classList.remove('active')
       return resetElHtml(result)
     } 

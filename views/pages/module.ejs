@@ -1,17 +1,77 @@
-<% if(locals.findModule){ %>
-  <% const link = findModule.link %>
-  <h1 class="title">
-    <%= locals.findModule.title %>
-  </h1>
-
-  <div class="module-content">
-    <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/<%= link %>" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div>
-
-  <div class="module-nav-bar">
-    <a href="/courses/<%= locals.findCourse.course %>/<%= locals.lastModule %>" class="module-back button">back</a>
-    <% if(locals.nextModule) { %>
-      <a href="/courses/<%= locals.findCourse.course %>/<%= locals.nextModule %>" class="module-next button">next</a>
+<% if(section === 'show'){ %>
+  <main-section data-section="show">
+    <% if(locals.findModule){ %>
+      <% const link = findModule.link %>
+      <h1 class="title">
+        <%= locals.findModule.title %>
+      </h1>
+  
+      <div class="module-content">
+        <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/<%= link %>&amp;controls=0&amp;clipboard-write=0" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+  
+      <div class="module-nav-bar">
+        <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.lastModule %>" class="module-back button">back</a>
+        <% if(locals.nextModule) { %>
+          <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.nextModule %>" class="module-next button">next</a>
+        <% } %>
+      </div>
     <% } %>
-  </div>
+  </main-section>
+<% } %>
+
+<% if(section === 'add'){ %> 
+  <main-section data-section="add">
+    
+    <form class="form-basic bg-white gap-25">
+      <h1 class="hts head">Add a module</h1>
+      <label>
+        <span class="label">Select course:</span>
+        <div class="select">
+          <span class="options-placeholder">Choose course</span>
+          <ol class="options-menu bg-white pd-none ls-none">
+          <% for(const course of courses ){ %>
+            <li><%= course.course %></li>
+          <% } %>
+        </ol>
+        </div>
+        <input type="hidden" name="course" id="course" value="">
+      </label>
+      <label>
+        <span class="label">Module Index: </span>
+        <input type="text" name="index" placeholder="Module number" class="clr-black">
+      </label>
+      <label>
+        <span class="label">
+          Module title:
+        </span>
+        <input type="text" name="title" placeholder="Module title" class="clr-black">
+      </label>
+      <label>
+        <span class="label">YouTube link:</span>
+        <input type="text" name="link" placeholder="Module youtube link" class="clr-black">
+      </label>
+      <button>Add Module</button>
+    </form>
+  </main-section>
+<% } %>
+
+<% if(section === 'delete'){ %> 
+  <main-section data-section="delete">
+    <div class="form form-basic bg-white">
+      <h1 class="hts head">Delete a module</h1>
+      <label>
+        <span class="label">Select course:</span>
+        <div class="select w-100">
+          <span class="options-placeholder">Choose course</span>
+          <ol class="options-menu bg-white pd-none ls-none">
+          <% for(const course of courses ){ %>
+            <li><%= course.course %></li>
+          <% } %>
+          <input type="hidden" name="course" id="course">
+        </ol>
+        </div>
+        <div class="course-modules"></div>
+      </div>
+  </main-section>
 <% } %>

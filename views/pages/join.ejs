@@ -1,42 +1,40 @@
 <% const eyeCloseIcon = (new locals.icons('form-eye-close', 'Hide password')).eyeClose() %>
 <% const eyeOpenIcon = (new locals.icons('form-eye-open state-active', 'Show password')).eyeOpen() %>
-<form action="/users/join" method="post" class="signup" autocomplete="off">
-  <span class="form-title">
+<form action="/users/join" method="post" class="signup form-basic bg-white gap-20" autocomplete="off">
+  <h1 class="form-title head hts bg-primary clr-white">
     Sign up
-  </span>
-    <i>
-    </i>
+  </h1>
   <label>
-    Firstname:
+    <span class="label">Firstname:</span>
     <input type="text" class="firstname" name="firstname" minlength="3" required>
   </label>
   <label>
-    Middle name:
+    <span class="label">Middle name:</span>
     <input type="text" class="middlename" name="middlename" placeholder="( OPTIONAL )">
   </label>
   <label>
-    Surname:
+    <span class="label">Surname:</span>
     <input type="text" class="surname" name="surname" minlength="3" required>
   </label>
   <label>
-    Email:
+    <span class="label">Email:</span>
     <input type="email" class="email" name="email" required>
   </label>
   <label>
-    Password:
+    <span class="label">Password:</span>
     <input type="password" class="password" name="password" minlength="8" required>
     <%- eyeOpenIcon %>
     <%- eyeCloseIcon %>
   </label>
   <label>
-    Confirm password:
+    <span class="label">Confirm password:</span>
     <input type="password" class="confirm-password" name="cpassword" minlength="8" required>
     <%- eyeOpenIcon %>
     <%- eyeCloseIcon %>
   </label>
-  <input type="submit" value="Sign up" class="submit">
-  <div class="other-contrs">
-    <p class="account">
+  <button>Sign Up</button>
+  <div class="other-contrs bg-secondary pd-10">
+    <p class="account clr-white">
       Already have an account
       <a href="/users/login">Sign in</a>
     </p>

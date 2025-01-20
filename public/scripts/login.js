@@ -38,7 +38,6 @@ formEl.addEventListener('submit', async function(e){
   e.preventDefault()
 
   const uri = '/users/login',
-    result = formEl.querySelector('i'),
     formData = new FormData(formEl),
     jsonData = Object.fromEntries(formData),
     options = {
@@ -51,7 +50,7 @@ formEl.addEventListener('submit', async function(e){
     response = await fetch(uri, options),
     res = await response.json()
   if(res.status === 201){
-    result.innerHTML = `<span class="success">${res.msg}</span>`
+    success(res)
     return resetElHtml(result)
   }
   if(res.status === 200) {
@@ -60,7 +59,7 @@ formEl.addEventListener('submit', async function(e){
     setInterval(()=> {
       if(count === 1) return
       count--
-      formEl.querySelector('.timeout').textContent = count
+      document.querySelector('.timeout').textContent = count
     }, 1000)
   }
   function redirect(){
@@ -68,13 +67,13 @@ formEl.addEventListener('submit', async function(e){
       window.location.href = '/'
     }, 5000);
   }
-  formEl.querySelector('i').innerHTML = `
+  result.innerHTML = `
     <span class="success">Login successfully, redirecting <i class='timeout'>${count}</i> seconds</span>
   `
   counter()
   redirect()
     return
   }
-  result.innerHTML = `<span class="failed">${res.msg}</span>`
+  failed(res)
   return resetElHtml(result)
 })

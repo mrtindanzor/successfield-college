@@ -1,6 +1,5 @@
 const verifyForm = document.querySelector('.find-student form'),
-      certificateNumber = document.getElementById('certificate'),
-      result = document.querySelector('.result')
+      certificateNumber = document.getElementById('certificate')
 
 verifyForm.addEventListener('submit', async function(e){
   e.preventDefault()
@@ -19,13 +18,13 @@ verifyForm.addEventListener('submit', async function(e){
     response = await fetch(uri, options),
     res = await response.json()
   if(res.status !== 200) {
-    result.innerHTML =  `<span class="failed">${res.msg}</span>`
+    failed(res)
     loader.classList.remove('active')
     resetElHtml(result)
     return 
   }
-
-  result.innerHTML =  `
+  const showCertificate = document.querySelector('.show-certificate')
+  showCertificate.innerHTML =  `
     <div class="student-details">
         <div><b for="student-name">Name </b>:<span class="student-name">${res.name}</span></div>
       <div><b for="student-number">Student number</b> : <span class="student-number">${res.studentNumber}</span></div>
@@ -37,6 +36,3 @@ verifyForm.addEventListener('submit', async function(e){
 `
 loader.classList.remove('active')
   })
-  function resetElHtml(object){
-    setTimeout(() => object.innerHTML = '', 4000)
-  }

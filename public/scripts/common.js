@@ -9,7 +9,8 @@ const courseListBtn = document.querySelector('.course-list-button'),
   svgs = document.querySelectorAll('svg'),
   menuList = document.querySelector('ul.menu-list'),
   courseList = document.querySelector('.course-list-menu')
-
+  
+result = document.querySelector('.result')
 animateSlider()
 setInterval(animateSlider, 600)
 let prompt, deleteBtn, denyBtn, confirmBtn
@@ -56,3 +57,9 @@ function hideShow(object, display= 'block'){
   }
 }
 function goToTop(){ scrollTo(0, 0)}
+function success(res){
+  return result.innerHTML = `<span class="success">${res.msg}</span>`
+}
+function failed(res){
+  return result.innerHTML = `<span class="failed">${res.msg}</span>`
+}

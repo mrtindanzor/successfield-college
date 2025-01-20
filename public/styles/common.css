@@ -441,7 +441,6 @@ button:hover{
   color: var(--white);
   font-family: acolonica;
   display: inline-flex;
-  margin: 3px;
   padding: 3px;
   font-size: var(--first-s);
 }

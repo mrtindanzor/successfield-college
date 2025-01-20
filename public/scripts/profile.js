@@ -7,7 +7,6 @@ const spanSelectors = document.querySelectorAll('.li-heading'),
   title = titleBar.querySelector('.title'),
   titleBackBtn = document.querySelector('.title-bar .back-button'), 
   profilePhotoBtn = document.getElementById('profile-photo-editor'),
-  result = document.querySelector('.result'),
   profileImage = document.querySelector('.profile-img'),
   viewerProfileImage = document.querySelector('.viewer-profile-img'),
   photoTab = document.querySelector('.photo-tab'),
@@ -96,7 +95,7 @@ profilePhotoBtn.addEventListener('change', async function(){
     res = await response.json()
   
   if(res.status !== 201){
-    result.innerHTML = `<span class="failed">${res.msg}</span>`
+    failed(res)
     loader.classList.remove('active')
     return resetElHtml(result)
   }
@@ -113,7 +112,7 @@ profilePhotoBtn.addEventListener('change', async function(){
     saved = await savePhoto.json()
 
   if(saved.status !== 201){
-    result.innerHTML = `<span class="failed">${saved.msg}</span>`
+    failed(res)
     loader.classList.remove('active')
     return resetElHtml(result)
   }
@@ -126,7 +125,7 @@ profilePhotoBtn.addEventListener('change', async function(){
   }
   profileImage?.setAttribute('src', res.url)
   viewerProfileImage?.setAttribute('src', res.url)
-  result.innerHTML = `<span class="success">${saved.msg}</span>`
+  result.innerHTML = success(saved)
   loader.classList.remove('active')
   profilePhotoBtn.value = ''
   return resetElHtml(result)
@@ -163,10 +162,10 @@ formEls.forEach(function(formEl){
     res = await response.json()
   
     if(res.status !== 201){
-      result.innerHTML = `<span class="failed"> ${res.msg} </span>`
+      failed(res)
     }
     if(res.status === 201){
-      result.innerHTML = `<span class="success"> ${res.msg} </span>`
+      success(res)
     }
     loader.classList.remove('active')
     resetElHtml(result)

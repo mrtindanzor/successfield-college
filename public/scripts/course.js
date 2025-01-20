@@ -47,8 +47,7 @@ if(page === 'show'){
 }
 
 if(page === 'add'){
-  const formEl = document.querySelectorAll('.form'),
-    result = document.querySelector('#result'),
+  const formEl = document.querySelectorAll('.form')
     btn = document.querySelector('button'),
     objectives = [],
     outlines = [],
@@ -141,8 +140,8 @@ if(page === 'add'){
       },
       response = await fetch(uri, options),
       res = await response.json()
-    if(res.status === 201) result.innerHTML = `<span class='success'> ${res.msg}</span>`
-    if(res.status !== 201) result.innerHTML = `<span class='failed'> ${res.msg}</span>`
+    if(res.status === 201) success(res)
+    if(res.status !== 201) failed(res)
     formEl.forEach(el => {
       el.reset()
       let i = formEl.length,
@@ -173,7 +172,6 @@ if(page === 'add'){
 if(page === 'edit'){
   const findCourseForm = document.querySelector('.find-course'),
     formEl = document.querySelectorAll('.form'),
-    result = document.querySelector('#result'),
     objectives = [],
     outlines = [],
     benefits = [],
@@ -209,7 +207,7 @@ if(page === 'edit'){
       response = await fetch(uri, options),
       res = await response.json()
     if(res.status !== 200){
-      result.innerHTML = `<span class='failed'> ${res.msg} </span> `
+      failed(res)
       loader.classList.remove('active')
       resetElHtml(result)
       return
@@ -382,8 +380,8 @@ if(page === 'edit'){
       },
       response = await fetch(uri, options),
       res = await response.json()
-    if(res.status === 201) result.innerHTML = `<span class='success'> ${res.msg}</span>`
-    if(res.status !== 201) result.innerHTML = `<span class='failed'> ${res.msg}</span>`
+    if(res.status === 201) success(res)
+    if(res.status !== 201) failed(res)
     formEl.forEach(el => {
       el.reset()
       findCourseForm.reset()
@@ -411,8 +409,7 @@ if(page === 'edit'){
 }
 
 if(page === 'delete'){
-  const findForm = document.querySelector('.find-course'),
-    result = document.querySelector('.result')
+  const findForm = document.querySelector('.find-course')
 
   findForm.addEventListener('submit', async function(e){
     e.preventDefault()
@@ -431,11 +428,10 @@ if(page === 'delete'){
       response = await fetch(uri, options),
       res = await response.json()
     if(res.status !== 200){
-      return result.innerHTML = `
-        <span class="invalid-code">${res.msg}</span>
-      `
+      return failed(res)
     }
-    result.innerHTML = `
+    const deleteResult = document.querySelector('.delete-result')
+    deleteResult.innerHTML = `
       <div class="show-found-course">
         <h3>Delete Course</h3>
         <h4>Name:</h4>
@@ -523,18 +519,10 @@ if(page === 'delete'){
         response = await fetch(uri, options),
         res = await response.json()
       if(res.status !== 200){
-        result.innerHTML =  `
-        <span class="failed">
-          ${res.msg}
-        </span>
-        `
+        failed(res)
       }
         if(res.status === 200){
-          result.innerHTML =  `
-          <span class="success">
-            ${res.msg}
-          </span>
-          `
+          success(res)
         }
         prompt.classList.remove('active')
         loader.classList.remove('active')

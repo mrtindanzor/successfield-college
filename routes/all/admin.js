@@ -5,6 +5,7 @@ import { partnerRoute } from "./partner.js";
 import { userModel, isAdmin } from "../../dependencies.js";
 import { sendMailAsync } from "./sendmail.js";
 import mailTemplates from "./mailtemplates.js";
+import moduleRoute from "./modules.js";
 
 const adminRoute = Router()
 
@@ -37,5 +38,6 @@ adminRoute.put('/makeadmin', async (req, res) => {
 adminRoute.use('/admin', courseRoute)
 adminRoute.use('/admin', certRoute)
 adminRoute.use('/admin', partnerRoute)
+adminRoute.use('/admin', moduleRoute)
 
 export { adminRoute, isAdmin}

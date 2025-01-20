@@ -15,8 +15,7 @@ if(page === 'show'){
 
 if(page === 'add'){
 
-const formEl = document.querySelector('.partner-form'),
-result = document.querySelector('.result')
+const formEl = document.querySelector('.partner-form')
 
 formEl.addEventListener('click', e => {
 if(e.target.classList.contains('add-more')){
@@ -59,22 +58,14 @@ const response = await fetch(uri, options),
   res = await response.json()
 
 if(res.status !== 201){
-  result.innerHTML = `
-    <span class="failed">
-      ${res.msg}
-    </span>
-  `
+  failed(res)
   document.formEl.scrollTo = 0
   loader.classList.remove('active')
   resetElHtml(result)
   return
 }
 
-result.innerHTML = `
-<span class="success">
-  ${res.msg}
-</span>
-`
+success(res)
 loader.classList.remove('active')
 resetElHtml(result)
 })
@@ -82,8 +73,7 @@ resetElHtml(result)
 }
 
 if(page === 'edit'){
-  const formEl = document.querySelector('.find-partner'),
-    result = document.querySelector('.result')
+  const formEl = document.querySelector('.find-partner')
 
   formEl.addEventListener('submit', async function(e){
     e.preventDefault()
@@ -106,18 +96,13 @@ if(page === 'edit'){
       res = await response.json()
 
     if(res.status !== 200){
-      result.innerHTML = `
-        <span class="failed">
-          ${res.msg} 
-        </span>
-      `
-
+      failed(res)
       loader.classList.remove('active')
       resetElHtml(result)
       return
     }
-
-    result.innerHTML = `
+    const editResult = document.querySelector('.edit-result')
+    editResult.innerHTML = `
       <form class="partner-form">
         <h3>
           Edit Training Partner Information
@@ -200,22 +185,13 @@ if(page === 'edit'){
       res = await response.json()
 
       if(res.status !== 201){
-        const fail = document.createElement('span')
-        fail.classList.add('failed')
-        fail.textContent = res.msg
-        result.insertBefore(fail, editFormEl)
-        setTimeout(function(){
-          fail.remove()
-        }, 5000)
+        result.insertBefore(failed(res), editFormEl)
+        resetElHtml(result)
         loader.classList.remove('active')
         return
       }
       
-      result.innerHTML = `
-        <span class="success">
-          ${res.msg} 
-        </span>
-      `
+      success(res)
       loader.classList.remove('active')
       resetElHtml(result)
     })
@@ -223,8 +199,7 @@ if(page === 'edit'){
 }
 
 if(page === 'delete'){
-  const formEl = document.querySelector('.find-partner'),
-  result = document.querySelector('.result')
+  const formEl = document.querySelector('.find-partner')
 
 formEl.addEventListener('submit', async function(e){
   e.preventDefault()
@@ -247,18 +222,13 @@ formEl.addEventListener('submit', async function(e){
     res = await response.json()
 
   if(res.status !== 200){
-    result.innerHTML = `
-      <span class="failed">
-        ${res.msg} 
-      </span>
-    `
-
+    failed(res)
     loader.classList.remove('active')
     resetElHtml(result)
     return
   }
-
-  result.innerHTML = `
+  const deleteResult = document.querySelector('.delete-result')
+  deleteResult.innerHTML = `
      <div class="delete-wrapper">
         <h3>Revoke Training Partner</h3>
           <h4>Name:</h4>
@@ -321,23 +291,14 @@ formEl.addEventListener('submit', async function(e){
     res = await response.json()
 
     if(res.status !== 200){
-      const fail = document.createElement('span')
-      fail.classList.add('failed')
-      fail.textContent = res.msg
-      result.insertBefore(fail, deleteWrapper)
-      setTimeout(function(){
-        fail.remove()
-      }, 5000)
+      result.insertBefore(failed(res), deleteWrapper)
+      resetElHtml(result)
       loader.classList.remove('active')
       prompt.classList.remove('active')
       return
     }
-    
-    result.innerHTML = `
-      <span class="success">
-        ${res.msg} 
-      </span>
-    `
+    resetElHtml(deleteResult)
+    success(res)
     loader.classList.remove('active')
     prompt.classList.remove('active')
     resetElHtml(result)

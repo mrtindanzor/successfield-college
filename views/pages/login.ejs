@@ -1,24 +1,27 @@
 <% const eyeCloseIcon = (new locals.icons('form-eye-close', 'Hide password')).eyeClose() %>
 <% const eyeOpenIcon = (new locals.icons('form-eye-open state-active', 'Show password')).eyeOpen() %>
-<form action="/users/login" method="post" class="signin">
-  <span class="form-title">
+<form action="/users/login" method="post" class="signin form-basic bg-white gap-25 h-fc">
+  <h1 class="hts head bg-primary clr-white">
     Sign in
-  </span>
-  <i></i>
+  </h1>
   <label>
-    Email
+    <span class="label">
+      Email:
+    </span>
   <input type="email" class="email" name="email" required>
   </label>
   <label>
-    Password
+    <span class="label">
+      Password:
+    </span>
     <input type="password" class="password" name="password" minlength="8" required>
     <%- eyeOpenIcon %>
     <%- eyeCloseIcon %>
   </label>
-  <input type="submit" value="Sign in" class="submit">
-  <div class="other-contrs">
+  <button>Signin</button>
+  <div class="other-contrs bg-secondary pd-10">
     <a href="/users/forgotpassword" class="forgot-password">Forgot password?</a>
-    <p class="account">
+    <p class="account clr-white">
       Don't have an account
       <a href="/users/join">Sign up</a>
     </p>

@@ -1,13 +1,12 @@
 const page = document.querySelector('[data-section]').dataset.section
 if(page === 'add'){
-  const formEl = document.querySelector('.cert-add-form'),
-resultDiv = document.querySelector('.result')
+  const formEl = document.querySelector('.cert-add-form')
 
 formEl.addEventListener('submit', async (e) => {
   e.preventDefault()
 
   loader.classList.add('active')
-  resultDiv.innerHTML = ''
+  result.innerHTML = ''
   const newCertCode = document.getElementById('certificateCode').value.toLowerCase()
   document.getElementById('certificateCode').value = newCertCode
   const formData = new FormData(formEl),
@@ -24,25 +23,19 @@ formEl.addEventListener('submit', async (e) => {
     response = await fetch(uri, options),
     res = await response.json()
   if(res.status === 201){
-    resultDiv.innerHTML = `
-      <span class="success">${res.msg}</span>
-    `
+    success(res)
     loader.classList.remove('active')
     resetElHtml(result)
     return
   }
     
-  resultDiv.innerHTML = `
-    <span class="failed">${res.msg}</span>
-  `
+  failed(res)
   loader.classList.remove('active')
   resetElHtml(result)
 })
 }
 if(page === 'edit'){
-  const findFormEl = document.querySelector('.find-certificate'),
-  result = document.querySelector('.result')
-
+  const findFormEl = document.querySelector('.find-certificate')
   findFormEl.addEventListener('submit', async function(e){
   e.preventDefault()
 
@@ -61,7 +54,7 @@ if(page === 'edit'){
     response = await fetch(uri, options),
     res = await response.json()
   if(res.status !== 200) {
-    result.innerHTML =  `<span class="failed">${res.msg}</span>`
+    failed(res)
     loader.classList.remove('active')
     resetElHtml(result)
     return
@@ -75,9 +68,7 @@ if(page === 'edit'){
     id = res._id
 
   const updateForm =  `
-    <div class="update-result" >
-    </div>
-      <form class="cert-update-form">
+    <form class="cert-update-form">
       <span>
         Update Certificate
       </span>
@@ -105,9 +96,10 @@ if(page === 'edit'){
       </label>
       <input type="submit" value="update">
     </form>
-      `
+      `,
+    resultForm = document.querySelector('.update-result')
   loader.classList.remove('active')
-  result.innerHTML = updateForm
+  resultForm.innerHTML = updateForm
   const updateFormEl = document.querySelector('.cert-update-form')
     
   updateFormEl.addEventListener('submit', async function(e){
@@ -126,29 +118,22 @@ if(page === 'edit'){
       body: jsonString
     },
     response = await fetch(uri, options),
-    res = await response.json(),
-    updateResultContainer = document.querySelector('.update-result')
+    res = await response.json()
     if(res.status !== 204 ){
-      updateResultContainer.innerHTML = `
-      <span class="failed">${res.msg}</span>
-      `
+      failed(res)
       loader.classList.remove('active')
       return
     }
-      updateResultContainer.innerHTML = `
-    <span class="success">${res.msg}</span>
-    `
+      success(res)
     loader.classList.remove('active')
-    resetElHtml(updateResultContainer)
+    resetElHtml(result)
     })
   })
 }
 
 if(page === 'delete'){
   const findEl = document.querySelector('.find-cert'),
-    findForm = document.querySelector('.find-cert'),
-    result = document.querySelector('.delete-cert-wrapper .result')
-
+    findForm = document.querySelector('.find-cert')
 
   findForm.addEventListener('submit', async function(e){
     e.preventDefault()
@@ -167,9 +152,7 @@ if(page === 'delete'){
       response = await fetch(uri, options),
       res = await response.json()
     if(res.status !== 200){
-      result.innerHTML = `
-        <span class="failed">${res.msg}</span>
-      `
+      failed(res)
       loader.classList.remove('active')
       resetElHtml(result)
       return 
@@ -231,22 +214,14 @@ if(page === 'delete'){
         response = await fetch(uri, options),
         res = await response.json()
         if(res.status !== 200){
-          result.innerHTML =  `
-          <span class="failed">
-            ${res.msg}
-          </span>
-          `
+          failed(res)
         prompt.classList.remove('active')
         loader.classList.remove('active')
         resetElHtml(result)
         return 
         }
 
-        result.innerHTML =  `
-          <span class="success">
-            ${res.msg}
-          </span>
-          `
+        success(res)
         loader.classList.remove('active')
         prompt.classList.remove('active')
         resetElHtml(result)

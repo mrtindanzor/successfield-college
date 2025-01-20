@@ -1,6 +1,5 @@
-const formEl = document.querySelector('form.email-form'),
-  result = document.querySelector('.result')
-
+const formEl = document.querySelector('form.email-form')
+const sendResult = document.querySelector('.send-result')
 formEl.addEventListener('submit', async function(e){
   e.preventDefault()
 
@@ -18,28 +17,28 @@ formEl.addEventListener('submit', async function(e){
     response = await fetch(uri, options),
     res = await response.json()
   if(res.status === 201){
-    result.innerHTML = `
+    sendResult.innerHTML = `
     <div class="mail-sent">
       <span class="text">
       ${res.mailIcon}
-        <span>${res.msg}</span>
+        ${success(res)}
       </span>
       <button>OK</button>
     </div>
   `
   formEl.reset()
   } 
-  if(res.status !== 201) result.innerHTML = `
+  if(res.status !== 201) sendResult.innerHTML = `
     <div class="mail-not-sent">
       <span class="text">
         ${res.mailIcon}
-        <span>${res.msg}</span>
+        ${failed}
       </span>
       <button>OK</button>
     </div>
   `
 
-  result.classList.add('active')
+  sendResult.classList.add('active')
   const closeBtn = document.querySelector('.result button')
   closeBtn.addEventListener('click', function(){
     result.classList.remove('active')

@@ -20,3 +20,285 @@
     transition: 0.2s ease-out;
   }
 }
+.form-basic{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--primary);
+  padding-block: 10px 40px;
+  padding-inline: 20px;
+  margin-inline: auto;
+  margin-block: 40px;
+  width: 90vw;
+  max-width: 550px;
+  border-radius: 4px;
+
+  & .head{
+    background-color: var(--white);
+    border-radius: 3px;
+    padding-block: 10px;
+    padding-left: 3%;
+  }
+  & label{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  & .label{
+    color: var(--primary);
+    font-weight: 800;
+  }
+  & .select{
+    position: relative;
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  & .select:hover{
+    background-color: var(--primary);
+  }
+  & .options-placeholder{
+    display: block;
+    padding: 10px;
+  }
+  & ol.options-menu{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    left: 0;
+    width: 100%;
+    top: calc(100% - 10px);
+    box-shadow: 0 1px 1px 1px var(--primary);
+  }
+  & ol.options-menu li{
+    width: 100%;
+    border-bottom: 1px solid var(--black);
+    cursor: pointer;
+    padding: 10px;
+  }
+  & ol.options-menu li:last-child{
+    border: none;
+  }
+  & ol.options-menu li:hover{
+    background-color: var(--primary);
+    color: var(--white);
+  }
+  & input:not([type='submit']){
+    padding: 10px;
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    background: transparent;
+    outline: none;
+    font-family: alice;
+  }
+  & input:not([type='submit']):focus{
+    border: 1px dotted var(--black);
+  }
+  & input:not([type='submit']):user-invalid{
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+  }
+  & input:not([type='submit']):user-valid{
+    border: 1px solid var(--primary);
+  }
+  & button{
+    background: var(--primary);
+    color: var(--white);
+    padding: 10px;
+    font-family: poppins-bold;
+    font-size: var(--second-s);
+  }
+}
+.h-fc{
+  height: fit-content;
+}
+.w-fc{
+  width: fit-content;
+}
+.gap-10{
+  gap: 10px;
+}
+.gap-15{
+  gap: 15px;
+}
+.gap-20{
+  gap: 20px;
+}
+.gap-25{
+  gap: 25px;
+}
+.bor-rad-4{
+  border-radius: 4px;
+}
+.bor-rad-10{
+  border-radius: 10px;
+}
+.bor-rad-20{
+  border-radius: 20px;
+}
+.bor-rad-100{
+  border-radius: 100%;
+}
+.bor-1p-dotted{
+  border: 1px dotted;
+}
+.bor-2p-dotted{
+  border: 2px dotted;
+}
+.bor-1p{
+  border: 1px solid;
+}
+.bor-2p{
+  border: 2px solid;
+}
+.bor-primary{
+  border-color: var(--primary);
+}
+.bor-secondary{
+  border-color: var(--secondary);
+}
+.pd-none{
+  padding: 0 !important;
+}
+.ls-none{
+  list-style: none !important;
+}
+.mg-l-10{
+  margin: 10px;
+}
+.mg-r-10{
+  margin: 10px;
+}
+.mg-t-10{
+  margin: 10px;
+}
+.mg-b-10{
+  margin: 10px;
+}
+.mg-l-20{
+  margin: 20px;
+}
+.mg-r-20{
+  margin: 20px;
+}
+.mg-t-20{
+  margin: 20px;
+}
+.mg-b-20{
+  margin: 20px;
+}
+.mg-block-10{
+  margin-block: 10px;
+}
+.mg-block-20{
+  margin-block: 20px;
+}
+.mg-inline-10{
+  margin-block: 10px;
+}
+.mg-inline-20{
+  margin-block: 20px;
+}
+.mg-l-unset{
+  margin-left: unset !important;
+}
+.mg-r-unset{
+  margin-left: unset !important;
+}
+.mg-t-unset{
+  margin-left: unset !important;
+}
+.mg-b-unset{
+  margin-left: unset !important;
+}
+.pd-10{
+  padding: 10px !important;
+}
+.pd-l-10{
+  padding-left: 10px;
+}
+.pd-l-20{
+  padding-left: 20px;
+}
+.pd-r-10{
+  padding-right: 10px;
+}
+.pd-r-20{
+  padding-right: 20px;
+}
+.pd-t-10{
+  padding-right: 10px;
+}
+.pd-t-20{
+  padding-right: 20px;
+}
+.pd-b-10px{
+  padding-bottom: 10px;
+}
+.pd-b-20px{
+  padding-bottom: 20px;
+}
+
+.pd-block-10{
+  padding-block: 10px;
+}
+.pd-block-20{
+  padding-block: 20px;
+}
+.pd-block-30{
+  padding-block: 30px;
+}
+.pd-inline-10{
+  padding-inline: 10px;
+}
+.pd-inline-20{
+  padding-inline: 20px;
+}
+.pd-inline-30{
+  padding-inline: 30px;
+}
+.w-100{
+  width: 100% !important;
+}
+.ta-l{
+  text-align: left;
+}
+.ta-c{
+  text-align: center;
+}
+.ta-r{
+  text-align: right;
+}
+.ff-pb{
+  font-family: poppins-bold !important;
+}
+.ff-pl{
+  font-family: poppins-light !important;
+}
+.ff-a{
+  font-family: acolonica !important;
+}
+.bg-white{
+  background-color: var(--white) !important;
+}
+.bg-primary{
+  background-color: var(--primary) !important;
+}
+.bg-secondary{
+  background-color: var(--secondary) !important;
+}
+.bg-secondary-a{
+  background-color: var(--secondary-a) !important;
+}
+.clr-white{
+  color: var(--white) !important;
+}
+.clr-black{
+  color: var(--black) !important;
+}
+.clr-primary{
+  color: var(--primary) !important;
+}
+.clr-secondary{
+  color: var(--secondary) !important;
+}
