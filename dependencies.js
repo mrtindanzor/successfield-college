@@ -155,7 +155,7 @@ const env = config().parsed,
 
   try{
     mongoose.Promise = global.Promise
-    mongoose.connect(uri)
+    mongoose.connect('mongodb+srv://ktindanzor:Miketedspeer1@gism.1qw8i.mongodb.net/gismdb?retryWrites=true&w=majority')
     mongoose.connection.once('open', () => console.log('connected to database successfully')).on('error', (error) => {
       console.log('An error occured while connecting to database', error)
     })

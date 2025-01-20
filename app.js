@@ -10,7 +10,7 @@ import { env, courseModel, errhandler, page404, appStarted, setVariables, pingSe
 
 const uri = 'mongodb+srv://ktindanzor:Miketedspeer1@gism.1qw8i.mongodb.net/gismdb?retryWrites=true&w=majority',
   app = express(),
-  PORT = env.PORT || 3000,
+  PORT = process.env.PORT || 3000,
   time = 600000
 
   pingService()
