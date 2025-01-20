@@ -8,8 +8,7 @@ import MongoStore from "connect-mongo"
 import { env, courseModel, errhandler, page404, appStarted, setVariables, pingService, isSession, isPartner } from './dependencies.js'
 
 
-console.log(env)
-const uri = env.DATABASE,
+const uri = 'mongodb+srv://ktindanzor:Miketedspeer1@gism.1qw8i.mongodb.net/gismdb?retryWrites=true&w=majority',
   app = express(),
   PORT = env.PORT || 3000,
   time = 600000
@@ -18,7 +17,10 @@ const uri = env.DATABASE,
   setInterval(pingService, time);
 
 app.use(session({
-
+  store: MongoStore.create({
+    mongoUrl: uri,
+    collectionName: 'session'
+  }),
   secret: env.SESSION_SECRET,
   saveUninitialized: false,
   resave: false,
