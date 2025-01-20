@@ -8,6 +8,7 @@ import MongoStore from "connect-mongo"
 import { env, courseModel, errhandler, page404, appStarted, setVariables, pingService, isSession, isPartner } from './dependencies.js'
 
 
+console.log(env)
 const uri = env.DATABASE,
   app = express(),
   PORT = env.PORT || 3000,
