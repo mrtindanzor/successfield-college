@@ -20,11 +20,11 @@
 }
 .module-nav-bar .module-back{
   background-color: var(--secondary-a);
-  border-radius: 7px 2px 2px 7px;
+  border-radius: 3px 0 0 3px;
 }
 .module-nav-bar .module-next{
   background-color: var(--primary);
-  border-radius: 2px 7px 7px  2px;
+  border-radius: 0 3px 3px  0;
 } 
 .module-content{
   width: 99%;
