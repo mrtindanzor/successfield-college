@@ -7,10 +7,9 @@ import path from "path"
 import MongoStore from "connect-mongo"
 import { env, courseModel, errhandler, page404, appStarted, setVariables, pingService, isSession, isPartner } from './dependencies.js'
 
-
-const uri = 'mongodb+srv://ktindanzor:Miketedspeer1@gism.1qw8i.mongodb.net/gismdb?retryWrites=true&w=majority',
+const uri = env.DATABASE,
   app = express(),
-  PORT = process.env.PORT || 3000,
+  PORT = env.PORT || 3000,
   time = 600000
 
   pingService()

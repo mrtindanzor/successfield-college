@@ -5,8 +5,9 @@ import mailTemplates from "./routes/all/mailtemplates.js";
 import { sendMailAsync } from "./routes/all/sendmail.js";
 import icons from "./public/scripts/icons.js";
 
-const env = config().parsed,
-  baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL, 
+config()
+const env = process.env
+const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL, 
   uri = env.DATABASE,
   schema = mongoose.Schema,
   imageSchema = new schema({
@@ -155,7 +156,7 @@ const env = config().parsed,
 
   try{
     mongoose.Promise = global.Promise
-    mongoose.connect('mongodb+srv://ktindanzor:Miketedspeer1@gism.1qw8i.mongodb.net/gismdb?retryWrites=true&w=majority')
+    mongoose.connect(uri)
     mongoose.connection.once('open', () => console.log('connected to database successfully')).on('error', (error) => {
       console.log('An error occured while connecting to database', error)
     })
