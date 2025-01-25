@@ -1,8 +1,6 @@
 const courseListBtn = document.querySelector('.course-list-button'),
   logoContainer = document.querySelector('.logo-container'),
-  loader = document.querySelector('nav .loader'),
-  loadSlider = document.querySelector('.loader .loading-slide'),
-  loadSliderContainer = document.querySelector('.loader .loading-anim'),
+  loader = document.querySelector('.loader'),
   menuBtn = document.querySelector('.menu-button'),
   dateContainer = document.querySelector('.date-year'),
   currentYear = new Date().getFullYear(),
@@ -11,12 +9,16 @@ const courseListBtn = document.querySelector('.course-list-button'),
   courseList = document.querySelector('.course-list-menu')
   
 result = document.querySelector('.result')
-animateSlider()
-setInterval(animateSlider, 600)
 let prompt, deleteBtn, denyBtn, confirmBtn
 svgs.forEach(el => {
   el.style.opacity = 1
 })
+
+setInterval(function(){
+  const childrenWrapper = loader.querySelector('.loader-children-wrapper')
+  const lastCircle = childrenWrapper.querySelector(":last-child")
+  childrenWrapper.prepend(lastCircle)
+}, 300)
 
 logoContainer.addEventListener('click', function(){
   window.location.href ='/'
@@ -39,10 +41,6 @@ document.addEventListener('click', function(e) {
     }
   }
 })
-function animateSlider(){
-  if(loadSlider.classList.contains('active')) return loadSlider.classList.remove('active'),loadSliderContainer.classList.remove('active')
-  return loadSlider.classList.add('active'),loadSliderContainer.classList.add('active')
-}
 function resetElHtml(object){
   setTimeout(() => object.innerHTML = '', 4000)
 }

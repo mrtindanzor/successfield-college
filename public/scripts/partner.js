@@ -103,37 +103,37 @@ if(page === 'edit'){
     }
     const editResult = document.querySelector('.edit-result')
     editResult.innerHTML = `
-      <form class="partner-form">
-        <h3>
+      <form class="partner-form form-basic gap-20 bg-white">
+        <h2 class="head ff-pb clr-white bg-primary">
           Edit Training Partner Information
-        </h3>
+        </h2>
         <label>
-          <span>
+          <span  class="label" class="label">
             Training partner name:
           </span>
-          <input type="text" id="name" value='${res.name}' required>
+          <input type="text" class="br-1px br-primary" id="name" value='${res.name}' required>
         </label>
         <label>
-          <span>
+          <span  class="label">
             Partner ID:
           </span>
-          <input type="text" id="id" value='${res.partnerId}' required>
+          <input type="text" class="br-1px br-primary" id="id" value='${res.partnerId}' required>
         </label>
         <label>
-          <span>
+          <span  class="label">
             Location:
           </span>
-          <input type="text" id="location" value='${res.location}' required>
+          <input type="text" class="br-1px br-primary" id="location" value='${res.location}' required>
         </label>
         <label>
-          <span>
-            Program approvals:
-          </span>
-          <div class='approvals'>
-          </div>
+        <span  class="label">
+          Program approvals:
+        </span>
+        <div class='approvals dp-f fl-dr-c gap-10'>
+        </div>
         </label>
-        <i class="add-more">add more</i>
-        <button>
+        <i class="add-more button bg-primary clr-white pd-5 w-fc br-radius-4 ff-pl">add more</i>
+        <button class="clr-white">
           Edit partner
         </button>
         </form>
@@ -149,6 +149,7 @@ if(page === 'edit'){
     addMore.addEventListener('click', function(){
       const input = document.createElement('input'),
       provider = document.querySelector('.approvals')
+      input.classList.add('mg-bottom-10')
       input.setAttribute('type', 'text')
       input.setAttribute('placeholder', 'Approved programs')
       approvalsContainer.append(input)

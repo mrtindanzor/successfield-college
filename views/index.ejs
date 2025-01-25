@@ -16,6 +16,15 @@
 <title><%= locals.title %></title>
   </head>
   <body class="active">
+    <div class="loader">
+      <div class="loader-children-wrapper dp-f gap-10 br-1px br-primary br-radius-20 pd-10 pd-inline-30">
+        <div class="loader-circle bg-white circle-3 mg-inline-10"></div>
+        <div class="loader-circle bg-secondary-a circle-2"></div>
+        <div class="loader-circle bg-primary circle-1"></div>
+        <div class="loader-circle bg-secondary-a circle-2"></div>
+        <div class="loader-circle bg-primary circle-1"></div>
+      </div>
+    </div>
     <div class="result"></div>
     <%- include ('partials/header') %>
     <main-section>
