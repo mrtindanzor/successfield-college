@@ -28,7 +28,10 @@ titleBackBtn.innerHTML = (new icons('back-button', 'Go Back')).chevronLeft()
 spanSelectors.forEach(el => {
   el.addEventListener('click', function(){
     const ulElement = el.parentElement.parentElement.querySelectorAll('ul')
-    ulElement.forEach(el => el.classList.remove('active'))
+    ulElement.forEach(el => {
+      if( el.classList.contains('active')) el.classList.remove('active')
+      if(el.classList.contains('default-active'))  el.classList.remove('default-active')
+    })
     const ul = el.nextElementSibling,
       spanText = el.textContent
     ul.classList.add('active')

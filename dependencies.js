@@ -69,7 +69,6 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
     approvals: [{approval: String}],
     partnerId: String
   }),
-  uploadPath = path.resolve('./src/uploads'),
   certificateModel = mongoose.model('certificate', certificateSchema),
   userModel = mongoose.model('user', userSchema),
   courseModel = mongoose.model('course', courseSchema),
@@ -77,9 +76,6 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
   imageModel = mongoose.model('image', imageSchema),
   addressModel = mongoose.model('address', addressShema),
   partnerModel = mongoose.model('partner', partnerSchema),
-  pingService = () => {
-    fetch(baseurl).then(() => console.log(`pinging ${baseurl}`))
-  },
   isSession = (req, res, next) => {
     if(req.session) {
       req.session._garbage = Date.now()
@@ -131,6 +127,9 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
     res.locals.icons = icons
     next()
   }
+  function pingService(){
+    fetch(baseurl).then(() => console.log(`pinging ${baseurl}`))
+  }
   async function isPartner(req, res, next){
     res.locals.partner = false
     const partner = await partnerModel.findOne({}).catch(err => console.log(err))
@@ -166,7 +165,7 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
 
 export { env, certificateModel, userModel, 
   courseModel, imageModel, partnerModel,
-  uploadPath, errhandler, page404, appStarted,
+   errhandler, page404, appStarted,
   setVariables, pingService, isSession,
   isAdmin, authenticated, isNotAuthenticated,
   isPartner, emailPattern, alpahanumericPattern,

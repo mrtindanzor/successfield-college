@@ -292,15 +292,12 @@ main-section{
     padding: 10px;
   }
   .main-page .title-bar{
-    display: none;
+    display: flex;
     position: absolute;
     left: calc(100% + 10px);
     top: 0;
     white-space: nowrap;
     border: none;
-  }
-  .main-page .title-bar.active{
-    display: flex;
   }
   .title-bar .back-button{
     display: none;
@@ -312,6 +309,9 @@ main-section{
     gap: 5px;
     list-style: none;
     padding: 0;
+  }
+  .main-links .default-active{
+    display: flex;
   }
   .main-links > li, .main-links ul li a{
     border-top: 1px solid var(--darker);
