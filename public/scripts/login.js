@@ -36,8 +36,7 @@ setTimeout(function(){
 
 formEl.addEventListener('submit', async function(e){
   e.preventDefault()
-
-  const uri = '/users/login',
+    const uri =  `/users/login`,
     formData = new FormData(formEl),
     jsonData = Object.fromEntries(formData),
     options = {
@@ -49,31 +48,36 @@ formEl.addEventListener('submit', async function(e){
     },
     response = await fetch(uri, options),
     res = await response.json()
-  if(res.status === 201){
-    success(res)
-    return resetElHtml(result)
+  switch(res.status){
+    case 201:
+      success(res)
+      return resetElHtml(result)
+        break
+    
+    case 200:
+      let count = 10
+      function counter(){
+        setInterval(()=> {
+          if(count === 1) return
+          count--
+          document.querySelector('.timeout').textContent = count
+        }, 1000)
+      }
+      function redirect(){
+        setTimeout(() => {
+          const url = res.url || '/'
+          window.location.href = url
+        }, 5000);
+      }
+      result.innerHTML = `
+        <span class="success">Login successfully, redirecting in <i class='timeout'>${count}</i> seconds</span>
+      `
+      counter()
+      redirect()
+        break
+  
+    default:
+      failed(res)
+      return resetElHtml(result)
   }
-  if(res.status === 200) {
-    let count = 10
-  function counter(){
-    setInterval(()=> {
-      if(count === 1) return
-      count--
-      document.querySelector('.timeout').textContent = count
-    }, 1000)
-  }
-  function redirect(){
-    setTimeout(() => {
-      window.location.href = '/'
-    }, 5000);
-  }
-  result.innerHTML = `
-    <span class="success">Login successfully, redirecting <i class='timeout'>${count}</i> seconds</span>
-  `
-  counter()
-  redirect()
-    return
-  }
-  failed(res)
-  return resetElHtml(result)
 })

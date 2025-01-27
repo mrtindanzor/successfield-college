@@ -21,7 +21,7 @@ app.use(session({
     collectionName: 'session'
   }),
   secret: env.SESSION_SECRET,
-  saveUninitialized: false,
+  saveUninitialized: true,
   resave: false,
   cookie: {
     maxAge:  60 * 60 * 1000

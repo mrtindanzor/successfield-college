@@ -11,9 +11,9 @@
       </div>
   
       <div class="module-nav-bar w-100 mg-inline-auto mg-block-20 mw-900p pd-30">
-        <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.lastModule %>" class="module-back button">back</a>
+        <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.lastModule %>" class="module-back button pd-10 clr-white">back</a>
         <% if(locals.nextModule) { %>
-          <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.nextModule %>" class="module-next button">next</a>
+          <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.nextModule %>" class="module-next button pd-10 clr-white ">next</a>
         <% } %>
       </div>
     <% } %>

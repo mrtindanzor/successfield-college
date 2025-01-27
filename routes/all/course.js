@@ -4,28 +4,8 @@ import { courseModel } from "../../dependencies.js"
 const courseRoute = Router(), 
   showCourseRoute = Router()
 
-showCourseRoute.get('/courses/:course', async (req, res) => {
-  const course = req.params.course.toLowerCase().trim(),
-  findCourse = await courseModel.findOne({course})
-  if(!findCourse) return res.render('index', {page: 404})
-  res.status(200).render("index", {page: "course", section: 'show', title: course.toUpperCase(), findCourse})
-})
-
-showCourseRoute.get('/courses/:course/:module', async (req, res) => {
-  let { course, module} = req.params
-  if(isNaN(module)) return res.render('index', {page: 404, title: 'No module found'})
-  course = course.trim().toLocaleLowerCase()
-  module = Number(module)
-  const findCourse = await courseModel.find({course})
-  if(!findCourse) return res.render('index', {page: 404, title: 'Page not found'})
-  const modules = findCourse[0].modules
-  if(modules.length < 1) return res.redirect(`/course/${course}`)
-  const findModule = modules.find(el => el.index === module)
-  if(!findModule) return res.render('index', {page: 404, title: 'Page not found'})
-  const lastModule = module === 1 ? '' : module - 1
-  const nextModule = module !== modules.length ? module + 1 : ''
-  res.status(200).render("index", {page: "module", section: 'show', title: findModule.title, findModule, nextModule, lastModule, findCourse})
-})
+showCourseRoute.get('/courses/:course', showCourses)
+showCourseRoute.get('/courses/:course/:module', showModule)
 
 courseRoute.get('/course/:param', (req, res) => {
   const param = req.params.param
@@ -74,7 +54,6 @@ courseRoute.patch('/course', async (req, res) => {
     })
 })
 
-
 courseRoute.delete('/course', async (req, res) => {
   const course = req.body.course.toLowerCase().trim()
   if(!course) return res.status(400).json({status: 400, msg: 'Enter a valid course name'})
@@ -84,6 +63,29 @@ courseRoute.delete('/course', async (req, res) => {
   return res.status(200).json({status: 200, msg: "Course deleted"})
 })
 
+async function showCourses(req, res){
+  const course = req.params.course.toLowerCase().trim(),
+  findCourse = await courseModel.findOne({course})
+  if(!findCourse) return res.render('index', {page: 404})
+  res.status(200).render("index", {page: "course", section: 'show', title: course.toUpperCase(), findCourse})
+}
 
+async function showModule(req, res) {
+  let { course, module} = req.params
+  if(isNaN(module)) return res.render('index', {page: 404, title: 'No module found'})
+    course = course.trim().toLocaleLowerCase()
+  module = Number(module)
+  const findCourse = await courseModel.find({course})
+  if(!findCourse) return res.render('index', {page: 404, title: 'Page not found'})
+    const checkCourse = req.user.courses?.find(el => el.course === course)
+    if(!checkCourse) return res.redirect(`/purchase/${course}`)
+  const modules = findCourse[0].modules
+  if(modules.length < 1) return res.redirect(`/course/${course}`)
+  const findModule = modules.find(el => el.index === module)
+  if(!findModule) return res.render('index', {page: 404, title: 'Page not found'})
+  const lastModule = module === 1 ? '' : module - 1
+  const nextModule = module !== modules.length ? module + 1 : ''
+  res.status(200).render("index", {page: "module", section: 'show', title: findModule.title, findModule, nextModule, lastModule, findCourse})
+}
 
 export { courseRoute, showCourseRoute }

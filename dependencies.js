@@ -49,7 +49,8 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
     verificationCode: String,
     isnew: Boolean,
     verified: Boolean,
-    namechanged: Boolean
+    namechanged: Boolean,
+    courses: [{course: String}]
   }),
   courseSchema = new schema({
     course: String,

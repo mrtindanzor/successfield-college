@@ -31,6 +31,7 @@ spanSelectors.forEach(el => {
     ulElement.forEach(el => {
       if( el.classList.contains('active')) el.classList.remove('active')
       if(el.classList.contains('default-active'))  el.classList.remove('default-active')
+      scrollTo({top: 0, left: 0, behaviour: 'smooth'})
     })
     const ul = el.nextElementSibling,
       spanText = el.textContent

@@ -11,6 +11,7 @@ import { showPartnerRoute } from "./all/partner.js";
 import profileRoute from "./all/profile.js";
 import profileItemsRoute from "./all/profileItems.js";
 import { isNotAuthenticated } from "../dependencies.js";
+import { purchaseCourseRoute } from "./all/purchase.js";
 
 const router = Router()
 router.use(homeroute)
@@ -19,6 +20,7 @@ router.use('/users', authroute)
 router.use('/users', isNotAuthenticated, profileItemsRoute)
 router.use(contactroute)
 router.use(verifyroute)
+router.use(purchaseCourseRoute)
 router.use(showCourseRoute)
 router.use(adminRoute)
 router.use(accreditationRoute)
