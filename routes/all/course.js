@@ -82,7 +82,7 @@ async function showModule(req, res) {
   module = Number(module)
   const findCourse = await courseModel.find({course})
   if(!findCourse) return res.render('index', {page: 404, title: 'Page not found'})
-  const checkCourse = req.user.courses?.length > 0 ? req.user.courses.find(el => el.course === course) : ''
+  const checkCourse = req.user?.courses?.length > 0 ? req.user.courses.find(el => el.course === course) : ''
   if(!checkCourse && !req.user.admin) return res.redirect(`/purchase/${course}`)
   const modules = findCourse[0].modules
   if(modules.length < 1) return res.redirect(`/courses/${course}`)
