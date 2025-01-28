@@ -7,6 +7,7 @@ import icons from "./public/scripts/icons.js";
 
 config()
 const env = process.env
+env.basePath = path.resolve('./')
 const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL, 
   uri = env.DATABASE,
   schema = mongoose.Schema,
