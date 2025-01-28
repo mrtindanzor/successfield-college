@@ -1,5 +1,5 @@
 main-section{
-  gap: 2px;
+  padding: 0!important;
 }
 .total-students{
  display: flex;
@@ -22,7 +22,20 @@ main-section{
 .operations{
   width: 100%;
 }
+@media (max-width: 599px) {
+  .sections-list{
+    padding: 5px;
+    gap: 1px;
+  }
+}
 @media (min-width: 600px) {
+  main-section{
+    display:  flex;
+  }
+  .sections-list{
+    padding: 10px;
+    gap: 20px;
+  }
   .side-wrapper{
     width: 30%;
     height: 100vh;
