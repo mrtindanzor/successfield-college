@@ -17,10 +17,10 @@ registerStudent.put('/register', async function(req, res){
   if(!course || !studentNumber) return res.json({status: 403, msg: 'Invalid details'})
   
   const getUser = await userModel.findOne({studentNumber})
-  if(!getUser) return res.json({status: '404', msg: 'User not found'})
+  if(!getUser) return res.json({status: '404', msg: 'Studen not found'})
   
   const checkCourse = getUser.courses.find(el => el.course.toLowerCase().trim() === course)
-  if(checkCourse) return res.json({status: 304, msg: 'User is already register to course'})
+  if(checkCourse) return res.json({status: 304, msg: 'Student is already register to course'})
   
   const add = await userModel.findOneAndUpdate({studentNumber}, {$push: {courses: {course}}})
   if(!add) return res.json({status: 500, msg: 'Error registering course'})
@@ -34,16 +34,14 @@ registerStudent.delete('/register', async function(req, res){
   if(!course || !studentNumber) return res.json({status: 403, msg: 'Invalid details'})
   
   const getUser = await userModel.findOne({studentNumber})
-  if(!getUser) return res.json({status: '404', msg: 'User not found'})
+  if(!getUser) return res.json({status: '404', msg: 'Student not found'})
   
   const checkCourse = getUser.courses.find(el => el.course.toLowerCase().trim() === course)
-  if(!checkCourse) return res.json({status: 304, msg: 'User is not registered to course'})
+  if(!checkCourse) return res.json({status: 304, msg: 'Student is not registered to course'})
   
   const add = await userModel.findOneAndUpdate({studentNumber}, {$pull: {courses: {course}}})
   if(!add) return res.json({status: 500, msg: 'Error deregistering course'})
   return res.json({status: 201, msg: 'Deregistered course successfully'})
 })
 
-export {
-  registerStudent
-}
+export default registerStudent

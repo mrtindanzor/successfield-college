@@ -1,0 +1,43 @@
+<% if(section === 'add'){%>
+  <main-section data-section="add">
+    <form class="register-student form-basic gap-20 bg-white">
+      <h1 class="hts clr-white bg-primary pd-inline-10">Register student</h1>
+      <div class="select">
+        <span class="options-placeholder">Select course</span>
+        <ol class="options-menu pd-none ls-none bg-white">
+          <% for (const course of courses){ %>
+            <li><%= course.course %> </li>
+          <% } %>
+          <input type="hidden" name="course" id="course">
+        </ol>
+      </div>
+      <label>
+        <span class="label">Student number:</span>
+        <input type="text" name="studentNumber">
+      </label>
+      <button class="button bg-primary clr-white pd-10">Register</button>
+    </form>
+  </main-section>
+<% } %>
+<% if(section === 'delete'){%>
+  <main-section data-section="delete">
+    <form class="register-student form-basic gap-20 bg-white">
+      <h1 class="hts clr-white bg-primary pd-inline-10">De-register student</h1>
+      <div class="select">
+        <span class="options-placeholder">Select course</span>
+        <ol class="options-menu bg-white pd-none ls-none">
+          <% for (const course of courses){ %>
+            <li><%= course.course %> </li>
+          <% } %>
+          <input type="hidden" name="course" id="course">
+        </ol>
+      </div>
+      <label>
+        <span class="label">Student number:</span>
+        <input type="text" name="studentNumber">
+      </label>
+      <button class="button bg-primary clr-white pd-10">De-register</button>
+    </form>
+  </main-section>
+<% } %>
+

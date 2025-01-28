@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { courseModel } from "../../dependencies.js"
+import { courseModel, userModel } from "../../dependencies.js"
 
 const courseRoute = Router(), 
   showCourseRoute = Router()
@@ -66,8 +66,13 @@ courseRoute.delete('/course', async (req, res) => {
 async function showCourses(req, res){
   const course = req.params.course.toLowerCase().trim(),
   findCourse = await courseModel.findOne({course})
+  if(req.isAuthenticated()){
+    const isLearning = req.user.courses?.length > 0 ? req.user.courses.find(el => el.course === course) : ''
+    if(isLearning.module) return res.redirect(`/courses/${course}/${isLearning.module}`)
+  }
   if(!findCourse) return res.render('index', {page: 404})
   res.status(200).render("index", {page: "course", section: 'show', title: course.toUpperCase(), findCourse})
+
 }
 
 async function showModule(req, res) {
@@ -77,7 +82,7 @@ async function showModule(req, res) {
   module = Number(module)
   const findCourse = await courseModel.find({course})
   if(!findCourse) return res.render('index', {page: 404, title: 'Page not found'})
-    const checkCourse = req.user.courses?.find(el => el.course === course)
+    const checkCourse = req.user.courses?.length > 0 ? req.user.courses.find(el => el.course === course) : ''
     if(!checkCourse) return res.redirect(`/purchase/${course}`)
   const modules = findCourse[0].modules
   if(modules.length < 1) return res.redirect(`/course/${course}`)
@@ -85,6 +90,7 @@ async function showModule(req, res) {
   if(!findModule) return res.render('index', {page: 404, title: 'Page not found'})
   const lastModule = module === 1 ? '' : module - 1
   const nextModule = module !== modules.length ? module + 1 : ''
+  if(module > checkCourse.module) await userModel.updateOne({studentNumber: req.user.studentNumber, "courses.course": course}, {$set: {"courses.$.module": module}})
   res.status(200).render("index", {page: "module", section: 'show', title: findModule.title, findModule, nextModule, lastModule, findCourse})
 }
 

@@ -252,14 +252,5 @@ authroute.patch('/update-user', async function(req, res){
   if(!user) return res.status(500).json({status: 500, msg: 'could not update'})
   return res.status(200).json({status: 200, msg: 'updated'})
 })
-authroute.patch('/isnew', async function(req, res){
-  const users = await userModel.find({})
-  for(let user of users){
-    const update = await userModel.findOneAndUpdate({studentNumber: user.studentNumber}, {$set: {isnew: false}}, {new: true})
-    if(update) console.log('updated', user.firstname, 'to', update.isnew, update.date)
-    if(!update) console.log('update for ', user.firstname, 'failed')
-  }
-  return res.status(201).send()
-})
 
 export default authroute
