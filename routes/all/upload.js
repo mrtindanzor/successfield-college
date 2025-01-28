@@ -5,7 +5,7 @@ import path from 'path'
 import { v2 as cloudinary } from 'cloudinary'
 import { env, imageModel, userModel } from "../../dependencies.js";
 
-const uploadPath = path.resolve('./src/uploads')
+const uploadPath = path.resolve('./uploads')
 const CLOUDINARY_NAME = env.CLOUDINARY_NAME,
   CLOUDINARY_API_KEY = env.CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET = env.CLOUDINARY_API_SECRET,
@@ -25,14 +25,13 @@ const CLOUDINARY_NAME = env.CLOUDINARY_NAME,
   }),
   upload = multer({ storage })
 
-  cloudinary.config(cloudinaryKeys)
+cloudinary.config(cloudinaryKeys)
 uploadRoute.put('/upload', upload.single('image'), async (req, res) => {
   if(!req.file) return res.status(400).json({status: 400, msg: 'No image sent'})
 
   const file = req.file,
     path = file.path,
     hasImage = req.user?.image
-    
   if(hasImage) await deletePhoto(hasImage.publicId)
 
   const upload = await cloudinary.uploader.upload(path).catch(err => console.log(err))
