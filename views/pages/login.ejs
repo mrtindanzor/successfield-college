@@ -1,6 +1,6 @@
 <% const eyeCloseIcon = (new locals.icons('form-eye-close', 'Hide password')).eyeClose() %>
 <% const eyeOpenIcon = (new locals.icons('form-eye-open state-active', 'Show password')).eyeOpen() %>
-<form action="/users/login" method="post" class="signin form-basic bg-white gap-25 h-fc">
+<form action="/users/login" method="post" class="signin form-basic bg-white gap-25 h-fc" data-url="<%= locals.referer %>">
   <h1 class="hts head bg-primary clr-white">
     Sign in
   </h1>

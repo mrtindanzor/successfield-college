@@ -7,8 +7,7 @@ purchaseCourseRoute.get('/purchase/:course', async function(req, res){
   const course = req.params.course.toLowerCase().trim()
   const findCourse = await courseModel.findOne({course})
   if(!req.isAuthenticated()) {
-    req.session.url = req.originalUrl
-    res.redirect(`/users/login`)
+    res.render('index', {page: 'login', title: 'Members Area', referer: req.originalUrl})
     return
   }
   const user = req.user

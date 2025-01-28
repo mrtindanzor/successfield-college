@@ -1,7 +1,8 @@
-const formEl = document.querySelector('form'),
-  inputEl = formEl.querySelectorAll('input:not([type="submit"])'),
-  showPassword = document.querySelectorAll('.form-eye-open'),
-  hidePassword = document.querySelectorAll('.form-eye-close')
+const formEl = document.querySelector('form')
+const inputEl = formEl.querySelectorAll('input:not([type="submit"])')
+const showPassword = document.querySelectorAll('.form-eye-open')
+const hidePassword = document.querySelectorAll('.form-eye-close')
+const redirectUrl = formEl.dataset.url
       
 for(let show of showPassword){
   show.addEventListener('click', ()=>{
@@ -65,8 +66,7 @@ formEl.addEventListener('submit', async function(e){
       }
       function redirect(){
         setTimeout(() => {
-          const url = res.url || '/'
-          window.location.href = url
+          window.location.href = redirectUrl || '/'
         }, 5000);
       }
       result.innerHTML = `
