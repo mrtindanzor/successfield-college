@@ -1,35 +1,126 @@
-<div class="main-wrapper">
-  <div class="side-wrapper">
-    <ul class="list-operations">
-      <li>
-        <span>Add</span>
-        <ul>
-          <li><a href="/admin/cert/add">Certificate</a></li>
-          <li><a href="/admin/course/add">Course</a></li>
-          <li><a href="/admin/partner/add">Partner</a></li>
-          <li><a href="/admin/module/add">Module</a></li>
-        </ul>
-      </li>
-
-      <li>
-        <span>Edit</span>
-        <ul>
-          <li><a href="/admin/cert/edit">Certificate</a></li>
-          <li><a href="/admin/course/edit">Course</a></li>
-          <li><a href="/admin/partner/edit">Partner</a></li>
-        </ul>
-      </li>
-
-      <li>
-        <span>Delete</span>
-        <ul>
-          <li><a href="/admin/cert/delete">Certificate</a></li>
-          <li><a href="/admin/course/delete">Course</a></li>
-          <li><a href="/admin/partner/delete">Partner</a></li>
-          <li><a href="/admin/module/delete">Module</a></li>
-        </ul>
-      </li>
-
+<main-secton class="dp-f gap-10 w-100">
+  <div class="side-wrapper bg-white">
+    <h1 class="dashboard-title hts pd-5 bg-primary clr-white">Dashboard</h1>
+    <ul class="ls-none pd-none dp-f fl-dr-c pd-10 gap-25">
+      <li class="section clr-white button bg-primary pd-10" data-section="students">Students</li>
+      <li class="section clr-white button bg-primary pd-10" data-section="partners">Partners</li>
+      <li class="section clr-white button bg-primary pd-10" data-section="certificate">Certificates</li>
+      <li class="section clr-white button bg-primary pd-10" data-section="course">Courses</li>
+      <li class="section clr-white button bg-primary pd-10" data-section="register">Courses registration</li>
     </ul>
   </div>
-</div>
+  <div class="main-wrapper bg-primary">
+    <div class="section-page" data-section="students">
+      <h2 class="hts clr-white ta-center">Students</h2>
+      <div class="total-students bg-white pd-10 br-dotted-2px fl-a-center gap-15">
+        <span class="total clr-primary ff-pb">Total Students:</span>
+        <span class="display-total clr-secondary pd-20 fl-a-center fl-j-center ff-pb"><%= students.length %></span>
+      </div>
+      <ul class="students-list pd-none ls-none">
+        <% for(const student of students){ %>
+        <li class="student">
+          <ul class="card student-card ls-none pd-none bg-white pd-10 br-radius-4">
+            <li class="student-name clr-primary">Name: <%= student.firstname.toUpperCase() +" "+ (student.middlename ? student.middlename.toUpperCase() : '') +" "+ student.surname.toUpperCase() %></li>
+            <li class="student-number">Student ID: <%= student.studentNumber.toUpperCase() %></li>
+            <li class="student-email clr-secondary">Email: <%= student.email %></li>
+          </ul>
+        </li>
+        <%}%>
+      </ul>
+    </div>
+    <div class="section-page dp-n" data-section="partners">
+      <h2 class="hts clr-white ta-center">Partners</h2>
+      <div class="total-students bg-white pd-10 br-dotted-2px fl-a-center gap-15">
+        <span class="total clr-primary ff-pb">Total Partners:</span>
+        <span class="display-total clr-secondary pd-20 fl-a-center fl-j-center ff-pb"><%= partners.length %></span>
+      </div>
+      <ul class="operations pd-inline-10 partner-operations pd-none ls-none dp-f fl-wp-w gap-20">
+        <li><a class="pd-10 clr-primary bg-white br-radius-4  button" href="/admin/partner/add">Add a new training partner</a></li>
+        <li><a class="pd-10 clr-primary bg-white br-radius-4  button" href="/admin/partner/edit">Update partner details</a></li>
+        <li><a class="pd-10 clr-primary bg-white br-radius-4  button" href="/admin/partner/delete">Revoke a training partner</a></li>
+      </ul>
+      <ul class="students-list pd-none ls-none">
+        <% for(const partner of partners){ %>
+        <li class="partner">
+          <ul class="card partner-card ls-none pd-none bg-white pd-10 br-radius-4">
+            <li class="partner-name clr-primary">Name: <%= partner.name.toUpperCase() %></li>
+            <li class="partner-number">Partner ID: <%= partner.partnerId.toUpperCase() %></li>
+          </ul>
+        </li>
+        <%}%>
+      </ul>
+    </div>
+    <div class="section-page dp-n" data-section="certificate">
+      <h2 class="hts clr-white ta-center">Certificates</h2>
+      <div class="total-students bg-white pd-10 br-dotted-2px fl-a-center gap-15">
+        <span class="total clr-primary ff-pb">Total Certificates:</span>
+        <span class="display-total clr-secondary pd-20 fl-a-center fl-j-center ff-pb"><%= certificates.length %></span>
+      </div>
+      <ul class="operations pd-inline-10 partner-operations pd-none ls-none dp-f fl-wp-w gap-20">
+        <li><a class="pd-10 clr-primary bg-white br-radius-4  button" href="/admin/cert/add">Add a new certificate</a></li>
+        <li><a class="pd-10 clr-primary bg-white br-radius-4  button" href="/admin/cert/edit">Update certificate details</a></li>
+        <li><a class="pd-10 clr-primary bg-white br-radius-4  button" href="/admin/cert/delete">Delete certificate</a></li>
+      </ul>
+      <ul class="students-list pd-none ls-none">
+        <% for(const certificate of certificates){ %>
+        <li class="certificate">
+          <ul class="card certificate-card ls-none pd-none bg-white pd-10 br-radius-4">
+            <li class="certificate-name clr-primary">Name: <%= certificate.name.toUpperCase() %></li>
+            <li class="certificate-name">Student number: <%= certificate.studentNumber.toUpperCase() %></li>
+            <li class="certificate-code">Certificate Code: <%= certificate.certificateCode.toUpperCase() %></li>
+            <li class="certificate-code clr-secondary">Programme: <%= certificate.programme.toUpperCase() %></li>
+          </ul>
+        </li>
+        <%}%>
+      </ul>
+    </div>
+    <div class="section-page dp-n" data-section="course">
+      <h2 class="hts clr-white ta-center">Courses</h2>
+      <div class="total-students bg-white pd-10 br-dotted-2px fl-a-center gap-15">
+        <span class="total clr-primary ff-pb">Total Courses:</span>
+        <span class="display-total clr-secondary pd-20 fl-a-center fl-j-center ff-pb"><%= courses.length %></span>
+      </div>
+      <ul class="operations pd-inline-10 partner-operations pd-none ls-none dp-f fl-wp-w gap-20">
+        <li><a class="pd-10 clr-primary bg-white br-radius-4  button" href="/admin/course/add">Add a new course</a></li>
+        <li><a class="pd-10 clr-primary bg-white br-radius-4  button" href="/admin/course/edit">Update course details</a></li>
+        <li><a class="pd-10 clr-primary bg-white br-radius-4  button" href="/admin/course/delete">Delete course</a></li>
+      </ul>
+      <ul class="students-list pd-none ls-none">
+        <% for(const course of courses){ %>
+        <li class="course">
+          <ul class="card course-card ls-none pd-none bg-white pd-10 gap-20 br-radius-4">
+            <li class="course-name clr-primary">Name: <%= course.course.toUpperCase() %></li>
+            <li class="course-code clr-secondary">Course fee: <%= course.fee.toUpperCase() %></li>
+            <li class="course-name">Course certificate: <%= course.certificate.toUpperCase() %></li>
+          </ul>
+        </li>
+        <%}%>
+      </ul>
+    </div>
+    <div class="section-page dp-n" data-section="register">
+      <% const registeredStudents = students.filter(student => student.courses?.length > 0) %>
+      <h2 class="hts clr-white ta-center">Course Registration</h2>
+      <div class="total-students bg-white pd-10 br-dotted-2px fl-a-center gap-15">
+        <span class="total clr-primary ff-pb">Total Registered Students:</span>
+        <span class="display-total clr-secondary pd-20 fl-a-center fl-j-center ff-pb"><%= registeredStudents.length %></span>
+      </div>
+      <ul class="operations pd-inline-10 registered-students-operations pd-none ls-none dp-f fl-wp-w gap-20">
+        <li><a class="pd-10 clr-primary bg-white br-radius-4  button" href="/admin/register/add">Register student</a></li>
+        <li><a class="pd-10 clr-primary bg-white br-radius-4  button" href="/admin/register/delete">De-register</a></li>
+      </ul>
+      <% if(registeredStudents.length > 0){ %>
+        <ul class="students-list pd-none ls-none">
+          <% for(const student of registeredStudents){ %>
+          <li class="registered">
+            <ul class="card course-card ls-none pd-none bg-white pd-10 gap-20 br-radius-4">
+              <li class="registered-student-name clr-primary">Name: <%= student.firstname.toUpperCase() +" "+ (student.middlename ? student.middlename.toUpperCase() : '') +" "+ student.surname.toUpperCase() %></li>
+              <li class="registered-student-number clr-secondary">Student Number: <%= student.studentNumber.toUpperCase() %></li>
+              <li class="registered-student-email">Email: <%= student.email %></li>
+            </ul>
+          </li>
+          <%}%>
+        </ul>
+      <%} %>
+    </div>
+  </div>
+</main-secton>

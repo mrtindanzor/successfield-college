@@ -12,9 +12,9 @@ purchaseCourseRoute.get('/purchase/:course', async function(req, res){
     return
   }
   const user = req.user
-  const hasCourse = req.user.courses?.find(el => el.course === course)
-  if(hasCourse){
-    const module = hasCourse.currentModule || 1
+  const hasCourse = user.courses?.find(el => el.course === course)
+  if(hasCourse || user.admin){
+    const module = hasCourse?.currentModule || 1
     return res.redirect(`/courses/${course}/${module}`)
   }
   return res.render('index', {page: 'purchase', title: `Purchase ${course}`, findCourse})

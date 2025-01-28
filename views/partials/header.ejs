@@ -18,7 +18,7 @@
       </div>
   <% } %>
 </nav>
-<% if(locals.page != "login" && locals.page != "join" && locals.page != 'verifyemail' && locals.page != 'forgotpassword' && locals.page != 'setforgotpassword' && locals.page != 'module'){ %>
+<% if(locals.page != "login" && locals.page != "join" && locals.page != 'verifyemail' && locals.page != 'forgotpassword' && locals.page != 'setforgotpassword' && locals.page != 'module' && locals.page !== 'admin'){ %>
 <header>
   <div class="main-menu">
   <span class="menu-button">

@@ -1,37 +1,38 @@
-.side-wrapper{
-  width: fit-content;
-  background-color: var(--primary);
-  padding: 10px 10px 0 20px;
-  height: 100vh;
+main-section{
+  gap: 2px;
 }
-.side-wrapper ul{
-  list-style-type: none;
-  padding: 0;
+.total-students{
+ display: flex;
+}
+.display-total{
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  border: 3px solid var(--primary);
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
 }
-.side-wrapper ul li ul{
-  display: none;
+.students-list{
+  column-width: 300px;
+  gap: 1px;
 }
-.side-wrapper ul li ul.active{
-  display: block;
+.card{
+  break-inside: avoid;
+  border-bottom: 1px solid var(--primary);
 }
-.side-wrapper ul li a, .side-wrapper ul li span{
-  margin-top: 10px;
-  padding: 5px 10px;
-  display: block;
-  background: var(--white);
-  text-decoration: none;
-  color: var(--primary);
-  cursor: pointer;
+.operations{
+  width: 100%;
 }
-.side-wrapper ul li span{
-  color: var(--white);
-  background-color: var(--black);
+@media (min-width: 600px) {
+  .side-wrapper{
+    width: 30%;
+    height: 100vh;
+    max-width: max-content;
+    min-width: max-content;
+  }
 
-}
-.side-wrapper ul li a:hover{
-  text-decoration: underline;
-
+  .main-wrapper{
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+  }
 }
