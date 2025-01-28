@@ -48,11 +48,16 @@ passport.deserializeUser(async (id, done) => {
 authroute.get('/', function(req, res){
   res.redirect('/')
 })
-authroute.put('/', async function(req, res){
+authroute.patch('/', async function(req, res){
   const data = req.body
-  if(!data){
+  if(!data.email){
     const users = await userModel.find({}).catch(err => res.status(500).json({msg: 'error occured while finding all users'}))
     return res.status(200).json(users)
+  }
+  if(data.operation){
+    const deleteUser = await userModel.deleteOne({email: data.email})
+    if(!deleteUser) res.status(500).json({status: 500, msg: 'Error deleting user'})
+    return res.status(201).json(deleteUser)
   }
   const users = await userModel.find(data).catch(err => res.status(500).json({msg: `error occured while finding ${data} users`}))
   return res.status(200).json(users)
