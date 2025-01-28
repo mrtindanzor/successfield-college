@@ -16,12 +16,15 @@
         <span class="total clr-primary ff-pb">Total Students:</span>
         <span class="display-total clr-secondary pd-20 fl-a-center fl-j-center ff-pb"><%= students.length %></span>
       </div>
+      <div class="search br-1px bg-white clr-primary pd-20">
+        <input type="text" id="search-students" class="pd-10 br-radius-4" placeholder="Search for student">
+      </div>
       <ul class="students-list pd-none ls-none">
         <% for(const student of students){ %>
         <li class="student">
           <ul class="card student-card ls-none pd-none bg-white pd-10 br-radius-4">
-            <li class="student-name clr-primary">Name: <%= student.firstname.toUpperCase() +" "+ (student.middlename ? student.middlename.toUpperCase() : '') +" "+ student.surname.toUpperCase() %></li>
-            <li class="student-number">Student ID: <%= student.studentNumber.toUpperCase() %></li>
+            <li class="clr-primary dp-f">Name: <span class="mg-left-10 student-name  "> <%= student.firstname.toUpperCase() +" "+ (student.middlename ? student.middlename.toUpperCase() : '') +" "+ student.surname.toUpperCase() %></span></li>
+            <li class="dp-f">Student ID: <span class=" mg-left-10 student-number"><%= student.studentNumber.toUpperCase() %></span></li>
             <li class="student-email clr-secondary">Email: <%= student.email %></li>
           </ul>
         </li>
