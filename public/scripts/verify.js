@@ -4,7 +4,7 @@ const verifyForm = document.querySelector('.find-student form'),
 verifyForm.addEventListener('submit', async function(e){
   e.preventDefault()
 
-  loader.classList.add('active')
+  loaderActive()
   let certificateCode = certificateNumber.value.toLowerCase().trim()
   if(certificateCode.length < 1) return
   const uri = '/verify',
@@ -19,7 +19,7 @@ verifyForm.addEventListener('submit', async function(e){
     res = await response.json()
   if(res.status !== 200) {
     failed(res)
-    loader.classList.remove('active')
+    loaderInactive()
     resetElHtml(result)
     return 
   }
@@ -34,5 +34,5 @@ verifyForm.addEventListener('submit', async function(e){
       <div><b for="date-completed">Date completed</b> : <span class="date-completed">${res.dateCompleted}</span></div>
     </div>
 `
-loader.classList.remove('active')
+loaderInactive()
   })

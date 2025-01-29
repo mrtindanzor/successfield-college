@@ -31,7 +31,7 @@ formEl.addEventListener('submit', async e => {
 e.preventDefault()
 
 
-loader.classList.add('active')
+loaderActive()
 
 const approvals = [],
   name = formEl.querySelector('#name').value.toLowerCase().trim(),
@@ -60,13 +60,13 @@ const response = await fetch(uri, options),
 if(res.status !== 201){
   failed(res)
   document.formEl.scrollTo = 0
-  loader.classList.remove('active')
+  loaderInactive()
   resetElHtml(result)
   return
 }
 
 success(res)
-loader.classList.remove('active')
+loaderInactive()
 resetElHtml(result)
 })
 
@@ -82,7 +82,7 @@ if(page === 'edit'){
     const id = formEl.querySelector('input').value.trim().toLowerCase()
     if(!id) return result.textContent = 'Enter a valid partner ID'
 
-    loader.classList.add('active')
+    loaderActive()
     const partnerId = {partnerId: id},
       uri = '/admin/partner',
       options = {
@@ -97,7 +97,7 @@ if(page === 'edit'){
 
     if(res.status !== 200){
       failed(res)
-      loader.classList.remove('active')
+      loaderInactive()
       resetElHtml(result)
       return
     }
@@ -154,14 +154,14 @@ if(page === 'edit'){
       input.setAttribute('placeholder', 'Approved programs')
       approvalsContainer.append(input)
     })
-    loader.classList.remove('active')
+    loaderInactive()
 
     const editFormEl = document.querySelector('.partner-form')
 
     editFormEl.addEventListener('submit', async function(e){
       e.preventDefault()
 
-      loader.classList.add('active')
+      loaderActive()
       const newApproved = [],
         name = editFormEl.querySelector('#name').value.toLowerCase().trim(),
         allPartners = editFormEl.querySelectorAll('.approvals input'),
@@ -188,12 +188,12 @@ if(page === 'edit'){
       if(res.status !== 201){
         result.insertBefore(failed(res), editFormEl)
         resetElHtml(result)
-        loader.classList.remove('active')
+        loaderInactive()
         return
       }
       
       success(res)
-      loader.classList.remove('active')
+      loaderInactive()
       resetElHtml(result)
     })
   })
@@ -209,7 +209,7 @@ formEl.addEventListener('submit', async function(e){
   const id = formEl.querySelector('input').value.trim().toLowerCase()
   if(!id) return result.textContent = 'Enter a valid partner ID'
 
-  loader.classList.add('active')
+  loaderActive()
   const partnerId = {partnerId: id},
     uri = '/admin/partner',
     options = {
@@ -224,7 +224,7 @@ formEl.addEventListener('submit', async function(e){
 
   if(res.status !== 200){
     failed(res)
-    loader.classList.remove('active')
+    loaderInactive()
     resetElHtml(result)
     return
   }
@@ -260,7 +260,7 @@ formEl.addEventListener('submit', async function(e){
 
   approved.forEach(el => approvalsContainer.innerHTML += `<li>${el.approval}</li>`)
 
-  loader.classList.remove('active')
+  loaderInactive()
 
   const deleteWrapper = document.querySelector('.delete-wrapper'),
     prompt = document.querySelector('.prompt-dialog'),
@@ -269,7 +269,7 @@ formEl.addEventListener('submit', async function(e){
     confirmDelete = document.querySelector('.confirm-delete')
 
   deleteBtn.addEventListener('click', function(){
-    loader.classList.add('active')
+    loaderActive()
     prompt.classList.add('active')
   })
 
@@ -294,19 +294,19 @@ formEl.addEventListener('submit', async function(e){
     if(res.status !== 200){
       result.insertBefore(failed(res), deleteWrapper)
       resetElHtml(result)
-      loader.classList.remove('active')
+      loaderInactive()
       prompt.classList.remove('active')
       return
     }
     resetElHtml(deleteResult)
     success(res)
-    loader.classList.remove('active')
+    loaderInactive()
     prompt.classList.remove('active')
     resetElHtml(result)
   })
 
   denyBtn.addEventListener('click', function(){
-    loader.classList.remove('active')
+    loaderInactive()
     prompt.classList.remove('active')
   })
 })

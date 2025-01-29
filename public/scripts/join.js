@@ -38,7 +38,7 @@ setTimeout(function(){
 formEl.addEventListener('submit', async function(e){
   e.preventDefault()
 
-  loader.classList.add('active')
+  loaderActive()
   const uri = '/users/join',
     formData = new FormData(formEl),
     jsonData = Object.fromEntries(formData),
@@ -51,7 +51,7 @@ formEl.addEventListener('submit', async function(e){
     },
     response = await fetch(uri, options),
     res = await response.json()
-    loader.classList.remove('active')
+    loaderInactive()
     if(res.status !== 201){
       failed(res)
       resetElHtml(result)

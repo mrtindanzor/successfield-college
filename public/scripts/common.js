@@ -1,6 +1,9 @@
 const courseListBtn = document.querySelector('.course-list-button'),
   logoContainer = document.querySelector('.logo-container'),
   loader = document.querySelector('.loader'),
+  prompt = document.querySelector('.prompt-box'),
+  promptText = prompt.querySelector('.question-section'),
+  transBackground = document.querySelector('.translucent-background'),
   menuBtn = document.querySelector('.menu-button'),
   dateContainer = document.querySelector('.date-year'),
   currentYear = new Date().getFullYear(),
@@ -9,7 +12,6 @@ const courseListBtn = document.querySelector('.course-list-button'),
   courseList = document.querySelector('.course-list-menu')
   
 result = document.querySelector('.result')
-let prompt, deleteBtn, denyBtn, confirmBtn
 svgs.forEach(el => {
   el.style.opacity = 1
 })
@@ -55,6 +57,25 @@ function hideShow(object, display= 'block'){
   }
 }
 function goToTop(){ scrollTo(0, 0)}
+function backgroundActive(){
+  transBackground.classList.add('active')
+  bodyOveflow('hidden')
+}
+function backgroundInactive(){
+  transBackground.classList.remove('active')
+  bodyOveflow('auto')
+}
+function loaderActive(){
+  loader.classList.add('active')
+  bodyOveflow('hidden')
+}
+function loaderInactive(){
+  loader.classList.remove('active')
+  bodyOveflow('auto')
+}
+function bodyOveflow(state){
+  document.body.style.overflowY = state
+}
 function success(res){
   return result.innerHTML = `<span class="success">${res.msg}</span>`
 }

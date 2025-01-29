@@ -20,7 +20,7 @@ contactroute.post('/contact', async (req, res) => {
   }
 
   const sendMail = await sendMailAsync(subject, html)
-  if(sendMail) if(sendMail.accepted.length === 1) return res.status(201).json({status: 201, msg: 'Mail sent successfully', mailIcon})
+  if(sendMail) if(sendMail?.accepted?.length === 1) return res.status(201).json({status: 201, msg: 'Mail sent successfully', mailIcon})
   return res.status(500).json({status: 500, msg: 'An error occured', mailIcon})
 })
 

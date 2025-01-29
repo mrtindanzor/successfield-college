@@ -5,7 +5,7 @@ if(page === 'add'){
 formEl.addEventListener('submit', async (e) => {
   e.preventDefault()
 
-  loader.classList.add('active')
+  loaderActive()
   result.innerHTML = ''
   const newCertCode = document.getElementById('certificateCode').value.toLowerCase()
   document.getElementById('certificateCode').value = newCertCode
@@ -24,13 +24,13 @@ formEl.addEventListener('submit', async (e) => {
     res = await response.json()
   if(res.status === 201){
     success(res)
-    loader.classList.remove('active')
+    loaderInactive()
     resetElHtml(result)
     return
   }
     
   failed(res)
-  loader.classList.remove('active')
+  loaderInactive()
   resetElHtml(result)
 })
 }
@@ -39,7 +39,7 @@ if(page === 'edit'){
   findFormEl.addEventListener('submit', async function(e){
   e.preventDefault()
 
-  loader.classList.add('active')
+  loaderActive()
   
   const certificateCode = findFormEl.querySelector('input').value.toLowerCase().trim()
   if(certificateCode.length < 1) return
@@ -55,7 +55,7 @@ if(page === 'edit'){
     res = await response.json()
   if(res.status !== 200) {
     failed(res)
-    loader.classList.remove('active')
+    loaderInactive()
     resetElHtml(result)
     return
   }
@@ -98,14 +98,14 @@ if(page === 'edit'){
     </form>
       `,
     resultForm = document.querySelector('.update-result')
-  loader.classList.remove('active')
+  loaderInactive()
   resultForm.innerHTML = updateForm
   const updateFormEl = document.querySelector('.cert-update-form')
     
   updateFormEl.addEventListener('submit', async function(e){
     e.preventDefault()
 
-    loader.classList.add('active')
+    loaderActive()
     const formData = new FormData(updateFormEl),
     jsonData = Object.fromEntries(formData.entries()),
     jsonString = JSON.stringify(jsonData),
@@ -121,11 +121,11 @@ if(page === 'edit'){
     res = await response.json()
     if(res.status !== 204 ){
       failed(res)
-      loader.classList.remove('active')
+      loaderInactive()
       return
     }
       success(res)
-    loader.classList.remove('active')
+    loaderInactive()
     resetElHtml(result)
     })
   })
@@ -138,7 +138,7 @@ if(page === 'delete'){
   findForm.addEventListener('submit', async function(e){
     e.preventDefault()
 
-    loader.classList.add('active')
+    loaderActive()
     
     const certificateCode = findEl.querySelector('input').value.trim().toLowerCase(),
       uri = '/verify',
@@ -153,7 +153,7 @@ if(page === 'delete'){
       res = await response.json()
     if(res.status !== 200){
       failed(res)
-      loader.classList.remove('active')
+      loaderInactive()
       resetElHtml(result)
       return 
     }
@@ -182,18 +182,18 @@ if(page === 'delete'){
         <button class="deny-delete">close</button>
       </div>
       `
-    loader.classList.remove('active')
+    loaderInactive()
     const deleteBtn = document.querySelector('.result .delete-button'),
       prompt = document.querySelector('.prompt-dialog'),
       denyBtn = document.querySelector('.deny-delete'),
       confirmEl = document.querySelector('.confirm-delete')
     deleteBtn.addEventListener('click', () => {
-      loader.classList.add('active')
+      loaderActive()
       prompt.classList.add('active')
     })
     denyBtn.addEventListener('click', () => {
       prompt.classList.remove('active')
-      loader.classList.remove('active')
+      loaderInactive()
     })
 
     confirmEl.addEventListener('click', async function(e){
@@ -202,7 +202,7 @@ if(page === 'delete'){
 
       if(!inputValue) return 
       if(e.target.classList.contains('confirm-delete') && inputValue === certificate){
-        loader.classList.add('active')
+        loaderActive()
         const uri = '/admin/cert',
           options = {
             method: 'delete',
@@ -216,13 +216,13 @@ if(page === 'delete'){
         if(res.status !== 200){
           failed(res)
         prompt.classList.remove('active')
-        loader.classList.remove('active')
+        loaderInactive()
         resetElHtml(result)
         return 
         }
 
         success(res)
-        loader.classList.remove('active')
+        loaderInactive()
         prompt.classList.remove('active')
         resetElHtml(result)
       }

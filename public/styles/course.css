@@ -185,45 +185,6 @@ main-section.edit{
     max-width: 500px;
     margin: 10px auto 10px auto;
   }
-  .forms-wrapper .find-course{
-    width: 100%;
-    display: flex;
-    column-gap: 5px;
-    margin-bottom: 50px;
-    align-items: end;
-    background: var(--primary);
-    padding: 20px;
-  }
-  .find-course label{
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    width: 100%;
-  }
-  .find-course label span{
-    color: var(--white);
-    font-size: 19px;
-  }
-  .find-course label input{
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-  }
-  .find-course label input:focus{
-    outline: none;
-  }
-  .find-course > input{
-    width:fit-content;
-    height: fit-content;
-    background: var(--white);
-    color: var(--primary);
-    font-weight: 800;
-    padding: 10px ;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-  }
   form.form{
     display: none;
   }
@@ -325,32 +286,21 @@ main-section.delete{
     font-weight: 900;
     text-transform: capitalize;
   }
-  .find-course{
-    width: 100%;
-    max-width: 350px;
-    border: 1px solid var(--primary);
-    display: flex;
-    padding: 10px;
-    background-color: var(--primary);
-    border-radius: 4px;
-    gap: 5px;
-    margin: 30px auto;
-  }
-  .result .show-found-course{
+  .delete-result .show-found-course{
     background-color: var(--primary);
     width: 95%;
-    max-width: 400px;
+    max-width: 600px;
     margin: 20px auto;
     padding: 20px 10px;
   }
-  .result .show-found-course h3{
+  .delete-result .show-found-course h3{
     border-radius: 5px;
     background-color: var(--white);
     color: var(--primary);
     margin-bottom: 8px;
     padding: 20px 10px 10px;
   }
-  .result .show-found-course h4{
+  .delete-result .show-found-course h4{
     background-color: var(--white);
     color: var(--primary);
     margin-bottom: 8px;
@@ -358,7 +308,7 @@ main-section.delete{
     padding: 5px 10px;
   }
 
-  .result .show-found-course > button{
+  .delete-result .show-found-course > button{
     background: var(--secondary-a);
     color: var(--white);
     text-transform: uppercase;
@@ -368,11 +318,11 @@ main-section.delete{
     padding: 10px 20px;
     border-radius: 5px;
   }
-  .result .show-found-course > span{
+  .delete-result .show-found-course > span{
     font-size: var(--first-s);
     color: var(--white);
   }
-  .result .show-found-course ol li{
+  .delete-result .show-found-course ol li{
     margin-bottom: 5px;
     font-size: var(--first-s);
     color: var(--white);

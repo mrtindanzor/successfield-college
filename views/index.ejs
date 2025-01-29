@@ -16,16 +16,6 @@
 <title><%= locals.title %></title>
   </head>
   <body class="active">
-    <div class="loader">
-      <div class="loader-children-wrapper dp-f gap-10 br-1px br-primary br-radius-20 pd-10 pd-inline-30">
-        <div class="loader-circle bg-white circle-3 mg-inline-10"></div>
-        <div class="loader-circle bg-secondary-a circle-2"></div>
-        <div class="loader-circle bg-primary circle-1"></div>
-        <div class="loader-circle bg-secondary-a circle-2"></div>
-        <div class="loader-circle bg-primary circle-1"></div>
-      </div>
-    </div>
-    <div class="result"></div>
     <%- include ('partials/header') %>
     <main-section>
       <%- include (`pages/`+locals.page) %>
@@ -35,6 +25,26 @@
         <%- include ('partials/footer') %>
       </footer>
     <% } %>
+    <div class="loader">
+      <div class="loader-children-wrapper dp-f gap-10 br-1px br-primary br-radius-20 pd-10 pd-inline-30">
+        <div class="loader-circle bg-white circle-3 mg-inline-10"></div>
+        <div class="loader-circle bg-secondary-a circle-2"></div>
+        <div class="loader-circle bg-primary circle-1"></div>
+        <div class="loader-circle bg-secondary-a circle-2"></div>
+        <div class="loader-circle bg-primary circle-1"></div>
+      </div>
+    </div>
+    <div class="prompt-box gap-25 fl-dr-c fl-a-center bg-white h-fc w-fc pd-20 br-radius-4">
+      <div class="question-section">
+        
+      </div>
+      <div class="contrs-section dp-f gap-20">
+        <button class="confirm-button button clr-white bg-primary pd-inline-30 pd-block-10">Yes</button>
+        <button class="deny-button button clr-white bg-secondary pd-inline-30 pd-block-10">No</button>
+      </div>
+    </div>
+    <div class="translucent-background"></div>
+    <div class="result"></div>
     <script src="/scripts/common.js"></script>
     <script src="/scripts/<%= page %>.js" type="module"></script>
   </body>

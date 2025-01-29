@@ -33,7 +33,7 @@ if(page == 'add'){
       },
       body: jsonData
     }
-    loader.classList.add('active')
+    loaderActive()
     const response = await fetch(uri, options)
     const res = await response.json()
 
@@ -46,7 +46,7 @@ if(page == 'add'){
       default:
         failed(res)
     }
-    loader.classList.remove('active')
+    loaderInactive()
     resetElHtml(result)
   })
 }
@@ -74,12 +74,12 @@ if(page == 'delete'){
         headers,
         body: JSON.stringify({course})
       }
-      loader.classList.add('active')
+      loaderActive()
       const response = await fetch(uri, options)
       const res = await response.json()
       const modules = res.modules
       if(modules.length < 1){
-        loader.classList.remove('active')
+        loaderInactive()
         res.msg = 'No modules found'
         resetElHtml(result)
         return failed(res)
@@ -101,12 +101,12 @@ if(page == 'delete'){
           <button class="button mg-block-20 w-100 bg-secondary delete-btn">Delete Module</button>
         </form>`
         modulesContainer.innerHTML += moduleItem
-        loader.classList.remove('active')
+        loaderInactive()
         const forms = document.querySelectorAll('.delete-module-form')
         for(const form of forms){
           form.addEventListener('submit', async function(e) {
             e.preventDefault()
-            loader.classList.add('active')
+            loaderActive()
             const uri = '/admin/module'
             const headers = new Headers()
             headers.append('Content-Type', 'application/json')
@@ -128,7 +128,7 @@ if(page == 'delete'){
               default:
                 failed(res)
             }
-            loader.classList.remove('active')
+            loaderInactive()
             resetElHtml(result)
           })
         }

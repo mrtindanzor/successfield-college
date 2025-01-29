@@ -7,7 +7,7 @@ if(page === 'request-password'){
   formEl.addEventListener('submit', async function(e){
     e.preventDefault()
 
-    loader.classList.add('active')
+    loaderActive()
     let email = inputEl.value
     email = JSON.stringify({email})
     const uri = '/users/forgotpassword',
@@ -22,7 +22,7 @@ if(page === 'request-password'){
       res = await response.json()
     if(res.status === 201) success(res)
     if(res.status !== 201) failed(res)
-    loader.classList.remove('active')
+    loaderInactive()
     resetElHtml(result)
   })
 }
@@ -47,7 +47,7 @@ if(page === 'set-password'){
   formEl.addEventListener('submit', async (e) => {
     e.preventDefault()
 
-    loader.classList.add('active')
+    loaderActive()
     const formData = new FormData(formEl),
       jsonData = JSON.stringify(Object.fromEntries(formData))
     const uri = '/users/forgotpassword/newpassword',
@@ -63,14 +63,14 @@ if(page === 'set-password'){
     if(res.status === 201){
       result.innerHTML = `<span class="success">${res.msg}, redirecting to login page in<span class="timeout">${count}</span>secs</span>`
       const timeout = document.querySelector('.timeout')
-      loader.classList.remove('active')
+      loaderInactive()
       counter(timeout)
       redirect()
       return
     } 
     if(res.status !== 201){
       failed(res)
-      loader.classList.remove('active')
+      loaderInactive()
       return resetElHtml(result)
     } 
     

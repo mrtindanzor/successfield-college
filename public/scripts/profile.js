@@ -86,7 +86,7 @@ titleBackBtn.addEventListener('click', function(){
 })
 profilePhotoBtn.addEventListener('change', async function(){
 
-  loader.classList.add('active')
+  loaderActive()
   const image = profilePhotoBtn.files[0],
     uri = '/upload',
     formData = new FormData()
@@ -100,7 +100,7 @@ profilePhotoBtn.addEventListener('change', async function(){
   
   if(res.status !== 201){
     failed(res)
-    loader.classList.remove('active')
+    loaderInactive()
     return resetElHtml(result)
   }
   const photoUrl = {publicId: res.publicId, url: res.url},
@@ -117,7 +117,7 @@ profilePhotoBtn.addEventListener('change', async function(){
 
   if(saved.status !== 201){
     failed(res)
-    loader.classList.remove('active')
+    loaderInactive()
     return resetElHtml(result)
   }
   if(!profileImage){
@@ -130,7 +130,7 @@ profilePhotoBtn.addEventListener('change', async function(){
   profileImage?.setAttribute('src', res.url)
   viewerProfileImage?.setAttribute('src', res.url)
   result.innerHTML = success(saved)
-  loader.classList.remove('active')
+  loaderInactive()
   profilePhotoBtn.value = ''
   return resetElHtml(result)
 })
@@ -144,7 +144,7 @@ formEls.forEach(function(formEl){
   formEl.addEventListener('submit', async function(e){
     e.preventDefault()
   
-    loader.classList.add('active')
+    loaderActive()
     let uri
     if(page === 'Name') uri = '/users/account-information/username'
     if(page === 'Phone number') uri = '/users/account-information/phonenumber'
@@ -171,7 +171,7 @@ formEls.forEach(function(formEl){
     if(res.status === 201){
       success(res)
     }
-    loader.classList.remove('active')
+    loaderInactive()
     resetElHtml(result)
   })
 })

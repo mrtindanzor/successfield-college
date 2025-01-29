@@ -4,7 +4,6 @@ import fs from 'fs'
 import path from 'path'
 import { v2 as cloudinary } from 'cloudinary'
 import { env, imageModel, userModel } from "../../dependencies.js";
-console.log(env)
 const uploadPath = path.join(env.basePath, '/src/uploads')
 const CLOUDINARY_NAME = env.CLOUDINARY_NAME,
   CLOUDINARY_API_KEY = env.CLOUDINARY_API_KEY,

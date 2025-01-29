@@ -19,7 +19,7 @@ for(const option of options){
 form.addEventListener('submit', async function(e){
   e.preventDefault()
 
-  loader.classList.add('active')
+  loaderActive()
   const formData = new FormData(form)
   const jsonData = JSON.stringify(Object.fromEntries(formData))
   const uri = '/admin/register/'
@@ -42,6 +42,6 @@ form.addEventListener('submit', async function(e){
     default:
       failed(res)
   }
-  loader.classList.remove('active')
+  loaderInactive()
   resetElHtml(result)
 })

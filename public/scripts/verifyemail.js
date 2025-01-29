@@ -5,7 +5,7 @@ if(formEl){
   formEl.addEventListener('submit', async function(e){
     e.preventDefault()
 
-    loader.classList.add('active')
+    loaderActive()
     const formData = new FormData(formEl)
     let email = Object.fromEntries(formData)
     email = JSON.stringify(email)
@@ -37,7 +37,7 @@ if(formEl){
         resetElHtml(result)
     }
     
-    loader.classList.remove('active')
+    loaderInactive()
   })
 
   resetElHtml(result)

@@ -1,5 +1,6 @@
 let page = document.querySelector('[data-section]')?.dataset.section
-
+const confirmBtn = prompt.querySelector('.confirm-button')
+const closeBtn = prompt.querySelector('.deny-button')
 if(page === 'show'){
   handleBtnClicks()
 
@@ -48,15 +49,13 @@ if(page === 'show'){
 
 if(page === 'add'){
   const formEl = document.querySelectorAll('.form')
-    btn = document.querySelector('button'),
-    objectives = [],
-    outlines = [],
-    benefits = [],
-    addMore = document.querySelectorAll('.add-more'),
-    addCourseBtn = document.querySelector('.add-course'),
-    prompt = document.querySelector('.prompt-dialog'),
-    confirmBtn = document.querySelector('.confirm'),
-    closeBtn = document.querySelector('.close-button')
+  const objectives = []
+  const outlines = []
+  const benefits = []
+  const addMore = document.querySelectorAll('.add-more')
+  const addCourseBtn = document.querySelector('.add-course')
+  const confirmBtn = prompt.querySelector('.confirm-button')
+  const closeBtn = prompt.querySelector('.deny-button')
     
   let course = '',
     overview = '',
@@ -128,7 +127,7 @@ if(page === 'add'){
   confirmBtn.addEventListener('click', async function(){
     newCourse = {course, overview, objectives, outlines, benefits, certificate, availability, duration, fee}
     
-    loader.classList.add('active')
+    loaderActive()
 
     const uri = '/admin/course',
       options = {
@@ -154,32 +153,49 @@ if(page === 'add'){
       inputEl.forEach(el => el.remove())
     })
     prompt.classList.remove('active')
-    loader.classList.remove('active')
+    loaderInactive()
+    backgroundInactive()
     resetElHtml(result)
   })
   
   closeBtn.addEventListener('click', () => {
     prompt.classList.remove('active')
-    loader.classList.remove('active')
+    backgroudInactive()
   })
   
   addCourseBtn.addEventListener('click', () => {
+    promptText.innerHTML = `Are you sure you want to add: <span class="clr-secondary" >${course}</span>`
     prompt.classList.add('active')
-    loader.classList.add('active')
+    backgroundActive()
   })
 }
 
 if(page === 'edit'){
-  const findCourseForm = document.querySelector('.find-course'),
-    formEl = document.querySelectorAll('.form'),
-    objectives = [],
-    outlines = [],
-    benefits = [],
-    addMore = document.querySelectorAll('.add-more'),
-    addCourseBtn = document.querySelector('.add-course'),
-    prompt = document.querySelector('.prompt-dialog'),
-    confirmBtn = document.querySelector('.confirm'),
-    closeBtn = document.querySelector('.close-button')
+  const findForm = document.querySelector('.find-course')
+  const courseInput = document.getElementById('course')
+  const courseSelector = findForm.querySelector('.select')
+  const placeholder = findForm.querySelector('.options-placeholder')
+  const liOptions = courseSelector.querySelectorAll('ol li')
+
+  for(const option of liOptions){
+    option.addEventListener('click', function(){
+      courseInput.value = option.textContent.trim()
+      placeholder.textContent = option.textContent
+    })
+  }
+
+  courseSelector.addEventListener('click', function(){
+    const options = courseSelector.querySelector('.options-menu')
+    const display = getComputedStyle(options).display
+    display === 'none' ? options.style.display = 'flex' : options.style.display = 'none'
+  })
+  
+  const formEl = document.querySelectorAll('.form')
+  const objectives = []
+  const outlines = []
+  const benefits = []
+  const addMore = document.querySelectorAll('.add-more')
+  const addCourseBtn = document.querySelector('.add-course')
       
   let course = '',
     overview = '',
@@ -190,12 +206,12 @@ if(page === 'edit'){
     id = '',
     newCourse = {}
 
-  findCourseForm.addEventListener('submit', async function(e){
+  findForm.addEventListener('submit', async function(e){
     e.preventDefault()
 
-    loader.classList.add('active')
+    loaderActive()
     
-    const courseName = findCourseForm.querySelector('#find-course').value.toLowerCase().trim(),
+    const courseName = findForm.querySelector('#course').value.toLowerCase().trim(),
       uri = '/admin/course',
       options = {
         method: 'POST',
@@ -208,7 +224,7 @@ if(page === 'edit'){
       res = await response.json()
     if(res.status !== 200){
       failed(res)
-      loader.classList.remove('active')
+      loaderInactive()
       resetElHtml(result)
       return
     }  
@@ -303,7 +319,7 @@ if(page === 'edit'){
         
       }
     })
-    loader.classList.remove('active')
+    loaderInactive()
     id = res._id
   })
   
@@ -368,7 +384,7 @@ if(page === 'edit'){
   confirmBtn.addEventListener('click', async function(){
     newCourse = {id, course, overview, objectives, outlines, benefits, certificate, availability, duration, fee}
     
-    loader.classList.add('active')
+    loaderActive()
 
     const uri = '/admin/course',
       options = {
@@ -384,7 +400,7 @@ if(page === 'edit'){
     if(res.status !== 201) failed(res)
     formEl.forEach(el => {
       el.reset()
-      findCourseForm.reset()
+      findForm.reset()
       let i = formEl.length,
         lastEl = formEl[i - 1]
       lastEl.classList.remove('active')
@@ -392,31 +408,51 @@ if(page === 'edit'){
       inputEl.forEach(el => el.remove())
     })
     prompt.classList.remove('active')
-    loader.classList.remove('active')
+    loaderInactive()
+    backgroundInactive()
     resetElHtml(result)
     })
 
   
   closeBtn.addEventListener('click', () => {
     prompt.classList.remove('active')
-    loader.classList.remove('active')
+    backgroundInactive()
   })
   
   addCourseBtn.addEventListener('click', () => {
+    promptText.innerHTML = `Are you sure you want to edit: <span class="clr-secondary" >${course}</span>`
     prompt.classList.add('active')
-    loader.classList.add('active')
+    backgroundActive()
   })
 }
 
 if(page === 'delete'){
   const findForm = document.querySelector('.find-course')
+  const courseInput = document.getElementById('course')
+  const courseSelector = findForm.querySelector('.select')
+  const placeholder = findForm.querySelector('.options-placeholder')
+  const liOptions = courseSelector.querySelectorAll('ol li')
+
+  for(const option of liOptions){
+    option.addEventListener('click', function(){
+      courseInput.value = option.textContent.trim()
+      placeholder.textContent = option.textContent
+    })
+  }
+
+  courseSelector.addEventListener('click', function(){
+    const options = courseSelector.querySelector('.options-menu')
+    const display = getComputedStyle(options).display
+    display === 'none' ? options.style.display = 'flex' : options.style.display = 'none'
+  })
+
 
   findForm.addEventListener('submit', async function(e){
     e.preventDefault()
     const course = findForm.querySelector('input').value.trim().toLowerCase()
     if(!course) return
 
-    loader.classList.add('active')
+    loaderActive()
     const uri = '/admin/course',
       options = {
         method: 'POST',
@@ -456,16 +492,6 @@ if(page === 'delete'){
         <ol class="benefits">
         </ol>
         <button>Delete</button>
-        <div class="prompt-dialog">
-            <span class="confirm-text">
-              Type "<span class="confirm-course">${res.course.toLowerCase()}</span>" to delete
-            </span>
-            <div class="contrs">
-              <input type="text">
-              <button class="confirm-button">delete</button>
-            </div>
-          <button class="close-button">close</button>
-          </div>
       </div>
     `
 
@@ -486,47 +512,41 @@ if(page === 'delete'){
       benefits.forEach(el => benefitEl.innerHTML +=  `<li>${el.benefit}</li>`)
     }
 
-    loader.classList.remove('active')
-    const deleteBtn = document.querySelector('.show-found-course > button'),
-      prompt = document.querySelector('.prompt-dialog'),
-      confirmBtn = document.querySelector('.confirm-button'),
-      closeBtn = document.querySelector('.close-button')
+    loaderInactive()
+    const deleteBtn = document.querySelector('.show-found-course > button')
 
     deleteBtn.addEventListener('click', function(){
-      loader.classList.add('active')
+      backgroundActive()
+      promptText.innerHTML = `Are you sure you want to delete: <span class="clr-secondary" >${res.course}</span>`
       prompt.classList.add('active')
     })
 
     closeBtn.addEventListener('click', function(){
-      loader.classList.remove('active')
+      backgroundInactive()
       prompt.classList.remove('active')
     })
 
     confirmBtn.addEventListener('click', async function(){
-      let inputValue = document.querySelector('.contrs input').value.toLowerCase().trim(),
-        courseName = document.querySelector('.confirm-course').textContent.toLowerCase()
-
-      if(inputValue === courseName){
-        loader.classList.add('active')
-        const uri = '/admin/course',
-          options = {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({course})
+      loaderActive()
+      const uri = '/admin/course',
+        options = {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
           },
-        response = await fetch(uri, options),
-        res = await response.json()
+          body: JSON.stringify({course})
+        },
+      response = await fetch(uri, options),
+      res = await response.json()
       if(res.status !== 200){
-        failed(res)
+      failed(res)
       }
-        if(res.status === 200){
-          success(res)
-        }
-        prompt.classList.remove('active')
-        loader.classList.remove('active')
+      if(res.status === 200){
+        success(res)
       }
+      prompt.classList.remove('active')
+      loaderInactive()
+      backgroundInactive()
     })
   })
 }

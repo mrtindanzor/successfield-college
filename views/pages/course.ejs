@@ -179,17 +179,6 @@
       </form>
       </div>
     </div>
-    <div class="prompt-dialog">
-      <div class="confirmation-dialog">
-        <span class="confirm-text">
-          Confirm add course
-        </span>
-        <div class="prompt-contrs">
-        <button class="confirm"> Yes  </button>
-        <button class="close-button">No</button>
-        </div>
-      </div>
-    </div>
   </main-section>
 <% } %>
 
@@ -198,16 +187,22 @@
     <div class="main-wrapper"  data-section="edit">
       <div class="forms-wrapper">
     
-      <form class="find-course">
-        <label for="find-course">
-        <span>
-          Search for course
-        </span>
-          <input type="text" class="find-course-code" id="find-course" name="course">
+        <form class="find-course form-basic gap-20">
+          <h1 class="hts head">Update course</h1>
+        <label>
+          <span class="label">Select course:</span>
+          <div class="select">
+            <span class="options-placeholder">Choose course</span>
+            <ol class="options-menu bg-white pd-none ls-none">
+            <% for(const course of courses ){ %>
+              <li><%= course.course %></li>
+            <% } %>
+          </ol>
+          </div>
+          <input type="hidden" name="course" id="course" value="">
         </label>
-        
-        <input type="submit" value="Find" class="find-course-code">
-      </form>
+        <button class="bg-white clr-primary mg-top-10">Find</button>
+        </form>
     
       <form class="form" data-id="course">
         <span class="form-title">
@@ -277,28 +272,29 @@
       </form>
       </div>
     </div>
-    <div class="prompt-dialog remove">
-      <div class="confirmation-dialog">
-        <span class="confirm-text">
-          Confirm add course
-        </span>
-        <div class="prompt-contrs">
-        <button class="confirm">Yes</button>
-        <button class="close-button">No</button>
-        </div>
-      </div>
-    </div>
   </main-section>
 <% } %>
 
 <% if(locals.section === 'delete'){ %>
   <main-section class="delete">
     <div class="delete-course-wrapper"  data-section="delete">
-      <form class="find-course">
-        <input type="text" class="course">
-        <button>find</button>
+      <form class="find-course form-basic gap-20">
+        <h1 class="hts head">Delete course</h1>
+      <label>
+        <span class="label">Select course:</span>
+        <div class="select">
+          <span class="options-placeholder">Choose course</span>
+          <ol class="options-menu bg-white pd-none ls-none">
+          <% for(const course of courses ){ %>
+            <li><%= course.course %></li>
+          <% } %>
+        </ol>
+        </div>
+        <input type="hidden" name="course" id="course" value="">
+      </label>
+      <button class="bg-white  mg-top-10">find</button>
       </form>
-      <div class="delete"> 
+      <div class="delete-result"> 
       </div>
     </div>
   </main-section>

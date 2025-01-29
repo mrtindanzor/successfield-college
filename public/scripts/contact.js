@@ -3,7 +3,7 @@ const sendResult = document.querySelector('.send-result')
 formEl.addEventListener('submit', async function(e){
   e.preventDefault()
 
-  loader.classList.add('active')
+  loaderActive()
   const formData = new FormData(formEl),
     jsonData = JSON.stringify(Object.fromEntries(formData)),
     uri = '/contact',
@@ -16,6 +16,8 @@ formEl.addEventListener('submit', async function(e){
     },
     response = await fetch(uri, options),
     res = await response.json()
+    loaderInactive()
+    backgroundActive()
   if(res.status === 201){
     sendResult.innerHTML = `
     <div class="mail-sent">
@@ -42,6 +44,6 @@ formEl.addEventListener('submit', async function(e){
   const closeBtn = document.querySelector('.result button')
   closeBtn.addEventListener('click', function(){
     result.classList.remove('active')
-    loader.classList.remove('active')
+    backgroundInactive()
   })
 })

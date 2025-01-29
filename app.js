@@ -5,7 +5,7 @@ import session from "express-session";
 import passport from "passport";
 import path from "path"
 import MongoStore from "connect-mongo"
-import { env, courseModel, errhandler, page404, appStarted, setVariables, pingService, isSession, isPartner } from './dependencies.js'
+import { env, errhandler, page404, appStarted, setVariables, pingService, isSession, isPartner } from './dependencies.js'
 
 const uri = env.DATABASE,
   app = express(),
@@ -24,7 +24,7 @@ app.use(session({
   saveUninitialized: true,
   resave: false,
   cookie: {
-    maxAge:  60 * 60 * 1000
+    maxAge:  60 * 60 * 3 * 1000
   }
 }))
 app.use(passport.initialize())
