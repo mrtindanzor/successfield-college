@@ -7,8 +7,6 @@ formEl.addEventListener('submit', async (e) => {
 
   loaderActive()
   result.innerHTML = ''
-  const newCertCode = document.getElementById('certificateCode').value.toLowerCase()
-  document.getElementById('certificateCode').value = newCertCode
   const formData = new FormData(formEl),
     jsonObject = Object.fromEntries(formData),
     jsonString = JSON.stringify(jsonObject),
@@ -64,8 +62,7 @@ if(page === 'edit'){
     newCertificateCode = res.certificateCode,
     programme = res.programme,
     studentNumber = res.studentNumber,
-    dateCompleted = res.dateCompleted,
-    id = res._id
+    dateCompleted = res.dateCompleted
 
   const updateForm =  `
     <form class="cert-update-form">
@@ -85,7 +82,7 @@ if(page === 'edit'){
         <input type="text" name="certificateCode" id="certificateCode" value="${newCertificateCode}" placeholder="Update certificate number" title="Update certificate number">
       </label>
         <input type="hidden" name="oldCertificateCode" id="oldCertificateCode" value="${newCertificateCode}">
-        <input type="hidden" name="id" id="oldCertificateCode" value="${id}">
+        <input type="hidden" name="id" id="oldCertificateCode" value="${newCertificateCode}">
       <label for="programme">
         <b>Programme</b>
         <input type="text" name="programme" id="programme" value="${programme}" placeholder="Update programme" title="Update programme">
@@ -127,19 +124,21 @@ if(page === 'edit'){
       success(res)
     loaderInactive()
     resetElHtml(result)
+    updateFormEl.reset()
     })
   })
 }
 
 if(page === 'delete'){
-  const findEl = document.querySelector('.find-cert'),
-    findForm = document.querySelector('.find-cert')
+  const findEl = document.querySelector('.find-cert')
+  const findForm = document.querySelector('.find-cert')
+  const findResult = document.querySelector('.find-result')
 
   findForm.addEventListener('submit', async function(e){
     e.preventDefault()
 
     loaderActive()
-    
+    resetElHtml(findResult, 200)
     const certificateCode = findEl.querySelector('input').value.trim().toLowerCase(),
       uri = '/verify',
       options = {
@@ -157,7 +156,7 @@ if(page === 'delete'){
       resetElHtml(result)
       return 
     }
-    result.innerHTML = `
+    findResult.innerHTML = `
       <div class="show-found-cert">
         <h3 data-id="${res._id}">Delete Certificate</h3>
         <h4>Name:</h4>
@@ -173,49 +172,42 @@ if(page === 'delete'){
         <button class="delete-button">delete</button>
       `
     loaderInactive()
-    const deleteBtn = document.querySelector('.result .delete-button'),
-      prompt = document.querySelector('.prompt-dialog'),
-      denyBtn = document.querySelector('.deny-delete'),
-      confirmEl = document.querySelector('.confirm-delete')
+    const deleteBtn = document.querySelector('.find-result .delete-button')
     deleteBtn.addEventListener('click', () => {
+      backgroundActive()
+      promptActive(`Are you sure you want to delete  <span class="clr-secondary dp-b">${res.studentNumber.toUpperCase()}'s</span> certificate: <span class="clr-secondary dp-b"> ${res.certificateCode.toUpperCase()}</span>`)
+    })
+    promptDeny.addEventListener('click', () => {
+      promptInactive()
+      backgroundInactive()
+    })
+
+    promptConfirm.addEventListener('click', async function(e){
       loaderActive()
-      prompt.classList.add('active')
-    })
-    denyBtn.addEventListener('click', () => {
-      prompt.classList.remove('active')
-      loaderInactive()
-    })
-
-    confirmEl.addEventListener('click', async function(e){
-      let inputValue = document.querySelector('.contrs input').value.toLowerCase().trim(),
-        certificate = document.querySelector('.confirm').textContent.toLowerCase()
-
-      if(!inputValue) return 
-      if(e.target.classList.contains('confirm-delete') && inputValue === certificate){
-        loaderActive()
-        const uri = '/admin/cert',
-          options = {
-            method: 'delete',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({certificateCode})
+      const uri = '/admin/cert',
+        options = {
+          method: 'delete',
+          headers: {
+            'Content-Type': 'application/json'
           },
+          body: JSON.stringify({certificateCode})
+        },
         response = await fetch(uri, options),
         res = await response.json()
-        if(res.status !== 200){
-          failed(res)
-        prompt.classList.remove('active')
+      if(res.status !== 200){
+        failed(res)
+        promptInactive()
+        backgroundInactive()
         loaderInactive()
         resetElHtml(result)
         return 
-        }
-
-        success(res)
-        loaderInactive()
-        prompt.classList.remove('active')
-        resetElHtml(result)
       }
+
+      success(res)
+      promptInactive()
+      backgroundInactive()
+      loaderInactive()
+      resetElHtml(result)
     })
   })
 }

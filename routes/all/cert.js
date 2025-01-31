@@ -15,7 +15,7 @@ certRoute.get('/cert/:param', (req, res) => {
 certRoute.put('/cert', async (req, res) => {
   const {programme, courseCode, studentNumber, dateCompleted} = req.body
   if(!courseCode || !programme || !studentNumber) return res.json({status: 403, msg: 'Add all essential fields'})
-  const checkUser = await userModel.findOne({studentNumber: {$regex: studentNumber, $options: 'i'}})
+  const checkUser = await userModel.findOne({studentNumber: studentNumber.toLowerCase()})
   if(!checkUser) return res.json({status: 404, msg: 'No student with this student number'})
   const certificateCode = await createCertificateCode(certificateModel, courseCode)
   const name = checkUser.firstname +' '+ (checkUser.middlename ?? '') +' '+  checkUser.surname
@@ -54,7 +54,7 @@ certRoute.patch('/cert', async (req, res) => {
   const newCertificate = {name, certificateCode, programme, studentNumber, dateCompleted}
 
   const findUser = await certificateModel.findOne({certificateCode})
-  if(findUser.certificateCode !== oldCertificateCode) return res.status(403).json({status: 403, msg: 'A user with this certificate code already exist'})
+  if(findUser && findUser.certificateCode !== oldCertificateCode) return res.status(403).json({status: 403, msg: 'A certificate with this code already exists'})
 
   certificateModel.findOneAndUpdate({certificateCode: oldCertificateCode}, newCertificate, {new: true})
     .then( async (result) => {

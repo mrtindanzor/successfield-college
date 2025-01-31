@@ -45,8 +45,8 @@ document.addEventListener('click', function(e) {
     }
   }
 })
-function resetElHtml(object){
-  setTimeout(() => object.innerHTML = '', 4000)
+function resetElHtml(object, time=4000){
+  setTimeout(() => object.innerHTML = '', time)
 }
 function hideShow(object, display= 'block'){
   const currentDisplay = window.getComputedStyle(object).display;

@@ -219,21 +219,21 @@ main-section.delete{
     gap: 5px;
     margin: 30px auto;
   }
-  .result .show-found-cert{
+  .find-result .show-found-cert{
     background-color: var(--primary);
     width: 95%;
     max-width: 400px;
     margin: 20px auto;
     padding: 20px 10px;
   }
-  .result .show-found-cert h3{
+  .find-result .show-found-cert h3{
     border-radius: 5px;
     background-color: var(--white);
     color: var(--primary);
     margin-bottom: 8px;
     padding: 20px 10px 10px;
   }
-  .result .show-found-cert h4{
+  .find-result .show-found-cert h4{
     background-color: var(--white);
     color: var(--primary);
     margin-bottom: 8px;
@@ -241,7 +241,7 @@ main-section.delete{
     padding: 5px 10px;
   }
 
-  .result .show-found-cert > button{
+  .find-result .show-found-cert > button{
     background: var(--secondary-a);
     color: var(--white);
     text-transform: uppercase;
@@ -251,7 +251,7 @@ main-section.delete{
     padding: 10px 20px;
     border-radius: 5px;
   }
-  .result .show-found-cert > span{
+  .find-result .show-found-cert > span{
     font-size: var(--first-s);
     color: var(--white);
   }

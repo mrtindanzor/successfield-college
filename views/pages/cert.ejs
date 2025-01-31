@@ -1,31 +1,27 @@
 <% if(locals.section === 'add'){ %>
   <main-section class="add">
     <div class="main-wrapper" data-section="add">
-      <form class="cert-add-form">
-        <span>
+      <form class="cert-add-form form-basic">
+        <h1 class="hts bg-white pd-10">
           Add Certificate
-        </span>
-        <label for="name">
-          <b>Name</b>
-          <input type="text" name="name" id="name">
-        </label>
+        </h1>
         <label for="studentNumber">
-          <b>Student number</b>
+          <b>Student number:</b>
           <input type="text" name="studentNumber" id="studentNumber">
         </label>
-        <label for="certificateCode">
-          <b>Certificate ID</b>
-          <input type="text" name="certificateCode" id="certificateCode">
-        </label>
         <label for="programme">
-          <b>Programme</b>
+          <b>Programme:</b>
           <input type="text" name="programme" id="programme">
         </label>
+        <label for="programme">
+          <b>Programme code:</b>
+          <input type="text" name="courseCode" id="courseCode">
+        </label>
         <label for="dateCompleted">
-          <b>Date of Completion</b>
+          <b>Date of Completion:</b>
           <input type="text" name="dateCompleted" id="dateCompleted">
         </label>
-        <input type="submit" value="Add">
+        <button class="bg-white clr-primary">Add</button>
       </form>
     </div>
   </main-section>
@@ -58,6 +54,7 @@
         <input type="text" class="cert">
         <button>find</button>
       </form>
+      <div class="find-result"></div>
     </div>
   </main-section>
 <% } %>
