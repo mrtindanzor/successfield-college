@@ -19,7 +19,7 @@ registerStudent.put('/register', async function(req, res){
   if(!course || !studentNumber) return res.json({status: 403, msg: 'Invalid details'})
   
   const getUser = await userModel.findOne({studentNumber})
-  if(!getUser) return res.json({status: '404', msg: 'Studen not found'})
+  if(!getUser) return res.json({status: '404', msg: 'Student not found'})
   
   const checkCourse = getUser.courses.find(el => el.course.toLowerCase().trim() === course)
   if(checkCourse) return res.json({status: 304, msg: 'Student is already register to course'})
@@ -27,7 +27,7 @@ registerStudent.put('/register', async function(req, res){
   const add = await userModel.findOneAndUpdate({studentNumber}, {$push: {courses: {course}}})
   if(!add) return res.json({status: 500, msg: 'Error registering course'})
   const subject = 'Course Registration Successful'
-  const name = getUser.firstname + " " + (getUser.firstname ?? '') + ' ' + getUser.surname
+  const name = getUser.firstname + " " + (getUser.middlename ?? '') + ' ' + getUser.surname
   const email = getUser.email
   const html = (new mailTemplates()).courseRegistered(name, course)
   const sendmail = await sendMailAsync(subject, html, email)

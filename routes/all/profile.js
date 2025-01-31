@@ -5,13 +5,13 @@ const profileRoute = Router()
 
 profileRoute.use('/profile', isNotAuthenticated)
 
-profileRoute.get('/profile', (req, res) => {
-  const user = req.user,
-    firstname = user.firstname,
-    middlename = user.middlename ? user.middlename : '',
-    surname = user.surname,
-    name = firstname + ' ' + middlename + ' ' + surname,
-    myCertificates = certificateModel.find({studentNumber: req.user?.studentNumber})
+profileRoute.get('/profile', async function(req, res){
+  const user = req.user
+  const firstname = user.firstname
+  const middlename = user.middlename ?? ''
+  const surname = user.surname
+  const name = firstname + ' ' + middlename + ' ' + surname
+  const myCertificates = await certificateModel.find({studentNumber: user.studentNumber.toLowerCase()})
   res.render('index', {page: 'profile', title: `Dashboard - ${name.toLocaleUpperCase()}`, name, user, myCertificates})
 })
 

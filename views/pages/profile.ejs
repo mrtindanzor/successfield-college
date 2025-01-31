@@ -188,10 +188,10 @@
       <ul>
         <% if(myCertificates?.length > 0){ %> 
           <% for(const myCertificate of myCertificates){ %>
-            <li class="bg-white br-1px br-primary dp-f fl-dr-c fl-j-center fl-a-center w-fc pd-10 br-radius-4">
-              <span class="my-certificate-code"><%= myCertificate.certificateCode %></span>
-              <span class="my-certificate-pleted"><%= myCertificate.dateCompleted %></span>
-              <span class="my-certificate-programme"><%= myCertificate.programme %></span>
+            <li class="bg-white br-2px br-primary dp-f fl-dr-c fl-j-center w-fc pd-20 br-radius-4 gap-10">
+              <div class="my-certificate-code clr-primary">Certificate Code: <%= myCertificate.certificateCode?.toUpperCase() %></div>
+              <div class="my-certificate-pleted clr-black">Date of completion: <%= upperCase(myCertificate.dateCompleted) %></div>
+              <div class="my-certificate-programme clr-black">Programme: <%= upperCase(myCertificate.programme) %></div>
             </li>
           <% } %>
         <% } %>
@@ -201,10 +201,13 @@
       <span class="li-heading">My Learning Progress</span>
       <ul>
         <% if(!locals.user?.admin && myCourses?.length > 0){ %> 
-          <% for(const myCourse of course){ %>
-            <li class="dp-f gap-10">
-              <span class="current-module">Module <%= myCourse.module %></span>
-              <a href="/courses/<%= myCourse.course %>/<%= (myCourse.module || 1) %>"><%= upperCase(myCourse.moduleName) %></a>
+          <% for(const myCourse of myCourses){ %>
+            <% const findCourse = courses?.find(el => el.course === myCourse.course) %>
+             <% if(!findCourse) continue %>
+            <li class="dp-f fl-dr-c gap-10 br-1px br-primary br-radius-4 pd-10 bg-white">
+              <div class="my-current-module clr-primary ff-pb"><%= upperCase(myCourse.course) %></div>
+              <div class="my-current-module clr-secondary">Module <%= myCourse.module || 1 %></div>
+              <a href="/courses/<%= myCourse.course %>/<%= (myCourse.module || 1) %>" class="clr-primary"><%= myCourse.moduleName || findCourse.modules[0].title %></a>
             </li>
           <% } %>
         <% } %>

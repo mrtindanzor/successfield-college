@@ -171,16 +171,6 @@ if(page === 'delete'){
         <h4>Date Completed:</h4>
         <span>${res.dateCompleted}</span>
         <button class="delete-button">delete</button>
-        <div class="prompt-dialog">
-        <span class="confirm-text">
-          Type "<span class="confirm">${res.certificateCode.toLowerCase()}</span>" to delete
-        </span>
-        <div class="contrs">
-          <input type="text">
-          <button class="confirm-delete">delete</button>
-        </div>
-        <button class="deny-delete">close</button>
-      </div>
       `
     loaderInactive()
     const deleteBtn = document.querySelector('.result .delete-button'),

@@ -58,6 +58,7 @@ if(page === 'add'){
   const closeBtn = prompt.querySelector('.deny-button')
     
   let course = '',
+    courseCode = '',
     overview = '',
     certificate = '',
     availability = '',
@@ -89,6 +90,7 @@ if(page === 'add'){
         inputValue  = input.value.trim()
         if(inputValue == '') return
         if(dataId === 'course') course = inputValue.toLowerCase()
+        if(dataId === 'course-code') courseCode = inputValue.toLowerCase()
         if(dataId === 'overview') overview = inputValue
         if(dataId === 'certificate') certificate = inputValue
         if(dataId === 'fee') fee = inputValue
@@ -125,7 +127,7 @@ if(page === 'add'){
   })  
   
   confirmBtn.addEventListener('click', async function(){
-    newCourse = {course, overview, objectives, outlines, benefits, certificate, availability, duration, fee}
+    newCourse = {course, courseCode, overview, objectives, outlines, benefits, certificate, availability, duration, fee}
     
     loaderActive()
 
@@ -198,6 +200,7 @@ if(page === 'edit'){
   const addCourseBtn = document.querySelector('.add-course')
       
   let course = '',
+    courseCode = '',
     overview = '',
     certificate = '',
     availability = '',
@@ -244,6 +247,7 @@ if(page === 'edit'){
         benefits.splice(0, i)
       }
       course = ''
+      courseCode = ''
       overview = ''
       certificate = ''
       availability = ''
@@ -261,6 +265,10 @@ if(page === 'edit'){
         let i = formEl.length,
         firstEl = formEl[0]
         firstEl.classList.add('active')
+      }
+      if(dataId === 'course-code') {
+        newInput.value = res.courseCode || ''
+        el.insertBefore(newInput, elTitle.nextSibling)
       }
       if(dataId === 'overview') {
         newInput.value = res.overview || ''
@@ -346,6 +354,7 @@ if(page === 'edit'){
         let inputValue  = input.value.trim()
         if(!inputValue) return
         if(dataId === 'course' && inputValue) course = inputValue.toLowerCase()
+        if(dataId === 'course-code' && inputValue) courseCode = inputValue.toLowerCase()
         if(dataId === 'overview' && inputValue) overview = inputValue
         if(dataId === 'certificate' && inputValue) certificate = inputValue
         if(dataId === 'availability' && inputValue) availability = inputValue
@@ -382,7 +391,7 @@ if(page === 'edit'){
   })  
   
   confirmBtn.addEventListener('click', async function(){
-    newCourse = {id, course, overview, objectives, outlines, benefits, certificate, availability, duration, fee}
+    newCourse = {id, course, courseCode, overview, objectives, outlines, benefits, certificate, availability, duration, fee}
     
     loaderActive()
 

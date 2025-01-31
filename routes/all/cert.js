@@ -1,7 +1,7 @@
 import { Router } from "express"
 import { sendMailAsync } from "./sendmail.js"
 import mailTemplates from "./mailtemplates.js"
-import { env, userModel, certificateModel } from "../../dependencies.js"
+import { env, userModel, certificateModel, createCertificateCode } from "../../dependencies.js"
 const certRoute = Router()
 
 certRoute.get('/cert/:param', (req, res) => {
@@ -13,32 +13,31 @@ certRoute.get('/cert/:param', (req, res) => {
 })
 
 certRoute.put('/cert', async (req, res) => {
-  const certificate = req.body
-  if(!certificate.name || !certificate.certificateCode || !certificate.oldCertificateCode || !certificate.programme || !certificate.studentNumber) return res.json({status: 403, msg: 'Add all essential fields'})
-  const certificateCode = certificate.certificateCode.toLowerCase().trim(),
-  user = await certificateModel.findOne({certificateCode})
-
-  if(user) return res.status(400).json({status: 400, msg: "Already added in database"})
-
+  const {programme, courseCode, studentNumber, dateCompleted} = req.body
+  if(!courseCode || !programme || !studentNumber) return res.json({status: 403, msg: 'Add all essential fields'})
+  const checkUser = await userModel.findOne({studentNumber: {$regex: studentNumber, $options: 'i'}})
+  if(!checkUser) return res.json({status: 404, msg: 'No student with this student number'})
+  const certificateCode = await createCertificateCode(certificateModel, courseCode)
+  const name = checkUser.firstname +' '+ (checkUser.middlename ?? '') +' '+  checkUser.surname
+  const certificate = { name: name.toLowerCase(), studentNumber: studentNumber.toLowerCase(), certificateCode: certificateCode.toLowerCase(), programme: programme.toLowerCase(), dateCompleted: dateCompleted?.toLowerCase() }
   const newCertificate = new certificateModel(certificate)
-
   newCertificate.save()
     .then( async () => {
       if(newCertificate.isNew) return res.status(400).json({status: 304, msg: 'could not add file'})
       const users = await userModel.find({admin: true}).catch(err => console.log(err))
       if(users){
-        const name = certificate.name || '',
-            studentNumber = certificate.studentNumber || '',
-            certificateCode = certificate.certificateCode || '', 
-            certificateName = certificate.programme || '',
-            subject = 'New certificate issued to '+name.toUpperCase()
-            users.forEach(async el => {
-              let admin = el.firstname + ' ' + el.surname
-              if(el.firstname.toLowerCase() == 'augustine') admin = 'Dr (clin) ' + el.firstname + ' ' + el.surname
-              const html = (new mailTemplates).newCertificateIssued(admin, name, studentNumber, certificateCode, certificateName)
-              await sendMailAsync(subject, html, el.email)
-              })
-            }
+        const name = certificate.name
+        const studentNumber = certificate.studentNumber
+        const certificateCode = certificate.certificateCode
+        const certificateName = certificate.programme || ''
+        const subject = 'New certificate issued to '+name.toUpperCase()
+        // users.forEach(async el => {
+        //     let admin = el.firstname + ' ' + el.surname
+        //     if(el.firstname.toLowerCase() == 'augustine') admin = 'Dr (clin) ' + el.firstname + ' ' + el.surname
+        //     const html = (new mailTemplates).newCertificateIssued(admin, name, studentNumber, certificateCode, certificateName)
+        //     await sendMailAsync(subject, html, el.email)
+        //   })
+          }
         })
       return res.status(201).json({status: 201, msg: 'added successfully'})
     })
@@ -51,11 +50,11 @@ certRoute.patch('/cert', async (req, res) => {
   const programme = certificate.programme.toLowerCase()
   const studentNumber = certificate.studentNumber.toLowerCase()
   const dateCompleted = certificate.dateCompleted.toLowerCase()
-  if(!name || !certificateCode || !oldCertificateCode || !programme || !studentNumber) return res.json({status: 403, msg: 'Add all essential fields'})
+  if(!name || !certificateCode || !programme || !studentNumber) return res.json({status: 403, msg: 'Add all essential fields'})
   const newCertificate = {name, certificateCode, programme, studentNumber, dateCompleted}
 
   const findUser = await certificateModel.findOne({certificateCode})
-  if(findUser && findUser.id !== id) return res.status(403).json({status: 403, msg: 'A user with this certificate code already exist'})
+  if(findUser.certificateCode !== oldCertificateCode) return res.status(403).json({status: 403, msg: 'A user with this certificate code already exist'})
 
   certificateModel.findOneAndUpdate({certificateCode: oldCertificateCode}, newCertificate, {new: true})
     .then( async (result) => {

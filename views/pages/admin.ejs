@@ -69,10 +69,10 @@
         <% for(const certificate of certificates){ %>
         <li class="certificate">
           <ul class="card certificate-card ls-none pd-none bg-white pd-10 br-radius-4">
-            <li class="certificate-name clr-primary">Name: <%= certificate.name.toUpperCase() %></li>
-            <li class="certificate-name">Student number: <%= certificate.studentNumber.toUpperCase() %></li>
-            <li class="certificate-code">Certificate Code: <%= certificate.certificateCode.toUpperCase() %></li>
-            <li class="certificate-code clr-secondary">Programme: <%= certificate.programme.toUpperCase() %></li>
+            <li class="certificate-name clr-primary">Name: <%= certificate.name?.toUpperCase() %></li>
+            <li class="certificate-name">Student number: <%= certificate.studentNumber?.toUpperCase() %></li>
+            <li class="certificate-code">Certificate Code: <%= certificate.certificateCode?.toUpperCase() %></li>
+            <li class="certificate-code clr-secondary">Programme: <%= certificate.programme?.toUpperCase() %></li>
           </ul>
         </li>
         <%}%>

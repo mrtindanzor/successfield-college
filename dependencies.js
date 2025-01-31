@@ -55,6 +55,7 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
   }),
   courseSchema = new schema({
     course: String,
+    courseCode: String,
     overview: String,
     outlines: [{ outline: String}],
     objectives: [{ objective: String }],
@@ -112,6 +113,7 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
     next()
   }
   function upperCase(string){
+    if(!string) return
     const words = string.split(' ')
       let spiltUpperCase = []
       words.forEach(el => {
@@ -165,6 +167,22 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
     }
     return studentNumber
   }
+  async function createCertificateCode(db, courseCode) {
+    let isMatch = true
+    let certificateCode = ''
+    while(isMatch){
+      const prefix = 'SFC',
+      year = new Date().getFullYear(),
+      code = Date.now().toString(),
+      splitCode = code.split('').splice(7).join('')
+      certificateCode = prefix + "-" + year + "-" + courseCode + "-" + splitCode
+  
+      const isStudent = await db.findOne({certificateCode})
+      if(!isStudent) isMatch = false
+      console.log(certificateCode)
+    }
+    return certificateCode
+  }
 
 
   try{
@@ -184,5 +202,5 @@ export { env, certificateModel, userModel,
   isAdmin, authenticated, isNotAuthenticated,
   isPartner, emailPattern, alpahanumericPattern,
   numberPattern, baseurl, createStudentId,
-  addressModel, modulesModel
+  addressModel, modulesModel, createCertificateCode
 }
