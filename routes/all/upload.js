@@ -4,7 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import { v2 as cloudinary } from 'cloudinary'
 import { env, imageModel, userModel } from "../../dependencies.js";
-const uploadPath = path.join(env.basePath, '/src/uploads')
+const uploadPath = './'
 const CLOUDINARY_NAME = env.CLOUDINARY_NAME,
   CLOUDINARY_API_KEY = env.CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET = env.CLOUDINARY_API_SECRET,
@@ -34,6 +34,8 @@ uploadRoute.put('/upload', upload.single('image'), async (req, res) => {
   if(hasImage) await deletePhoto(hasImage.publicId)
 
   const upload = await cloudinary.uploader.upload(path).catch(err => console.log(err))
+
+  fs.unlinkSync(path)
 
   if(!upload) return res.status(500).json({status: 500})
   const url = upload.url,
