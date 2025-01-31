@@ -161,7 +161,7 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
       code = Date.now().toString(),
       splitCode = code.split('').splice(7).join('')
       studentNumber = prefix + "-" + year + "-" + splitCode
-  
+      studentNumber = studentNumber.toLowerCase()
       const isStudent = await db.findOne({studentNumber})
       if(!isStudent) isMatch = false
     }
@@ -176,10 +176,9 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
       code = Date.now().toString(),
       splitCode = code.split('').splice(7).join('')
       certificateCode = prefix + "-" + year + "-" + courseCode + "-" + splitCode
-  
+      certificateCode = certificateCode.toLowerCase()
       const isStudent = await db.findOne({certificateCode})
       if(!isStudent) isMatch = false
-      console.log(certificateCode)
     }
     return certificateCode
   }
