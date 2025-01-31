@@ -65,6 +65,7 @@ if(page == 'delete'){
       courseInput.value = option.textContent.trim()
       placeholder.textContent = option.textContent
 
+      let activeForm
       const course = courseInput.value
       const uri = '/admin/course'
       const headers = new Headers()
@@ -106,33 +107,46 @@ if(page == 'delete'){
         for(const form of forms){
           form.addEventListener('submit', async function(e) {
             e.preventDefault()
-            loaderActive()
-            const uri = '/admin/module'
-            const headers = new Headers()
-            headers.append('Content-Type', 'application/json')
-            const course = courseInput.value.trim().toLowerCase()
-            const index = form.querySelector('.module-index').value.trim()
-            const jsonData = JSON.stringify({ index, course })
-            const options = {
-              method: 'DELETE',
-              headers,
-              body: jsonData
-            }
-            const response = await fetch(uri, options)
-            const res = await response.json()
-            switch(res.status){
-              case 201: 
-                success(res)
-                form.remove()
-                  break;
-              default:
-                failed(res)
-            }
-            loaderInactive()
-            resetElHtml(result)
+            backgroundActive()
+            const index = form.querySelector('.module-index').value
+            const title = form.querySelector('.module-title').value
+            promptActive(`Are sure you want to delete Module ${index}, <span class="clr-secondary"> ${title}</span>`)
+            activeForm = form
           })
         }
+        promptConfirm.addEventListener('click', async function(){
+          promptInactive()
+          loaderActive()
+          const uri = '/admin/module'
+          const headers = new Headers()
+          headers.append('Content-Type', 'application/json')
+          const course = courseInput.value.trim().toLowerCase()
+          const index = activeForm.querySelector('.module-index').value.trim()
+          const jsonData = JSON.stringify({ index, course })
+          const options = {
+            method: 'DELETE',
+            headers,
+            body: jsonData
+          }
+          const response = await fetch(uri, options)
+          const res = await response.json()
+          switch(res.status){
+            case 201: 
+              success(res)
+              activeForm.remove()
+                break;
+            default:
+              failed(res)
+          }
+          loaderInactive()
+          backgroundInactive()
+          resetElHtml(result)
+        })
       }
+      promptDeny.addEventListener('click', function(){
+        promptInactive()
+        backgroundInactive()
+      })
     })
   }
 

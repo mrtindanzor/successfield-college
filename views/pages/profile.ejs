@@ -166,16 +166,48 @@
       <li>
       <span class="li-heading">My Courses</span>
       <ul>
+        <% const myCourses = locals.user?.courses %>
+        <% if(!locals.user?.admin && myCourses?.length > 0){ %> 
+          <% for(const myCourse of myCourses){ %>
+            <li class="dp-f gap-10">
+              <a href="/courses/<%= myCourse.course %>/<%= (myCourse.module || 1) %>"><%= upperCase(myCourse.course) %></a>
+            </li>
+          <% } %>
+        <% } %>
+        <% if(locals.user?.admin && courses.length > 0){ %> 
+          <% for(const myCourse of courses){ %>
+            <li class="dp-f gap-10">
+              <a href="/courses/<%= myCourse.course %>/<%= (myCourse.module || 1) %>"><%= upperCase(myCourse.course) %></a>
+            </li>
+          <% } %>
+        <% } %>
       </ul>
       </li>
       <li>
       <span class="li-heading">My Certificates</span>
       <ul>
+        <% if(myCertificates?.length > 0){ %> 
+          <% for(const myCertificate of myCertificates){ %>
+            <li class="bg-white br-1px br-primary dp-f fl-dr-c fl-j-center fl-a-center w-fc pd-10 br-radius-4">
+              <span class="my-certificate-code"><%= myCertificate.certificateCode %></span>
+              <span class="my-certificate-pleted"><%= myCertificate.dateCompleted %></span>
+              <span class="my-certificate-programme"><%= myCertificate.programme %></span>
+            </li>
+          <% } %>
+        <% } %>
       </ul>
       </li>
       <li>
       <span class="li-heading">My Learning Progress</span>
       <ul>
+        <% if(!locals.user?.admin && myCourses?.length > 0){ %> 
+          <% for(const myCourse of course){ %>
+            <li class="dp-f gap-10">
+              <span class="current-module">Module <%= myCourse.module %></span>
+              <a href="/courses/<%= myCourse.course %>/<%= (myCourse.module || 1) %>"><%= upperCase(myCourse.moduleName) %></a>
+            </li>
+          <% } %>
+        <% } %>
       </ul>
       </li>
       <li>

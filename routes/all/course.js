@@ -91,6 +91,7 @@ async function showModule(req, res) {
   const lastModule = module === 1 ? '' : module - 1
   const nextModule = module !== modules.length ? module + 1 : ''
   if(!req.user?.admin) await userModel.updateOne({studentNumber: req.user.studentNumber, "courses.course": course}, {$set: {"courses.$.module": module}})
+  if(!req.user?.admin) await userModel.updateOne({studentNumber: req.user.studentNumber, "courses.course": course}, {$set: {"courses.$.name": findModule.title}})
   res.status(200).render("index", {page: "module", section: 'show', title: findModule.title, findModule, nextModule, lastModule, findCourse})
 }
 

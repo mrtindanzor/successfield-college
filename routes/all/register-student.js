@@ -1,5 +1,7 @@
 import { Router } from 'express'
 import { courseModel, userModel } from '../../dependencies.js'
+import mailTemplates from './mailtemplates.js'
+import { sendMailAsync } from './sendmail.js'
 
 const registerStudent = Router()
 
@@ -24,6 +26,11 @@ registerStudent.put('/register', async function(req, res){
   
   const add = await userModel.findOneAndUpdate({studentNumber}, {$push: {courses: {course}}})
   if(!add) return res.json({status: 500, msg: 'Error registering course'})
+  const subject = 'Course Registration Successful'
+  const name = getUser.firstname + " " + (getUser.firstname ?? '') + ' ' + getUser.surname
+  const email = getUser.email
+  const html = (new mailTemplates()).courseRegistered(name, course)
+  const sendmail = await sendMailAsync(subject, html, email)
   return res.json({status: 201, msg: 'Register course successfully'})
 })
 

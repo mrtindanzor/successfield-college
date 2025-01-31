@@ -43,29 +43,25 @@ certRoute.put('/cert', async (req, res) => {
       return res.status(201).json({status: 201, msg: 'added successfully'})
     })
 
-// certRoute.patch('/cert', async (req, res) => {
-//   const certificate = req.body
-//   const name = certificate.name.toLowerCase()
-//   const certificateCode = certificate.certificateCode.toLowerCase()
-//   const oldCertificateCode = certificate.oldCertificateCode
-//   const programme = certificate.programme.toLowerCase()
-//   const studentNumber = certificate.studentNumber.toLowerCase()
-//   const dateCompleted = certificate.dateCompleted.toLowerCase()
-//   if(!name || !certificateCode || !oldCertificateCode || !programme || !studentNumber) return res.json({status: 403, msg: 'Add all essential fields'})
-//   const newCertificate = {name, certificateCode, programme, studentNumber, dateCompleted}
+certRoute.patch('/cert', async (req, res) => {
+  const certificate = req.body
+  const name = certificate.name.toLowerCase()
+  const certificateCode = certificate.certificateCode.toLowerCase()
+  const oldCertificateCode = certificate.oldCertificateCode
+  const programme = certificate.programme.toLowerCase()
+  const studentNumber = certificate.studentNumber.toLowerCase()
+  const dateCompleted = certificate.dateCompleted.toLowerCase()
+  if(!name || !certificateCode || !oldCertificateCode || !programme || !studentNumber) return res.json({status: 403, msg: 'Add all essential fields'})
+  const newCertificate = {name, certificateCode, programme, studentNumber, dateCompleted}
 
-//   const findUser = await certificateModel.findOne({certificateCode})
-//   if(findUser && findUser.id !== id) return res.status(403).json({status: 403, msg: 'A user with this certificate code already exist'})
+  const findUser = await certificateModel.findOne({certificateCode})
+  if(findUser && findUser.id !== id) return res.status(403).json({status: 403, msg: 'A user with this certificate code already exist'})
 
-//   certificateModel.findOneAndUpdate({certificateCode: oldCertificateCode}, newCertificate, {new: true})
-//     .then( async (result) => {
-//       if(result) return res.json({status: 204, msg: 'Edited certificate successfully'})
-//       return res.status(400).json({status: 400, msg: 'Could not edit certificate'})
-//     })
-// })
-certRoute.patch('/cert', async(req,res)=>{
-  const isDeleted = await certificateModel.deleteMany({name: ''})
-  return res.json(isDeleted)
+  certificateModel.findOneAndUpdate({certificateCode: oldCertificateCode}, newCertificate, {new: true})
+    .then( async (result) => {
+      if(result) return res.json({status: 204, msg: 'Edited certificate successfully'})
+      return res.status(400).json({status: 400, msg: 'Could not edit certificate'})
+    })
 })
 certRoute.delete('/cert', async (req, res) => {
   const certificateCode = req.body.certificateCode.toLowerCase().trim()

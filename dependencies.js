@@ -51,7 +51,7 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
     isnew: Boolean,
     verified: Boolean,
     namechanged: Boolean,
-    courses: [{course: String, module: Number}]
+    courses: [{course: String, module: Number, moduleName: String}]
   }),
   courseSchema = new schema({
     course: String,
@@ -111,6 +111,17 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
     if(!req.isAdmin) return res.status(403).redirect('/')
     next()
   }
+  function upperCase(string){
+    const words = string.split(' ')
+      let spiltUpperCase = []
+      words.forEach(el => {
+      let word = el.charAt(0).toUpperCase()
+      word = word + el.slice(1)
+      spiltUpperCase.push(word)
+      })
+  
+      return spiltUpperCase.join(' ')
+  }
   async function appStarted() {
     const subject =  `App deployed successfully`,
           html = (new mailTemplates).deployed()
@@ -127,6 +138,7 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
     res.locals.courses = courses
     res.locals.isAdmin = req.isAdmin
     res.locals.icons = icons
+    res.locals.upperCase = upperCase
     next()
   }
   function pingService(){

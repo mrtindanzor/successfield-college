@@ -66,6 +66,7 @@
           <span class="options-placeholder">Choose course</span>
           <ol class="options-menu bg-white pd-none ls-none">
           <% for(const course of courses ){ %>
+            <% if(course.modules?.length < 1) continue %>
             <li><%= course.course %></li>
           <% } %>
           <input type="hidden" name="course" id="course">

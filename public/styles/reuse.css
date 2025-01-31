@@ -60,14 +60,15 @@
     position: absolute;
     display: none;
     flex-direction: column;
+    background-color: var(--white);
     left: 0;
     width: 100%;
     top: calc(100% - 10px);
     box-shadow: 0 1px 1px 1px var(--primary);
+    z-index: 5;
   }
   & ol.options-menu.active{
     display: flex;
-    z-index: 5;
   }
   & ol.options-menu li{
     width: 100%;

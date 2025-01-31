@@ -3,6 +3,8 @@ const courseListBtn = document.querySelector('.course-list-button'),
   loader = document.querySelector('.loader'),
   prompt = document.querySelector('.prompt-box'),
   promptText = prompt.querySelector('.question-section'),
+  promptConfirm = prompt.querySelector('.confirm-button'),
+  promptDeny = prompt.querySelector('.deny-button'),
   transBackground = document.querySelector('.translucent-background'),
   menuBtn = document.querySelector('.menu-button'),
   dateContainer = document.querySelector('.date-year'),
@@ -63,6 +65,15 @@ function backgroundActive(){
 }
 function backgroundInactive(){
   transBackground.classList.remove('active')
+  bodyOveflow('auto')
+}
+function promptActive(msg){
+ promptText.innerHTML = `${msg}`
+ prompt.classList.add('active')
+ bodyOveflow('hidden')
+}
+function promptInactive(){
+  prompt.classList.remove('active')
   bodyOveflow('auto')
 }
 function loaderActive(){

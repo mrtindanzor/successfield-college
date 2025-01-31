@@ -34,6 +34,7 @@
         <span class="course-list-button" title="Show courses">Courses</span>
         <ul class="course-list-menu">
             <% for(course of courses){ %>
+              <% if(course.modules?.length < 1) continue %>
               <li class="course-item"><a href="/courses/<%= course.course %>"><%= course.course %></a></li>
             <% } %>
         </ul>
