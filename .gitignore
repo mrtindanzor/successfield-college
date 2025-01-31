@@ -1,6 +1,6 @@
 .env
 node_modules/
-public/uploads/
+src/uploads/
 public/videos/
 .gitignore
 public/.DS_Store

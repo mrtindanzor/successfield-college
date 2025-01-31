@@ -35,8 +35,6 @@ uploadRoute.put('/upload', upload.single('image'), async (req, res) => {
 
   const upload = await cloudinary.uploader.upload(path).catch(err => console.log(err))
 
-  fs.unlinkSync(path)
-
   if(!upload) return res.status(500).json({status: 500})
   const url = upload.url,
     publicId = upload.public_id
