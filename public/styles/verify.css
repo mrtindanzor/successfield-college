@@ -58,41 +58,41 @@ i{
   border-radius: 0 10px 10px 0;
   opacity: 0.8;
 }
-.result {
+.show-certificate {
   flex-direction: column;
-  width: 100%;
+  width: min(100%, 500px);
   max-width: fit-content;
-  margin: 0 auto;
+  margin-inline: auto;
   display: flex;
   gap: 50px;
   background-color: var(--white);
   border-radius: 4px;
   text-transform: uppercase;
 }
-.result .student-details {
+.show-certificate .student-details {
   display: flex;
   flex-direction: column;
   color: var(--black);
   padding: 20px;
 }
-.result .student-details div {
+.show-certificate .student-details div {
   margin-bottom: 5px;
 }
-.result .student-details div b{
+.show-certificate .student-details div b{
   color: var(--black);
   font-size: var(--second-s);
   text-transform: uppercase;
   font-family: alice;
   font-weight: 900;
 }
-.result .student-details div span{
+.show-certificate .student-details div span{
   color: var(--black);
   font-size: var(--second-s);
   margin-left: 5px;
   font-family: poppins-light;
   font-weight: 500;
 }
-.result .student-details div span.verification-status {
+.show-certificate .student-details div span.verification-status {
   color: var(--primary);
   font-weight: 900;
   font-size: var(--second-s);
@@ -114,7 +114,7 @@ i{
   .find-student form button:hover {
     border-radius: 0;
   }
-  .result {
+  .show-certificate {
     flex-direction: column;
     gap: 20px;
     align-items: center;
