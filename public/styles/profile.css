@@ -136,7 +136,8 @@ main-section{
   .form-container label{
     position: relative;
     display: block;
-    width: 100%;
+    width: min(90%, 400px);
+    margin-inline: auto;
     color: var(--primary);
   }
   .form-container input{
@@ -159,6 +160,7 @@ main-section{
     color: var(--primary);
     border-radius: 30px;
     text-transform: capitalize;
+    align-self: center;
   }
   input[disabled]{
     color: var(--white);
@@ -182,7 +184,7 @@ main-section{
 .state-active{
   display: block;
 }
-@media (max-width: 550px) {
+@media (max-width: 650px) {
   .profile-img{
     margin: 0 auto;
   cursor: pointer;
@@ -277,7 +279,7 @@ main-section{
     height: fit-content;
   }
 }
-@media (min-width: 551px) {
+@media (min-width: 651px) {
   .profile-wrapper{
     height: fit-content;
     display: flex;
@@ -286,8 +288,7 @@ main-section{
   }
   .main-page{
     position: relative;
-    width: 35vw;
-    max-width: 300px;
+    width: min(35vw, 300px);
     border: 2px solid var(--darker);
     padding: 10px;
   }
@@ -304,7 +305,6 @@ main-section{
   }
   .main-links{
     display: flex;
-    height: 100vh;
     flex-direction: column;
     gap: 5px;
     list-style: none;
@@ -313,12 +313,13 @@ main-section{
   .main-links .default-active{
     display: flex;
   }
-  .main-links > li, .main-links ul li a{
+  .main-links > li span, .main-links ul li a{
     border-top: 1px solid var(--darker);
-    padding: 10px;
     cursor: pointer;
+    padding: 10px;
     color: var(--white);
     opacity: 0.7;
+    white-space: wrap;
   }
   .main-links > li > span{
     display: block;
@@ -328,10 +329,8 @@ main-section{
     position: absolute;
     list-style: none;
     left: calc(100% + 2px);
-    border: 2px solid var(--darker);
-    border-left: none;
-    min-width: 60vw;
-    height: calc(100% + 4px);
+    border-top: 2px solid var(--darker);
+    width: calc(100vw - min(35vw, 300px));
     white-space: nowrap;
     top: -2px;
     padding: 20px;
@@ -370,15 +369,16 @@ main-section{
     border-bottom: none;
   }
   .main-links li  ul li div.account-item{
+    height: fit-content;
     position: absolute;
-    top: 160px;
     left: 50%;
+    top: 95%;
     transform: translateX(-50%);
     display: none;
-  }
-  div.account-item .form-container{
     padding: 0;
-    margin: 0;
+    & *{
+      margin: 0;
+    }
   }
   .main-links li ul li div.account-item.active{
     display: flex;
