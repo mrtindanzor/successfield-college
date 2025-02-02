@@ -18,7 +18,9 @@ for(const option of options){
 }
 form.addEventListener('submit', async function(e){
   e.preventDefault()
-
+  const studentNumberEl = form.querySelector('.student-number')
+  const studentNumber = studentNumberEl.value.toLowerCase().trim()
+  studentNumberEl.value = studentNumber
   loaderActive()
   const formData = new FormData(form)
   const jsonData = JSON.stringify(Object.fromEntries(formData))
