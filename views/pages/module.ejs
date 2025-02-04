@@ -1,21 +1,31 @@
 <% if(section === 'show'){ %>
-  <main-section data-section="show">
+  <main-section data-section="show" class="dp-f">
     <% if(locals.findModule){ %>
       <% const link = findModule.link %>
-      <h1 class="title">
-        <%= locals.findModule.title %>
-      </h1>
-  
-      <div class="module-content aspect-16-9 mw-900p mg-inline-auto">
-        <iframe src="https://www.youtube-nocookie.com/embed/<%= link %>" title="<%= locals.findModule.title %>" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; controls;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="pd-inline-30"></iframe>
-      </div>
-  
-      <div class="module-nav-bar w-100 mg-inline-auto mg-block-20 mw-900p pd-30">
-        <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.lastModule %>" class="module-back button pd-10 clr-white">back</a>
-        <% if(locals.nextModule) { %>
-          <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.nextModule %>" class="module-next button pd-10 clr-white ">next</a>
-        <% } %>
-      </div>
+      <div class="playlist-thumb dp-n bg-white clr-secondary pd-20 ff-pb br-1px br-secondary">Modules Playlist</div>
+      <ul class="playlist bg-dark dp-f fl-dr-c gap-10 ls-none pd-20">
+        <h2 class="hts">Modules</h2>
+        <% const modules = locals.findCourse[0].modules %>
+        <% for (const module of modules){ %>
+          <li><a class="playlist-item br-radius-4 pd-10 button dp-f <% if(module.index === findModule.index) { %> active bg-primary clr-white <% }else { %> bg-white clr-primary <% } %>" href="/courses/<%= locals.findCourse[0].course %>/<%= module.index %>"><%= module.title %></a></li>
+          <% } %>
+        </ul>
+      <main-content>
+        <h1 class="title">
+          <%= locals.findModule.title %>
+        </h1>
+        <div class="module-content aspect-16-9 mw-900p mg-inline-auto">
+          <iframe src="https://www.youtube-nocookie.com/embed/<%= link %>" title="<%= locals.findModule.title %>" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; controls;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="pd-inline-30"></iframe>
+        </div>
+
+        <div class="module-nav-bar w-100 mg-inline-auto mg-block-20 mw-900p pd-30">
+          <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.lastModule %>" class="module-back button pd-10 clr-white">back</a>
+          <% if(locals.nextModule) { %>
+            <a href="/courses/<%= locals.findCourse[0].course %>/<%= locals.nextModule %>" class="module-next button pd-10 clr-white ">next</a>
+          <% } %>
+        </div>
+
+      </main-content>
     <% } %>
   </main-section>
 <% } %>

@@ -144,7 +144,7 @@ const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL,
     next()
   }
   function pingService(){
-    fetch(baseurl).then(() => console.log(`pinging ${baseurl}`))
+    if(env.PROD_ENV === 'PROD') fetch(baseurl).then(() => console.log(`pinging ${baseurl}`))
   }
   async function isPartner(req, res, next){
     res.locals.partner = false

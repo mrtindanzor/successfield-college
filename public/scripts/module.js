@@ -1,4 +1,13 @@
 const page = document.querySelector('[data-section]').dataset.section
+if(page == 'show'){
+  const playlist = document.querySelector('.playlist')
+  const playlistThumb = document.querySelector('.playlist-thumb')
+
+  playlistThumb.addEventListener("click", function(){
+    playlistThumb.classList.toggle('active')
+    playlist.classList.toggle('active')
+  })
+}
 if(page == 'add'){
   const formEl = document.querySelector('form')
   const courseInput = document.getElementById('course')
