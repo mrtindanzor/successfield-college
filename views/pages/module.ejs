@@ -3,13 +3,13 @@
     <% if(locals.findModule){ %>
       <% const link = findModule.link %>
       <div class="playlist-thumb dp-n bg-white clr-secondary pd-20 ff-pb br-1px br-secondary">Modules Playlist</div>
-      <ul class="playlist bg-dark dp-f fl-dr-c gap-10 ls-none pd-20">
+      <ol class="playlist bg-dark dp-f fl-dr-c gap-10 pd-20 ls-none">
         <h2 class="hts">Modules</h2>
         <% const modules = locals.findCourse[0].modules %>
         <% for (const module of modules){ %>
-          <li><a class="playlist-item br-radius-4 pd-10 button dp-f <% if(module.index === findModule.index) { %> active bg-primary clr-white <% }else { %> bg-white clr-primary <% } %>" href="/courses/<%= locals.findCourse[0].course %>/<%= module.index %>"><%= module.title %></a></li>
+          <li><a class="playlist-item br-radius-4 pd-10 button dp-f <% if(module.index === findModule.index) { %> active bg-primary clr-white <% }else { %> bg-white clr-primary <% } %>" href="/courses/<%= locals.findCourse[0].course %>/<%= module.index %>"><%= module.index %>. <%= module.title %></a></li>
           <% } %>
-        </ul>
+        </ol>
       <main-content>
         <h1 class="title">
           <%= locals.findModule.title %>
