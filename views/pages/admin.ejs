@@ -22,7 +22,7 @@
       </div>
       <ul class="students-list pd-none ls-none">
         <% for(const student of students){ %>
-        <li class="student">
+        <li class="student dp-n">
           <ul class="card student-card ls-none pd-none bg-white pd-10 br-radius-4">
             <li class="clr-primary dp-f">Name: <span class="mg-left-10 student-name  "> <%= student.firstname.toUpperCase() +" "+ (student.middlename ? student.middlename.toUpperCase() : '') +" "+ student.surname.toUpperCase() %></span></li>
             <li class="dp-f">Student ID: <span class=" mg-left-10 student-number"><%= student.studentNumber.toUpperCase() %></span></li>

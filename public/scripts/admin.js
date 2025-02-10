@@ -20,10 +20,11 @@ studentSearch.addEventListener('input', function(){
     const name = student.querySelector('.student-name').textContent.toLowerCase().trim()
     const number = student.querySelector('.student-number').textContent.toLowerCase().trim()
 
-    if(!name.includes(keyword) && !number.includes(keyword)){
-      student.classList.add('dp-n')
-    } else{
+    if(name.includes(keyword) || number.includes(keyword)){
       student.classList.remove('dp-n')
+    } else{
+      student.classList.add('dp-n')
     }
+    if(!keyword) student.classList.add('dp-n')
   }
 })
