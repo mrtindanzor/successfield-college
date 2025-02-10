@@ -161,7 +161,6 @@ authroute.get('/verify/:confirmationCode',  async function(req, res){
       if(findUser?.isnew){
         const name = findUser.firstname + ' ' + findUser.surname
         const subject =  `${name} verified their account`
-        await sendMailAsync(subject, html)
         for(const admin of admins){
           let adminName = admin.firstname.toLowerCase() + ' ' + admin.surname
           if(adminName.includes('augustine')) adminName = 'Dr (clin) ' + adminName
