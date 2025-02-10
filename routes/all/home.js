@@ -1,4 +1,5 @@
 import { Router } from "express"
+import { sendMailAsync } from "./sendmail.js"
 
 const homeroute = Router()
 

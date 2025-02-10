@@ -1,19 +1,9 @@
-function upperCase(string){
-  const words = string.split(' ')
-    let spiltUpperCase = []
-    words.forEach(el => {
-    let word = el.charAt(0).toUpperCase()
-    word = word + el.slice(1)
-    spiltUpperCase.push(word)
-    })
-
-    return spiltUpperCase.join(' ')
-}
+import { upperCase } from '../../dependencies.js'
 class mailTemplates{
   verifyAccoutTemplate = (link) => {
     return `
-      <h3>Verify email address</h3>
-      <p> You are receiving this email because you used this address to register at SuccessField College.
+      <h3>Confirm email address</h3>
+      <p> You are receiving this email because you used this address to register on SuccessField College.
         <br>
         If you did not initiate this registration, please feel free to ignore this message.
         <br>
@@ -71,18 +61,18 @@ class mailTemplates{
     `
   }
   
-  newUser = (name, email ) => {
+  newUser = (adminName, name, email ) => {
     return `
-     <h3>Mr. Admin,</h3>
+     <h3>${upperCase(adminName)}</h3>
         <br>
       <p>
-       ${name.trim().toUpperCase()} verified his email, on <a href="${process.env.LIVE_BASE_URL}">successfield college</a>
+       ${upperCase(name)} verified his email, on <a href="${process.env.LIVE_BASE_URL}">successfield college</a>
         <br>
         <br>
-        His/her email address is, ${email.trim()}.
+        ${upperCase(name)}'s email address is, ${email.trim()}.
         <br>
         <br>
-        Adios.
+        Bye.
       </p>
     `
   }

@@ -8,7 +8,7 @@ import icons from "./public/scripts/icons.js";
 config()
 const env = process.env
 env.basePath = path.resolve('./')
-const baseurl = env.PROD_ENV === 'PROD' ? env.LIVE_BASE_URL : env.DEV_BASE_URL, 
+const baseurl = env.LIVE_BASE_URL, 
   uri = env.DATABASE,
   schema = mongoose.Schema,
   imageSchema = new schema({
@@ -201,5 +201,6 @@ export { env, certificateModel, userModel,
   isAdmin, authenticated, isNotAuthenticated,
   isPartner, emailPattern, alpahanumericPattern,
   numberPattern, baseurl, createStudentId,
-  addressModel, modulesModel, createCertificateCode
+  addressModel, modulesModel, createCertificateCode,
+  upperCase
 }

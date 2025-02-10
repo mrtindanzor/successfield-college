@@ -1,8 +1,12 @@
 <% if(section === 'show'){ %>
+  <% const downIcon = (new icons('open-playlist', 'Playlist').chevronDown()) %>
   <main-section data-section="show" class="dp-f">
     <% if(locals.findModule){ %>
       <% const link = findModule.link %>
-      <div class="playlist-thumb dp-n bg-white clr-secondary pd-20 ff-pb br-1px br-secondary">Modules Playlist</div>
+      <div class="playlist-thumb dp-n bg-white pd-10 br-1px br-primary">
+        <span class="clr-primary ff-pb">Modules Playlist</span>
+        <%- downIcon %>
+      </div>
       <ol class="playlist bg-dark dp-f fl-dr-c gap-10 pd-20 ls-none">
         <h2 class="hts">Modules</h2>
         <% const modules = locals.findCourse[0].modules %>
@@ -11,10 +15,10 @@
           <% } %>
         </ol>
       <main-content>
-        <h1 class="title">
-          <%= locals.findModule.title %>
+        <h1 class="title clr-primary">
+          <span class="module-number ff-a clr-white">Module <%= findModule.index %>: </span><%= locals.findModule.title %>
         </h1>
-        <h2 class="hts dp-b w-fc pd-20 mg-inline-auto ff-a clr-secondary">Module <%= findModule.index %> </h2>
+        
         <div class="module-content aspect-16-9 mw-900p mg-inline-auto">
           <iframe src="https://www.youtube-nocookie.com/embed/<%= link %>" title="<%= locals.findModule.title %>" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; controls;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="pd-inline-30"></iframe>
         </div>
