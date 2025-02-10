@@ -9,7 +9,7 @@
       </div>
       <ol class="playlist bg-dark dp-f fl-dr-c gap-10 pd-20 ls-none">
         <h2 class="hts">Modules</h2>
-        <% const modules = locals.findCourse[0].modules %>
+        <% const modules = locals.findCourse[0].modules.sort((a, b) => a.index - b.index) %>
         <% for (const module of modules){ %>
           <li><a class="playlist-item br-radius-4 pd-10 button dp-f <% if(module.index === findModule.index) { %> active bg-primary clr-white <% }else { %> bg-white clr-primary <% } %>" href="/courses/<%= locals.findCourse[0].course %>/<%= module.index %>"><%= module.index %>. <%= module.title %></a></li>
           <% } %>
