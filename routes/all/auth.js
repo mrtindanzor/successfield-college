@@ -18,6 +18,7 @@ passport.use(new localStrategy({usernameField: "email"}, async (email, password,
   const verificationCode = date + random
   const user = await userModel.findOne({email})
   if(!user) return done(null, false, {status: 404})
+  /*
   let verificationStatus = user.verified
   if(!verificationStatus) {
     const setVerificationCode = await userModel.findOneAndUpdate({email}, {$set: {verificationCode}})
@@ -32,6 +33,7 @@ passport.use(new localStrategy({usernameField: "email"}, async (email, password,
     if(sendMail.accepted.length > 0) return done(null, false, {status: 201})
     return done(null, false, {status: 500})
   }
+  */
   
   const isPasswordMatch = await bcrypt.compare(password.trim(), user.password)
   if(!isPasswordMatch) return done(null, false, {status: 400})
@@ -99,11 +101,12 @@ authroute.post('/join', authenticated,  async function(req, res){
   const hashedPassword = await bcrypt.hash(password, 10)
   const studentNumber = await createStudentId(userModel)
   const userDetails = { 
-    firstname, middlename, surname, email, password: hashedPassword, studentNumber, date: currentDate, verificationCode, isnew: true 
+    firstname, middlename, surname, email, password: hashedPassword, studentNumber, date: currentDate 
   }
   const user = new userModel(userDetails)
   await user.save()
   if(!user.isNew) {
+  	/*
     const to = email
     const subject =  `Confirm email address`
     const link = `${env.LIVE_BASE_URL}/users/verify/${verificationCode}`
@@ -115,7 +118,10 @@ authroute.post('/join', authenticated,  async function(req, res){
   if(sendMail.rejected.length > 0) return res.json({status: 403, msg: 'Enter a valid email address'})
   if(sendMail.accepted.length > 0) return res.status(201).json({status: 201, msg: 'Check your email inbox to complete sign up'})
   userModel.findOneAndDelete({email})
-  return res.status(500).json({status: 500, msg: 'An error occured, try again'})
+  */
+  return res.status(201).json({status: 201, msg: 'Account created successfully. Proceed to login'})
+  } else {
+  	return res.json({status: 500, msg: 'An error occured'})
   }
 })
 authroute.post('/login', async function(req, res, next){
