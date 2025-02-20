@@ -63,6 +63,9 @@ authroute.patch('/', async function(req, res){
   return res.status(200).json(users)
 })
 authroute.post('/join', authenticated,  async function(req, res){
+	
+	return res.json({status: 400, msg: 'Server inactive, try again later'})
+	
   let {firstname, middlename, surname, email, password, cpassword } = req.body
 
   if(!firstname)  return res.status(400).json({status: 400, msg: 'Add your firstname'})
