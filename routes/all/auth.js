@@ -269,9 +269,9 @@ authroute.get('/forgotpassword/:verificationCode', async function(req, res){
   if(findUser) email = findUser.email
   res.status(200).render('index', {page: 'passwordreset', section: 'set-password', title: 'Change password', email})
 })
-authroute.get('/:auth', authenticated, function(req, res, next){
+authroute.get('/:auth', authenticated, function(req, res){
   const route = req.params.auth.toLowerCase().trim()
-  if(route === 'join') return res.status(200).render('index', {page: 'join', title: 'Create account'})
+  if(route === 'register') return res.status(200).render('index', {page: 'join', title: 'Create account'})
   if(route === 'login' || req.query.switch === 'true') return res.status(200).render('index', {page: 'login', title: 'Members Area'})
 })
 authroute.delete('/delete', async function(req, res){
