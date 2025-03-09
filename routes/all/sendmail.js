@@ -6,7 +6,8 @@ import { env } from "../../dependencies.js"
   sendMail = async (options) => {
     return new Promise((resolve, reject) => {
       const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.zoho.com',
+        port: 465,
         secure: true,
         auth: {
           user,
@@ -19,10 +20,11 @@ import { env } from "../../dependencies.js"
       })
     })
   },
-  sendMailAsync = async (subject, html, to=user ) => {
+  sendMailAsync = async (subject, html, to='admin@successfieldcollege.com' ) => {
 
-    const from = `SuccessField College <${user}>`,
-    options = { from, to, subject, html }
+    const from = `SuccessField College <${user}>`
+    const replyTo = `Successfield College <contact@successfieldcollege.com>`
+    const options = { from, replyTo, to, subject, html }
 
     try{
       const response = await sendMail(options)

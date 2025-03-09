@@ -1,13 +1,12 @@
 const formEl = document.querySelector('form.email-form')
-const sendResult = document.querySelector('.send-result')
 formEl.addEventListener('submit', async function(e){
   e.preventDefault()
 
   loaderActive()
-  const formData = new FormData(formEl),
-    jsonData = JSON.stringify(Object.fromEntries(formData)),
-    uri = '/contact',
-    options = {
+  const formData = new FormData(formEl)
+  const jsonData = JSON.stringify(Object.fromEntries(formData))
+  const uri = '/contact'
+  const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -16,34 +15,15 @@ formEl.addEventListener('submit', async function(e){
     },
     response = await fetch(uri, options),
     res = await response.json()
-    loaderInactive()
-    backgroundActive()
-  if(res.status === 201){
-    sendResult.innerHTML = `
-    <div class="mail-sent">
-      <span class="text">
-      ${res.mailIcon}
-        ${success(res)}
-      </span>
-      <button>OK</button>
-    </div>
-  `
-  formEl.reset()
-  } 
-  if(res.status !== 201) sendResult.innerHTML = `
-    <div class="mail-not-sent">
-      <span class="text">
-        ${res.mailIcon}
-        ${failed}
-      </span>
-      <button>OK</button>
-    </div>
-  `
-
-  sendResult.classList.add('active')
-  const closeBtn = document.querySelector('.result button')
-  closeBtn.addEventListener('click', function(){
-    result.classList.remove('active')
-    backgroundInactive()
-  })
+  loaderInactive()
+  switch(res.status){
+    case 201:
+      formEl.reset()
+      success(res)
+        break;
+    default: 
+      failed(res)
+  }
+  resetElHtml(result)
+    
 })

@@ -1,17 +1,17 @@
-const courseListBtn = document.querySelector('.course-list-button'),
-  logoContainer = document.querySelector('.logo-container'),
-  loader = document.querySelector('.loader'),
-  prompt = document.querySelector('.prompt-box'),
-  promptText = prompt.querySelector('.question-section'),
-  promptConfirm = prompt.querySelector('.confirm-button'),
-  promptDeny = prompt.querySelector('.deny-button'),
-  transBackground = document.querySelector('.translucent-background'),
-  menuBtn = document.querySelector('.menu-button'),
-  dateContainer = document.querySelector('.date-year'),
-  currentYear = new Date().getFullYear(),
-  svgs = document.querySelectorAll('svg'),
-  menuList = document.querySelector('ul.menu-list'),
-  courseList = document.querySelector('.course-list-menu')
+const courseListBtn = document.querySelector('.course-list-button')
+const logoContainer = document.querySelector('.logo-container')
+const loader = document.querySelector('.loader')
+const prompt = document.querySelector('.prompt-box')
+const promptText = prompt.querySelector('.question-section')
+const promptConfirm = prompt.querySelector('.confirm-button')
+const promptDeny = prompt.querySelector('.deny-button')
+const transBackground = document.querySelector('.translucent-background')
+const menuBtn = document.querySelector('.menu-button')
+const dateContainer = document.querySelector('.date-year')
+const currentYear = new Date().getFullYear()
+const svgs = document.querySelectorAll('svg')
+const menuList = document.querySelector('ul.menu-list')
+const courseList = document.querySelector('.course-list-menu')
   
 result = document.querySelector('.result')
 svgs.forEach(el => {
@@ -88,7 +88,8 @@ function bodyOveflow(state){
   document.body.style.overflowY = state
 }
 function success(res){
-  return result.innerHTML = `<span class="success">${res.msg}</span>`
+   result.innerHTML = `<span class="success">${res.msg}</span>`
+
 }
 function failed(res){
   return result.innerHTML = `<span class="failed">${res.msg}</span>`
